@@ -7,11 +7,11 @@ export default function SiteHeader() {
       <div className={`container site-header-inner ${styles.inner}`}>
         <Link className={`brand ${styles.brand}`} href="/#top" aria-label="AGILE Careers home">AGILE</Link>
         <nav className={`site-nav ${styles.nav}`} aria-label="Primary navigation">
-          <Link href="/#positions">Positions</Link>
-          <Link href="/#why-agile">Why AGILE</Link>
-          <Link href="/#reviews">Reviews</Link>
-          <Link href="/#contact">Contact</Link>
-          <a className={styles.searchCareers} href="#positions">Search Careers</a>
+          <a href="/#positions">Positions</a>
+          <a href="/#why-agile">Why AGILE</a>
+          <a href="/#reviews">Reviews</a>
+          <a href="/#contact">Contact</a>
+          <a className={styles.searchCareers} href="/#positions">Search Careers</a>
         </nav>
       </div>
     </header>

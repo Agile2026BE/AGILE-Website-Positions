@@ -6,6 +6,7 @@ import EmptyJobsState from "./EmptyJobsState";
 import FilterSelect from "./FilterSelect";
 import JobCard from "./JobCard";
 import JobResultsSummary from "./JobResultsSummary";
+import PositionModal from "./PositionModal";
 import ResetFiltersButton from "./ResetFiltersButton";
 import SearchInput from "./SearchInput";
 import ShowMorePositionsButton from "./ShowMorePositionsButton";
@@ -20,6 +21,7 @@ export default function JobBoard({ jobs = [] }) {
   const [filters,setFilters] = useState(initialFilters);
   const [shortlistedJobs,setShortlistedJobs] = useState([]);
   const [visibleCount,setVisibleCount] = useState(jobBoardConfig.results.initialVisibleCount);
+  const [selectedJob,setSelectedJob] = useState(null);
   const options = useMemo(() => buildFilterOptions(jobs),[jobs]);
   const filteredJobs = useMemo(() => filterJobs(jobs,filters),[jobs,filters]);
   const visibleJobs = filteredJobs.slice(0,visibleCount);
@@ -57,9 +59,18 @@ export default function JobBoard({ jobs = [] }) {
         </div>
 
         <JobResultsSummary resultCount={filteredJobs.length} availableLabel={jobBoardConfig.results.availableLabel} allOpportunitiesLabel={jobBoardConfig.results.allOpportunitiesLabel} shortlistedCount={shortlistedJobs.length} />
-        {visibleJobs.length ? <div className={`job-grid ${styles.grid}`}>{visibleJobs.map(job=><JobCard key={job.id??job.slug} job={job} isShortlisted={isJobShortlisted(job)} onShortlist={toggleShortlist} />)}</div> : <EmptyJobsState hasActiveFilters={hasActiveFilters} onReset={resetFilters} />}
+        {visibleJobs.length ? <div className={`job-grid ${styles.grid}`}>{visibleJobs.map(job=><JobCard key={job.id??job.slug} job={job} isShortlisted={isJobShortlisted(job)} onShortlist={toggleShortlist} onViewPosition={setSelectedJob} />)}</div> : <EmptyJobsState hasActiveFilters={hasActiveFilters} onReset={resetFilters} />}
         {visibleCount<filteredJobs.length ? <ShowMorePositionsButton label={jobBoardConfig.results.showMoreLabel} onClick={()=>setVisibleCount(count=>count+24)} /> : null}
       </div>
+
+      <PositionModal
+        job={selectedJob}
+        jobs={jobs}
+        onClose={()=>setSelectedJob(null)}
+        onSelectJob={setSelectedJob}
+        isShortlisted={selectedJob ? isJobShortlisted(selectedJob) : false}
+        onShortlist={toggleShortlist}
+      />
     </section>
   );
 }

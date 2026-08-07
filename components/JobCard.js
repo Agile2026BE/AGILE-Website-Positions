@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import styles from "./JobCard.module.css";
 import ShareButton from "./ShareButton";
@@ -9,9 +8,8 @@ import ViewPositionLink from "./ViewPositionLink";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { shareJob } from "../lib/shareJob";
 
-export default function JobCard({ job, isShortlisted = false, onShortlist }) {
+export default function JobCard({ job, isShortlisted = false, onShortlist, onViewPosition }) {
   const labels = jobBoardConfig.cardLabels;
-  const href = job.slug ? `/positions/${job.slug}` : "#contact";
   const [shareStatus, setShareStatus] = useState("");
 
   async function handleShare() {
@@ -34,14 +32,10 @@ export default function JobCard({ job, isShortlisted = false, onShortlist }) {
         />
       </div>
 
-      <Link
-        className={styles.cardLink}
-        href={href}
-        aria-label={`View ${job.title}`}
-      >
+      <div className={styles.cardContent}>
         <p>{job.discipline}</p>
         <h3>{job.title}</h3>
-        {job.summary ? <p>{job.summary}</p> : null}
+        {job.summary ? <p className={styles.summary}>{job.summary}</p> : null}
 
         <dl className={styles.meta}>
           <div className={styles.metaRow}>
@@ -68,10 +62,10 @@ export default function JobCard({ job, isShortlisted = false, onShortlist }) {
           {job.credential ? <span>{job.credential}</span> : null}
           {job.bonus ? <span>Bonus</span> : null}
         </div>
-      </Link>
+      </div>
 
       <div className={`job-card-actions ${styles.actions}`}>
-        <ViewPositionLink href={href} label={labels.viewPosition} />
+        <ViewPositionLink onClick={() => onViewPosition?.(job)} label={labels.viewPosition} />
         <ShareButton label={labels.share} onClick={handleShare} />
       </div>
 

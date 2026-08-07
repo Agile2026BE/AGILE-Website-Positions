@@ -1,9 +1,9 @@
 .board { position:relative; scroll-margin-top:118px; padding-top:58px; background:#f7f9fb; }
-.headingRow { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(320px,.75fr); gap:70px; align-items:end; }
+.headingRow { display:grid; grid-template-columns:minmax(0,1.8fr) minmax(320px,.72fr); gap:70px; align-items:end; }
 .slogan { margin:0 0 14px; color:#59b9e6; font-size:.78rem; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
 .slogan span { position:relative; display:inline-block; margin:0 4px; color:#58a9d1; font-family:Georgia,"Times New Roman",serif; font-style:italic; font-weight:700; letter-spacing:0; text-transform:none; }
 .slogan span::after { content:""; position:absolute; left:-4px; right:-4px; bottom:-5px; height:2px; background:#d9a62e; border-radius:50%; transform:rotate(-2deg); }
-.headingRow h2 { max-width:760px; font-family:Georgia,"Times New Roman",serif; font-size:clamp(3rem,4.5vw,4.4rem); font-weight:400; letter-spacing:-.035em; }
+.headingRow h2 { max-width:none; white-space:nowrap; font-family:Georgia,"Times New Roman",serif; font-size:clamp(3rem,4.15vw,4.15rem); font-weight:400; letter-spacing:-.035em; }
 .intro { max-width:430px; padding-bottom:5px; }
 .filterPanel { margin-top:30px; padding:20px; border:1px solid #d7e0e7; border-radius:14px; background:#fff; box-shadow:0 12px 28px rgba(30,45,75,.06); }
 .controls { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; margin:0; }
@@ -11,5 +11,6 @@
 .searchLabel { margin-top:14px; }
 .searchRow { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:end; margin:0; }
 .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:24px; }
+@media(max-width:1180px){.headingRow h2{white-space:normal;max-width:780px}}
 @media(max-width:980px){.headingRow{grid-template-columns:1fr;gap:12px}.intro{max-width:620px}.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.board{scroll-margin-top:96px;padding-top:44px}.headingRow h2{font-size:clamp(2.5rem,12vw,3.5rem)}.controls,.searchRow,.grid{grid-template-columns:1fr}.filterPanel{padding:16px}}
