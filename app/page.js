@@ -5,6 +5,7 @@ import JobBoard from "../components/JobBoard";
 import ReviewsSection from "../components/ReviewsSection";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
+import WhyAgileSection from "../components/WhyAgileSection";
 import { jobs } from "../data/jobs";
 
 export default function HomePage() {
@@ -18,6 +19,7 @@ export default function HomePage() {
         <HeroSection />
         <JobBoard jobs={jobs} />
         <ReviewsSection />
+        <WhyAgileSection />
         <ContactSection />
         <SiteFooter />
       </main>
