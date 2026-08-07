@@ -1,22 +1,29 @@
+import styles from "./ContactSection.module.css";
+
 export default function ContactSection() {
   return (
-    <section className="section contact-section" id="contact">
-      <div className="container contact-grid">
+    <section className={`section contact-section ${styles.section}`} id="contact">
+      <div className={`container contact-grid ${styles.grid}`}>
         <div>
-          <p className="contact-eyebrow">PROFESSIONAL CAREER INQUIRY</p>
+          <p className={`contact-eyebrow ${styles.eyebrow}`}>
+            PROFESSIONAL CAREER INQUIRY
+          </p>
           <h2 className="section-title">Start with a conversation.</h2>
           <p className="section-copy">
             Not a formal application. No fee or obligation. Tell us what matters most,
             or simply ask about a selected position.
           </p>
-          <div className="contact-badges" aria-label="Inquiry details">
+          <div
+            className={`contact-badges ${styles.badges}`}
+            aria-label="Inquiry details"
+          >
             <span>✓ Résumé optional</span>
             <span>✓ No account required</span>
             <span>✓ Main Office: 407-868-7254</span>
           </div>
         </div>
 
-        <form className="contact-form">
+        <form className={`contact-form ${styles.form}`}>
           <label>
             Name
             <input type="text" name="name" placeholder="First and last name" />
@@ -46,7 +53,7 @@ export default function ContactSection() {
             </select>
           </label>
 
-          <label className="contact-full">
+          <label className={`contact-full ${styles.full}`}>
             Quick Message — Optional
             <select name="quickMessage" defaultValue="">
               <option value="" disabled>Choose a quick message</option>
@@ -56,7 +63,7 @@ export default function ContactSection() {
             </select>
           </label>
 
-          <label className="contact-full">
+          <label className={`contact-full ${styles.full}`}>
             Your Message — Optional
             <textarea
               name="message"
@@ -65,7 +72,9 @@ export default function ContactSection() {
             />
           </label>
 
-          <div className="contact-full contact-form-footer">
+          <div
+            className={`contact-full contact-form-footer ${styles.full} ${styles.footer}`}
+          >
             <div>
               <strong>Attach Résumé</strong> <span>Optional</span>
             </div>
