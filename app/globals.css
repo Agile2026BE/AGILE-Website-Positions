@@ -262,6 +262,11 @@ main {
   color: var(--text-muted);
 }
 
+.shortlist-count {
+  color: var(--navy);
+  font-weight: 700;
+}
+
 .job-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -269,6 +274,8 @@ main {
 }
 
 .job-card {
+  display: flex;
+  flex-direction: column;
   padding: 22px;
 }
 
@@ -316,9 +323,72 @@ main {
   font-weight: 600;
 }
 
+.job-card-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.job-card-actions button,
+.job-card-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--navy-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.job-card-actions a {
+  border-color: var(--navy);
+  background: var(--navy);
+  color: #fff;
+}
+
 #positions > .container > button {
   display: block;
   margin: 28px auto 0;
+}
+
+.position-detail {
+  background: linear-gradient(180deg, #f7f8fc 0%, #fff 100%);
+}
+
+.position-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  max-width: 850px;
+  margin: 32px 0;
+}
+
+.position-detail-grid div {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+
+.position-detail-grid dt {
+  margin-bottom: 6px;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.position-detail-grid dd {
+  margin: 0;
+  color: var(--navy-dark);
+  font-weight: 700;
 }
 
 .contact-section {
@@ -465,7 +535,12 @@ main {
   .job-board-controls,
   .job-search-row,
   .job-grid,
-  .contact-form {
+  .contact-form,
+  .position-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .job-card-actions {
     grid-template-columns: 1fr;
   }
 
