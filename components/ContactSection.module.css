@@ -9,6 +9,10 @@
   align-items: start;
 }
 
+.intro {
+  padding-top: 4px;
+}
+
 .eyebrow {
   margin: 0 0 12px;
   color: var(--navy);
@@ -19,16 +23,20 @@
 
 .badges {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 10px 24px;
   margin-top: 22px;
   color: var(--text-muted);
+}
+
+.badges span {
+  white-space: nowrap;
 }
 
 .form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 16px 18px;
   padding: 24px;
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -37,7 +45,9 @@
 
 .form label {
   display: grid;
+  align-content: start;
   gap: 8px;
+  min-width: 0;
   font-weight: 700;
 }
 
@@ -58,7 +68,12 @@
   padding: 0 12px;
 }
 
+.form input[type="file"] {
+  padding: 8px 10px;
+}
+
 .form textarea {
+  min-height: 108px;
   padding: 12px;
   resize: vertical;
 }
@@ -71,20 +86,26 @@
   box-shadow: 0 0 0 3px rgba(36, 59, 103, 0.16);
 }
 
-.full {
-  grid-column: 1 / -1;
+.resume span,
+.resume small {
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
-.footer {
+.resume small {
+  font-size: 0.78rem;
+}
+
+.submitCell {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  align-items: end;
+  justify-content: flex-end;
+  padding-bottom: 2px;
 }
 
-.footer button {
+.submitCell button {
   min-height: 46px;
-  padding: 0 18px;
+  padding: 0 22px;
   border: 0;
   border-radius: 10px;
   background: var(--navy);
@@ -100,8 +121,12 @@
     grid-template-columns: 1fr;
   }
 
-  .full {
-    grid-column: auto;
+  .submitCell {
+    justify-content: stretch;
+  }
+
+  .submitCell button {
+    width: 100%;
   }
 }
 
@@ -110,12 +135,8 @@
     padding: 18px;
   }
 
-  .footer {
-    align-items: stretch;
+  .badges {
     flex-direction: column;
-  }
-
-  .footer button {
-    width: 100%;
+    gap: 8px;
   }
 }
