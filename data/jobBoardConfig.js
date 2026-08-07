@@ -1,0 +1,53 @@
+export const jobBoardConfig = {
+  eyebrow: "What’s Your Next Move?℠",
+  heading: "Find work that fits your life.",
+  intro:
+    "Start broad. Every choice narrows the available options without hiding relevant salary ranges.",
+  filters: [
+    { key: "state", label: "State" },
+    { key: "discipline", label: "Discipline" },
+    { key: "minimumSalary", label: "Minimum Salary" },
+    { key: "workplace", label: "Workplace" },
+    { key: "market", label: "Market" },
+  ],
+  search: {
+    label: "Title, specialty, skill, city or commute area",
+    placeholder: "Try traction power, data centers, Tampa…",
+    resetLabel: "Reset",
+  },
+  results: {
+    availableLabel: "Available Positions found.",
+    allOpportunitiesLabel: "All current opportunities",
+    initialVisibleCount: 24,
+    totalPositions: 170,
+    showMoreLabel: "Show 24 More Positions",
+  },
+  cardLabels: {
+    location: "Location",
+    workplace: "Workplace",
+    salary: "Salary",
+    experience: "Experience",
+    shortlist: "+ Shortlist",
+    viewPosition: "View Position",
+    share: "Share",
+  },
+};
+
+export const jobFieldKeys = [
+  "id",
+  "discipline",
+  "title",
+  "summary",
+  "location",
+  "state",
+  "workplace",
+  "salaryDisplay",
+  "salaryMin",
+  "salaryMax",
+  "experience",
+  "specialty",
+  "market",
+  "credential",
+  "bonus",
+  "slug",
+];
