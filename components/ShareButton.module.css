@@ -1,17 +1,15 @@
 .button {
-  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+  appearance:none;
+  border:0;
+  background:transparent;
+  padding:8px 2px;
+  color:#0874ae;
+  font:inherit;
+  font-weight:800;
+  line-height:1;
+  cursor:pointer;
+  transition:color 160ms ease, opacity 160ms ease;
 }
-
-.button:hover {
-  border-color: var(--navy);
-  color: var(--navy);
-}
-
-.button:focus-visible {
-  outline: 3px solid rgba(36, 59, 103, 0.22);
-  outline-offset: 2px;
-}
-
-.button:active {
-  background: var(--navy-soft);
-}
+.button:hover { color:#173958; }
+.button:focus-visible { outline:3px solid rgba(36,59,103,.22); outline-offset:2px; border-radius:3px; }
+.button:active { opacity:.7; }
