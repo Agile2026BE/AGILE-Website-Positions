@@ -1,0 +1,19 @@
+.state {
+  margin-top: 24px;
+  padding: 36px 24px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.state h3 {
+  margin: 0 0 10px;
+}
+
+.state p {
+  max-width: 680px;
+  margin: 0 auto 18px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
