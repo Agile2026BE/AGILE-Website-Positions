@@ -10,7 +10,11 @@ import { jobs1143To1152 } from "./jobs/positions-1143-1152.js";
 import { jobs1153To1162 } from "./jobs/positions-1153-1162.js";
 import { jobs1163To1172 } from "./jobs/positions-1163-1172.js";
 
-export const jobs = [
+import details1001To1010 from "./jobDetails/details-1001-1010.js";
+import details1011To1020 from "./jobDetails/details-1011-1020.js";
+import details1021To1030 from "./jobDetails/details-1021-1030.js";
+
+const coreJobs = [
   ...jobs1001To1020,
   ...jobs1021To1040,
   ...jobs1041To1060,
@@ -23,3 +27,18 @@ export const jobs = [
   ...jobs1153To1162,
   ...jobs1163To1172,
 ];
+
+const detailOverlays = [
+  ...details1001To1010,
+  ...details1011To1020,
+  ...details1021To1030,
+];
+
+const detailsById = new Map(
+  detailOverlays.map((details) => [String(details.id), details]),
+);
+
+export const jobs = coreJobs.map((job) => ({
+  ...job,
+  ...(detailsById.get(String(job.id)) ?? {}),
+}));
