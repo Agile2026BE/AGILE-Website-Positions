@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from "react";
 import EmptyJobsState from "./EmptyJobsState";
+import FilterSelect from "./FilterSelect";
 import JobCard from "./JobCard";
+import SearchInput from "./SearchInput";
 import { minimumSalaryOptions } from "../data/filterOptions";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { buildFilterOptions, filterJobs } from "../lib/jobFilters";
@@ -60,71 +62,47 @@ export default function JobBoard({ jobs = [] }) {
         <p className="section-copy">{jobBoardConfig.intro}</p>
 
         <div className="job-board-controls" aria-label="Position filters">
-          <select
+          <FilterSelect
+            label="State"
             value={filters.state}
-            onChange={(event) => updateFilter("state", event.target.value)}
-            aria-label="State"
-          >
-            <option value="">State</option>
-            {options.state.map((value) => (
-              <option key={value} value={value}>{value}</option>
-            ))}
-          </select>
+            options={options.state}
+            onChange={(value) => updateFilter("state", value)}
+          />
 
-          <select
+          <FilterSelect
+            label="Discipline"
             value={filters.discipline}
-            onChange={(event) => updateFilter("discipline", event.target.value)}
-            aria-label="Discipline"
-          >
-            <option value="">Discipline</option>
-            {options.discipline.map((value) => (
-              <option key={value} value={value}>{value}</option>
-            ))}
-          </select>
+            options={options.discipline}
+            onChange={(value) => updateFilter("discipline", value)}
+          />
 
-          <select
+          <FilterSelect
+            label="Minimum Salary"
             value={filters.minimumSalary}
-            onChange={(event) => updateFilter("minimumSalary", event.target.value)}
-            aria-label="Minimum Salary"
-          >
-            <option value="">Minimum Salary</option>
-            {minimumSalaryOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
+            options={minimumSalaryOptions}
+            onChange={(value) => updateFilter("minimumSalary", value)}
+          />
 
-          <select
+          <FilterSelect
+            label="Workplace"
             value={filters.workplace}
-            onChange={(event) => updateFilter("workplace", event.target.value)}
-            aria-label="Workplace"
-          >
-            <option value="">Workplace</option>
-            {options.workplace.map((value) => (
-              <option key={value} value={value}>{value}</option>
-            ))}
-          </select>
+            options={options.workplace}
+            onChange={(value) => updateFilter("workplace", value)}
+          />
 
-          <select
+          <FilterSelect
+            label="Market"
             value={filters.market}
-            onChange={(event) => updateFilter("market", event.target.value)}
-            aria-label="Market"
-          >
-            <option value="">Market</option>
-            {options.market.map((value) => (
-              <option key={value} value={value}>{value}</option>
-            ))}
-          </select>
+            options={options.market}
+            onChange={(value) => updateFilter("market", value)}
+          />
         </div>
 
         <div className="job-search-row">
-          <input
-            type="search"
+          <SearchInput
             value={filters.query}
-            onChange={(event) => updateFilter("query", event.target.value)}
+            onChange={(value) => updateFilter("query", value)}
             placeholder={jobBoardConfig.search.placeholder}
-            aria-label={jobBoardConfig.search.label}
           />
           <button type="button" onClick={resetFilters}>
             {jobBoardConfig.search.resetLabel}
