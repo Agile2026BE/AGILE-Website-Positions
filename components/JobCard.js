@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import ShortlistButton from "./ShortlistButton";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { shareJob } from "../lib/shareJob";
 
-export default function JobCard({ job, onShortlist }) {
+export default function JobCard({ job, isShortlisted = false, onShortlist }) {
   const labels = jobBoardConfig.cardLabels;
   const href = job.slug ? `/positions/${job.slug}` : "#contact";
   const [shareStatus, setShareStatus] = useState("");
@@ -47,9 +48,10 @@ export default function JobCard({ job, onShortlist }) {
       </dl>
 
       <div className="job-card-actions">
-        <button type="button" onClick={() => onShortlist?.(job)}>
-          {labels.shortlist}
-        </button>
+        <ShortlistButton
+          isShortlisted={isShortlisted}
+          onClick={() => onShortlist?.(job)}
+        />
         <Link href={href}>{labels.viewPosition}</Link>
         <button type="button" onClick={handleShare}>
           {labels.share}
