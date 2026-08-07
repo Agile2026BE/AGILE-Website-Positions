@@ -1,0 +1,17 @@
+.link {
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.link:hover {
+  background: var(--navy-dark);
+  border-color: var(--navy-dark);
+}
+
+.link:focus-visible {
+  outline: 3px solid rgba(36, 59, 103, 0.22);
+  outline-offset: 2px;
+}
+
+.link:active {
+  transform: translateY(1px);
+}
