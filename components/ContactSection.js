@@ -3,11 +3,23 @@
 import { useState } from "react";
 import styles from "./ContactSection.module.css";
 
+const quickMessages = {
+  position:
+    "Hello,\nI would like to learn more about the selected position and whether my background may be a fit. Please contact me to discuss the opportunity and timing.",
+  confidential:
+    "Hello,\nI would like to discuss confidential career options that may align with my background and goals. Please contact me when convenient.",
+  resume:
+    "Hello,\nI have a question before sharing my résumé. Please contact me so I can learn more about the opportunity and next steps.",
+};
+
 export default function ContactSection() {
-  const [message, setMessage] = useState("");
+  const [quickMessage, setQuickMessage] = useState("position");
+  const [message, setMessage] = useState(quickMessages.position);
 
   function handleQuickMessage(event) {
-    setMessage(event.target.value);
+    const value = event.target.value;
+    setQuickMessage(value);
+    setMessage(quickMessages[value] ?? "");
   }
 
   return (
@@ -62,31 +74,28 @@ export default function ContactSection() {
             </select>
           </label>
 
-          <label>
+          <label className={styles.full}>
             Quick Message — Optional
-            <select name="quickMessage" defaultValue="" onChange={handleQuickMessage}>
-              <option value="" disabled>Choose a quick message</option>
-              <option>I am interested in a position on the site.</option>
-              <option>I would like to discuss confidential career options.</option>
-              <option>I have a question before sharing my résumé.</option>
+            <select name="quickMessage" value={quickMessage} onChange={handleQuickMessage}>
+              <option value="position">Tell me more about this position</option>
+              <option value="confidential">I would like to discuss confidential career options</option>
+              <option value="resume">I have a question before sharing my résumé</option>
             </select>
           </label>
 
-          <label>
+          <label className={styles.full}>
             Your Message — Optional
             <textarea
               name="message"
-              rows="4"
+              rows="3"
               value={message}
               onChange={(event) => setMessage(event.target.value)}
-              placeholder="Choose a message above or write your own. You can edit any starter message."
             />
           </label>
 
           <label className={styles.resume}>
-            Attach Résumé <span>Optional</span>
+            <span className={styles.resumePrompt}><strong>Attach Résumé</strong> <em>Optional</em></span>
             <input type="file" name="resume" accept=".pdf,.doc,.docx" />
-            <small>PDF, DOC or DOCX</small>
           </label>
 
           <div className={styles.submitCell}>
