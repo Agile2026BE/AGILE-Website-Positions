@@ -1,6 +1,15 @@
+"use client";
+
+import { useState } from "react";
 import styles from "./ContactSection.module.css";
 
 export default function ContactSection() {
+  const [message, setMessage] = useState("");
+
+  function handleQuickMessage(event) {
+    setMessage(event.target.value);
+  }
+
   return (
     <section className={`section contact-section ${styles.section}`} id="contact">
       <div className={`container contact-grid ${styles.grid}`}>
@@ -55,7 +64,7 @@ export default function ContactSection() {
 
           <label className={`contact-full ${styles.full}`}>
             Quick Message — Optional
-            <select name="quickMessage" defaultValue="">
+            <select name="quickMessage" defaultValue="" onChange={handleQuickMessage}>
               <option value="" disabled>Choose a quick message</option>
               <option>I am interested in a position on the site.</option>
               <option>I would like to discuss confidential career options.</option>
@@ -68,6 +77,8 @@ export default function ContactSection() {
             <textarea
               name="message"
               rows="4"
+              value={message}
+              onChange={(event) => setMessage(event.target.value)}
               placeholder="Choose a message above or write your own. You can edit any starter message."
             />
           </label>
