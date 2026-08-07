@@ -1,3 +1,5 @@
+import styles from "./JobResultsSummary.module.css";
+
 export default function JobResultsSummary({
   resultCount,
   availableLabel,
@@ -5,14 +7,14 @@ export default function JobResultsSummary({
   shortlistedCount = 0,
 }) {
   return (
-    <div className="job-results-summary-row">
-      <div className="job-results-summary">
+    <div className={styles.row}>
+      <div className={styles.summary}>
         <strong>{resultCount}</strong> {availableLabel}
         {shortlistedCount ? (
-          <span className="shortlist-count"> · {shortlistedCount} shortlisted</span>
+          <span className={styles.shortlist}> · {shortlistedCount} shortlisted</span>
         ) : null}
       </div>
-      <div className="job-results-scope">{allOpportunitiesLabel}</div>
+      <div className={styles.scope}>{allOpportunitiesLabel}</div>
     </div>
   );
 }
