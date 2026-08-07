@@ -21,12 +21,16 @@ const reviews = [
 export default function ReviewsSection() {
   return (
     <section className={`section reviews-section ${styles.section}`} id="reviews">
-      <div className={`container ${styles.inner}`}>
-        <p className={`contact-eyebrow ${styles.eyebrow}`}>Matched to your search</p>
-        <h2 className="section-title">What MEP and AEC professionals say about AGILE.</h2>
-        <p className={`section-copy ${styles.copy}`}>
-          Relevant candidate experiences appear alongside the positions you are considering.
-        </p>
+      <div className={`container ${styles.panel}`}>
+        <p className={styles.badge}>✓ Matched to your search</p>
+
+        <div className={styles.headingRow}>
+          <h2 className={styles.heading}>What MEP and AEC professionals<br />say about AGILE.</h2>
+          <p className={styles.copy}>
+            Relevant candidate experiences appear alongside the positions you are considering.
+          </p>
+        </div>
+
         <div className={styles.grid}>
           {reviews.map((review) => (
             <blockquote className={styles.review} key={review.attribution}>
