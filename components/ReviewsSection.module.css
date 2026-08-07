@@ -1,0 +1,19 @@
+.section {
+  background: var(--surface);
+}
+
+.inner {
+  max-width: 860px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.copy {
+  max-width: 760px;
+}
