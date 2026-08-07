@@ -1,52 +1,111 @@
 .section {
-  background: var(--surface);
+  background: #f7f9fb;
+  padding: 64px 0 72px;
 }
 
-.inner {
-  max-width: 1040px;
+.panel {
+  max-width: 1360px;
+  padding: 38px 38px 36px;
+  border: 1px solid #c9dce7;
+  border-radius: 16px;
+  background: #edf6fa;
 }
 
-.eyebrow {
+.badge {
+  display: inline-flex;
+  align-items: center;
   margin: 0 0 12px;
-  color: var(--navy);
-  font-size: 0.82rem;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: #d9eef7;
+  color: #0878ad;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.headingRow {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 0.9fr);
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 26px;
+}
+
+.heading {
+  margin: 0;
+  color: #173d5e;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.45rem, 4vw, 3.35rem);
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
 }
 
 .copy {
-  max-width: 760px;
+  margin: 0 0 4px;
+  color: #647689;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  margin-top: 28px;
+  gap: 16px;
 }
 
 .review {
+  min-height: 220px;
   margin: 0;
-  padding: 24px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  padding: 25px 27px 23px;
+  border: 0;
+  border-left: 3px solid #e2aa00;
+  border-radius: 11px;
   background: #fff;
+  box-shadow: 0 1px 0 rgba(17, 55, 83, 0.03);
 }
 
 .review p {
   margin: 0;
-  color: var(--text);
-  line-height: 1.7;
+  color: #284a65;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.16rem;
+  line-height: 1.55;
 }
 
 .review footer {
   margin-top: 18px;
-  color: var(--navy-dark);
+  color: #0878ad;
+  font-size: 0.78rem;
   font-weight: 800;
 }
 
 @media (max-width: 860px) {
+  .section {
+    padding: 38px 0 46px;
+  }
+
+  .panel {
+    padding: 28px 22px;
+    border-radius: 12px;
+  }
+
+  .headingRow,
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .headingRow {
+    gap: 16px;
+  }
+
+  .heading br {
+    display: none;
+  }
+
+  .review {
+    min-height: 0;
   }
 }
