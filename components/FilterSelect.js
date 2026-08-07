@@ -1,3 +1,5 @@
+import styles from "./FilterSelect.module.css";
+
 export default function FilterSelect({
   label,
   value,
@@ -6,6 +8,7 @@ export default function FilterSelect({
 }) {
   return (
     <select
+      className={styles.select}
       value={value}
       onChange={(event) => onChange(event.target.value)}
       aria-label={label}
