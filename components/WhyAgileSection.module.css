@@ -1,9 +1,10 @@
 .section {
+  position: relative;
   padding: 0;
   background: #193b59;
-  scroll-margin-top: 96px;
+  scroll-margin-top: 118px;
 }
-
+.contactAnchor { position: absolute; top: 0; left: 0; width: 1px; height: 1px; scroll-margin-top: 118px; }
 .grid {
   width: min(1440px, 100%);
   margin: 0 auto;
@@ -12,35 +13,11 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 56px;
 }
-
-.step {
-  padding: 0;
-}
-
-.number {
-  display: block;
-  margin-bottom: 14px;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: #67c6e9;
-}
-
-.step h3 {
-  margin: 0 0 10px;
-  font-size: 1.22rem;
-  line-height: 1.25;
-  font-weight: 500;
-  color: #ffffff;
-}
-
-.step p {
-  margin: 0;
-  line-height: 1.55;
-  color: #d5e0e8;
-}
-
+.step { padding: 0; }
+.number { display: block; margin-bottom: 14px; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; color: #67c6e9; }
+.step h3 { margin: 0 0 10px; font-size: 1.22rem; line-height: 1.25; font-weight: 500; color: #ffffff; }
+.step p { margin: 0; line-height: 1.55; color: #d5e0e8; }
 @media (max-width: 760px) {
-  .section { scroll-margin-top: 82px; }
+  .section, .contactAnchor { scroll-margin-top: 168px; }
   .grid { grid-template-columns: 1fr; gap: 28px; padding: 28px 22px 34px; }
 }
