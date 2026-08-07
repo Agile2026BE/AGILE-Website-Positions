@@ -1,0 +1,16 @@
+.button {
+  display: block;
+  min-height: 48px;
+  margin: 28px auto 0;
+  padding: 0 20px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+}
+
+.button:focus-visible {
+  outline: 3px solid rgba(36, 59, 103, 0.22);
+  outline-offset: 2px;
+}
