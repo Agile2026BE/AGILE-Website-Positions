@@ -1,124 +1,192 @@
 .section {
-  background: var(--navy-soft);
+  background: #ffffff;
+  padding: 34px 0 38px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: 40px;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.42fr);
+  gap: 92px;
   align-items: start;
 }
 
 .intro {
-  padding-top: 4px;
+  padding-top: 6px;
 }
 
 .eyebrow {
-  margin: 0 0 12px;
-  color: var(--navy);
-  font-size: 0.82rem;
+  margin: 0 0 18px;
+  color: #73c1e6;
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.2em;
+}
+
+.intro :global(.section-title) {
+  max-width: 430px;
+  margin-bottom: 6px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(3rem, 4.25vw, 4.2rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+
+.intro :global(.section-copy) {
+  max-width: 480px;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 .badges {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 24px;
-  margin-top: 22px;
-  color: var(--text-muted);
+  gap: 8px;
+  margin-top: 24px;
+  color: #29415a;
+  font-size: 0.72rem;
+  font-weight: 700;
 }
 
 .badges span {
   white-space: nowrap;
+  padding: 8px 12px;
+  border: 1px solid #bfd5e2;
+  border-radius: 999px;
+  background: #f5fbfe;
 }
 
 .form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px 18px;
-  padding: 24px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: var(--surface);
+  gap: 11px 14px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .form label {
   display: grid;
   align-content: start;
-  gap: 8px;
+  gap: 7px;
   min-width: 0;
+  color: #29415a;
+  font-size: 0.73rem;
   font-weight: 700;
+}
+
+.full {
+  grid-column: 1 / -1;
 }
 
 .form input,
 .form select,
 .form textarea {
   width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface);
-  color: var(--text);
+  border: 1px solid #c7d5df;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #26384b;
   font: inherit;
+  font-size: 0.98rem;
+  font-weight: 400;
 }
 
 .form input,
 .form select {
-  min-height: 46px;
+  min-height: 44px;
   padding: 0 12px;
 }
 
-.form input[type="file"] {
-  padding: 8px 10px;
-}
-
 .form textarea {
-  min-height: 108px;
-  padding: 12px;
+  min-height: 68px;
+  padding: 10px 12px;
   resize: vertical;
+  line-height: 1.45;
 }
 
 .form input:focus-visible,
 .form select:focus-visible,
 .form textarea:focus-visible {
   outline: none;
-  border-color: var(--navy);
-  box-shadow: 0 0 0 3px rgba(36, 59, 103, 0.16);
+  border-color: #1476a8;
+  box-shadow: 0 0 0 2px rgba(20, 118, 168, 0.12);
 }
 
-.resume span,
-.resume small {
-  color: var(--text-muted);
-  font-weight: 500;
+.resume {
+  display: flex !important;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 8px !important;
 }
 
-.resume small {
-  font-size: 0.78rem;
+.resumePrompt {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  font-size: 1rem;
+}
+
+.resumePrompt em {
+  color: #667085;
+  font-size: 0.82rem;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.form input[type="file"] {
+  min-height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 0.82rem;
+}
+
+.form input[type="file"]::file-selector-button {
+  margin-right: 10px;
+  padding: 7px 11px;
+  border: 1px solid #aebdca;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #26384b;
+  font: inherit;
+  cursor: pointer;
 }
 
 .submitCell {
   display: flex;
   align-items: end;
   justify-content: flex-end;
-  padding-bottom: 2px;
 }
 
 .submitCell button {
   min-height: 46px;
-  padding: 0 22px;
+  padding: 0 20px;
   border: 0;
-  border-radius: 10px;
-  background: var(--navy);
+  border-radius: 6px;
+  background: #1476a8;
   color: white;
   font: inherit;
   font-weight: 700;
   cursor: pointer;
 }
 
-@media (max-width: 820px) {
-  .grid,
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+}
+
+@media (max-width: 620px) {
   .form {
     grid-template-columns: 1fr;
+  }
+
+  .full {
+    grid-column: auto;
   }
 
   .submitCell {
@@ -128,15 +196,9 @@
   .submitCell button {
     width: 100%;
   }
-}
-
-@media (max-width: 520px) {
-  .form {
-    padding: 18px;
-  }
 
   .badges {
+    align-items: flex-start;
     flex-direction: column;
-    gap: 8px;
   }
 }
