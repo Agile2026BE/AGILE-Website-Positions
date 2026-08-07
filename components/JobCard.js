@@ -27,6 +27,13 @@ export default function JobCard({ job, isShortlisted = false, onShortlist }) {
 
   return (
     <article className={`card job-card ${styles.card}`}>
+      <div className={styles.shortlist}>
+        <ShortlistButton
+          isShortlisted={isShortlisted}
+          onClick={() => onShortlist?.(job)}
+        />
+      </div>
+
       <Link
         className={styles.cardLink}
         href={href}
@@ -64,10 +71,6 @@ export default function JobCard({ job, isShortlisted = false, onShortlist }) {
       </Link>
 
       <div className={`job-card-actions ${styles.actions}`}>
-        <ShortlistButton
-          isShortlisted={isShortlisted}
-          onClick={() => onShortlist?.(job)}
-        />
         <ViewPositionLink href={href} label={labels.viewPosition} />
         <ShareButton label={labels.share} onClick={handleShare} />
       </div>
