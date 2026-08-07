@@ -49,6 +49,13 @@ export default function JobCard({ job, isShortlisted = false, onShortlist }) {
         </div>
       </dl>
 
+      <div className={styles.tags} aria-label="Position details">
+        {job.specialty ? <span>{job.specialty}</span> : null}
+        {job.market ? <span>{job.market.split("|")[0].trim()}</span> : null}
+        {job.credential ? <span>{job.credential}</span> : null}
+        {job.bonus ? <span>Bonus</span> : null}
+      </div>
+
       <div className={`job-card-actions ${styles.actions}`}>
         <ShortlistButton
           isShortlisted={isShortlisted}
