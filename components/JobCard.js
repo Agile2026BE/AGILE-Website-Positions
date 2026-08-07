@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import ShareButton from "./ShareButton";
 import ShortlistButton from "./ShortlistButton";
+import ViewPositionLink from "./ViewPositionLink";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { shareJob } from "../lib/shareJob";
 
@@ -53,7 +53,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist }) {
           isShortlisted={isShortlisted}
           onClick={() => onShortlist?.(job)}
         />
-        <Link href={href}>{labels.viewPosition}</Link>
+        <ViewPositionLink href={href} label={labels.viewPosition} />
         <ShareButton label={labels.share} onClick={handleShare} />
       </div>
 
