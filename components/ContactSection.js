@@ -72,12 +72,15 @@ export default function ContactSection() {
             />
           </label>
 
+          <label className={`contact-full ${styles.full}`}>
+            Attach Résumé <span>Optional</span>
+            <input type="file" name="resume" accept=".pdf,.doc,.docx" />
+          </label>
+
           <div
             className={`contact-full contact-form-footer ${styles.full} ${styles.footer}`}
           >
-            <div>
-              <strong>Attach Résumé</strong> <span>Optional</span>
-            </div>
+            <span>PDF, DOC or DOCX</span>
             <button type="submit">Send My Inquiry</button>
           </div>
         </form>
