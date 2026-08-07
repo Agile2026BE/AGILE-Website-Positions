@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import EmptyJobsState from "./EmptyJobsState";
 import JobCard from "./JobCard";
+import { minimumSalaryOptions } from "../data/filterOptions";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { buildFilterOptions, filterJobs } from "../lib/jobFilters";
 
@@ -87,12 +88,11 @@ export default function JobBoard({ jobs = [] }) {
             aria-label="Minimum Salary"
           >
             <option value="">Minimum Salary</option>
-            <option value="75000">$75K+</option>
-            <option value="100000">$100K+</option>
-            <option value="125000">$125K+</option>
-            <option value="150000">$150K+</option>
-            <option value="175000">$175K+</option>
-            <option value="200000">$200K+</option>
+            {minimumSalaryOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
 
           <select
