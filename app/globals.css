@@ -267,6 +267,38 @@ main {
   font-weight: 700;
 }
 
+.empty-jobs-state {
+  padding: 32px;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  text-align: center;
+}
+
+.empty-jobs-state h3 {
+  margin: 0 0 10px;
+  color: var(--navy-dark);
+  font-size: 1.2rem;
+}
+
+.empty-jobs-state p {
+  max-width: 680px;
+  margin: 0 auto;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.empty-jobs-state button {
+  min-height: 44px;
+  margin-top: 18px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+}
+
 .job-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
