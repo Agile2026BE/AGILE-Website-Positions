@@ -5,6 +5,7 @@ import EmptyJobsState from "./EmptyJobsState";
 import FilterSelect from "./FilterSelect";
 import JobCard from "./JobCard";
 import JobResultsSummary from "./JobResultsSummary";
+import ResetFiltersButton from "./ResetFiltersButton";
 import SearchInput from "./SearchInput";
 import ShowMorePositionsButton from "./ShowMorePositionsButton";
 import { minimumSalaryOptions } from "../data/filterOptions";
@@ -111,9 +112,10 @@ export default function JobBoard({ jobs = [] }) {
             onChange={(value) => updateFilter("query", value)}
             placeholder={jobBoardConfig.search.placeholder}
           />
-          <button type="button" onClick={resetFilters}>
-            {jobBoardConfig.search.resetLabel}
-          </button>
+          <ResetFiltersButton
+            label={jobBoardConfig.search.resetLabel}
+            onClick={resetFilters}
+          />
         </div>
 
         <JobResultsSummary
