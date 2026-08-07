@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import styles from "./JobCard.module.css";
 import ShareButton from "./ShareButton";
 import ShortlistButton from "./ShortlistButton";
 import ViewPositionLink from "./ViewPositionLink";
@@ -24,31 +25,31 @@ export default function JobCard({ job, isShortlisted = false, onShortlist }) {
   }
 
   return (
-    <article className="card job-card">
+    <article className={`card job-card ${styles.card}`}>
       <p>{job.discipline}</p>
       <h3>{job.title}</h3>
       {job.summary ? <p>{job.summary}</p> : null}
 
-      <dl>
-        <div>
+      <dl className={styles.meta}>
+        <div className={styles.metaRow}>
           <dt>{labels.location}</dt>
           <dd>{job.location}</dd>
         </div>
-        <div>
+        <div className={styles.metaRow}>
           <dt>{labels.workplace}</dt>
           <dd>{job.workplace}</dd>
         </div>
-        <div>
+        <div className={styles.metaRow}>
           <dt>{labels.salary}</dt>
           <dd>{job.salaryDisplay}</dd>
         </div>
-        <div>
+        <div className={styles.metaRow}>
           <dt>{labels.experience}</dt>
           <dd>{job.experience}</dd>
         </div>
       </dl>
 
-      <div className="job-card-actions">
+      <div className={`job-card-actions ${styles.actions}`}>
         <ShortlistButton
           isShortlisted={isShortlisted}
           onClick={() => onShortlist?.(job)}
@@ -58,7 +59,11 @@ export default function JobCard({ job, isShortlisted = false, onShortlist }) {
       </div>
 
       {shareStatus ? (
-        <p className="job-share-status" role="status" aria-live="polite">
+        <p
+          className={`job-share-status ${styles.shareStatus}`}
+          role="status"
+          aria-live="polite"
+        >
           {shareStatus}
         </p>
       ) : null}
