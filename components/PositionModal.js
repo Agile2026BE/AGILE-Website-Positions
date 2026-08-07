@@ -6,11 +6,7 @@ import ShareButton from "./ShareButton";
 import ShortlistButton from "./ShortlistButton";
 import { shareJob } from "../lib/shareJob";
 
-const lines = (value) =>
-  String(value ?? "")
-    .split(/\r?\n/)
-    .map((line) => line.replace(/^\s*[•*-]\s*/, "").trim())
-    .filter(Boolean);
+const lines = (value) => String(value ?? "").split(/\r?\n/).map((line) => line.replace(/^\s*[•*-]\s*/, "").trim()).filter(Boolean);
 
 function similarityScore(candidate, active) {
   let score = 0;
@@ -26,37 +22,22 @@ function similarityScore(candidate, active) {
 export default function PositionModal({ job, jobs = [], onClose, onSelectJob, isShortlisted = false, onShortlist }) {
   const paneRef = useRef(null);
   const [shareStatus, setShareStatus] = useState("");
-
   const similarJobs = useMemo(() => {
     if (!job) return [];
     const key = job.id ?? job.slug;
-    return jobs
-      .filter(candidate => (candidate.id ?? candidate.slug) !== key)
-      .map(candidate => ({ candidate, score: similarityScore(candidate, job) }))
-      .sort((a,b) => b.score - a.score)
-      .slice(0,3)
-      .map(item => item.candidate);
+    return jobs.filter(candidate => (candidate.id ?? candidate.slug) !== key).map(candidate => ({ candidate, score: similarityScore(candidate, job) })).sort((a,b) => b.score - a.score).slice(0,3).map(item => item.candidate);
   }, [job, jobs]);
 
   useEffect(() => {
     if (!job) return undefined;
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    function handleKeyDown(event) {
-      if (event.key === "Escape") onClose?.();
-    }
+    function handleKeyDown(event) { if (event.key === "Escape") onClose?.(); }
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.body.style.overflow = originalOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => { document.body.style.overflow = originalOverflow; window.removeEventListener("keydown", handleKeyDown); };
   }, [job, onClose]);
 
-  useEffect(() => {
-    setShareStatus("");
-    if (paneRef.current) paneRef.current.scrollTop = 0;
-  }, [job]);
-
+  useEffect(() => { setShareStatus(""); if (paneRef.current) paneRef.current.scrollTop = 0; }, [job]);
   if (!job) return null;
 
   const responsibilities = lines(job.responsibilities);
@@ -64,19 +45,17 @@ export default function PositionModal({ job, jobs = [], onClose, onSelectJob, is
   const whyConsider = lines(job.whyConsider);
 
   async function handleShare() {
-    try {
-      const result = await shareJob(job);
-      setShareStatus(result.method === "clipboard" ? "Link copied" : "Shared");
-    } catch (error) {
-      if (error?.name !== "AbortError") setShareStatus("Unable to share");
-    }
+    try { const result = await shareJob(job); setShareStatus(result.method === "clipboard" ? "Link copied" : "Shared"); }
+    catch (error) { if (error?.name !== "AbortError") setShareStatus("Unable to share"); }
   }
 
-  function selectSimilar(similarJob) {
-    onSelectJob?.(similarJob);
-    requestAnimationFrame(() => {
-      if (paneRef.current) paneRef.current.scrollTop = 0;
-    });
+  function selectSimilar(similarJob) { onSelectJob?.(similarJob); requestAnimationFrame(() => { if (paneRef.current) paneRef.current.scrollTop = 0; }); }
+
+  function handleInterested(event) {
+    event.preventDefault();
+    const params = new URLSearchParams({ positionId: String(job.id ?? ""), positionTitle: job.title ?? "", discipline: job.discipline ?? "" });
+    onClose?.();
+    window.location.href = `/?${params.toString()}#contact`;
   }
 
   return (
@@ -89,57 +68,16 @@ export default function PositionModal({ job, jobs = [], onClose, onSelectJob, is
             <h2 id={`position-modal-${job.id ?? job.slug}`}>{job.title}</h2>
             <ShortlistButton isShortlisted={isShortlisted} onClick={()=>onShortlist?.(job)} />
           </div>
-
           <div className={styles.pills}>
-            {job.location ? <span>{job.location}</span> : null}
-            {job.workplace ? <span>{job.workplace}</span> : null}
-            {job.salaryDisplay ? <span>{job.salaryDisplay}</span> : null}
-            {job.experience ? <span>{job.experience}</span> : null}
-            <span>Position ID {job.id}</span>
+            {job.location ? <span>{job.location}</span> : null}{job.workplace ? <span>{job.workplace}</span> : null}{job.salaryDisplay ? <span>{job.salaryDisplay}</span> : null}{job.experience ? <span>{job.experience}</span> : null}<span>Position ID {job.id}</span>
           </div>
-
           {job.specialty ? <div className={styles.specialty}>SPECIALTY: {job.specialty}</div> : null}
           {job.summary ? <p className={styles.summary}>{job.summary}</p> : null}
-
-          {responsibilities.length ? (
-            <section className={styles.sectionBlock}>
-              <h3>Key Responsibilities</h3>
-              <ul>{responsibilities.map((item,index)=><li key={`${item}-${index}`}>{item}</li>)}</ul>
-            </section>
-          ) : null}
-
-          {qualifications.length ? (
-            <section className={styles.sectionBlock}>
-              <h3>Key Qualifications</h3>
-              <ul>{qualifications.map((item,index)=><li key={`${item}-${index}`}>{item}</li>)}</ul>
-            </section>
-          ) : null}
-
-          {whyConsider.length ? (
-            <section className={styles.sectionBlock}>
-              <h3>Why Consider?</h3>
-              {whyConsider.map((paragraph,index)=><p key={`${paragraph}-${index}`}>{paragraph}</p>)}
-            </section>
-          ) : null}
-
-          {similarJobs.length ? (
-            <section className={`${styles.sectionBlock} ${styles.similarBlock}`}>
-              <h3>Similar Positions</h3>
-              <div className={styles.similarList}>
-                {similarJobs.map(similar => (
-                  <button key={similar.id ?? similar.slug} type="button" onClick={()=>selectSimilar(similar)}>
-                    <strong>{similar.title}</strong>
-                    <span>{similar.location} · {similar.salaryDisplay}</span>
-                  </button>
-                ))}
-              </div>
-            </section>
-          ) : null}
-
-          <div className={styles.actions}>
-            <a className={styles.interested} href="#contact" onClick={onClose}>I’m Interested</a>
-            <ShareButton label="Share Position" onClick={handleShare} />
-          </div>
+          {responsibilities.length ? <section className={styles.sectionBlock}><h3>Key Responsibilities</h3><ul>{responsibilities.map((item,index)=><li key={`${item}-${index}`}>{item}</li>)}</ul></section> : null}
+          {qualifications.length ? <section className={styles.sectionBlock}><h3>Key Qualifications</h3><ul>{qualifications.map((item,index)=><li key={`${item}-${index}`}>{item}</li>)}</ul></section> : null}
+          {whyConsider.length ? <section className={styles.sectionBlock}><h3>Why Consider?</h3>{whyConsider.map((paragraph,index)=><p key={`${paragraph}-${index}`}>{paragraph}</p>)}</section> : null}
+          {similarJobs.length ? <section className={`${styles.sectionBlock} ${styles.similarBlock}`}><h3>Similar Positions</h3><div className={styles.similarList}>{similarJobs.map(similar => <button key={similar.id ?? similar.slug} type="button" onClick={()=>selectSimilar(similar)}><strong>{similar.title}</strong><span>{similar.location} · {similar.salaryDisplay}</span></button>)}</div></section> : null}
+          <div className={styles.actions}><a className={styles.interested} href="#contact" onClick={handleInterested}>I’m Interested</a><ShareButton label="Share Position" onClick={handleShare} /></div>
           {shareStatus ? <p className={styles.shareStatus} role="status" aria-live="polite">{shareStatus}</p> : null}
         </div>
       </section>
