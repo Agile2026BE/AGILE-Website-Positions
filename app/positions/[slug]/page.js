@@ -5,19 +5,36 @@ import SiteFooter from "../../../components/SiteFooter";
 import SiteHeader from "../../../components/SiteHeader";
 import { jobs } from "../../../data/jobs";
 
+const lines = (value) =>
+  String(value ?? "")
+    .split(/\r?\n/)
+    .map((line) => line.replace(/^\s*[•*-]\s*/, "").trim())
+    .filter(Boolean);
+
 export function generateStaticParams() {
-  return jobs
-    .filter((job) => job.slug)
-    .map((job) => ({ slug: job.slug }));
+  return jobs.filter((job) => job.slug).map((job) => ({ slug: job.slug }));
+}
+
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const job = jobs.find((item) => item.slug === slug);
+
+  if (!job) return {};
+
+  return {
+    title: job.seoTitle || `${job.title} | AGILE Position ${job.id}`,
+    description: job.metaDescription || job.summary,
+  };
 }
 
 export default async function PositionPage({ params }) {
   const { slug } = await params;
   const job = jobs.find((item) => item.slug === slug);
 
-  if (!job) {
-    notFound();
-  }
+  if (!job) notFound();
+
+  const responsibilities = lines(job.responsibilities);
+  const qualifications = lines(job.qualifications);
 
   return (
     <main>
@@ -40,7 +57,29 @@ export default async function PositionPage({ params }) {
             {job.market ? <div><dt>Market</dt><dd>{job.market}</dd></div> : null}
             {job.credential ? <div><dt>Credential</dt><dd>{job.credential}</dd></div> : null}
             {job.bonus ? <div><dt>Bonus</dt><dd>{job.bonus}</dd></div> : null}
+            <div><dt>Position ID</dt><dd>{job.id}</dd></div>
           </dl>
+
+          {responsibilities.length ? (
+            <section className={styles.contentSection}>
+              <h2>Key Responsibilities</h2>
+              <ul>{responsibilities.map((item) => <li key={item}>{item}</li>)}</ul>
+            </section>
+          ) : null}
+
+          {qualifications.length ? (
+            <section className={styles.contentSection}>
+              <h2>Key Qualifications</h2>
+              <ul>{qualifications.map((item) => <li key={item}>{item}</li>)}</ul>
+            </section>
+          ) : null}
+
+          {job.whyConsider ? (
+            <section className={styles.contentSection}>
+              <h2>Why Consider?</h2>
+              {lines(job.whyConsider).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </section>
+          ) : null}
 
           <a className={`hero-primary ${styles.cta}`} href="#contact">Start a Conversation</a>
         </div>
