@@ -13,7 +13,7 @@ export default function ContactSection() {
   return (
     <section className={`section contact-section ${styles.section}`} id="contact">
       <div className={`container contact-grid ${styles.grid}`}>
-        <div>
+        <div className={styles.intro}>
           <p className={`contact-eyebrow ${styles.eyebrow}`}>
             PROFESSIONAL CAREER INQUIRY
           </p>
@@ -62,7 +62,7 @@ export default function ContactSection() {
             </select>
           </label>
 
-          <label className={`contact-full ${styles.full}`}>
+          <label>
             Quick Message — Optional
             <select name="quickMessage" defaultValue="" onChange={handleQuickMessage}>
               <option value="" disabled>Choose a quick message</option>
@@ -72,7 +72,7 @@ export default function ContactSection() {
             </select>
           </label>
 
-          <label className={`contact-full ${styles.full}`}>
+          <label>
             Your Message — Optional
             <textarea
               name="message"
@@ -83,15 +83,13 @@ export default function ContactSection() {
             />
           </label>
 
-          <label className={`contact-full ${styles.full}`}>
+          <label className={styles.resume}>
             Attach Résumé <span>Optional</span>
             <input type="file" name="resume" accept=".pdf,.doc,.docx" />
+            <small>PDF, DOC or DOCX</small>
           </label>
 
-          <div
-            className={`contact-full contact-form-footer ${styles.full} ${styles.footer}`}
-          >
-            <span>PDF, DOC or DOCX</span>
+          <div className={styles.submitCell}>
             <button type="submit">Send My Inquiry</button>
           </div>
         </form>
