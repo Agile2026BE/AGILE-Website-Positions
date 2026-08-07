@@ -1,0 +1,14 @@
+.button {
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.button[aria-pressed="true"] {
+  border-color: var(--navy);
+  background: var(--navy-soft);
+  color: var(--navy-dark);
+}
+
+.button:focus-visible {
+  outline: 3px solid rgba(36, 59, 103, 0.22);
+  outline-offset: 2px;
+}
