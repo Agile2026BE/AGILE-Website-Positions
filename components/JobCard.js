@@ -1,0 +1,44 @@
+import Link from "next/link";
+import { jobBoardConfig } from "../data/jobBoardConfig";
+
+export default function JobCard({ job, onShortlist }) {
+  const labels = jobBoardConfig.cardLabels;
+  const href = job.slug ? `/positions/${job.slug}` : "#contact";
+
+  return (
+    <article className="card job-card">
+      <p>{job.discipline}</p>
+      <h3>{job.title}</h3>
+      {job.summary ? <p>{job.summary}</p> : null}
+
+      <dl>
+        <div>
+          <dt>{labels.location}</dt>
+          <dd>{job.location}</dd>
+        </div>
+        <div>
+          <dt>{labels.workplace}</dt>
+          <dd>{job.workplace}</dd>
+        </div>
+        <div>
+          <dt>{labels.salary}</dt>
+          <dd>{job.salaryDisplay}</dd>
+        </div>
+        <div>
+          <dt>{labels.experience}</dt>
+          <dd>{job.experience}</dd>
+        </div>
+      </dl>
+
+      <div className="job-card-actions">
+        <button type="button" onClick={() => onShortlist?.(job)}>
+          {labels.shortlist}
+        </button>
+        <Link href={href}>{labels.viewPosition}</Link>
+        <button type="button" data-share-job={job.slug ?? job.id ?? ""}>
+          {labels.share}
+        </button>
+      </div>
+    </article>
+  );
+}
