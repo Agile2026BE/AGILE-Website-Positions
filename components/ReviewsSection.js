@@ -1,14 +1,40 @@
 import styles from "./ReviewsSection.module.css";
 
+const reviews = [
+  {
+    quote:
+      "I applied once with AGILE and they expertly guided the complete process from start to finish with multiple MEP firm openings. I now have the position I always wanted, and a great recruiting contact.",
+    attribution: "C.N. · Senior Engineer, MEP",
+  },
+  {
+    quote:
+      "I wasn’t actively looking, but AGILE took the time to understand what I wanted in my next role and went searching for it. I actually just started this month.",
+    attribution: "M.S. · Commissioning Professional, CxA",
+  },
+  {
+    quote:
+      "AGILE helped me secure a better offer while keeping the focus on enthusiasm for the role, not just compensation.",
+    attribution: "T.W. · Project Manager, MEP",
+  },
+];
+
 export default function ReviewsSection() {
   return (
     <section className={`section reviews-section ${styles.section}`} id="reviews">
       <div className={`container ${styles.inner}`}>
-        <p className={`contact-eyebrow ${styles.eyebrow}`}>CANDIDATE REVIEWS</p>
-        <h2 className="section-title">What professionals say about working with AGILE.</h2>
+        <p className={`contact-eyebrow ${styles.eyebrow}`}>Matched to your search</p>
+        <h2 className="section-title">What MEP and AEC professionals say about AGILE.</h2>
         <p className={`section-copy ${styles.copy}`}>
-          Candidate review content will be restored here only from verified live-site text or an exact recovered blueprint.
+          Relevant candidate experiences appear alongside the positions you are considering.
         </p>
+        <div className={styles.grid}>
+          {reviews.map((review) => (
+            <blockquote className={styles.review} key={review.attribution}>
+              <p>“{review.quote}”</p>
+              <footer>{review.attribution}</footer>
+            </blockquote>
+          ))}
+        </div>
       </div>
     </section>
   );
