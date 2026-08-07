@@ -13,8 +13,10 @@ export default function SiteHeader() {
         </a>
         <nav className={`site-nav ${styles.nav}`} aria-label="Primary navigation">
           <a href="#positions">Positions</a>
+          <a href="#why-agile">Why AGILE</a>
           <a href="#reviews">Reviews</a>
           <a href="#contact">Contact</a>
+          <a className={styles.searchCareers} href="#positions">Search Careers</a>
         </nav>
       </div>
     </header>
