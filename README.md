@@ -10,16 +10,23 @@ Current structure:
 
 - `app/layout.js` root document and metadata
 - `app/page.js` homepage composition
-- `app/globals.css` global responsive styles
+- `app/globals.css` shared global tokens and base styles
+- `app/positions/[slug]/page.js` individual position detail page
+- `app/positions/[slug]/page.module.css` position detail page styles
+- `app/positions/[slug]/not-found.js` unavailable position page
+- `app/positions/[slug]/not-found.module.css` unavailable position page styles
 - `components/SiteHeader.js` primary site navigation
 - `components/HeroSection.js` careers hero
 - `components/JobBoard.js` interactive search and filtering UI
+- `components/JobCard.js` position card and actions
 - `components/ReviewsSection.js` verified-content placeholder for candidate reviews
 - `components/ContactSection.js` professional career inquiry section
 - `components/SiteFooter.js` careers footer
+- dedicated CSS modules for the primary interface components and controls
 - `data/jobBoardConfig.js` job board labels and field definitions
 - `data/jobs.js` verified job data source placeholder
 - `lib/jobFilters.js` filtering and keyword search logic
+- `lib/shareJob.js` position sharing behavior
 
 ## Reconstruction Rules
 
@@ -46,19 +53,24 @@ Implemented:
 - Initial 24-position display behavior
 - Show 24 More Positions behavior
 - Job card field structure
+- Shortlist action state
+- View Position links
+- Share action with native sharing or clipboard fallback
+- Individual position detail pages
+- Position not found state
 - Candidate reviews section placeholder
-- Career inquiry section
+- Career inquiry section layout
 - Footer
+- Component-level responsive CSS modules for the primary interface
 
 Not yet completed:
 
 - Verified 170-position dataset
 - Exact filter option values from the source site
-- Full job card actions such as Shortlist, View Position, and Share
-- Individual position detail pages
 - Verified candidate review text
-- Working inquiry submission backend and résumé upload
+- Working inquiry submission backend and resume upload
 - Exact visual matching against the live site
+- Cleanup of legacy duplicated rules still remaining in `app/globals.css`
 - Local build and browser testing
 - Deployment configuration
 
@@ -70,6 +82,10 @@ Current live reference:
 
 The original editable ChatGPT Site source has not been recovered. This repository is therefore a controlled reconstruction, not an export of the original source.
 
+## Current Checkpoint
+
+The responsive CSS module migration is substantially complete across the main homepage components, controls, footer, header, position detail page, and missing-position page. Legacy global component rules remain in `app/globals.css` and should be removed carefully only after confirming the module-backed pages render correctly.
+
 ## Next Recommended Step
 
-Continue restoring verified interface behavior and content one file at a time, then run the first local Next.js build before adding or changing the live deployment.
+Run the first local Next.js build and browser check before removing duplicated global component styling. Fix any build or runtime errors one file at a time, then proceed with verified content restoration and exact visual matching.
