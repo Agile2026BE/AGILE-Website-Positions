@@ -1,8 +1,9 @@
+import styles from "./EmptyJobsState.module.css";
 import ResetFiltersButton from "./ResetFiltersButton";
 
 export default function EmptyJobsState({ hasActiveFilters = false, onReset }) {
   return (
-    <div className="empty-jobs-state" role="status">
+    <div className={`empty-jobs-state ${styles.state}`} role="status">
       <h3>
         {hasActiveFilters
           ? "No positions match those filters."
