@@ -1,0 +1,17 @@
+.button {
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.button:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.button:focus-visible {
+  outline: 3px solid rgba(36, 59, 103, 0.22);
+  outline-offset: 2px;
+}
+
+.button:active {
+  background: var(--navy-soft);
+}
