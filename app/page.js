@@ -1,3 +1,4 @@
+import styles from "./page.module.css";
 import ContactSection from "../components/ContactSection";
 import HeroSection from "../components/HeroSection";
 import JobBoard from "../components/JobBoard";
@@ -8,13 +9,18 @@ import { jobs } from "../data/jobs";
 
 export default function HomePage() {
   return (
-    <main>
-      <SiteHeader />
-      <HeroSection />
-      <JobBoard jobs={jobs} />
-      <ReviewsSection />
-      <ContactSection />
-      <SiteFooter />
-    </main>
+    <>
+      <a className={styles.skipLink} href="#main-content">
+        Skip to main content
+      </a>
+      <main className={styles.page} id="main-content">
+        <SiteHeader />
+        <HeroSection />
+        <JobBoard jobs={jobs} />
+        <ReviewsSection />
+        <ContactSection />
+        <SiteFooter />
+      </main>
+    </>
   );
 }
