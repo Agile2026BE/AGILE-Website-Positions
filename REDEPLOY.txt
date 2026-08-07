@@ -1,0 +1,1 @@
+Trigger Vercel redeploy after contact section reference-match updates. 2026-08-07.
