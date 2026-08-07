@@ -4,11 +4,17 @@
   justify-content: space-between;
   gap: 20px;
   margin: 24px 0 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
 }
 
 .summary {
   margin: 0;
   color: var(--text-muted);
+}
+
+.summary strong {
+  color: var(--text);
 }
 
 .scope {
