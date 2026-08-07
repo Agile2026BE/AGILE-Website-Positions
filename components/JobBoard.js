@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import EmptyJobsState from "./EmptyJobsState";
 import JobCard from "./JobCard";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { buildFilterOptions, filterJobs } from "../lib/jobFilters";
@@ -24,6 +25,7 @@ export default function JobBoard({ jobs = [] }) {
   const options = useMemo(() => buildFilterOptions(jobs), [jobs]);
   const filteredJobs = useMemo(() => filterJobs(jobs, filters), [jobs, filters]);
   const visibleJobs = filteredJobs.slice(0, visibleCount);
+  const hasActiveFilters = Object.values(filters).some(Boolean);
 
   function updateFilter(key, value) {
     setFilters((current) => ({ ...current, [key]: value }));
@@ -136,15 +138,22 @@ export default function JobBoard({ jobs = [] }) {
           ) : null}
         </div>
 
-        <div className="job-grid">
-          {visibleJobs.map((job) => (
-            <JobCard
-              key={job.id ?? job.slug}
-              job={job}
-              onShortlist={toggleShortlist}
-            />
-          ))}
-        </div>
+        {visibleJobs.length ? (
+          <div className="job-grid">
+            {visibleJobs.map((job) => (
+              <JobCard
+                key={job.id ?? job.slug}
+                job={job}
+                onShortlist={toggleShortlist}
+              />
+            ))}
+          </div>
+        ) : (
+          <EmptyJobsState
+            hasActiveFilters={hasActiveFilters}
+            onReset={resetFilters}
+          />
+        )}
 
         {visibleCount < filteredJobs.length ? (
           <button
