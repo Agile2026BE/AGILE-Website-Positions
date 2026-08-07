@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import ShareButton from "./ShareButton";
 import ShortlistButton from "./ShortlistButton";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { shareJob } from "../lib/shareJob";
@@ -53,9 +54,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist }) {
           onClick={() => onShortlist?.(job)}
         />
         <Link href={href}>{labels.viewPosition}</Link>
-        <button type="button" onClick={handleShare}>
-          {labels.share}
-        </button>
+        <ShareButton label={labels.share} onClick={handleShare} />
       </div>
 
       {shareStatus ? (
