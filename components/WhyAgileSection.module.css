@@ -1,6 +1,7 @@
 .section {
   padding: 1.5rem 1.5rem 4.5rem;
   background: #fff;
+  scroll-margin-top: 96px;
 }
 
 .grid {
@@ -41,6 +42,7 @@
 @media (max-width: 760px) {
   .section {
     padding: 1rem 1.1rem 3rem;
+    scroll-margin-top: 82px;
   }
 
   .grid {
