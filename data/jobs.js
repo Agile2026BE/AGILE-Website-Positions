@@ -15,6 +15,7 @@ import details1011To1020 from "./jobDetails/details-1011-1020.js";
 import details1021To1030 from "./jobDetails/details-1021-1030.js";
 import details1031To1040 from "./jobDetails/details-1031-1040.js";
 import details1041To1050 from "./jobDetails/details-1041-1050.js";
+import details1051To1060 from "./jobDetails/details-1051-1060.js";
 
 const coreJobs = [
   ...jobs1001To1020,
@@ -36,6 +37,7 @@ const detailOverlays = [
   ...details1021To1030,
   ...details1031To1040,
   ...details1041To1050,
+  ...details1051To1060,
 ];
 
 const detailsById = new Map(
