@@ -1,16 +1,19 @@
 import Link from "next/link";
+import BrandLogo from "./BrandLogo";
 import styles from "./SiteHeader.module.css";
 
 export default function SiteHeader() {
   return (
     <header className={`site-header ${styles.header}`}>
       <div className={`container site-header-inner ${styles.inner}`}>
-        <Link className={`brand ${styles.brand}`} href="/#top" aria-label="AGILE Careers home">AGILE</Link>
+        <Link className={`brand ${styles.brand}`} href="/#top" aria-label="AGILE Careers home">
+          <BrandLogo className={styles.logoImage} />
+        </Link>
         <nav className={`site-nav ${styles.nav}`} aria-label="Primary navigation">
           <a href="/#positions">Positions</a>
           <a href="/#why-agile">Why AGILE</a>
           <a href="/#reviews">Reviews</a>
-          <a href="/#contact">Contact</a>
+          <a href="/#contact-guide">Contact</a>
           <a className={styles.searchCareers} href="/#positions">Search Careers</a>
         </nav>
       </div>
