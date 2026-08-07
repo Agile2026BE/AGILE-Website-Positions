@@ -39,6 +39,29 @@
   font-weight: 700;
 }
 
+.contentSection {
+  max-width: 850px;
+  margin: 34px 0;
+}
+
+.contentSection h2 {
+  margin: 0 0 14px;
+  color: var(--navy-dark);
+  font-size: 1.35rem;
+}
+
+.contentSection ul {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.contentSection li,
+.contentSection p {
+  margin: 0 0 10px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
 .cta {
   display: inline-flex;
   align-items: center;
