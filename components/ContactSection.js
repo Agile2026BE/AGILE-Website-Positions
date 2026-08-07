@@ -5,11 +5,11 @@ import styles from "./ContactSection.module.css";
 
 const quickMessages = {
   position:
-    "Hello,\nI would like to learn more about the selected position and whether my background may be a fit. Please contact me to discuss the opportunity and timing.",
+    "Hello,\nI would like to learn more about the selected position and whether my background may be a fit. Please contact me to discuss the opportunity and timing.\nThank you.",
   confidential:
-    "Hello,\nI would like to discuss confidential career options that may align with my background and goals. Please contact me when convenient.",
+    "Hello,\nI would like to discuss confidential career options that may align with my background and goals. Please contact me when convenient.\nThank you.",
   resume:
-    "Hello,\nI have a question before sharing my résumé. Please contact me so I can learn more about the opportunity and next steps.",
+    "Hello,\nI have a question before sharing my résumé. Please contact me so I can learn more about the opportunity and next steps.\nThank you.",
 };
 
 export default function ContactSection() {
@@ -87,7 +87,7 @@ export default function ContactSection() {
             Your Message — Optional
             <textarea
               name="message"
-              rows="3"
+              rows="4"
               value={message}
               onChange={(event) => setMessage(event.target.value)}
             />
