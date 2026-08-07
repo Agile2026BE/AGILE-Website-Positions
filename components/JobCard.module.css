@@ -5,6 +5,13 @@
   height: 100%;
   min-height: 560px;
   padding: 28px 22px 20px;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.card:hover {
+  transform: translateY(-7px);
+  border-color: #c7d7e2;
+  box-shadow: 0 18px 38px rgba(25, 57, 82, 0.14);
 }
 
 .shortlist {
