@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import EmptyJobsState from "./EmptyJobsState";
 import FilterSelect from "./FilterSelect";
 import JobCard from "./JobCard";
+import JobResultsSummary from "./JobResultsSummary";
 import SearchInput from "./SearchInput";
 import { minimumSalaryOptions } from "../data/filterOptions";
 import { jobBoardConfig } from "../data/jobBoardConfig";
@@ -109,12 +110,12 @@ export default function JobBoard({ jobs = [] }) {
           </button>
         </div>
 
-        <div className="job-results-summary">
-          <strong>{filteredJobs.length}</strong> {jobBoardConfig.results.availableLabel}
-          {shortlistedJobs.length ? (
-            <span className="shortlist-count"> · {shortlistedJobs.length} shortlisted</span>
-          ) : null}
-        </div>
+        <JobResultsSummary
+          resultCount={filteredJobs.length}
+          availableLabel={jobBoardConfig.results.availableLabel}
+          allOpportunitiesLabel={jobBoardConfig.results.allOpportunitiesLabel}
+          shortlistedCount={shortlistedJobs.length}
+        />
 
         {visibleJobs.length ? (
           <div className="job-grid">
