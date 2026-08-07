@@ -1,0 +1,35 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 24px 0 16px;
+}
+
+.summary {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.scope {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  text-align: right;
+}
+
+.shortlist {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .row {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .scope {
+    text-align: left;
+  }
+}
