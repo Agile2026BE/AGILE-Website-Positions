@@ -22,6 +22,8 @@ const initialFilters = {
   query: "",
 };
 
+const MAX_SHORTLISTED_JOBS = 3;
+
 export default function JobBoard({ jobs = [] }) {
   const [filters, setFilters] = useState(initialFilters);
   const [shortlistedJobs, setShortlistedJobs] = useState([]);
@@ -57,6 +59,10 @@ export default function JobBoard({ jobs = [] }) {
 
       if (exists) {
         return current.filter((item) => (item.id ?? item.slug) !== key);
+      }
+
+      if (current.length >= MAX_SHORTLISTED_JOBS) {
+        return current;
       }
 
       return [...current, job];
