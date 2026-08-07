@@ -1,3 +1,6 @@
+import JobBoard from "../components/JobBoard";
+import { jobs } from "../data/jobs";
+
 export default function HomePage() {
   return (
     <main>
@@ -9,6 +12,8 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      <JobBoard jobs={jobs} />
     </main>
   );
 }
