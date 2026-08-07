@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import styles from "./page.module.css";
 import ContactSection from "../../../components/ContactSection";
 import SiteFooter from "../../../components/SiteFooter";
 import SiteHeader from "../../../components/SiteHeader";
@@ -22,13 +23,13 @@ export default async function PositionPage({ params }) {
     <main>
       <SiteHeader />
 
-      <section className="section position-detail">
+      <section className={`section position-detail ${styles.detail}`}>
         <div className="container">
-          <p className="contact-eyebrow">AVAILABLE POSITION</p>
+          <p className={`contact-eyebrow ${styles.eyebrow}`}>AVAILABLE POSITION</p>
           <h1 className="section-title">{job.title}</h1>
           {job.summary ? <p className="section-copy">{job.summary}</p> : null}
 
-          <dl className="position-detail-grid">
+          <dl className={`position-detail-grid ${styles.grid}`}>
             <div><dt>Location</dt><dd>{job.location}</dd></div>
             <div><dt>State</dt><dd>{job.state}</dd></div>
             <div><dt>Workplace</dt><dd>{job.workplace}</dd></div>
@@ -41,7 +42,7 @@ export default async function PositionPage({ params }) {
             {job.bonus ? <div><dt>Bonus</dt><dd>{job.bonus}</dd></div> : null}
           </dl>
 
-          <a className="hero-primary" href="#contact">Start a Conversation</a>
+          <a className={`hero-primary ${styles.cta}`} href="#contact">Start a Conversation</a>
         </div>
       </section>
 
