@@ -1,9 +1,25 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { jobBoardConfig } from "../data/jobBoardConfig";
+import { shareJob } from "../lib/shareJob";
 
 export default function JobCard({ job, onShortlist }) {
   const labels = jobBoardConfig.cardLabels;
   const href = job.slug ? `/positions/${job.slug}` : "#contact";
+  const [shareStatus, setShareStatus] = useState("");
+
+  async function handleShare() {
+    try {
+      const result = await shareJob(job);
+      setShareStatus(result.method === "clipboard" ? "Link copied" : "Shared");
+    } catch (error) {
+      if (error?.name !== "AbortError") {
+        setShareStatus("Unable to share");
+      }
+    }
+  }
 
   return (
     <article className="card job-card">
@@ -35,10 +51,16 @@ export default function JobCard({ job, onShortlist }) {
           {labels.shortlist}
         </button>
         <Link href={href}>{labels.viewPosition}</Link>
-        <button type="button" data-share-job={job.slug ?? job.id ?? ""}>
+        <button type="button" onClick={handleShare}>
           {labels.share}
         </button>
       </div>
+
+      {shareStatus ? (
+        <p className="job-share-status" role="status" aria-live="polite">
+          {shareStatus}
+        </p>
+      ) : null}
     </article>
   );
 }
