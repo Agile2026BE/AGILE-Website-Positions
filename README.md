@@ -27,6 +27,9 @@ Current structure:
 - `data/jobs.js` verified job data source placeholder
 - `lib/jobFilters.js` filtering and keyword search logic
 - `lib/shareJob.js` position sharing behavior
+- `scripts/validate-jobs.mjs` job data validation
+- `TESTING.md` browser, responsive, content, and deployment verification checklist
+- `.github/workflows/check.yml` automated validation, lint, and production build checks
 
 ## Reconstruction Rules
 
@@ -62,6 +65,10 @@ Implemented:
 - Career inquiry section layout
 - Footer
 - Component-level responsive CSS modules for the primary interface
+- Cleanup of duplicated component rules from `app/globals.css`
+- Combined `npm run check` verification command
+- GitHub Actions project-check workflow
+- Pre-deployment testing checklist
 
 Not yet completed:
 
@@ -70,9 +77,20 @@ Not yet completed:
 - Verified candidate review text
 - Working inquiry submission backend and resume upload
 - Exact visual matching against the live site
-- Cleanup of legacy duplicated rules still remaining in `app/globals.css`
-- Local build and browser testing
+- Confirmed passing automated build in a complete Node environment
+- Full browser and responsive testing
 - Deployment configuration
+
+## Verification Commands
+
+Run locally:
+
+```bash
+npm install
+npm run check
+```
+
+`npm run check` runs job validation, ESLint, and the Next.js production build. Use `TESTING.md` for the required browser and deployment-gate checks after the automated command passes.
 
 ## Source of Truth
 
@@ -84,8 +102,8 @@ The original editable ChatGPT Site source has not been recovered. This repositor
 
 ## Current Checkpoint
 
-The responsive CSS module migration is substantially complete across the main homepage components, controls, footer, header, position detail page, and missing-position page. Legacy global component rules remain in `app/globals.css` and should be removed carefully only after confirming the module-backed pages render correctly.
+The main interface architecture and responsive CSS module migration are substantially complete. Shared styling has been reduced to global tokens and layout primitives, and automated verification plus a manual testing checklist are now in place. A successful project build and browser pass must be confirmed before verified content restoration expands or any deployment changes are considered.
 
 ## Next Recommended Step
 
-Run the first local Next.js build and browser check before removing duplicated global component styling. Fix any build or runtime errors one file at a time, then proceed with verified content restoration and exact visual matching.
+Run `npm install` followed by `npm run check` in a complete Node environment. Resolve any validation, lint, or build errors one file at a time, then complete the checks in `TESTING.md` before proceeding to verified content restoration and exact visual matching.
