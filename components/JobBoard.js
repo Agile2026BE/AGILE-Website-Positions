@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import styles from "./JobBoard.module.css";
 import EmptyJobsState from "./EmptyJobsState";
 import FilterSelect from "./FilterSelect";
 import JobCard from "./JobCard";
@@ -63,13 +64,16 @@ export default function JobBoard({ jobs = [] }) {
   }
 
   return (
-    <section className="section" id="positions">
+    <section className={`section ${styles.board}`} id="positions">
       <div className="container">
         <p>{jobBoardConfig.eyebrow}</p>
         <h2 className="section-title">{jobBoardConfig.heading}</h2>
         <p className="section-copy">{jobBoardConfig.intro}</p>
 
-        <div className="job-board-controls" aria-label="Position filters">
+        <div
+          className={`job-board-controls ${styles.controls}`}
+          aria-label="Position filters"
+        >
           <FilterSelect
             label="State"
             value={filters.state}
@@ -106,7 +110,7 @@ export default function JobBoard({ jobs = [] }) {
           />
         </div>
 
-        <div className="job-search-row">
+        <div className={`job-search-row ${styles.searchRow}`}>
           <SearchInput
             value={filters.query}
             onChange={(value) => updateFilter("query", value)}
@@ -126,7 +130,7 @@ export default function JobBoard({ jobs = [] }) {
         />
 
         {visibleJobs.length ? (
-          <div className="job-grid">
+          <div className={`job-grid ${styles.grid}`}>
             {visibleJobs.map((job) => (
               <JobCard
                 key={job.id ?? job.slug}
