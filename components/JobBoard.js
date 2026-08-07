@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import JobCard from "./JobCard";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { buildFilterOptions, filterJobs } from "../lib/jobFilters";
 
@@ -15,6 +16,7 @@ const initialFilters = {
 
 export default function JobBoard({ jobs = [] }) {
   const [filters, setFilters] = useState(initialFilters);
+  const [shortlistedJobs, setShortlistedJobs] = useState([]);
   const [visibleCount, setVisibleCount] = useState(
     jobBoardConfig.results.initialVisibleCount,
   );
@@ -31,6 +33,20 @@ export default function JobBoard({ jobs = [] }) {
   function resetFilters() {
     setFilters(initialFilters);
     setVisibleCount(jobBoardConfig.results.initialVisibleCount);
+  }
+
+  function toggleShortlist(job) {
+    const key = job.id ?? job.slug;
+
+    setShortlistedJobs((current) => {
+      const exists = current.some((item) => (item.id ?? item.slug) === key);
+
+      if (exists) {
+        return current.filter((item) => (item.id ?? item.slug) !== key);
+      }
+
+      return [...current, job];
+    });
   }
 
   return (
@@ -115,21 +131,18 @@ export default function JobBoard({ jobs = [] }) {
 
         <div className="job-results-summary">
           <strong>{filteredJobs.length}</strong> {jobBoardConfig.results.availableLabel}
+          {shortlistedJobs.length ? (
+            <span className="shortlist-count"> · {shortlistedJobs.length} shortlisted</span>
+          ) : null}
         </div>
 
         <div className="job-grid">
           {visibleJobs.map((job) => (
-            <article className="card job-card" key={job.id ?? job.slug}>
-              <p>{job.discipline}</p>
-              <h3>{job.title}</h3>
-              {job.summary ? <p>{job.summary}</p> : null}
-              <dl>
-                <div><dt>Location</dt><dd>{job.location}</dd></div>
-                <div><dt>Workplace</dt><dd>{job.workplace}</dd></div>
-                <div><dt>Salary</dt><dd>{job.salaryDisplay}</dd></div>
-                <div><dt>Experience</dt><dd>{job.experience}</dd></div>
-              </dl>
-            </article>
+            <JobCard
+              key={job.id ?? job.slug}
+              job={job}
+              onShortlist={toggleShortlist}
+            />
           ))}
         </div>
 
