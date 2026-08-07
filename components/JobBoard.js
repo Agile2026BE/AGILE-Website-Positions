@@ -6,6 +6,7 @@ import FilterSelect from "./FilterSelect";
 import JobCard from "./JobCard";
 import JobResultsSummary from "./JobResultsSummary";
 import SearchInput from "./SearchInput";
+import ShowMorePositionsButton from "./ShowMorePositionsButton";
 import { minimumSalaryOptions } from "../data/filterOptions";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { buildFilterOptions, filterJobs } from "../lib/jobFilters";
@@ -135,12 +136,10 @@ export default function JobBoard({ jobs = [] }) {
         )}
 
         {visibleCount < filteredJobs.length ? (
-          <button
-            type="button"
+          <ShowMorePositionsButton
+            label={jobBoardConfig.results.showMoreLabel}
             onClick={() => setVisibleCount((count) => count + 24)}
-          >
-            {jobBoardConfig.results.showMoreLabel}
-          </button>
+          />
         ) : null}
       </div>
     </section>
