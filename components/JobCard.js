@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import styles from "./JobCard.module.css";
 import ShareButton from "./ShareButton";
@@ -26,35 +27,41 @@ export default function JobCard({ job, isShortlisted = false, onShortlist }) {
 
   return (
     <article className={`card job-card ${styles.card}`}>
-      <p>{job.discipline}</p>
-      <h3>{job.title}</h3>
-      {job.summary ? <p>{job.summary}</p> : null}
+      <Link
+        className={styles.cardLink}
+        href={href}
+        aria-label={`View ${job.title}`}
+      >
+        <p>{job.discipline}</p>
+        <h3>{job.title}</h3>
+        {job.summary ? <p>{job.summary}</p> : null}
 
-      <dl className={styles.meta}>
-        <div className={styles.metaRow}>
-          <dt>{labels.location}</dt>
-          <dd>{job.location}</dd>
-        </div>
-        <div className={styles.metaRow}>
-          <dt>{labels.workplace}</dt>
-          <dd>{job.workplace}</dd>
-        </div>
-        <div className={styles.metaRow}>
-          <dt>{labels.salary}</dt>
-          <dd>{job.salaryDisplay}</dd>
-        </div>
-        <div className={styles.metaRow}>
-          <dt>{labels.experience}</dt>
-          <dd>{job.experience}</dd>
-        </div>
-      </dl>
+        <dl className={styles.meta}>
+          <div className={styles.metaRow}>
+            <dt>{labels.location}</dt>
+            <dd>{job.location}</dd>
+          </div>
+          <div className={styles.metaRow}>
+            <dt>{labels.workplace}</dt>
+            <dd>{job.workplace}</dd>
+          </div>
+          <div className={styles.metaRow}>
+            <dt>{labels.salary}</dt>
+            <dd>{job.salaryDisplay}</dd>
+          </div>
+          <div className={styles.metaRow}>
+            <dt>{labels.experience}</dt>
+            <dd>{job.experience}</dd>
+          </div>
+        </dl>
 
-      <div className={styles.tags} aria-label="Position details">
-        {job.specialty ? <span>{job.specialty}</span> : null}
-        {job.market ? <span>{job.market.split("|")[0].trim()}</span> : null}
-        {job.credential ? <span>{job.credential}</span> : null}
-        {job.bonus ? <span>Bonus</span> : null}
-      </div>
+        <div className={styles.tags} aria-label="Position details">
+          {job.specialty ? <span>{job.specialty}</span> : null}
+          {job.market ? <span>{job.market.split("|")[0].trim()}</span> : null}
+          {job.credential ? <span>{job.credential}</span> : null}
+          {job.bonus ? <span>Bonus</span> : null}
+        </div>
+      </Link>
 
       <div className={`job-card-actions ${styles.actions}`}>
         <ShortlistButton
