@@ -42,6 +42,11 @@ export default function JobBoard({ jobs = [] }) {
     setVisibleCount(jobBoardConfig.results.initialVisibleCount);
   }
 
+  function isJobShortlisted(job) {
+    const key = job.id ?? job.slug;
+    return shortlistedJobs.some((item) => (item.id ?? item.slug) === key);
+  }
+
   function toggleShortlist(job) {
     const key = job.id ?? job.slug;
 
@@ -124,6 +129,7 @@ export default function JobBoard({ jobs = [] }) {
               <JobCard
                 key={job.id ?? job.slug}
                 job={job}
+                isShortlisted={isJobShortlisted(job)}
                 onShortlist={toggleShortlist}
               />
             ))}
