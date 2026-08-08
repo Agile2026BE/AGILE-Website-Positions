@@ -11,7 +11,7 @@ export default function JobResultsSummary({
       <div className={styles.summary}>
         <strong>{resultCount}</strong> {availableLabel}
         {shortlistedCount ? (
-          <span className={styles.shortlist}> · {shortlistedCount} shortlisted</span>
+          <span className={styles.shortlist}> · {shortlistedCount} saved</span>
         ) : null}
       </div>
       <div className={styles.scope}>{allOpportunitiesLabel}</div>
