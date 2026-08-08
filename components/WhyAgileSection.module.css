@@ -5,6 +5,36 @@
   scroll-margin-top: 118px;
 }
 .contactAnchor { position: absolute; top: 0; left: 0; width: 1px; height: 1px; scroll-margin-top: 118px; }
+.relationship {
+  width: min(980px, calc(100% - 68px));
+  margin: 0 auto;
+  padding: 34px 0 8px;
+  text-align: center;
+}
+.eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #67c6e9;
+}
+.relationship h2 {
+  margin: 0 0 14px;
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  line-height: 1.16;
+  font-weight: 600;
+  color: #ffffff;
+}
+.relationship p {
+  margin: 0 auto 10px;
+  max-width: 900px;
+  line-height: 1.58;
+  color: #d5e0e8;
+}
+.relationship .closer {
+  color: #ffffff;
+  font-weight: 600;
+}
 .grid {
   width: min(1440px, 100%);
   margin: 0 auto;
@@ -19,5 +49,8 @@
 .step p { margin: 0; line-height: 1.55; color: #d5e0e8; }
 @media (max-width: 760px) {
   .section, .contactAnchor { scroll-margin-top: 168px; }
-  .grid { grid-template-columns: 1fr; gap: 28px; padding: 28px 22px 34px; }
+  .relationship { width: auto; margin: 0; padding: 28px 22px 6px; text-align: left; }
+  .relationship h2 { font-size: 1.55rem; }
+  .relationship p { font-size: 0.96rem; line-height: 1.5; }
+  .grid { grid-template-columns: 1fr; gap: 28px; padding: 24px 22px 34px; }
 }
