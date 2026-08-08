@@ -2,7 +2,7 @@ export const jobBoardConfig = {
   eyebrow: "What’s Your Next Move?℠",
   heading: "Find work that fits your life.",
   intro:
-    "Start broad. Every choice narrows the available options without hiding relevant salary ranges.",
+    "Begin by exploring all available field options. Each refinement focuses your results while keeping your desired salary ranges visible.",
   filters: [
     { key: "state", label: "State" },
     { key: "discipline", label: "Discipline" },
