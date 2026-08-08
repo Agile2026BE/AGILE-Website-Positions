@@ -2,6 +2,20 @@
   background: linear-gradient(180deg, #f7f8fc 0%, #fff 100%);
 }
 
+.detail :global(.section-title) {
+  max-width: 900px;
+  font-family: Georgia,"Times New Roman",serif;
+  font-size: clamp(2rem,3vw,3rem);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -.02em;
+  overflow-wrap: anywhere;
+}
+
+.detail :global(.section-copy) {
+  max-width: 850px;
+}
+
 .eyebrow {
   margin: 0 0 12px;
   color: var(--navy);
@@ -25,71 +39,13 @@
   background: var(--surface);
 }
 
-.grid dt {
-  margin-bottom: 6px;
-  color: var(--text-muted);
-  font-size: 0.82rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.grid dd {
-  margin: 0;
-  color: var(--navy-dark);
-  font-weight: 700;
-}
-
-.contentSection {
-  max-width: 850px;
-  margin: 34px 0;
-}
-
-.contentSection h2 {
-  margin: 0 0 14px;
-  color: var(--navy-dark);
-  font-size: 1.35rem;
-}
-
-.contentSection ul {
-  margin: 0;
-  padding-left: 22px;
-}
-
-.contentSection li,
-.contentSection p {
-  margin: 0 0 10px;
-  color: var(--text);
-  line-height: 1.7;
-}
-
-.cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 46px;
-  padding: 0 18px;
-  border-radius: 10px;
-  background: var(--navy);
-  color: white;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.cta:hover {
-  background: var(--navy-dark);
-}
-
-.cta:focus-visible {
-  outline: 3px solid rgba(36, 59, 103, 0.22);
-  outline-offset: 3px;
-}
-
-@media (max-width: 720px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cta {
-    width: 100%;
-  }
-}
+.grid dt { margin-bottom:6px; color:var(--text-muted); font-size:.82rem; font-weight:700; text-transform:uppercase; }
+.grid dd { margin:0; color:var(--navy-dark); font-weight:700; }
+.contentSection { max-width:850px; margin:34px 0; }
+.contentSection h2 { margin:0 0 14px; color:var(--navy-dark); font-size:1.35rem; }
+.contentSection ul { margin:0; padding-left:22px; }
+.contentSection li,.contentSection p { margin:0 0 10px; color:var(--text); line-height:1.7; }
+.cta { display:inline-flex; align-items:center; justify-content:center; min-height:46px; padding:0 18px; border-radius:6px; background:#1476a8; color:#fff; font-weight:700; text-decoration:none; box-shadow:0 8px 20px rgba(20,118,168,.16); }
+.cta:hover { background:#105f88; }
+.cta:focus-visible { outline:3px solid rgba(20,118,168,.22); outline-offset:3px; }
+@media (max-width:720px){ .detail :global(.section-title){font-size:clamp(1.75rem,8vw,2.35rem)}.grid{grid-template-columns:1fr}.cta{width:100%} }
