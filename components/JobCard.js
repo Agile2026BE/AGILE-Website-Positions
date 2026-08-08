@@ -18,10 +18,21 @@ function displayCredential(value) {
   return text;
 }
 
+function displayWorkplace(value) {
+  const text = String(value ?? "").trim();
+  if (!text) return "";
+  const normalized = text.toLowerCase();
+  if (normalized.includes("hybrid") || /\b[1-4]\s*\/\s*[1-4]\b/.test(normalized) || normalized.includes("50/50")) return "Hybrid";
+  if (normalized.includes("remote")) return "Remote";
+  if (normalized.includes("onsite") || normalized.includes("on-site") || normalized.includes("on site")) return "On-Site";
+  return text;
+}
+
 export default function JobCard({ job, isShortlisted = false, onShortlist, onViewPosition }) {
   const labels = jobBoardConfig.cardLabels;
   const [shareStatus, setShareStatus] = useState("");
   const credential = displayCredential(job.credential);
+  const workplace = displayWorkplace(job.workplace);
 
   async function handleShare() {
     try {
@@ -55,7 +66,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
           </div>
           <div className={styles.metaRow}>
             <dt>{labels.workplace}</dt>
-            <dd>{job.workplace}</dd>
+            <dd>{workplace}</dd>
           </div>
           <div className={styles.metaRow}>
             <dt>{labels.salary}</dt>
