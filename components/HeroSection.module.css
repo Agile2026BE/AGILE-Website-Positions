@@ -1,6 +1,6 @@
 .hero {
-  min-height: 620px;
-  padding: 82px 0 52px;
+  min-height: 680px;
+  padding: 82px 0 82px;
   background: linear-gradient(125deg, #173954 0%, #244f6c 62%, #315e79 100%);
   color: #ffffff;
 }
@@ -17,4 +17,26 @@
 .secondary { border:1px solid rgba(255,255,255,.7); color:#fff; background:rgba(255,255,255,.04); }
 .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:48px; color:rgba(255,255,255,.9); font-size:.82rem; }
 .badges span { padding:9px 13px; border:1px solid rgba(255,255,255,.25); border-radius:999px; background:rgba(255,255,255,.035); }
-@media (max-width:640px){ .hero{min-height:auto;padding:54px 0 34px}.title{font-size:clamp(2.75rem,13vw,4rem)}.lead{font-size:1.15rem}.actions{flex-direction:column;align-items:stretch}.primary,.secondary{width:100%}.badges{margin-top:34px} }
+
+@media (min-width: 1440px) {
+  .hero {
+    min-height: 720px;
+    padding-bottom: 96px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto;
+    padding: 68px 0 60px;
+  }
+}
+
+@media (max-width:640px){
+  .hero{min-height:auto;padding:54px 0 46px}
+  .title{font-size:clamp(2.75rem,13vw,4rem)}
+  .lead{font-size:1.15rem}
+  .actions{flex-direction:column;align-items:stretch}
+  .primary,.secondary{width:100%}
+  .badges{margin-top:34px}
+}
