@@ -51,6 +51,15 @@ export default function JobBoard({ jobs = [] }) {
     window.localStorage.setItem(SAVED_POSITIONS_KEY, JSON.stringify(savedKeys));
   }, [shortlistedJobs, savedPositionsReady]);
 
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("agile:career-search", {
+      detail: {
+        ...filters,
+        resultCount: filteredJobs.length,
+      },
+    }));
+  }, [filters, filteredJobs.length]);
+
   function updateFilter(key,value){ setFilters(current=>({...current,[key]:value})); setVisibleCount(jobBoardConfig.results.initialVisibleCount); }
   function resetFilters(){ setFilters(initialFilters); setVisibleCount(jobBoardConfig.results.initialVisibleCount); }
   function isJobShortlisted(job){ const key=job.id??job.slug; return shortlistedJobs.some(item=>(item.id??item.slug)===key); }
