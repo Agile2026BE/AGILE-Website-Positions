@@ -7,8 +7,9 @@ export default function ShortlistButton({ isShortlisted = false, onClick }) {
       type="button"
       onClick={onClick}
       aria-pressed={isShortlisted}
+      aria-label={isShortlisted ? "Remove saved position" : "Save position for later"}
     >
-      {isShortlisted ? "Shortlisted" : "+ Shortlist"}
+      {isShortlisted ? "Saved" : "+ Save"}
     </button>
   );
 }
