@@ -27,9 +27,9 @@ export const jobBoardConfig = {
     workplace: "Workplace",
     salary: "Salary",
     experience: "Experience",
-    shortlist: "+ Shortlist",
+    shortlist: "+ Save",
     viewPosition: "View Position",
-    share: "Share",
+    share: "Copy Link",
   },
 };
 
