@@ -4,7 +4,7 @@
   background: #193b59;
   scroll-margin-top: 118px;
 }
-.contactAnchor { position: absolute; top: 0; left: 0; width: 1px; height: 1px; scroll-margin-top: 118px; }
+.contactAnchor { position: absolute; top: 56%; left: 0; width: 1px; height: 1px; scroll-margin-top: 118px; }
 .grid {
   width: min(1440px, 100%);
   margin: 0 auto;
@@ -19,5 +19,6 @@
 .step p { margin: 0; line-height: 1.55; color: #d5e0e8; }
 @media (max-width: 760px) {
   .section, .contactAnchor { scroll-margin-top: 168px; }
+  .contactAnchor { top: 74%; }
   .grid { grid-template-columns: 1fr; gap: 28px; padding: 28px 22px 34px; }
 }
