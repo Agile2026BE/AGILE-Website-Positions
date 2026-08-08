@@ -2,7 +2,7 @@ import styles from "./WhyAgileSection.module.css";
 
 const steps = [
   { number: "01", title: "You built the experience", copy: "We learn what you have done, where you want to go, and what matters before your name ever reaches a client." },
-  { number: "02", title: "We build the introduction", copy: "AGILE presents your background directly to hiring leaders we know and keeps your experience in the conversation as needs develop." },
+  { number: "02", title: "We recommend you", copy: "We do not just refer your résumé. AGILE recommends you directly to hiring leaders we know and explains why your experience belongs in the conversation." },
   { number: "03", title: "You move with an advocate", copy: "Interview preparation, feedback, offer strategy, negotiation and follow through stay coordinated through one relationship." },
 ];
 
@@ -30,14 +30,14 @@ export default function WhyAgileSection() {
           <p className={styles.eyebrow}>THE AGILE ADVANTAGE</p>
           <h2>We only work with the best. <span className={styles.question}>Shouldn&apos;t you?</span></h2>
           <p className={styles.challenge}>You&apos;ve worked hard to build your career. Why leave your representation to chance?</p>
-          <p className={styles.supporting}>In a crowded market, strong experience can still disappear into the noise. AGILE works directly with more than 40 consulting and engineering firms and helps make sure the right hiring leaders know who you are.</p>
-          <p className={styles.doorLine}>We do not knock on doors. We open them for our candidates.</p>
+          <p className={styles.recommendLine}>We don&apos;t just refer you. We recommend you to our clients.</p>
+          <p className={styles.supporting}>AGILE works directly with more than 40 consulting and engineering firms. We know many of the hiring leaders personally, which gives us the opportunity to explain your experience, strengths and fit rather than simply forwarding a résumé.</p>
         </div>
       </div>
 
       <div className={styles.bridge}>
-        <p className={styles.bridgeLead}>You can promote your own accomplishments.</p>
-        <h3>When AGILE speaks about you, we can turn that solo into a symphony.</h3>
+        <p className={styles.bridgeLead}>Representation changes the conversation.</p>
+        <h3>Your résumé shows what you have done. AGILE helps clients understand why you should be the person they meet.</h3>
       </div>
 
       <div className={styles.grid}>
