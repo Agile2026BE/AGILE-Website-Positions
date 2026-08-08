@@ -1,9 +1,9 @@
 import styles from "./WhyAgileSection.module.css";
 
 const steps = [
-  { number: "01", title: "You built the experience", copy: "We learn what you have done, where you want to go, and what matters before your name ever reaches a client." },
-  { number: "02", title: "We recommend you", copy: "We do not just refer your résumé. AGILE recommends you directly to the hiring leadership we know on a first name basis." },
-  { number: "03", title: "You move with an advocate", copy: "Interview preparation, feedback, offer strategy, negotiation and follow through stay coordinated through one relationship." },
+  { number: "01", title: "You built the experience", copy: "We learn what matters before your name ever reaches a client." },
+  { number: "02", title: "We recommend you", copy: "We know their hiring leadership on a first name basis." },
+  { number: "03", title: "Build what comes next", copy: "The right introduction creates the opportunity to build something better together." },
 ];
 
 export default function WhyAgileSection() {
@@ -37,7 +37,7 @@ export default function WhyAgileSection() {
 
       <div className={styles.bridge}>
         <p className={styles.bridgeLead}>Representation changes the conversation.</p>
-        <h3>Your résumé shows what you have done. AGILE helps clients understand why you should be the person they meet.</h3>
+        <h3>AGILE helps you by letting our clients see what you can build together.</h3>
       </div>
 
       <div className={styles.grid}>
