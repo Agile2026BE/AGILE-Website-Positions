@@ -53,6 +53,7 @@ export default function ContactSection() {
       const response = await fetch("/api/inquiry", { method: "POST", body: formData });
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.error || "Unable to send inquiry.");
+      setStatus("Inquiry sent. Thank you. We look forward to speaking with you!");
       event.currentTarget.reset();
       setPositionId(""); setPositionTitle(""); setDiscipline(""); setQuickMessage("position"); setMessage(baseMessages.position);
       window.history.replaceState({}, "", `${window.location.pathname}#contact`);
@@ -81,7 +82,7 @@ export default function ContactSection() {
           <label className={styles.full}>Your Message — Optional<textarea name="message" rows="4" value={message} onChange={(event)=>setMessage(event.target.value)} /></label>
           <label className={styles.resume}><span className={styles.resumePrompt}><strong>Attach Résumé</strong> <em>Optional</em></span><input type="file" name="resume" accept=".pdf,.doc,.docx" /></label>
           <div className={styles.submitCell}><button type="submit" disabled={sending}>{sending ? "Sending..." : "Send My Inquiry"}</button></div>
-          {status ? <div className={`${styles.full} ${styles.error}`} role="status" aria-live="polite">{status}</div> : null}
+          {status ? <div className={`${styles.full} ${status.startsWith("Inquiry sent") ? styles.success : styles.error}`} role="status" aria-live="polite">{status}</div> : null}
         </form>
       </div>
     </section>
