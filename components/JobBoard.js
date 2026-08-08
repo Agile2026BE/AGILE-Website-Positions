@@ -32,17 +32,20 @@ export default function JobBoard({ jobs = [] }) {
   const hasActiveFilters = Object.entries(filters).some(([key,value]) => key === "market" ? value.length > 0 : Boolean(value));
 
   useEffect(() => {
-    try {
-      const savedKeys = JSON.parse(window.localStorage.getItem(SAVED_POSITIONS_KEY) || "[]");
-      if (Array.isArray(savedKeys)) {
-        const savedKeySet = new Set(savedKeys.map(String));
-        setShortlistedJobs(jobs.filter(job => savedKeySet.has(String(job.id ?? job.slug))).slice(0, MAX_SHORTLISTED_JOBS));
+    const timer = window.setTimeout(() => {
+      try {
+        const savedKeys = JSON.parse(window.localStorage.getItem(SAVED_POSITIONS_KEY) || "[]");
+        if (Array.isArray(savedKeys)) {
+          const savedKeySet = new Set(savedKeys.map(String));
+          setShortlistedJobs(jobs.filter(job => savedKeySet.has(String(job.id ?? job.slug))).slice(0, MAX_SHORTLISTED_JOBS));
+        }
+      } catch {
+        setShortlistedJobs([]);
+      } finally {
+        setSavedPositionsReady(true);
       }
-    } catch {
-      setShortlistedJobs([]);
-    } finally {
-      setSavedPositionsReady(true);
-    }
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [jobs]);
 
   useEffect(() => {
