@@ -7,6 +7,7 @@ import ShortlistButton from "./ShortlistButton";
 import { shareJob } from "../lib/shareJob";
 
 const lines = (value) => String(value ?? "").split(/\r?\n/).map((line) => line.replace(/^\s*[•*-]\s*/, "").trim()).filter(Boolean);
+const usefulWhyConsider = (value) => lines(value).filter((line) => line.toLowerCase() !== "available now.");
 
 function similarityScore(candidate, active) {
   let score = 0;
@@ -48,7 +49,7 @@ export default function PositionModal({ job, jobs = [], onClose, onSelectJob, is
 
   const responsibilities = lines(job.responsibilities);
   const qualifications = lines(job.qualifications);
-  const whyConsider = lines(job.whyConsider);
+  const whyConsider = usefulWhyConsider(job.whyConsider);
 
   async function handleShare() {
     try { const result = await shareJob(job); setShareStatus(result.method === "clipboard" ? "Link copied" : "Shared"); }
@@ -61,7 +62,7 @@ export default function PositionModal({ job, jobs = [], onClose, onSelectJob, is
     event.preventDefault();
     const params = new URLSearchParams({ positionId: String(job.id ?? ""), positionTitle: job.title ?? "", discipline: job.discipline ?? "" });
     onClose?.();
-    window.location.href = `/?${params.toString()}#contact`;
+    window.location.href = `/?${params.toString()}#contact-guide`;
   }
 
   return (
@@ -83,7 +84,7 @@ export default function PositionModal({ job, jobs = [], onClose, onSelectJob, is
           {qualifications.length ? <section className={styles.sectionBlock}><h3>Key Qualifications</h3><ul>{qualifications.map((item,index)=><li key={`${item}-${index}`}>{item}</li>)}</ul></section> : null}
           {whyConsider.length ? <section className={styles.sectionBlock}><h3>Why Consider?</h3>{whyConsider.map((paragraph,index)=><p key={`${paragraph}-${index}`}>{paragraph}</p>)}</section> : null}
           {similarJobs.length ? <section className={`${styles.sectionBlock} ${styles.similarBlock}`}><h3>Similar Positions</h3><div className={styles.similarList}>{similarJobs.map(similar => <button key={similar.id ?? similar.slug} type="button" onClick={()=>selectSimilar(similar)}><strong>{similar.title}</strong><span>{similar.location} · {similar.salaryDisplay}</span></button>)}</div></section> : null}
-          <div className={styles.actions}><a className={styles.interested} href="#contact" onClick={handleInterested}>I’m Interested</a><ShareButton label="Share Position" onClick={handleShare} /></div>
+          <div className={styles.actions}><a className={styles.interested} href="#contact-guide" onClick={handleInterested}>I’m Interested</a><ShareButton label="Share Position" onClick={handleShare} /></div>
           {shareStatus ? <p className={styles.shareStatus} role="status" aria-live="polite">{shareStatus}</p> : null}
         </div>
       </section>
