@@ -8,6 +8,8 @@ import MultiSelectFilter from "./MultiSelectFilter";
 import JobCard from "./JobCard";
 import JobResultsSummary from "./JobResultsSummary";
 import PositionModal from "./PositionModal";
+import InterestModal from "./InterestModal";
+import SharePositionsModal from "./SharePositionsModal";
 import ResetFiltersButton from "./ResetFiltersButton";
 import SearchInput from "./SearchInput";
 import ShowMorePositionsButton from "./ShowMorePositionsButton";
@@ -15,107 +17,16 @@ import { disciplineOptions, minimumSalaryOptions, stateOptions, workplaceOptions
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { buildFilterOptions, filterJobs } from "../lib/jobFilters";
 
-const initialFilters = { state:"", discipline:"", minimumSalary:"", workplace:"", market:[], query:"" };
-const MAX_SHORTLISTED_JOBS = 3;
-const MAX_MARKET_SELECTIONS = 5;
-const SAVED_POSITIONS_KEY = "agile-saved-positions";
+const initialFilters={state:"",discipline:"",minimumSalary:"",workplace:"",market:[],query:""};
+const MAX_SHORTLISTED_JOBS=3, MAX_MARKET_SELECTIONS=5, SAVED_POSITIONS_KEY="agile-saved-positions";
 
-export default function JobBoard({ jobs = [] }) {
-  const [filters,setFilters] = useState(initialFilters);
-  const [shortlistedJobs,setShortlistedJobs] = useState([]);
-  const [savedPositionsReady,setSavedPositionsReady] = useState(false);
-  const [visibleCount,setVisibleCount] = useState(jobBoardConfig.results.initialVisibleCount);
-  const [selectedJob,setSelectedJob] = useState(null);
-  const options = useMemo(() => buildFilterOptions(jobs),[jobs]);
-  const filteredJobs = useMemo(() => filterJobs(jobs,filters),[jobs,filters]);
-  const visibleJobs = filteredJobs.slice(0,visibleCount);
-  const hasActiveFilters = Object.entries(filters).some(([key,value]) => key === "market" ? value.length > 0 : Boolean(value));
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => {
-      try {
-        const savedKeys = JSON.parse(window.localStorage.getItem(SAVED_POSITIONS_KEY) || "[]");
-        if (Array.isArray(savedKeys)) {
-          const savedKeySet = new Set(savedKeys.map(String));
-          setShortlistedJobs(jobs.filter(job => savedKeySet.has(String(job.id ?? job.slug))).slice(0, MAX_SHORTLISTED_JOBS));
-        }
-      } catch {
-        setShortlistedJobs([]);
-      } finally {
-        setSavedPositionsReady(true);
-      }
-    }, 0);
-    return () => window.clearTimeout(timer);
-  }, [jobs]);
-
-  useEffect(() => {
-    if (!savedPositionsReady) return;
-    const savedKeys = shortlistedJobs.map(job => String(job.id ?? job.slug));
-    window.localStorage.setItem(SAVED_POSITIONS_KEY, JSON.stringify(savedKeys));
-  }, [shortlistedJobs, savedPositionsReady]);
-
-  useEffect(() => {
-    window.dispatchEvent(new CustomEvent("agile:career-search", {
-      detail: {
-        ...filters,
-        resultCount: filteredJobs.length,
-      },
-    }));
-  }, [filters, filteredJobs.length]);
-
-  function updateFilter(key,value){ setFilters(current=>({...current,[key]:value})); setVisibleCount(jobBoardConfig.results.initialVisibleCount); }
-  function resetFilters(){ setFilters(initialFilters); setVisibleCount(jobBoardConfig.results.initialVisibleCount); }
-  function isJobShortlisted(job){ const key=job.id??job.slug; return shortlistedJobs.some(item=>(item.id??item.slug)===key); }
-  function toggleShortlist(job){ const key=job.id??job.slug; setShortlistedJobs(current=>{ const exists=current.some(item=>(item.id??item.slug)===key); if(exists)return current.filter(item=>(item.id??item.slug)!==key); if(current.length>=MAX_SHORTLISTED_JOBS)return current; return [...current,job]; }); }
-
-  return (
-    <section className={`section ${styles.board}`} id="positions">
-      <div className="container">
-        <div className={styles.headingRow}>
-          <div>
-            <p className={styles.slogan}>What&apos;s Your Next Move?<sup>℠</sup></p>
-            <h2 className="section-title">{jobBoardConfig.heading}</h2>
-          </div>
-          <p className={`section-copy ${styles.intro}`}>{jobBoardConfig.intro}</p>
-        </div>
-
-        <div className={styles.filterPanel}>
-          <div className={`job-board-controls ${styles.controls}`} aria-label="Position filters">
-            <div><label>State</label><FilterSelect label="All States" value={filters.state} options={stateOptions} onChange={value=>updateFilter("state",value)} /></div>
-            <div><label>Discipline</label><FilterSelect label="All Disciplines" value={filters.discipline} options={disciplineOptions} onChange={value=>updateFilter("discipline",value)} /></div>
-            <div><label>Minimum Salary</label><FilterSelect label="Any Salary" value={filters.minimumSalary} options={minimumSalaryOptions} onChange={value=>updateFilter("minimumSalary",value)} /></div>
-            <div><label>Workplace</label><FilterSelect label="All Types" value={filters.workplace} options={workplaceOptions} onChange={value=>updateFilter("workplace",value)} /></div>
-            <div>
-              <label>Market Sectors</label>
-              <MultiSelectFilter
-                label="All Markets"
-                values={filters.market}
-                options={options.market}
-                maxSelections={MAX_MARKET_SELECTIONS}
-                onChange={value=>updateFilter("market",value)}
-              />
-            </div>
-          </div>
-          <div className={styles.searchLabel}>Title, specialty, skill, city or commute area</div>
-          <div className={`job-search-row ${styles.searchRow}`}>
-            <SearchInput value={filters.query} onChange={value=>updateFilter("query",value)} placeholder={jobBoardConfig.search.placeholder} />
-            <ResetFiltersButton label={jobBoardConfig.search.resetLabel} onClick={resetFilters} />
-          </div>
-        </div>
-
-        <JobResultsSummary resultCount={filteredJobs.length} availableLabel={jobBoardConfig.results.availableLabel} allOpportunitiesLabel={jobBoardConfig.results.allOpportunitiesLabel} shortlistedCount={shortlistedJobs.length} />
-        {visibleJobs.length ? <div className={`job-grid ${styles.grid}`}>{visibleJobs.map(job=><JobCard key={job.id??job.slug} job={job} isShortlisted={isJobShortlisted(job)} onShortlist={toggleShortlist} onViewPosition={setSelectedJob} />)}</div> : <EmptyJobsState hasActiveFilters={hasActiveFilters} onReset={resetFilters} />}
-        {visibleCount<filteredJobs.length ? <ShowMorePositionsButton label={jobBoardConfig.results.showMoreLabel} onClick={()=>setVisibleCount(count=>count+24)} /> : null}
-      </div>
-
-      <PositionModal
-        job={selectedJob}
-        jobs={jobs}
-        onClose={()=>setSelectedJob(null)}
-        onSelectJob={setSelectedJob}
-        isShortlisted={selectedJob ? isJobShortlisted(selectedJob) : false}
-        onShortlist={toggleShortlist}
-      />
-    </section>
-  );
+export default function JobBoard({jobs=[]}){
+ const[filters,setFilters]=useState(initialFilters);const[shortlistedJobs,setShortlistedJobs]=useState([]);const[savedPositionsReady,setSavedPositionsReady]=useState(false);const[visibleCount,setVisibleCount]=useState(jobBoardConfig.results.initialVisibleCount);const[selectedJob,setSelectedJob]=useState(null);const[interestJob,setInterestJob]=useState(null);const[shareOpen,setShareOpen]=useState(false);
+ const options=useMemo(()=>buildFilterOptions(jobs),[jobs]);const filteredJobs=useMemo(()=>filterJobs(jobs,filters),[jobs,filters]);const visibleJobs=filteredJobs.slice(0,visibleCount);const hasActiveFilters=Object.entries(filters).some(([key,value])=>key==="market"?value.length>0:Boolean(value));
+ useEffect(()=>{const timer=window.setTimeout(()=>{try{const savedKeys=JSON.parse(window.localStorage.getItem(SAVED_POSITIONS_KEY)||"[]");if(Array.isArray(savedKeys)){const set=new Set(savedKeys.map(String));setShortlistedJobs(jobs.filter(job=>set.has(String(job.id??job.slug))).slice(0,MAX_SHORTLISTED_JOBS));}}catch{setShortlistedJobs([]);}finally{setSavedPositionsReady(true);}},0);return()=>window.clearTimeout(timer);},[jobs]);
+ useEffect(()=>{if(!savedPositionsReady)return;window.localStorage.setItem(SAVED_POSITIONS_KEY,JSON.stringify(shortlistedJobs.map(job=>String(job.id??job.slug))));},[shortlistedJobs,savedPositionsReady]);
+ useEffect(()=>{window.dispatchEvent(new CustomEvent("agile:career-search",{detail:{...filters,resultCount:filteredJobs.length}}));},[filters,filteredJobs.length]);
+ function updateFilter(key,value){setFilters(current=>({...current,[key]:value}));setVisibleCount(jobBoardConfig.results.initialVisibleCount);}function resetFilters(){setFilters(initialFilters);setVisibleCount(jobBoardConfig.results.initialVisibleCount);}function isJobShortlisted(job){const key=job.id??job.slug;return shortlistedJobs.some(item=>(item.id??item.slug)===key);}function toggleShortlist(job){const key=job.id??job.slug;setShortlistedJobs(current=>{const exists=current.some(item=>(item.id??item.slug)===key);if(exists)return current.filter(item=>(item.id??item.slug)!==key);if(current.length>=MAX_SHORTLISTED_JOBS)return current;return[...current,job];});}
+ function openInterest(job){setSelectedJob(null);setShareOpen(false);setInterestJob(job);}function openShare(job){if(!isJobShortlisted(job))toggleShortlist(job);setSelectedJob(null);setShareOpen(true);}
+ return <section className={`section ${styles.board}`} id="positions"><div className="container"><div className={styles.headingRow}><div><p className={styles.slogan}>What&apos;s Your Next Move?<sup>℠</sup></p><h2 className="section-title">{jobBoardConfig.heading}</h2></div><p className={`section-copy ${styles.intro}`}>{jobBoardConfig.intro}</p></div><div className={styles.filterPanel}><div className={`job-board-controls ${styles.controls}`} aria-label="Position filters"><div><label>State</label><FilterSelect label="All States" value={filters.state} options={stateOptions} onChange={value=>updateFilter("state",value)}/></div><div><label>Discipline</label><FilterSelect label="All Disciplines" value={filters.discipline} options={disciplineOptions} onChange={value=>updateFilter("discipline",value)}/></div><div><label>Minimum Salary</label><FilterSelect label="Any Salary" value={filters.minimumSalary} options={minimumSalaryOptions} onChange={value=>updateFilter("minimumSalary",value)}/></div><div><label>Workplace</label><FilterSelect label="All Types" value={filters.workplace} options={workplaceOptions} onChange={value=>updateFilter("workplace",value)}/></div><div><label>Market Sectors</label><MultiSelectFilter label="All Markets" values={filters.market} options={options.market} maxSelections={MAX_MARKET_SELECTIONS} onChange={value=>updateFilter("market",value)}/></div></div><div className={styles.searchLabel}>Title, specialty, skill, city or commute area</div><div className={`job-search-row ${styles.searchRow}`}><SearchInput value={filters.query} onChange={value=>updateFilter("query",value)} placeholder={jobBoardConfig.search.placeholder}/><ResetFiltersButton label={jobBoardConfig.search.resetLabel} onClick={resetFilters}/></div></div><JobResultsSummary resultCount={filteredJobs.length} availableLabel={jobBoardConfig.results.availableLabel} allOpportunitiesLabel={jobBoardConfig.results.allOpportunitiesLabel} shortlistedCount={shortlistedJobs.length}/>{visibleJobs.length?<div className={`job-grid ${styles.grid}`}>{visibleJobs.map(job=><JobCard key={job.id??job.slug} job={job} isShortlisted={isJobShortlisted(job)} onShortlist={toggleShortlist} onViewPosition={setSelectedJob}/>)}</div>:<EmptyJobsState hasActiveFilters={hasActiveFilters} onReset={resetFilters}/>} {visibleCount<filteredJobs.length?<ShowMorePositionsButton label={jobBoardConfig.results.showMoreLabel} onClick={()=>setVisibleCount(count=>count+24)}/>:null}</div><PositionModal job={selectedJob} jobs={jobs} onClose={()=>setSelectedJob(null)} onSelectJob={setSelectedJob} isShortlisted={selectedJob?isJobShortlisted(selectedJob):false} onShortlist={toggleShortlist} onInterested={openInterest} onShare={openShare}/><InterestModal job={interestJob} onClose={()=>setInterestJob(null)}/><SharePositionsModal jobs={shareOpen?shortlistedJobs:[]} onClose={()=>setShareOpen(false)} onRemove={toggleShortlist} onInquire={openInterest}/></section>;
 }
