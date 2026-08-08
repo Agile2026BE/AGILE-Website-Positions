@@ -1,10 +1,7 @@
-.board { position:relative; scroll-margin-top:118px; padding-top:58px; background:#f7f9fb; }
+.board { position:relative; scroll-margin-top:104px; padding-top:58px; background:#f7f9fb; }
 .headingRow { display:grid; grid-template-columns:minmax(0,1.8fr) minmax(320px,.72fr); gap:70px; align-items:end; }
-.slogan { display:flex; align-items:baseline; flex-wrap:nowrap; gap:.34em; width:max-content; max-width:100%; margin:0 0 14px; color:#59b9e6; font-size:.82rem; font-weight:800; line-height:1.15; letter-spacing:.14em; text-transform:uppercase; }
-.sloganOuter { display:inline-block; white-space:nowrap; }
-.sloganScript { position:relative; display:inline-block; margin:0 .02em; padding:0 .08em .18em; color:#58a9d1; font-family:Georgia,"Times New Roman",serif; font-size:1.22em; font-style:italic; font-weight:700; line-height:1; letter-spacing:0; text-transform:none; white-space:nowrap; }
-.sloganScript::after { content:""; position:absolute; left:-.08em; right:-.08em; bottom:0; height:2px; background:#58a9d1; border-radius:50%; transform:rotate(-2deg); transform-origin:center; }
-.serviceMark { align-self:flex-start; margin-left:-.28em; font-size:.58em; line-height:1; letter-spacing:0; }
+.slogan { display:inline-flex; align-items:flex-start; gap:.12em; margin:0 0 14px; color:#59b9e6; font-family:Arial,Helvetica,sans-serif; font-size:clamp(1.05rem,1.45vw,1.35rem); font-weight:800; line-height:1.1; letter-spacing:.015em; white-space:nowrap; }
+.slogan sup { margin-top:.02em; font-size:.46em; font-weight:800; line-height:1; }
 .headingRow h2 { max-width:none; white-space:nowrap; font-family:Georgia,"Times New Roman",serif; font-size:clamp(3rem,4.15vw,4.15rem); font-weight:400; letter-spacing:-.035em; }
 .intro { max-width:430px; padding-bottom:5px; }
 .filterPanel { margin-top:30px; padding:20px; border:1px solid #d7e0e7; border-radius:14px; background:#fff; box-shadow:0 12px 28px rgba(30,45,75,.06); }
@@ -15,5 +12,5 @@
 .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:24px; }
 @media(max-width:1180px){.headingRow h2{white-space:normal;max-width:780px}}
 @media(max-width:980px){.headingRow{grid-template-columns:1fr;gap:12px}.intro{max-width:620px}.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:640px){.board{scroll-margin-top:96px;padding-top:44px}.slogan{gap:.28em;font-size:clamp(.66rem,3.2vw,.78rem);letter-spacing:.1em}.sloganScript{font-size:1.16em;padding-bottom:.2em}.serviceMark{margin-left:-.24em}.headingRow h2{font-size:clamp(2.5rem,12vw,3.5rem)}.controls,.searchRow,.grid{grid-template-columns:1fr}.filterPanel{padding:16px}}
-@media(max-width:390px){.slogan{gap:.22em;font-size:.64rem;letter-spacing:.075em}.sloganScript{font-size:1.12em}.serviceMark{font-size:.54em}}
+@media(max-width:760px){.board{scroll-margin-top:168px;padding-top:42px}}
+@media(max-width:640px){.slogan{font-size:clamp(1rem,5vw,1.18rem);white-space:normal}.headingRow h2{font-size:clamp(2.5rem,12vw,3.5rem)}.controls,.searchRow,.grid{grid-template-columns:1fr}.filterPanel{padding:16px}}
