@@ -45,17 +45,18 @@ export default function ContactSection() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const form = event.currentTarget;
     setSending(true); setStatus("");
-    const formData = new FormData(event.currentTarget);
+    const formData = new FormData(form);
     formData.set("positionId", positionId);
     formData.set("positionTitle", positionTitle);
     try {
       const response = await fetch("/api/inquiry", { method: "POST", body: formData });
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.error || "Unable to send inquiry.");
-      setStatus("Inquiry sent. Thank you. We look forward to speaking with you!");
-      event.currentTarget.reset();
+      form.reset();
       setPositionId(""); setPositionTitle(""); setDiscipline(""); setQuickMessage("position"); setMessage(baseMessages.position);
+      setStatus("Inquiry sent. Thank you. We look forward to speaking with you!");
       window.history.replaceState({}, "", `${window.location.pathname}#contact`);
     } catch (error) {
       setStatus(error.message || "We could not send your inquiry. Please try again.");
