@@ -1,6 +1,7 @@
 .section {
   background: #f7f9fb;
   padding: 64px 0 72px;
+  scroll-margin-top: 104px;
 }
 
 .panel {
@@ -107,5 +108,11 @@
 
   .review {
     min-height: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .section {
+    scroll-margin-top: 168px;
   }
 }
