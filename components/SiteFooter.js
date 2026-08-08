@@ -13,7 +13,10 @@ export default function SiteFooter() {
           <p className={`footer-eyebrow ${styles.eyebrow}`}>STATES SERVED</p>
           <h2>Connecting AEC professionals and consulting firms across nine key markets.</h2>
           <p>New York · New Jersey · Pennsylvania · Massachusetts · Connecticut · North Carolina · Florida · Colorado · California</p>
-          <div className={`footer-actions ${styles.actions}`}><a href="#positions">SEARCH CAREERS</a><a href="#contact">CLIENT HIRING SUPPORT</a></div>
+          <div className={`footer-actions ${styles.actions}`}>
+            <a href="#positions">SEARCH CAREERS</a>
+            <a href="mailto:careers@agileconsultingsolutions.com?subject=Client%20Hiring%20Support">CLIENT HIRING SUPPORT</a>
+          </div>
         </div>
         <div>
           <p className={`footer-eyebrow ${styles.eyebrow}`}>CONNECT WITH AGILE</p>
@@ -25,7 +28,7 @@ export default function SiteFooter() {
           <p>Monday–Friday · 8:00 AM–8:30 PM</p><p>Saturday · 9:00 AM–12:30 PM</p>
         </div>
       </div>
-      <div className={`footer-bottom ${styles.bottom}`}><div className={`container footer-bottom-inner ${styles.bottomInner}`}><span>© 2026 AGILE Business Consulting · All Rights Reserved</span><span>Direct Career Support · No Résumé Required</span><a href="#contact">Start a Conversation</a></div></div>
+      <div className={`footer-bottom ${styles.bottom}`}><div className={`container footer-bottom-inner ${styles.bottomInner}`}><span>© 2026 AGILE Business Consulting · All Rights Reserved</span><span>Direct Career Support · No Résumé Required</span><a href="#contact-guide">Start a Conversation</a></div></div>
     </footer>
   );
 }
