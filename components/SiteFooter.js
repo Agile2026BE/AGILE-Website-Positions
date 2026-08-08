@@ -7,18 +7,19 @@ export default function SiteFooter() {
       <div className={`container footer-grid ${styles.grid}`}>
         <div>
           <BrandLogo className={styles.footerLogo} />
-          <p>Specialized recruiting and consulting career guidance for Architects, Engineers and Construction Professionals.</p>
+          <p>Specialized Recruiting and Career Advisory for the Architecture, Engineering & Construction (AEC) Industry</p>
         </div>
         <div>
           <p className={`footer-eyebrow ${styles.eyebrow}`}>STATES SERVED</p>
           <h2>Connecting AEC professionals and consulting firms across nine key markets.</h2>
-          <p>New York · New Jersey · Pennsylvania · Massachusetts · Florida · California · Colorado · North Carolina · Connecticut</p>
+          <p>New York · New Jersey · Pennsylvania · Massachusetts · Connecticut · North Carolina · Florida · Colorado · California</p>
           <div className={`footer-actions ${styles.actions}`}><a href="#positions">SEARCH CAREERS</a><a href="#contact">CLIENT HIRING SUPPORT</a></div>
         </div>
         <div>
           <p className={`footer-eyebrow ${styles.eyebrow}`}>CONNECT WITH AGILE</p>
           <p>careers@agileconsultingsolutions.com</p>
           <p><strong>MAIN OFFICE 407-868-7254</strong></p>
+          <p>Professional Advisory Firm for Candidates and Clients</p>
           <p>Direct, professional support for both candidates and clients.</p>
           <p className={`footer-eyebrow ${styles.eyebrow}`}>AVAILABLE HOURS · EASTERN</p>
           <p>Monday–Friday · 8:00 AM–8:30 PM</p><p>Saturday · 9:00 AM–12:30 PM</p>
