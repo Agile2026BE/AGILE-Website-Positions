@@ -4,7 +4,7 @@
   background: #193b59;
   scroll-margin-top: 118px;
 }
-.contactAnchor { position: absolute; top: 56%; left: 0; width: 1px; height: 1px; scroll-margin-top: 118px; }
+.contactAnchor { position: absolute; top: 100%; left: 0; width: 1px; height: 1px; scroll-margin-top: 214px; }
 .grid {
   width: min(1440px, 100%);
   margin: 0 auto;
@@ -18,7 +18,7 @@
 .step h3 { margin: 0 0 10px; font-size: 1.22rem; line-height: 1.25; font-weight: 500; color: #ffffff; }
 .step p { margin: 0; line-height: 1.55; color: #d5e0e8; }
 @media (max-width: 760px) {
-  .section, .contactAnchor { scroll-margin-top: 168px; }
-  .contactAnchor { top: 74%; }
+  .section { scroll-margin-top: 168px; }
+  .contactAnchor { top: 100%; scroll-margin-top: 260px; }
   .grid { grid-template-columns: 1fr; gap: 28px; padding: 28px 22px 34px; }
 }
