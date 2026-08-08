@@ -2,7 +2,7 @@ import styles from "./WhyAgileSection.module.css";
 
 const steps = [
   { number: "01", title: "You built the experience", copy: "We learn what you have done, where you want to go, and what matters before your name ever reaches a client." },
-  { number: "02", title: "We recommend you", copy: "We do not just refer your résumé. AGILE recommends you directly to hiring leaders we know and explains why your experience belongs in the conversation." },
+  { number: "02", title: "We recommend you", copy: "We do not just refer your résumé. AGILE recommends you directly to the hiring leadership we know on a first name basis." },
   { number: "03", title: "You move with an advocate", copy: "Interview preparation, feedback, offer strategy, negotiation and follow through stay coordinated through one relationship." },
 ];
 
@@ -30,8 +30,8 @@ export default function WhyAgileSection() {
           <p className={styles.eyebrow}>THE AGILE ADVANTAGE</p>
           <h2>We only work with the best. <span className={styles.question}>Shouldn&apos;t you?</span></h2>
           <p className={styles.challenge}>You&apos;ve worked hard to build your career. Why leave your representation to chance?</p>
-          <p className={styles.recommendLine}>We don&apos;t just refer you. We recommend you to our clients.</p>
-          <p className={styles.supporting}>AGILE works directly with more than 40 consulting and engineering firms. We know many of the hiring leaders personally, which gives us the opportunity to explain your experience, strengths and fit rather than simply forwarding a résumé.</p>
+          <p className={styles.recommendLine}>We don&apos;t just share your résumé. We <span className={styles.recommendWord}>recommend</span> you to our clients.</p>
+          <p className={styles.supporting}>We know their hiring leadership on a first name basis.</p>
         </div>
       </div>
 
