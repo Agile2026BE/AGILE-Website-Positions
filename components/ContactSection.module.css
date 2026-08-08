@@ -1,4 +1,4 @@
-.section { background:#fff; padding:38px 0 32px; scroll-margin-top:118px; min-height:auto; }
+.section { background:#fff; padding:38px 0 32px; scroll-margin-top:330px; min-height:auto; }
 .grid { display:grid; grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr); gap:72px; align-items:start; width:min(1440px,calc(100% - 96px)); margin:0 auto; }
 .intro { padding-top:4px; }.eyebrow { margin:0 0 14px; color:#73c1e6; font-size:.72rem; font-weight:800; letter-spacing:.2em; }.intro :global(.section-title) { max-width:500px; margin-bottom:8px; font-family:Georgia,"Times New Roman",serif; font-size:clamp(2.8rem,3.8vw,3.75rem); font-weight:400; line-height:.98; letter-spacing:-.025em; }.intro :global(.section-copy) { max-width:520px; font-size:1rem; line-height:1.5; }
 .badges { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; color:#29415a; font-size:.72rem; font-weight:700; }.badges span { white-space:nowrap; padding:8px 12px; border:1px solid #bfd5e2; border-radius:999px; background:#f5fbfe; }
@@ -10,4 +10,4 @@
 .success,.error { margin-top:2px; padding:11px 14px; border-radius:6px; font-weight:800; }.success { background:#eaf7ef; color:#1e6841; border:1px solid #b9dfc8; }.error { background:#fff1f1; color:#8a2e2e; border:1px solid #e7bcbc; }
 @media(max-width:1100px){.grid{width:min(100% - 48px,1180px);grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:44px}}
 @media(max-width:900px){.section{padding:34px 0}.grid{grid-template-columns:1fr;gap:30px}}
-@media(max-width:620px){.section{padding-top:30px;padding-bottom:32px;scroll-margin-top:168px}.grid{width:min(100% - 24px,1180px)}.intro :global(.section-title){font-size:2.65rem}.form{grid-template-columns:1fr}.full{grid-column:auto}.submitCell{justify-content:stretch}.submitCell button{width:100%}.badges{align-items:flex-start;flex-direction:column}}
+@media(max-width:620px){.section{padding-top:30px;padding-bottom:32px;scroll-margin-top:560px}.grid{width:min(100% - 24px,1180px)}.intro :global(.section-title){font-size:2.65rem}.form{grid-template-columns:1fr}.full{grid-column:auto}.submitCell{justify-content:stretch}.submitCell button{width:100%}.badges{align-items:flex-start;flex-direction:column}}
