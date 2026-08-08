@@ -1,14 +1,17 @@
 .button {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: #eef8fc;
+  color: #0874ae;
+  font: inherit;
+  font-size: .72rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
   transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
 }
-
-.button[aria-pressed="true"] {
-  border-color: var(--navy);
-  background: var(--navy-soft);
-  color: var(--navy-dark);
-}
-
-.button:focus-visible {
-  outline: 3px solid rgba(36, 59, 103, 0.22);
-  outline-offset: 2px;
-}
+.button:hover { background:#dff1f8; }
+.button[aria-pressed="true"] { background:#dff1f8; color:#173958; }
+.button:focus-visible { outline:3px solid rgba(36,59,103,.22); outline-offset:2px; }

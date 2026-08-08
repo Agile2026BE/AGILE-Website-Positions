@@ -3,6 +3,12 @@ import nextVitals from "eslint-config-next/core-web-vitals";
 
 export default defineConfig([
   ...nextVitals,
+  {
+    files: ["data/jobDetails/**/*.js"],
+    rules: {
+      "import/no-anonymous-default-export": "off",
+    },
+  },
   globalIgnores([
     ".next/**",
     "out/**",

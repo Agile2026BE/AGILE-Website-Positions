@@ -1,10 +1,9 @@
-import Link from "next/link";
 import styles from "./ViewPositionLink.module.css";
 
-export default function ViewPositionLink({ href, label = "View Position" }) {
+export default function ViewPositionLink({ onClick, label = "View Position" }) {
   return (
-    <Link className={styles.link} href={href}>
+    <button className={styles.link} type="button" onClick={onClick}>
       {label}
-    </Link>
+    </button>
   );
 }

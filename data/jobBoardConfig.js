@@ -50,4 +50,11 @@ export const jobFieldKeys = [
   "credential",
   "bonus",
   "slug",
+  "responsibilities",
+  "qualifications",
+  "whyConsider",
+  "fullDescription",
+  "seoTitle",
+  "metaDescription",
+  "directUrl",
 ];

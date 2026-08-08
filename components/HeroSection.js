@@ -19,7 +19,7 @@ export default function HeroSection() {
           <a className={`hero-primary ${styles.primary}`} href="#positions">
             Explore Positions
           </a>
-          <a className={`hero-secondary ${styles.secondary}`} href="#contact">
+          <a className={`hero-secondary ${styles.secondary}`} href="#why-agile">
             Start a Conversation
           </a>
         </div>
