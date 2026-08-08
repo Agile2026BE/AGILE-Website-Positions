@@ -51,8 +51,8 @@ export default function PositionModal({ job, jobs = [], onClose, onSelectJob, is
   const whyConsider = lines(job.whyConsider);
 
   async function handleShare() {
-    try { const result = await shareJob(job); setShareStatus(result.method === "clipboard" ? "Link copied" : "Shared"); }
-    catch (error) { if (error?.name !== "AbortError") setShareStatus("Unable to share"); }
+    try { await shareJob(job); setShareStatus("Link copied"); }
+    catch (error) { if (error?.name !== "AbortError") setShareStatus("Unable to copy link"); }
   }
 
   function selectSimilar(similarJob) { onSelectJob?.(similarJob); requestAnimationFrame(() => { if (paneRef.current) paneRef.current.scrollTop = 0; }); }
@@ -83,7 +83,7 @@ export default function PositionModal({ job, jobs = [], onClose, onSelectJob, is
           {qualifications.length ? <section className={styles.sectionBlock}><h3>Key Qualifications</h3><ul>{qualifications.map((item,index)=><li key={`${item}-${index}`}>{item}</li>)}</ul></section> : null}
           {whyConsider.length ? <section className={styles.sectionBlock}><h3>Why Consider?</h3>{whyConsider.map((paragraph,index)=><p key={`${paragraph}-${index}`}>{paragraph}</p>)}</section> : null}
           {similarJobs.length ? <section className={`${styles.sectionBlock} ${styles.similarBlock}`}><h3>Similar Positions</h3><div className={styles.similarList}>{similarJobs.map(similar => <button key={similar.id ?? similar.slug} type="button" onClick={()=>selectSimilar(similar)}><strong>{similar.title}</strong><span>{similar.location} · {similar.salaryDisplay}</span></button>)}</div></section> : null}
-          <div className={styles.actions}><a className={styles.interested} href="#contact" onClick={handleInterested}>I’m Interested</a><ShareButton label="Share Position" onClick={handleShare} /></div>
+          <div className={styles.actions}><a className={styles.interested} href="#contact" onClick={handleInterested}>I’m Interested</a><ShareButton label="Copy Link" onClick={handleShare} /></div>
           {shareStatus ? <p className={styles.shareStatus} role="status" aria-live="polite">{shareStatus}</p> : null}
         </div>
       </section>
