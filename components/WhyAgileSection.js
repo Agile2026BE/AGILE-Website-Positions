@@ -29,10 +29,13 @@ export default function WhyAgileSection() {
         <div className={styles.motionCopy}>
           <p className={styles.eyebrow}>THE AGILE ADVANTAGE</p>
           <h2>We only work with the best. <span className={styles.question}>Shouldn&apos;t you?</span></h2>
-          <p className={styles.challenge}>You&apos;ve worked hard to build your career. Why leave your representation to chance?</p>
-          <p className={styles.recommendLine}>We don&apos;t just share your résumé. We <span className={styles.recommendWord}>recommend</span> you to our clients.</p>
-          <p className={styles.supporting}>We know their hiring leadership on a first name basis.</p>
         </div>
+      </div>
+
+      <div className={styles.storyText}>
+        <p className={styles.challenge}>You&apos;ve worked hard to build your career. Why leave your representation to chance?</p>
+        <p className={styles.recommendLine}>We don&apos;t just share your résumé. We <span className={styles.recommendWord}>recommend</span> you to our clients.</p>
+        <p className={styles.supporting}>We know their hiring leadership on a first name basis.</p>
       </div>
 
       <div className={styles.bridge}>
