@@ -73,12 +73,7 @@ export default function JobBoard({ jobs = [] }) {
       <div className="container">
         <div className={styles.headingRow}>
           <div>
-            <p className={styles.slogan} aria-label="What's Your Next Move">
-              <span className={styles.sloganOuter}>WHAT’S</span>
-              <span className={styles.sloganScript}>Your Next</span>
-              <span className={styles.sloganOuter}>MOVE?</span>
-              <sup className={styles.serviceMark}>℠</sup>
-            </p>
+            <p className={styles.slogan}>What&apos;s Your Next Move?<sup>℠</sup></p>
             <h2 className="section-title">{jobBoardConfig.heading}</h2>
           </div>
           <p className={`section-copy ${styles.intro}`}>{jobBoardConfig.intro}</p>
