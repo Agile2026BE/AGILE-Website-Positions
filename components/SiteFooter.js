@@ -19,7 +19,7 @@ export default function SiteFooter() {
           <p className={`footer-eyebrow ${styles.eyebrow}`}>CONNECT WITH AGILE</p>
           <p>careers@agileconsultingsolutions.com</p>
           <p><strong>MAIN OFFICE 407-868-7254</strong></p>
-          <p>Direct, professional support for both candidates and clients.</p>
+          <p>Professional Career Consultants.</p>
           <p className={`footer-eyebrow ${styles.eyebrow}`}>AVAILABLE HOURS · EASTERN</p>
           <p>Monday–Friday · 8:00 AM–8:30 PM</p><p>Saturday · 9:00 AM–12:30 PM</p>
         </div>
