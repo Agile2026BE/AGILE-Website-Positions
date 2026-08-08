@@ -8,9 +8,20 @@ import ViewPositionLink from "./ViewPositionLink";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { shareJob } from "../lib/shareJob";
 
+function displayCredential(value) {
+  const text = String(value ?? "").trim();
+  if (!text) return "";
+  const normalized = text.toLowerCase();
+  if (normalized === "not stated" || normalized === "pe mentioned") return "";
+  if (normalized === "pe required") return "PE Required";
+  if (normalized === "pe preferred") return "PE Appreciated";
+  return text;
+}
+
 export default function JobCard({ job, isShortlisted = false, onShortlist, onViewPosition }) {
   const labels = jobBoardConfig.cardLabels;
   const [shareStatus, setShareStatus] = useState("");
+  const credential = displayCredential(job.credential);
 
   async function handleShare() {
     try {
@@ -59,7 +70,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
         <div className={styles.tags} aria-label="Position details">
           {job.specialty ? <span>{job.specialty}</span> : null}
           {job.market ? <span>{job.market.split("|")[0].trim()}</span> : null}
-          {job.credential ? <span>{job.credential}</span> : null}
+          {credential ? <span>{credential}</span> : null}
           {job.bonus ? <span>Bonus</span> : null}
         </div>
       </div>
