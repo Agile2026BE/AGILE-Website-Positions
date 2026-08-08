@@ -1,9 +1,13 @@
 import styles from "./WhyAgileSection.module.css";
 
-const people = Array.from({ length: 18 }, (_, index) => ({
+const people = Array.from({ length: 30 }, (_, index) => ({
   id: index,
-  lane: index % 3,
-  direction: index % 4 === 0 ? "reverse" : "forward",
+  lane: index % 4,
+  direction: index % 3 === 0 ? "reverse" : "forward",
+  duration: 12 + (index % 8) * 1.35,
+  delay: -(index * 1.65),
+  opacity: 0.34 + (index % 5) * 0.1,
+  scale: 0.72 + (index % 6) * 0.1,
 }));
 
 const steps = [
@@ -33,13 +37,22 @@ export default function WhyAgileSection() {
         <div className={styles.cityGlow} aria-hidden="true" />
         <div className={styles.cityBlocks} aria-hidden="true" />
         <div className={styles.street} aria-hidden="true" />
+        <div className={styles.traffic} aria-hidden="true">
+          <span className={styles.cabOne} />
+          <span className={styles.cabTwo} />
+        </div>
 
         <div className={styles.crowd} aria-hidden="true">
           {people.map((person) => (
             <span
               className={`${styles.person} ${styles[`lane${person.lane}`]} ${styles[person.direction]}`}
               key={person.id}
-              style={{ "--person-index": person.id }}
+              style={{
+                "--duration": `${person.duration}s`,
+                "--delay": `${person.delay}s`,
+                "--opacity": person.opacity,
+                "--scale": person.scale,
+              }}
             />
           ))}
           <span className={styles.focusPerson} />
