@@ -1,10 +1,10 @@
 # AGILE Website Positions
 
-Reconstruction workspace for the AGILE Careers website.
+Production workspace for the AGILE Careers website at `careers.agileconsultingsolutions.com`.
 
 ## Current Architecture
 
-The project is a Next.js application using the App Router.
+The project is a Next.js application using the App Router and Vercel deployment.
 
 Current structure:
 
@@ -12,74 +12,84 @@ Current structure:
 - `app/page.js` homepage composition
 - `app/globals.css` shared global tokens and base styles
 - `app/positions/[slug]/page.js` individual position detail page
-- `app/positions/[slug]/page.module.css` position detail page styles
-- `app/positions/[slug]/not-found.js` unavailable position page
-- `app/positions/[slug]/not-found.module.css` unavailable position page styles
 - `components/SiteHeader.js` primary site navigation
-- `components/HeroSection.js` careers hero
-- `components/JobBoard.js` interactive search and filtering UI
-- `components/JobCard.js` position card and actions
-- `components/ReviewsSection.js` verified-content placeholder for candidate reviews
-- `components/ContactSection.js` professional career inquiry section
-- `components/SiteFooter.js` careers footer
-- dedicated CSS modules for the primary interface components and controls
-- `data/jobBoardConfig.js` job board labels and field definitions
-- `data/jobs.js` verified job data source placeholder
+- `components/HeroSection.js` careers landing section
+- `components/JobBoard.js` interactive search, filters, saved positions, and position modal launcher
+- `components/PositionModal.js` position details, Similar Positions, inquiry action, and Copy Link behavior
+- `components/ReviewsSection.js` verified candidate testimonial rotation tied to search context
+- `components/WhyAgileSection.js` AGILE candidate representation/value section
+- `components/ContactSection.js` professional career inquiry form and resume upload
+- `components/SiteFooter.js` careers footer and trust links
+- `data/jobs.js` position data source
 - `lib/jobFilters.js` filtering and keyword search logic
-- `lib/shareJob.js` position sharing behavior
+- `lib/shareJob.js` direct position sharing behavior
 - `scripts/validate-jobs.mjs` job data validation
 - `TESTING.md` browser, responsive, content, and deployment verification checklist
 - `.github/workflows/check.yml` automated validation, lint, and production build checks
+- `PROJECT_CHECKPOINT.md` current launch baseline, recovery instructions, protected features, and next work
 
-## Reconstruction Rules
+## Project Rules
 
-1. Work only inside `Agile2026BE/AGILE-Website-Positions`.
-2. Do not access or modify AGILE Mission Control, the Recruiting Operating System, AGILE_CORE_BUILD, recovery folders, or unrelated repositories.
-3. Rebuild one file at a time.
-4. Do not use autonomous looping tools.
-5. Do not invent job records, reviews, compensation, locations, position IDs, or other factual site content.
-6. Restore factual content only from verified live-site text, screenshots, or an exact recovered blueprint.
-7. Do not change or redeploy the current live ChatGPT Site until the reconstructed version has been reviewed and tested.
+1. Work only inside `Agile2026BE/AGILE-Website-Positions` for Careers development.
+2. Do not modify AGILE Mission Control, Recruiting Operating System, or unrelated repositories.
+3. Preserve verified position IDs, salaries, locations, workplace information, responsibilities, qualifications, and other factual content exactly unless Byron explicitly requests a factual change.
+4. Do not invent testimonials. Candidate reviews are real AGILE placement testimonials and use approved initials/professional titles.
+5. Protect recruiter-critical functionality: Search Careers, Similar Positions, Saved Positions, Copy Link/Share, direct position links, and inquiry routing.
+6. Every launch-relevant change should pass the Project Check workflow and Vercel deployment before it becomes a new baseline.
+7. Maintain responsive behavior for large desktop monitors, normal laptops, tablets, iPhone, and smaller mobile screens.
+8. Use the established AGILE visual system: deep navy/slate blue, white/warm white, light blue accents, restrained gold, readable sans-serif body copy, and Georgia/serif display headings where already established.
+9. Function and stability come before nonessential design tweaks during launch windows.
 
 ## Current Functional Status
 
-Implemented:
+Implemented and active:
 
-- Next.js project foundation
-- Responsive page shell
-- Header navigation
-- Careers hero
-- Five job filters: State, Discipline, Minimum Salary, Workplace, Market
+- Vercel deployment connected to `main`
+- Custom Careers domain workflow
+- Responsive Careers hero
+- State, Discipline, Minimum Salary, Workplace, and Market filters
 - Keyword search
-- Reset control
+- Reset filters
 - Dynamic result count
-- Initial 24-position display behavior
-- Show 24 More Positions behavior
-- Job card field structure
-- Shortlist action state
-- View Position links
-- Share action with native sharing or clipboard fallback
-- Individual position detail pages
-- Position not found state
-- Candidate reviews section placeholder
-- Career inquiry section layout
-- Footer
-- Component-level responsive CSS modules for the primary interface
-- Cleanup of duplicated component rules from `app/globals.css`
-- Combined `npm run check` verification command
-- GitHub Actions project-check workflow
-- Pre-deployment testing checklist
+- Progressive position display
+- Position cards and detail modal
+- Similar Positions recommendations
+- Saved Positions persisted in browser local storage
+- Copy Link/Share workflow for recruiter and candidate outreach
+- Direct position pages
+- Candidate inquiry form
+- Optional resume upload
+- Resend-powered inquiry email delivery
+- Successful inquiry confirmation and lightweight celebration
+- Search-aware testimonial rotation structure
+- AGILE candidate representation/value section
+- GitHub Actions Project Check
+- Vercel production build checks
 
-Not yet completed:
+## Protected Recruiter Workflow
 
-- Verified 170-position dataset
-- Exact filter option values from the source site
-- Verified candidate review text
-- Working inquiry submission backend and resume upload
-- Exact visual matching against the live site
-- Confirmed passing automated build in a complete Node environment
-- Full browser and responsive testing
-- Deployment configuration
+Byron must always be able to:
+
+1. Search the full Careers inventory himself.
+2. Open a position and review all details.
+3. View Similar Positions for targeted candidate outreach.
+4. Copy/share a direct position link into Outlook, text, or LinkedIn.
+5. Save positions for later comparison/reference.
+6. Send candidates directly into the relevant opportunity and inquiry path.
+
+Do not remove or materially weaken these functions during future redesign work.
+
+## Testimonial Strategy
+
+Candidate testimonials are verified AGILE placement reviews.
+
+Target behavior:
+
+- Two reviews relevant to the candidate's active discipline/search when enough verified reviews exist.
+- One broader AGILE or Lilly experience.
+- Rotate qualifying reviews so repeated searches and repeat visits do not become static.
+- Match using approved attribution/signature, discipline, specialty, and review category.
+- Never manufacture a missing discipline review. Fall back to verified general AGILE testimonials.
 
 ## Verification Commands
 
@@ -90,20 +100,47 @@ npm install
 npm run check
 ```
 
-`npm run check` runs job validation, ESLint, and the Next.js production build. Use `TESTING.md` for the required browser and deployment-gate checks after the automated command passes.
+`npm run check` runs job validation, ESLint, and the Next.js production build.
 
-## Source of Truth
+Before declaring a launch baseline, also confirm:
 
-Current live reference:
+- GitHub Actions `Project Check` = success
+- Vercel deployment = success
+- Search and filters work
+- View Position works
+- Similar Positions works
+- Copy Link/direct link works
+- Saved Positions survive refresh
+- Inquiry sends successfully
+- Responsive layouts remain usable on wide desktop, laptop/tablet, and iPhone/mobile
 
-`https://agile-careers-experience.byron-evans-3540.chatgpt.site`
+## Version and Recovery Discipline
 
-The original editable ChatGPT Site source has not been recovered. This repository is therefore a controlled reconstruction, not an export of the original source.
+Git commits are the primary version history. Important launch-ready states are additionally recorded in `PROJECT_CHECKPOINT.md`.
+
+When establishing a new baseline:
+
+1. Confirm Project Check is green.
+2. Confirm Vercel is green.
+3. Record the baseline commit SHA in `PROJECT_CHECKPOINT.md`.
+4. Record what is known-good and what remains unfinished.
+5. Do not overwrite factual position/testimonial data during recovery.
+6. If a later change breaks the site, recover by returning `main` to the last documented known-good commit, then reapply later changes one at a time.
+
+## Current Source of Truth
+
+Repository:
+
+`Agile2026BE/AGILE-Website-Positions`
+
+Production Careers domain:
+
+`https://careers.agileconsultingsolutions.com`
+
+Primary branch:
+
+`main`
 
 ## Current Checkpoint
 
-The main interface architecture and responsive CSS module migration are substantially complete. Shared styling has been reduced to global tokens and layout primitives, and automated verification plus a manual testing checklist are now in place. A successful project build and browser pass must be confirmed before verified content restoration expands or any deployment changes are considered.
-
-## Next Recommended Step
-
-Run `npm install` followed by `npm run check` in a complete Node environment. Resolve any validation, lint, or build errors one file at a time, then complete the checks in `TESTING.md` before proceeding to verified content restoration and exact visual matching.
+See `PROJECT_CHECKPOINT.md`. That file is the short operational handoff for Ace/Byron and should be read before future development sessions.
