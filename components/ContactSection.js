@@ -63,6 +63,8 @@ export default function ContactSection() {
     } finally { setSending(false); }
   }
 
+  const success = status.startsWith("Inquiry sent");
+
   return (
     <section className={`section contact-section ${styles.section}`} id="contact">
       <div className={`container contact-grid ${styles.grid}`}>
@@ -83,7 +85,7 @@ export default function ContactSection() {
           <label className={styles.full}>Your Message — Optional<textarea name="message" rows="4" value={message} onChange={(event)=>setMessage(event.target.value)} /></label>
           <label className={styles.resume}><span className={styles.resumePrompt}><strong>Attach Résumé</strong> <em>Optional</em></span><input type="file" name="resume" accept=".pdf,.doc,.docx" /></label>
           <div className={styles.submitCell}><button type="submit" disabled={sending}>{sending ? "Sending..." : "Send My Inquiry"}</button></div>
-          {status ? <div className={`${styles.full} ${status.startsWith("Inquiry sent") ? styles.success : styles.error}`} role="status" aria-live="polite">{status}</div> : null}
+          {status ? <div className={`${styles.full} ${success ? styles.success : styles.error}`} role="status" aria-live="polite">{success ? <span className={styles.celebration} aria-hidden="true">🎉</span> : null}{status}</div> : null}
         </form>
       </div>
     </section>
