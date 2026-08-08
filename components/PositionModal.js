@@ -37,7 +37,13 @@ export default function PositionModal({ job, jobs = [], onClose, onSelectJob, is
     return () => { document.body.style.overflow = originalOverflow; window.removeEventListener("keydown", handleKeyDown); };
   }, [job, onClose]);
 
-  useEffect(() => { setShareStatus(""); if (paneRef.current) paneRef.current.scrollTop = 0; }, [job]);
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      setShareStatus("");
+      if (paneRef.current) paneRef.current.scrollTop = 0;
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [job]);
   if (!job) return null;
 
   const responsibilities = lines(job.responsibilities);

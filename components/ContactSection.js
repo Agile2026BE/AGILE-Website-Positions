@@ -29,8 +29,12 @@ export default function ContactSection() {
     const title = params.get("positionTitle") || "";
     const selectedDiscipline = params.get("discipline") || "";
     if (id) {
-      setPositionId(id); setPositionTitle(title); setDiscipline(selectedDiscipline); setQuickMessage("position"); setMessage(positionMessage(id, title));
+      const frame = requestAnimationFrame(() => {
+        setPositionId(id); setPositionTitle(title); setDiscipline(selectedDiscipline); setQuickMessage("position"); setMessage(positionMessage(id, title));
+      });
+      return () => cancelAnimationFrame(frame);
     }
+    return undefined;
   }, []);
 
   function handleQuickMessage(event) {

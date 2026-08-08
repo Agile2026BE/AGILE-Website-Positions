@@ -10,11 +10,11 @@ export default function SiteHeader() {
           <BrandLogo className={styles.logoImage} />
         </Link>
         <nav className={`site-nav ${styles.nav}`} aria-label="Primary navigation">
-          <a href="/#positions">Positions</a>
-          <a href="/#why-agile">Why AGILE</a>
-          <a href="/#reviews">Reviews</a>
-          <a href="/#contact-guide">Contact</a>
-          <a className={styles.searchCareers} href="/#positions">Search Careers</a>
+          <Link href="/#positions">Positions</Link>
+          <Link href="/#why-agile">Why AGILE</Link>
+          <Link href="/#reviews">Reviews</Link>
+          <Link href="/#contact-guide">Contact</Link>
+          <Link className={styles.searchCareers} href="/#positions">Search Careers</Link>
         </nav>
       </div>
     </header>
