@@ -2,7 +2,7 @@ import styles from "./WhyAgileSection.module.css";
 
 const steps = [
   { number: "01", title: "Know the essentials", copy: "Review location, workplace, compensation, experience, credentials and project focus upfront." },
-  { number: "02", title: "Compare intelligently", copy: "Shortlist up to three opportunities and share clean, direct links by email, text or LinkedIn." },
+  { number: "02", title: "Save and share", copy: "Save up to three opportunities for later and copy a clean direct link to send by email, text or LinkedIn." },
   { number: "03", title: "Talk before applying", copy: "Begin with a professional conversation. A résumé is welcome, but never required for an initial inquiry." },
 ];
 
