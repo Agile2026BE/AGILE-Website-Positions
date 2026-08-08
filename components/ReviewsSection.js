@@ -8,16 +8,19 @@ const reviews = [
     quote: "I applied once with AGILE and they expertly guided the complete process from start to finish with multiple MEP firm openings. I now have the position I always wanted, and a great recruiting contact.",
     attribution: "C.N. · Senior Engineer, MEP",
     tags: ["mep", "electrical", "mechanical"],
+    type: "discipline",
   },
   {
     quote: "I wasn’t actively looking, but AGILE took the time to understand what I wanted in my next role and went searching for it. I actually just started this month.",
     attribution: "M.S. · Commissioning Professional, CxA",
     tags: ["commissioning", "cxa", "rcxa"],
+    type: "discipline",
   },
   {
     quote: "AGILE helped me secure a better offer while keeping the focus on enthusiasm for the role, not just compensation.",
     attribution: "T.W. · Project Manager, MEP",
     tags: ["mep", "project manager", "construction"],
+    type: "general",
   },
 ];
 
@@ -26,6 +29,12 @@ function normalizeSearch(detail = {}) {
     .filter(Boolean)
     .join(" ")
     .toLowerCase();
+}
+
+function rotate(items, offset) {
+  if (!items.length) return [];
+  const start = offset % items.length;
+  return [...items.slice(start), ...items.slice(0, start)];
 }
 
 export default function ReviewsSection() {
@@ -42,11 +51,16 @@ export default function ReviewsSection() {
   }, []);
 
   const visibleReviews = useMemo(() => {
-    const relevant = searchContext
-      ? reviews.filter(review => review.tags.some(tag => searchContext.includes(tag)))
-      : [];
-    const pool = relevant.length ? [...relevant, ...reviews.filter(review => !relevant.includes(review))] : reviews;
-    return pool.map((_, index) => pool[(index + rotation) % pool.length]).slice(0, 3);
+    const disciplineMatches = searchContext
+      ? reviews.filter(review => review.type !== "general" && review.tags.some(tag => searchContext.includes(tag)))
+      : reviews.filter(review => review.type !== "general");
+    const generalReviews = reviews.filter(review => review.type === "general");
+    const selected = [
+      ...rotate(disciplineMatches, rotation).slice(0, 2),
+      ...rotate(generalReviews, rotation).slice(0, 1),
+    ];
+    const fallback = rotate(reviews.filter(review => !selected.includes(review)), rotation);
+    return [...selected, ...fallback].slice(0, 3);
   }, [searchContext, rotation]);
 
   return (
@@ -55,7 +69,7 @@ export default function ReviewsSection() {
         <p className={styles.badge}>✓ Professional experiences relevant to your search</p>
         <div className={styles.headingRow}>
           <h2 className={styles.heading}>What MEP and AEC professionals<br />say about AGILE.</h2>
-          <p className={styles.copy}>As you refine your career search, candidate experiences rotate to keep the perspective relevant and useful.</p>
+          <p className={styles.copy}>Two perspectives from professionals closest to your search, plus one broader AGILE experience. Reviews rotate as you explore.</p>
         </div>
         <div className={styles.grid}>
           {visibleReviews.map((review) => (
