@@ -34,6 +34,6 @@ export const disciplineOptions = [
 
 export const workplaceOptions = [
   { value: "Onsite", label: "On-Site" },
-  { value: "Hybrid", label: "Hybrid Schedule" },
+  { value: "Hybrid", label: "Hybrid" },
   { value: "Remote", label: "Remote" },
 ];
