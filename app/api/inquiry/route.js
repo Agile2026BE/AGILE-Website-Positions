@@ -23,7 +23,7 @@ export async function POST(request) {
 
     const payload = {
       from: process.env.INQUIRY_FROM_EMAIL || "AGILE Careers <onboarding@resend.dev>",
-      to: [process.env.INQUIRY_TO_EMAIL || "careers@agileconsultingsolutions.com"],
+      to: ["careers@agileconsultingsolutions.com"],
       reply_to: email,
       subject: positionId ? `Career Inquiry · Position ID ${positionId} · ${name || email}` : `Career Inquiry · ${name || email}`,
       text: [
