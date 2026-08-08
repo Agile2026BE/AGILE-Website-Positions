@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./JobBoard.module.css";
 import EmptyJobsState from "./EmptyJobsState";
 import FilterSelect from "./FilterSelect";
@@ -18,16 +18,38 @@ import { buildFilterOptions, filterJobs } from "../lib/jobFilters";
 const initialFilters = { state:"", discipline:"", minimumSalary:"", workplace:"", market:[], query:"" };
 const MAX_SHORTLISTED_JOBS = 3;
 const MAX_MARKET_SELECTIONS = 5;
+const SAVED_POSITIONS_KEY = "agile-saved-positions";
 
 export default function JobBoard({ jobs = [] }) {
   const [filters,setFilters] = useState(initialFilters);
   const [shortlistedJobs,setShortlistedJobs] = useState([]);
+  const [savedPositionsReady,setSavedPositionsReady] = useState(false);
   const [visibleCount,setVisibleCount] = useState(jobBoardConfig.results.initialVisibleCount);
   const [selectedJob,setSelectedJob] = useState(null);
   const options = useMemo(() => buildFilterOptions(jobs),[jobs]);
   const filteredJobs = useMemo(() => filterJobs(jobs,filters),[jobs,filters]);
   const visibleJobs = filteredJobs.slice(0,visibleCount);
   const hasActiveFilters = Object.entries(filters).some(([key,value]) => key === "market" ? value.length > 0 : Boolean(value));
+
+  useEffect(() => {
+    try {
+      const savedKeys = JSON.parse(window.localStorage.getItem(SAVED_POSITIONS_KEY) || "[]");
+      if (Array.isArray(savedKeys)) {
+        const savedKeySet = new Set(savedKeys.map(String));
+        setShortlistedJobs(jobs.filter(job => savedKeySet.has(String(job.id ?? job.slug))).slice(0, MAX_SHORTLISTED_JOBS));
+      }
+    } catch {
+      setShortlistedJobs([]);
+    } finally {
+      setSavedPositionsReady(true);
+    }
+  }, [jobs]);
+
+  useEffect(() => {
+    if (!savedPositionsReady) return;
+    const savedKeys = shortlistedJobs.map(job => String(job.id ?? job.slug));
+    window.localStorage.setItem(SAVED_POSITIONS_KEY, JSON.stringify(savedKeys));
+  }, [shortlistedJobs, savedPositionsReady]);
 
   function updateFilter(key,value){ setFilters(current=>({...current,[key]:value})); setVisibleCount(jobBoardConfig.results.initialVisibleCount); }
   function resetFilters(){ setFilters(initialFilters); setVisibleCount(jobBoardConfig.results.initialVisibleCount); }
