@@ -5,7 +5,7 @@ import styles from "./ContactSection.module.css";
 
 const baseMessages = {
   position: "Hello,\nI would like to learn more about the selected position and whether my background may be a fit. Please contact me to discuss the opportunity and timing.\nThank you.",
-  confidential: "Hello,\nI would like to discuss confidential career options that may align with my background and goals. Please contact me when convenient.\nThank you.",
+  options: "Hello,\nI would like to discuss career options that may align with my background and goals. Please contact me when convenient.\nThank you.",
   resume: "Hello,\nI have a question before sharing my résumé. Please contact me so I can learn more about the opportunity and next steps.\nThank you.",
 };
 
@@ -74,11 +74,11 @@ export default function ContactSection() {
 
         <form className={`contact-form ${styles.form}`} onSubmit={handleSubmit}>
           {positionId ? <div className={`${styles.full} ${styles.positionReference}`}><span>POSITION OF INTEREST</span><strong>Position ID {positionId}{positionTitle ? ` · ${positionTitle}` : ""}</strong></div> : null}
-          <label>Name<input type="text" name="name" placeholder="First and last name" /></label>
-          <label>Email *<input type="email" name="email" placeholder="name@example.com" required /></label>
-          <label>Phone<input type="tel" name="phone" placeholder="(407) 868-7254" /></label>
-          <label>Discipline of Interest<select name="discipline" value={discipline} onChange={(event)=>setDiscipline(event.target.value)}><option value="">Choose a discipline</option><option>Electrical Engineering</option><option>Mechanical Engineering</option><option>Plumbing</option><option>Fire Protection</option><option>Civil Engineering</option><option>Transportation</option><option>Commissioning</option></select></label>
-          <label className={styles.full}>Quick Message — Optional<select name="quickMessage" value={quickMessage} onChange={handleQuickMessage}><option value="position">Tell me more about this position</option><option value="confidential">I would like to discuss confidential career options</option><option value="resume">I have a question before sharing my résumé</option></select></label>
+          <label>Name<input type="text" name="name" placeholder="First and last name" autoComplete="name" /></label>
+          <label>Email *<input type="email" name="email" placeholder="name@example.com" autoComplete="email" required /></label>
+          <label>Phone<input type="tel" name="phone" placeholder="(407) 868-7254" autoComplete="tel" inputMode="tel" /></label>
+          <label>Discipline of Interest<select name="discipline" value={discipline} onChange={(event)=>setDiscipline(event.target.value)}><option value="">Choose a discipline</option><option>Electrical Engineering</option><option>Mechanical HVAC</option><option>Mechanical Plumbing and Fire Protection</option><option>ICT/AV Technology</option><option>Civil Engineering</option><option>Structural Engineering</option><option>Resident Engineering</option><option>Construction Management</option><option>MEP Executive Leadership</option></select></label>
+          <label className={styles.full}>Quick Message — Optional<select name="quickMessage" value={quickMessage} onChange={handleQuickMessage}><option value="position">Tell me more about this position</option><option value="options">I would like to discuss career options</option><option value="resume">I have a question before sharing my résumé</option></select></label>
           <label className={styles.full}>Your Message — Optional<textarea name="message" rows="4" value={message} onChange={(event)=>setMessage(event.target.value)} /></label>
           <label className={styles.resume}><span className={styles.resumePrompt}><strong>Attach Résumé</strong> <em>Optional</em></span><input type="file" name="resume" accept=".pdf,.doc,.docx" /></label>
           <div className={styles.submitCell}><button type="submit" disabled={sending}>{sending ? "Sending..." : "Send My Inquiry"}</button></div>
