@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import styles from "./JobBoard.module.css";
 import EmptyJobsState from "./EmptyJobsState";
 import FilterSelect from "./FilterSelect";
+import MultiSelectFilter from "./MultiSelectFilter";
 import JobCard from "./JobCard";
 import JobResultsSummary from "./JobResultsSummary";
 import PositionModal from "./PositionModal";
@@ -14,8 +15,9 @@ import { disciplineOptions, minimumSalaryOptions, stateOptions, workplaceOptions
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { buildFilterOptions, filterJobs } from "../lib/jobFilters";
 
-const initialFilters = { state:"", discipline:"", minimumSalary:"", workplace:"", market:"", query:"" };
+const initialFilters = { state:"", discipline:"", minimumSalary:"", workplace:"", market:[], query:"" };
 const MAX_SHORTLISTED_JOBS = 3;
+const MAX_MARKET_SELECTIONS = 5;
 
 export default function JobBoard({ jobs = [] }) {
   const [filters,setFilters] = useState(initialFilters);
@@ -25,7 +27,7 @@ export default function JobBoard({ jobs = [] }) {
   const options = useMemo(() => buildFilterOptions(jobs),[jobs]);
   const filteredJobs = useMemo(() => filterJobs(jobs,filters),[jobs,filters]);
   const visibleJobs = filteredJobs.slice(0,visibleCount);
-  const hasActiveFilters = Object.values(filters).some(Boolean);
+  const hasActiveFilters = Object.entries(filters).some(([key,value]) => key === "market" ? value.length > 0 : Boolean(value));
 
   function updateFilter(key,value){ setFilters(current=>({...current,[key]:value})); setVisibleCount(jobBoardConfig.results.initialVisibleCount); }
   function resetFilters(){ setFilters(initialFilters); setVisibleCount(jobBoardConfig.results.initialVisibleCount); }
@@ -49,7 +51,16 @@ export default function JobBoard({ jobs = [] }) {
             <div><label>Discipline</label><FilterSelect label="All Disciplines" value={filters.discipline} options={disciplineOptions} onChange={value=>updateFilter("discipline",value)} /></div>
             <div><label>Minimum Salary</label><FilterSelect label="Any Salary" value={filters.minimumSalary} options={minimumSalaryOptions} onChange={value=>updateFilter("minimumSalary",value)} /></div>
             <div><label>Workplace</label><FilterSelect label="All Types" value={filters.workplace} options={workplaceOptions} onChange={value=>updateFilter("workplace",value)} /></div>
-            <div><label>Market</label><FilterSelect label="All Markets" value={filters.market} options={options.market} onChange={value=>updateFilter("market",value)} /></div>
+            <div>
+              <label>Market Sectors</label>
+              <MultiSelectFilter
+                label="All Markets"
+                values={filters.market}
+                options={options.market}
+                maxSelections={MAX_MARKET_SELECTIONS}
+                onChange={value=>updateFilter("market",value)}
+              />
+            </div>
           </div>
           <div className={styles.searchLabel}>Title, specialty, skill, city or commute area</div>
           <div className={`job-search-row ${styles.searchRow}`}>
