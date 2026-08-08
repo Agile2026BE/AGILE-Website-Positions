@@ -13,11 +13,11 @@ export const stateOptions = [
   "New Jersey",
   "Pennsylvania",
   "Massachusetts",
-  "Florida",
   "Connecticut",
+  "North Carolina",
+  "Florida",
   "Colorado",
   "California",
-  "North Carolina",
 ];
 
 export const disciplineOptions = [
@@ -32,4 +32,8 @@ export const disciplineOptions = [
   "MEP Executive Leadership",
 ];
 
-export const workplaceOptions = ["Onsite", "Hybrid", "Remote"];
+export const workplaceOptions = [
+  { value: "Onsite", label: "On-Site" },
+  { value: "Hybrid", label: "Hybrid Schedule" },
+  { value: "Remote", label: "Remote" },
+];
