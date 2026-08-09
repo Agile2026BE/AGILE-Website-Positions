@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./HeroSection.module.css";
 
 export default function HeroSection() {
@@ -18,8 +19,8 @@ export default function HeroSection() {
           Explore career opportunities in MEP Building Systems Consulting, Commissioning, and Owner&apos;s Representation across Commercial Buildings, Healthcare, Higher Education, Life Sciences, Mission Critical, Data Centers, Aviation, Transportation, Rail and Transit, Water and Wastewater, and Industrial markets.
         </p>
         <div className={`hero-actions ${styles.actions}`}>
-          <a className={`hero-primary ${styles.primary}`} href="/#positions">Explore Positions</a>
-          <a className={`hero-secondary ${styles.secondary}`} href="/#contact">Start a Conversation</a>
+          <Link className={`hero-primary ${styles.primary}`} href="/#positions">Explore Positions</Link>
+          <Link className={`hero-secondary ${styles.secondary}`} href="/#contact">Start a Conversation</Link>
         </div>
         <div className={`hero-badges ${styles.badges}`} aria-label="Career search details">
           <span>✓ Salary disclosed</span>
