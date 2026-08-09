@@ -1,7 +1,7 @@
 .board { position:relative; scroll-margin-top:104px; padding-top:58px; background:#edf2f5; }
 .headingRow { display:grid; grid-template-columns:minmax(0,1.8fr) minmax(320px,.72fr); gap:70px; align-items:end; }
 .slogan { display:inline-flex; align-items:flex-start; gap:.12em; margin:0 0 14px; color:#59b9e6; font-family:Arial,Helvetica,sans-serif; font-size:clamp(1.05rem,1.45vw,1.35rem); font-weight:800; line-height:1.1; letter-spacing:.015em; white-space:nowrap; }
-.slogan sup { margin-top:.02em; font-size:.46em; font-weight:800; line-height:1; }
+.slogan sup { margin-top:-.03em; font-size:.72em; font-weight:800; line-height:1; }
 .headingRow h2 { max-width:none; white-space:nowrap; font-family:Georgia,"Times New Roman",serif; font-size:clamp(3rem,4.15vw,4.15rem); font-weight:400; letter-spacing:-.035em; }
 .intro { max-width:430px; padding-bottom:5px; }
 .filterPanel { margin-top:30px; padding:20px; border:1px solid #ccd8e0; border-radius:14px; background:#fff; box-shadow:0 12px 28px rgba(30,45,75,.07); }
@@ -13,4 +13,4 @@
 @media(max-width:1180px){.headingRow h2{white-space:normal;max-width:780px}}
 @media(max-width:980px){.headingRow{grid-template-columns:1fr;gap:12px}.intro{max-width:620px}.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.board{scroll-margin-top:168px;padding-top:42px}}
-@media(max-width:640px){.slogan{font-size:clamp(1rem,5vw,1.18rem);white-space:normal}.headingRow h2{font-size:clamp(2.5rem,12vw,3.5rem)}.controls,.searchRow,.grid{grid-template-columns:1fr}.filterPanel{padding:16px}}
+@media(max-width:640px){.slogan{font-size:clamp(1rem,5vw,1.18rem);white-space:normal}.slogan sup{font-size:.78em}.headingRow h2{font-size:clamp(2.5rem,12vw,3.5rem)}.controls,.searchRow,.grid{grid-template-columns:1fr}.filterPanel{padding:16px}}
