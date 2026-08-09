@@ -1,16 +1,22 @@
-.board { position:relative; scroll-margin-top:104px; padding-top:58px; background:#edf2f5; }
-.headingRow { display:grid; grid-template-columns:minmax(0,1.8fr) minmax(320px,.72fr); gap:70px; align-items:end; }
-.slogan { display:inline-flex; align-items:flex-start; gap:.12em; margin:0 0 14px; color:#59b9e6; font-family:Arial,Helvetica,sans-serif; font-size:clamp(1.05rem,1.45vw,1.35rem); font-weight:800; line-height:1.1; letter-spacing:.015em; white-space:nowrap; }
+.board { position:relative; scroll-margin-top:104px; padding-top:54px; background:#edf2f5; }
+.headingRow { display:grid; grid-template-columns:minmax(0,1.8fr) minmax(320px,.72fr); gap:64px; align-items:end; }
+.slogan { display:inline-flex; align-items:flex-start; gap:.12em; margin:0 0 12px; color:#59b9e6; font-family:Arial,Helvetica,sans-serif; font-size:clamp(1rem,1.3vw,1.25rem); font-weight:800; line-height:1.1; letter-spacing:.015em; white-space:nowrap; }
 .slogan sup { margin-top:-.03em; font-size:.72em; font-weight:800; line-height:1; }
-.headingRow h2 { max-width:none; white-space:nowrap; font-family:Georgia,"Times New Roman",serif; font-size:clamp(3rem,4.15vw,4.15rem); font-weight:400; letter-spacing:-.035em; }
-.intro { max-width:430px; padding-bottom:5px; }
-.filterPanel { margin-top:30px; padding:20px; border:1px solid #ccd8e0; border-radius:14px; background:#fff; box-shadow:0 12px 28px rgba(30,45,75,.07); }
+.headingRow h2 { max-width:none; white-space:nowrap; font-family:Georgia,"Times New Roman",serif; font-size:clamp(2.55rem,3.55vw,3.55rem); font-weight:400; letter-spacing:-.03em; }
+.intro { max-width:430px; padding-bottom:4px; }
+.filterPanel { margin-top:26px; padding:20px; border:1px solid #ccd8e0; border-radius:14px; background:#fff; box-shadow:0 12px 28px rgba(30,45,75,.07); }
 .controls { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; margin:0; }
 .controls label,.searchLabel { display:block; margin:0 0 8px; color:#405467; font-size:.72rem; font-weight:800; }
 .searchLabel { margin-top:14px; }
-.searchRow { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px; align-items:end; margin:0; }
+.searchRow { display:grid; grid-template-columns:minmax(0,1fr) auto auto; gap:10px; align-items:end; margin:0; }
+.viewResults { min-height:44px; padding:0 18px; border:0; border-radius:5px; background:#1476a8; color:#fff; font:inherit; font-weight:800; white-space:nowrap; }
+.viewResults:hover { background:#116b99; }
+.viewResults:focus-visible { outline:3px solid rgba(20,118,168,.2); outline-offset:2px; }
+.filterHint { margin:10px 0 0; color:#53697a; font-size:.82rem; line-height:1.4; }
+.filterHint strong { color:#173958; }
 .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:24px; }
 @media(max-width:1180px){.headingRow h2{white-space:normal;max-width:780px}}
-@media(max-width:980px){.headingRow{grid-template-columns:1fr;gap:12px}.intro{max-width:620px}.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:760px){.board{scroll-margin-top:168px;padding-top:42px}}
-@media(max-width:640px){.slogan{font-size:clamp(1rem,5vw,1.18rem);white-space:normal}.slogan sup{font-size:.78em}.headingRow h2{font-size:clamp(2.5rem,12vw,3.5rem)}.controls,.searchRow,.grid{grid-template-columns:1fr}.filterPanel{padding:16px}}
+@media(max-width:980px){.headingRow{grid-template-columns:1fr;gap:12px}.intro{max-width:620px}.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.searchRow{grid-template-columns:minmax(0,1fr) auto auto}}
+@media(max-width:760px){.board{scroll-margin-top:168px;padding-top:38px}.headingRow{gap:8px}.headingRow h2{font-size:clamp(2.1rem,8vw,2.75rem);line-height:1.08}.intro{font-size:.94rem;line-height:1.5}.filterPanel{margin-top:22px}}
+@media(max-width:640px){.slogan{font-size:1rem;white-space:normal}.slogan sup{font-size:.78em}.headingRow h2{font-size:clamp(2rem,9.5vw,2.55rem)}.controls,.grid{grid-template-columns:1fr}.searchRow{grid-template-columns:1fr 1fr}.searchRow> :first-child{grid-column:1/-1}.viewResults{grid-column:1/2;min-height:48px}.filterPanel{padding:15px}.filterHint{margin-top:11px;font-size:.82rem}.grid{margin-top:18px}}
+@media(max-width:390px){.searchRow{grid-template-columns:1fr}.searchRow> :first-child,.viewResults{grid-column:auto}.viewResults{width:100%}}
