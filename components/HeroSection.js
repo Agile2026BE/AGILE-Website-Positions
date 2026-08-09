@@ -15,7 +15,7 @@ export default function HeroSection() {
           </span>
         </h1>
         <p className={styles.lead}>
-          Explore opportunities with industry-leading consulting firms shaping Education, Hospitality, Cultural Facilities, Transportation Systems, Aviation Infrastructure, Mission Critical Facilities, and Data Centers.
+          Explore opportunities with leading Architecture, Engineering, Construction firms, and private owners shaping Education, Hospitality, Cultural Facilities, Transportation Systems, Aviation Infrastructure, Mission Critical Facilities, and Data Centers.
         </p>
         <div className={`hero-actions ${styles.actions}`}>
           <a className={`hero-primary ${styles.primary}`} href="/#positions">Explore Positions</a>
