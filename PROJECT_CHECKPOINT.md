@@ -1,37 +1,75 @@
 # AGILE Careers Project Checkpoint
 
-Last updated: August 8, 2026
+Last updated: August 9, 2026 · 2:10 AM ET
 
 ## Purpose
 
 This is the operational handoff and recovery record for AGILE Careers development. Read this file before making future production changes.
 
-## Current Launch Baseline
+## GREEN BASELINE
 
-Baseline candidate: current `main` after the August 8, 2026 launch-readiness work.
+Current verified green baseline commit:
 
-The exact final baseline commit SHA should be updated after the current Project Check and Vercel deployment are confirmed green.
+`a570f8ae40ae33af940476fbcf7c0c00c2f2cf84`
 
-Recent known commits leading into this checkpoint:
+Commit message: `Refine position title typography for scanning`
 
-- `cddcbd52830ecbd75224475d49e80c52b6acbdb6` saved-position lint repair / successful recovery path
-- `0d8995476030d731ccbe3d723e02291ab4410a53` search-aware testimonial curation
-- `a6a1d85caf64d93a9c7e4cd1089e73bb81ecbecf` tightened AGILE Advantage section
-- `cf79084690c8cf5f445950d5b636a5b65c73cce6` inquiry success experience
-- `01c90190ce94635334da674c65c8114998e1fd5f` responsive inquiry layout
-- `9255841bb0a9fcf8512554d4d381e6f04dca49ef` README and recovery documentation update
+Vercel status for this exact commit: SUCCESS.
 
-## Production Target
+Production domain:
 
-- Domain: `careers.agileconsultingsolutions.com`
-- Repository: `Agile2026BE/AGILE-Website-Positions`
-- Branch: `main`
-- Deployment: Vercel
-- Inquiry delivery: Resend
+`https://careers.agileconsultingsolutions.com`
 
-## Known-Good / Protected Features
+Repository:
 
-Do not remove these during redesign work:
+`Agile2026BE/AGILE-Website-Positions`
+
+Branch:
+
+`main`
+
+Deployment:
+
+Vercel
+
+Inquiry delivery:
+
+Resend -> `careers@agileconsultingsolutions.com`
+
+## LOCKED REBUILD DIRECTION
+
+Careers establishes the design system for the broader AGILE website rebuild.
+
+Responsive targets:
+
+- Large desktop / 36–40 inch+ monitors
+- Standard desktop and laptop
+- Tablet
+- iPhone / mobile devices
+
+Visual direction:
+
+- Mature professional AEC appearance
+- Deep navy, slate / steel blue, warm white
+- Restrained light-blue and gold accents
+- Strong readable typography
+- Compact practical job-title typography
+- Natural page flow rather than isolated brochure pages
+- Motion only where it adds energy, trust, relevance, and professional appeal
+- No cartoonish or oversized layouts
+- No white-on-white card systems that lose visual hierarchy
+
+Experience direction:
+
+Attention -> Search -> Opportunity -> Proof -> AGILE Value -> Insights -> Conversation
+
+Careers is the functional engine. The main AGILE website becomes the trust, positioning, relationship and conversion layer around it.
+
+Do NOT rebuild the legacy GoDaddy site page-for-page. Preserve useful information and credibility, then reorganize it into a stronger connected experience.
+
+## KNOWN-GOOD / PROTECTED FEATURES
+
+Do not remove these during future visual work:
 
 - Search Careers
 - State filter
@@ -40,144 +78,189 @@ Do not remove these during redesign work:
 - Workplace filter
 - Market filter
 - Keyword search
+- Dynamic results count
+- View Positions action
 - Position result cards
 - View Position
 - Similar Positions
-- Saved Positions
+- +Shortlist / Saved Positions
+- Maximum three shortlisted positions
 - Copy Link / Share
-- Direct position URLs
+- Direct Position ID URLs
 - Position ID display
 - Salary display
 - Location display
 - Workplace display
+- Experience display
 - Responsibilities / qualifications / Why Consider content
 - Career inquiry form
 - Optional resume upload
 - Inquiry email delivery
+- Market Insights opt-in
+- Client Hiring Support pathway
 - Responsive layouts
+- Reviews / testimonial relevance logic
+- AGILE Insights / legacy Why AGILE anchor compatibility
 
-## Recruiter Use Case
+## RECRUITER USE CASE
 
-The Careers site is not only candidate-facing. Byron uses it as an active recruiting tool. He must be able to search positions, open an opportunity, find Similar Positions, save opportunities, and copy/share direct links into Outlook emails, text messages, and LinkedIn outreach.
+The Careers site is not only candidate-facing. It is an active recruiting tool.
+
+Required recruiter workflow:
+
+Search -> open opportunity -> Similar Positions -> shortlist up to three -> copy/share direct links -> paste into Outlook, text, notes, Juicebox, or LinkedIn outreach.
 
 Any future feature that interferes with this workflow is a regression.
 
-## Candidate Conversion Direction
+## CANDIDATE CONVERSION DIRECTION
 
 The site should reduce friction and encourage conversation rather than force a traditional application.
 
-Core journey:
+Key principles:
 
-Attention -> Search -> Opportunity -> Relevant proof -> AGILE value -> Conversation
-
-Key conversion principles:
-
-- Salary, location, workplace and Position ID are visible.
+- Salary, location, workplace, experience and Position ID are visible.
 - Client identity remains confidential until appropriate discussion/representation.
 - Candidates can inquire without creating an account.
 - Resume is optional for an initial inquiry.
-- Similar Positions should expose additional relevant opportunities.
+- Similar Positions expose additional relevant opportunities.
 - Saved Positions encourage return visits.
 - Reviews should feel relevant and fresh rather than static.
+- Market Insights gives professionals a reason to return even when they are not ready to apply.
+- AGILE should feel specialized, connected, current, professional and human.
 
-## Testimonials
+## TESTIMONIALS
 
 Reviews are real AGILE placement testimonials retained from original emails/texts. Use approved initials and professional titles.
 
 Desired engine:
 
 - Two discipline/specialty-relevant verified testimonials when available.
-- One verified broader AGILE or Lilly testimonial.
+- One verified broader AGILE experience.
 - Rotate qualifying reviews after search/filter changes and across repeat browsing.
 - Use attribution/signature and tags for matching.
 - Never invent a quote or attribution to fill a category.
 
-Known approved signature examples mentioned during design:
+## CURRENT PAGE ORDER
 
-- J.T. - Senior Electrical Engineer
-- M.B. - Commissioning Agent, CxA, RCxA
-- J.S. - Project Manager, Construction
+Navigation and physical page order should agree:
 
-The exact associated quote text must come from verified AGILE source material before adding these records to code.
+1. Home / Careers Intro
+2. Positions / Search Careers
+3. AGILE Insights
+4. Reviews
+5. Market Insights
+6. Contact / Start a Conversation
+7. Footer / Client Hiring Support
 
-## Visual Baseline
+Legacy `#why-agile` links should continue to resolve to AGILE Insights.
 
-Careers establishes the design language for the later main-site overhaul.
+## LANDING / RESPONSIVE RULE
 
-Use:
+Anchor landing should be governed by one responsive sticky-header offset system rather than separate guessed values for every section.
 
-- Deep navy / slate blue
-- White / warm white reading areas
-- Light blue accents
-- Restrained gold for selected calls to action/highlights
-- High contrast, readable body typography
-- Serif display headings where already established
-- Controlled content width on very large monitors
-- Responsive stacking on laptop/tablet/mobile
-- Comfortable iPhone touch targets
+Every navigation action must land cleanly without:
 
-Avoid:
+- exposing too much of the section above,
+- hiding the destination heading beneath the sticky header,
+- leaving large dead-space gaps,
+- or centering mobile copy merely because the screen is narrow.
 
-- Cartoonishly oversized content on wide monitors
-- Dense banking-dashboard presentation on phones
-- Purple gradients or unrelated color systems
-- Excessive animation/video that slows loading
-- Large unused vertical gaps between sections
+Mobile content should default to clean left alignment unless a specific visual statement is intentionally centered.
 
-## Main Website Direction After Careers
+## MAIN WEBSITE REBUILD DIRECTION AFTER CAREERS
 
-Do not rebuild the legacy GoDaddy site page-for-page. Preserve useful content and reorganize it into one connected experience.
+Planned modern structure:
 
-Planned structure/direction:
-
-- Home: current activity, proof, pathways, conversion
-- Careers: search and opportunity discovery
-- Why AGILE / How We Work: representation and candidate value
-- Reviews: full verified testimonial library
-- Insights / Trends: living market intelligence and salary tools
-- Employers: client services
+- Home: current activity, positioning, proof, pathways and conversion
+- Careers: Search Careers and opportunity discovery
+- AGILE Insights: career guidance, market intelligence, compensation insights and professional guidance
+- Reviews: verified professional experiences
+- Employers / Client Hiring Support: recruiting services and relationship pathway
 - Priority Opportunities: successor to Hot Jobs
+- Salary tools: retain useful functionality but completely restyle
+- Client proof / portfolio: modern metrics and relationship evidence rather than static logo walls
+- Contact: professional institutional contact pathways plus quiet human credibility signals
 - Footer resources: Privacy Policy, Candidate Security, Recruiting Scam Warning
 
-The legacy 170-position GoDaddy wall should no longer be the primary search experience once Careers is fully launched.
+Motion direction for the main site:
 
-## Launch Gate
+- Fast-loading, compressed HD loops
+- NYC / major-market business movement
+- Professionals in authentic business environments
+- Architecture and modern skyscrapers
+- Infrastructure / engineering context where appropriate
+- No motion merely for decoration
+- Mobile receives lighter media treatment when necessary for speed
+- Always respect reduced-motion preferences
 
-Before declaring a new baseline:
+## HOSTING DECISION — IMPORTANT BEFORE GODADDY RENEWAL
 
-1. Project Check passes.
-2. Vercel deployment succeeds.
-3. Search/filter smoke test passes.
-4. Position modal/page opens.
-5. Similar Positions works.
-6. Copy Link opens the intended position.
-7. Saved Position survives refresh.
-8. Inquiry submission succeeds.
-9. Desktop, midsize and iPhone layouts are usable.
+Do not assume the rebuilt main site must remain inside GoDaddy Websites + Marketing.
 
-## Recovery Procedure
+The legacy GoDaddy builder permits custom HTML/CSS/JavaScript only inside custom HTML sections and does not provide the site-wide code control needed for the full AGILE rebuild direction.
+
+Before renewing a website-builder or hosting product, confirm exactly which GoDaddy products are currently being billed and which services are actually required.
+
+The domain registration may remain at GoDaddy while the rebuilt website itself can be hosted elsewhere. Domain registration and website hosting are separate decisions.
+
+Do not cancel or allow a domain registration to lapse while migration is in progress.
+
+## LAUNCH GATE — CAREERS
+
+Before declaring Careers fully locked for launch:
+
+1. Current commit remains green in Vercel.
+2. Production homepage opens normally.
+3. Home navigation returns to the top correctly.
+4. Positions lands correctly on desktop and iPhone.
+5. AGILE Insights lands correctly on desktop and iPhone.
+6. Reviews lands correctly on desktop and iPhone.
+7. Market Insights lands correctly on desktop and iPhone.
+8. Contact lands correctly on desktop and iPhone.
+9. Search/filter smoke test passes.
+10. Dynamic result count updates correctly.
+11. View Position opens.
+12. Similar Positions opens selected position at the top.
+13. +Shortlist adds/removes and persists through refresh on the same browser/device.
+14. Maximum-three shortlist limit works.
+15. Copy Link opens the intended exact Position ID route.
+16. Share output remains clean in email, SMS and LinkedIn use cases.
+17. Career inquiry submission succeeds.
+18. Inquiry success state and brief AGILE celebration work.
+19. Market Insights submission succeeds.
+20. Client Hiring Support submission succeeds.
+21. Desktop, laptop/tablet and iPhone layouts remain usable.
+22. No overlapping section landings or excessive dead space.
+23. Final green baseline SHA is updated here after all tests pass.
+
+## RECOVERY PROCEDURE
 
 If a production change breaks Careers:
 
 1. Stop adding new changes.
-2. Identify the last documented green baseline commit.
+2. Return to the last documented green baseline SHA.
 3. Compare the breaking commit against that baseline.
 4. Restore/revert only the breaking change when possible.
-5. Run Project Check.
-6. Confirm Vercel deployment.
-7. Smoke-test the protected recruiter workflow.
-8. Update this checkpoint with the repaired baseline.
+5. Confirm Vercel deployment.
+6. Smoke-test the protected recruiter workflow.
+7. Update this checkpoint with the repaired green baseline.
 
 Never reconstruct the site from memory if a documented Git baseline exists.
 
-## Immediate Next Work
+## IMMEDIATE NEXT WORK
 
-Launch-critical only:
+Launch-critical Careers testing only:
 
-- Confirm current Project Check and Vercel status after documentation commit.
-- Smoke-test recruiter workflow and inquiry.
-- Confirm responsive layout on wide desktop, midsize/laptop, and iPhone.
-- Establish exact green baseline SHA in this file.
-- Launch/hold stable.
+- Visually test all navigation landings on desktop and iPhone.
+- Test Search Careers filters and result counts.
+- Test View Position and Similar Positions.
+- Test +Shortlist and refresh persistence.
+- Test Copy / Share behavior in email, SMS and LinkedIn-style text.
+- Test Career Inquiry success.
+- Test Market Insights.
+- Test Client Hiring Support.
+- Record any remaining visual/function defects.
+- Fix only those defects.
+- Freeze final Careers SHA.
 
-Design refinements and the broader GoDaddy site overhaul happen after the Careers launch is stable.
+After Careers is locked, immediately begin the main AGILE website rebuild using this design system and rebuild direction.
