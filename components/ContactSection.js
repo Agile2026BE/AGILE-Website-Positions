@@ -65,7 +65,7 @@ export default function ContactSection() {
       if (!response.ok) throw new Error(result.error || "Unable to send inquiry.");
       form.reset();
       setPositionId(""); setPositionTitle(""); setDiscipline(""); setPhone(""); setQuickMessage("position"); setMessage(baseMessages.position);
-      setStatus("AGILE Success! Your inquiry has been sent. We look forward to speaking with you.");
+      setStatus("Success! We look forward to connecting soon!");
       setCelebrating(true);
       window.setTimeout(() => setCelebrating(false), 1600);
       window.history.replaceState({}, "", `${window.location.pathname}#contact`);
@@ -74,7 +74,7 @@ export default function ContactSection() {
     } finally { setSending(false); }
   }
 
-  const success = status.startsWith("AGILE Success");
+  const success = status.startsWith("Success!");
 
   return (
     <section className={`section contact-section ${styles.section}`} id="contact">
