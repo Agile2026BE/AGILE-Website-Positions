@@ -28,7 +28,6 @@ export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
     if (!job) return undefined;
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    setQuickMessage("position"); setMessage(starters.position); setPhone(""); setStatus(""); setCelebrating(false);
     const onKey = (event) => { if (event.key === "Escape") onClose?.(); };
     window.addEventListener("keydown", onKey);
     return () => { document.body.style.overflow = originalOverflow; window.removeEventListener("keydown", onKey); };
