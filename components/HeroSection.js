@@ -6,9 +6,15 @@ export default function HeroSection() {
       <div className={`container hero-inner ${styles.inner}`}>
         <p className={`hero-eyebrow ${styles.eyebrow}`}>SPECIALIZED AEC RECRUITING</p>
         <h1 className={`hero-title ${styles.title}`}>
-          <span className={styles.titleLine}>The details professionals</span>
-          <span className={styles.titleLine}>need.</span>
-          <span className={styles.titleLine}><em>Before</em> they apply.</span>
+          <span className={styles.desktopTitle}>
+            <span className={styles.titleLine}>The details professionals need.</span>
+            <span className={styles.titleLine}><em>Before</em> they apply.</span>
+          </span>
+          <span className={styles.mobileTitle}>
+            <span className={styles.titleLine}>The details professionals</span>
+            <span className={styles.titleLine}>need.</span>
+            <span className={styles.titleLine}><em>Before</em> they apply.</span>
+          </span>
         </h1>
         <p className={styles.lead}>
           Explore career opportunities across MEP Consulting and Building Systems, Civil Infrastructure, Water and Wastewater, Transportation, Aviation, Rail and Transit, Commissioning, Mission Critical, and Data Centers.
