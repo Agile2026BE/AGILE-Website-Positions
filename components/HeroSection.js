@@ -4,16 +4,14 @@ export default function HeroSection() {
   return (
     <section className={`hero ${styles.hero}`} id="top">
       <div className={`container hero-inner ${styles.inner}`}>
-        <p className={`hero-eyebrow ${styles.eyebrow}`}>AGILE CAREERS · SPECIALIZED AEC RECRUITING</p>
+        <p className={`hero-eyebrow ${styles.eyebrow}`}>SPECIALIZED AEC RECRUITING</p>
         <h1 className={`hero-title ${styles.title}`}>
-          <span className={styles.titleLine}>The details professionals need.</span>
+          <span className={styles.titleLine}>The details professionals</span>
+          <span className={styles.titleLine}>need.</span>
           <span className={styles.titleLine}><em>Before</em> they apply.</span>
         </h1>
         <p className={styles.lead}>
-          Discover opportunities with the consulting firms and private sector organizations that trust AGILE to identify top talent.
-        </p>
-        <p className={`hero-copy ${styles.copy}`}>
-          MEP and Building Systems · Civil Infrastructure · Water and Wastewater · Transportation · Aviation · Rail and Transit · Commissioning · Mission Critical · Data Centers
+          Explore career opportunities across MEP Consulting and Building Systems, Civil Infrastructure, Water and Wastewater, Transportation, Aviation, Rail and Transit, Commissioning, Mission Critical, and Data Centers.
         </p>
         <div className={`hero-actions ${styles.actions}`}>
           <a className={`hero-primary ${styles.primary}`} href="/#positions">Explore Positions</a>
