@@ -7,9 +7,9 @@ function safe(value) { return String(value ?? "").trim(); }
 export async function POST(request) {
   try {
     const form = await request.formData();
-    const name = safe(form.get("name"));
-    const email = safe(form.get("email"));
-    const phone = safe(form.get("phone"));
+    const name = safe(form.get("career_inquiry_name") || form.get("name"));
+    const email = safe(form.get("career_inquiry_email") || form.get("email"));
+    const phone = safe(form.get("career_inquiry_phone") || form.get("phone"));
     const discipline = safe(form.get("discipline"));
     const positionId = safe(form.get("positionId"));
     const positionTitle = safe(form.get("positionTitle"));
