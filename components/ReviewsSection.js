@@ -68,7 +68,7 @@ export default function ReviewsSection() {
       <div className={`container ${styles.panel}`}>
         <p className={styles.badge}>✓ Professional experiences relevant to your search</p>
         <div className={styles.headingRow}>
-          <h2 className={styles.heading}>What MEP and AEC Professionals<br />say about AGILE.</h2>
+          <h2 className={styles.heading}>What AEC and MEP Professionals are saying...</h2>
         </div>
         <div className={styles.grid}>
           {visibleReviews.map((review) => (
