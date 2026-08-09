@@ -17,6 +17,8 @@ export async function POST(request){
     const disciplines=[safe(form.get("discipline1")),safe(form.get("discipline2")),safe(form.get("discipline3"))].filter(Boolean);
     const projectTypes=[safe(form.get("projectType1")),safe(form.get("projectType2"))].filter(Boolean);
     const hiringTiming=safe(form.get("hiringTiming"));
+    const inquirySubject=safe(form.get("inquirySubject"));
+    const inquirySubjectLabel=inquirySubject==="services"?"AGILE services, recruiting fees and placement guarantees":"Company hiring needs";
     const message=safe(form.get("message"));
 
     if(!name||!email)return NextResponse.json({error:"Please enter your name and business email."},{status:400});
@@ -27,9 +29,10 @@ export async function POST(request){
       from:process.env.INQUIRY_FROM_EMAIL||"AGILE Careers <onboarding@resend.dev>",
       to:["careers@agileconsultingsolutions.com"],
       reply_to:email,
-      subject:`Client Hiring Support · ${name}${businessTitle?` · ${businessTitle}`:""}`,
+      subject:`Client Hiring Support · ${inquirySubjectLabel} · ${name}${businessTitle?` · ${businessTitle}`:""}`,
       text:[
         "New AGILE Client Hiring Support request","",
+        `Inquiry Subject: ${inquirySubjectLabel}`,
         `Name: ${name}`,
         `Business Title: ${businessTitle||"Not provided"}`,
         `Email: ${email}`,
@@ -41,7 +44,7 @@ export async function POST(request){
         `Hiring Timing: ${hiringTiming||"Not provided"}`,
         `Best Time to Reach: ${bestTime||"Not provided"}`,
         "",
-        "Additional Notes:",message||"None provided"
+        "Message:",message||"None provided"
       ].join("\n")
     };
 
