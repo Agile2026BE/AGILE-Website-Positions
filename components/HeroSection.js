@@ -7,13 +7,11 @@ export default function HeroSection() {
         <p className={`hero-eyebrow ${styles.eyebrow}`}>SPECIALIZED AEC RECRUITING</p>
         <h1 className={`hero-title ${styles.title}`}>
           <span className={styles.desktopTitle}>
-            <span className={styles.titleLine}>The details professionals need.</span>
-            <span className={styles.titleLine}><em>Before</em> they apply.</span>
+            Know the details <em>before</em> you make your move.
           </span>
           <span className={styles.mobileTitle}>
-            <span className={styles.titleLine}>The details professionals</span>
-            <span className={styles.titleLine}>need.</span>
-            <span className={styles.titleLine}><em>Before</em> they apply.</span>
+            <span className={styles.titleLine}>Know the details</span>
+            <span className={styles.titleLine}><em>before</em> you make your move.</span>
           </span>
         </h1>
         <p className={styles.lead}>
