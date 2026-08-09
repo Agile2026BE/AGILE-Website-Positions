@@ -2,6 +2,14 @@ import Link from "next/link";
 import styles from "./HeroSection.module.css";
 
 export default function HeroSection() {
+  const trustBadges = [
+    "Salary disclosed",
+    "Location disclosed",
+    "Work schedule disclosed",
+    "Virtual Interviews",
+    "No Account Setup Required",
+  ];
+
   return (
     <section className={`hero ${styles.hero}`} id="top">
       <div className={`container hero-inner ${styles.inner}`}>
@@ -23,10 +31,11 @@ export default function HeroSection() {
           <Link className={`hero-secondary ${styles.secondary}`} href="/#contact">Start a Conversation</Link>
         </div>
         <div className={`hero-badges ${styles.badges}`} aria-label="Career search details">
-          <span>✓ Salary disclosed</span>
-          <span>✓ Location disclosed</span>
-          <span>✓ Work schedule disclosed</span>
-          <span>✓ No account required</span>
+          {trustBadges.map((label,index)=>(
+            <span className={styles.badge} style={{"--badge-delay":`${index * 220}ms`}} key={label}>
+              <b className={styles.check} aria-hidden="true">✓</b>{label}
+            </span>
+          ))}
         </div>
       </div>
     </section>
