@@ -25,14 +25,13 @@ export default function WhyAgileSection() {
       </div>
 
       <div className={styles.storyText}>
-        <p className={styles.challenge}>You&apos;ve worked hard to build your career. Why leave your representation to chance?</p>
-        <p className={styles.recommendLine}>We don&apos;t just share your résumé. We <span className={styles.recommendWord}>recommend</span> you to our clients.</p>
-        <p className={styles.supporting}>We know their hiring leadership on a first name basis.</p>
+        <p className={styles.challenge}>Your experience has created value.</p>
+        <p className={styles.recommendLine}>Your introduction should reflect it.</p>
+        <p className={styles.supporting}>Let our connections be your advantage.</p>
       </div>
 
       <div className={styles.bridge}>
-        <p className={styles.bridgeLead}>Representation changes the conversation.</p>
-        <h3>AGILE helps you by letting our clients see what you can build together.</h3>
+        <h3>Make your first impression <span className={styles.really}>really</span> count.</h3>
       </div>
 
       <div className={styles.grid}>
