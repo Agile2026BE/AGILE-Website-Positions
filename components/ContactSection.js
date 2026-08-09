@@ -89,6 +89,7 @@ export default function ContactSection() {
             <strong>Lilly Genao</strong>
             <span>Communications &amp; Professional Engagement</span>
             <span>Architecture, MEP Engineering &amp; Construction</span>
+            <a href="mailto:lgenao@agileconsultingsolutions.com">lgenao@agileconsultingsolutions.com</a>
             <a href="https://www.linkedin.com/in/lilly-genao-771ba338a/" target="_blank" rel="noreferrer">View Lilly on LinkedIn ↗</a>
           </aside>
         </div>
