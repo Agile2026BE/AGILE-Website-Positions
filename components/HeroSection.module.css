@@ -24,7 +24,10 @@
 .primary { background:#1476a8; color:#fff; }
 .secondary { border:1px solid rgba(255,255,255,.7); color:#fff; background:rgba(255,255,255,.04); }
 .badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:34px; color:rgba(255,255,255,.9); font-size:.8rem; justify-content:flex-start; }
-.badges span { padding:8px 12px; border:1px solid rgba(255,255,255,.25); border-radius:999px; background:rgba(255,255,255,.035); }
+.badge { display:inline-flex; align-items:center; gap:5px; padding:8px 12px; border:1px solid rgba(255,255,255,.25); border-radius:999px; background:rgba(255,255,255,.035); animation:badgeArrive .42s ease-out both; animation-delay:calc(350ms + var(--badge-delay)); }
+.check { display:inline-block; font-weight:700; color:#fff; transform-origin:center; animation:checkIn .34s cubic-bezier(.2,.8,.2,1.25) both; animation-delay:calc(520ms + var(--badge-delay)); }
+@keyframes badgeArrive { from { opacity:.58; transform:translateY(3px); } to { opacity:1; transform:translateY(0); } }
+@keyframes checkIn { 0% { opacity:0; transform:scale(.25) rotate(-16deg); } 70% { opacity:1; transform:scale(1.18) rotate(2deg); } 100% { opacity:1; transform:scale(1) rotate(0); } }
 
 @media (min-width: 1440px) {
   .hero { min-height: calc(100svh - 88px); padding-top:86px; }
@@ -53,10 +56,14 @@
   .actions{flex-direction:column;align-items:stretch;justify-content:flex-start;margin-top:24px}
   .primary,.secondary{width:100%}
   .badges{margin-top:26px;gap:8px;justify-content:flex-start}
-  .badges span{padding:7px 10px;font-size:.76rem}
+  .badge{padding:7px 10px;font-size:.76rem}
 }
 
 @media (max-width:390px){
   .title{font-size:clamp(1.88rem,9.7vw,2.25rem)}
   .hero{padding-top:38px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .badge,.check{animation:none}
 }
