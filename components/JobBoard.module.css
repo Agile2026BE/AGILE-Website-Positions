@@ -1,10 +1,10 @@
-.board { position:relative; scroll-margin-top:104px; padding-top:58px; background:#f7f9fb; }
+.board { position:relative; scroll-margin-top:104px; padding-top:58px; background:#edf2f5; }
 .headingRow { display:grid; grid-template-columns:minmax(0,1.8fr) minmax(320px,.72fr); gap:70px; align-items:end; }
 .slogan { display:inline-flex; align-items:flex-start; gap:.12em; margin:0 0 14px; color:#59b9e6; font-family:Arial,Helvetica,sans-serif; font-size:clamp(1.05rem,1.45vw,1.35rem); font-weight:800; line-height:1.1; letter-spacing:.015em; white-space:nowrap; }
 .slogan sup { margin-top:.02em; font-size:.46em; font-weight:800; line-height:1; }
 .headingRow h2 { max-width:none; white-space:nowrap; font-family:Georgia,"Times New Roman",serif; font-size:clamp(3rem,4.15vw,4.15rem); font-weight:400; letter-spacing:-.035em; }
 .intro { max-width:430px; padding-bottom:5px; }
-.filterPanel { margin-top:30px; padding:20px; border:1px solid #d7e0e7; border-radius:14px; background:#fff; box-shadow:0 12px 28px rgba(30,45,75,.06); }
+.filterPanel { margin-top:30px; padding:20px; border:1px solid #ccd8e0; border-radius:14px; background:#fff; box-shadow:0 12px 28px rgba(30,45,75,.07); }
 .controls { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; margin:0; }
 .controls label,.searchLabel { display:block; margin:0 0 8px; color:#405467; font-size:.72rem; font-weight:800; }
 .searchLabel { margin-top:14px; }
