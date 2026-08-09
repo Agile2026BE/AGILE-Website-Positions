@@ -14,12 +14,20 @@ function positionMessage(id, title) {
   return `Hello,\nI would like to learn more about Position ID ${id}${title ? `, ${title}` : ""} and whether my background may be a fit. Please contact me to discuss the opportunity and timing.\nThank you.`;
 }
 
+function formatPhone(value) {
+  const digits = value.replace(/\D/g, "").slice(0, 10);
+  if (digits.length < 4) return digits;
+  if (digits.length < 7) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
 export default function ContactSection() {
   const [quickMessage, setQuickMessage] = useState("position");
   const [message, setMessage] = useState(baseMessages.position);
   const [positionId, setPositionId] = useState("");
   const [positionTitle, setPositionTitle] = useState("");
   const [discipline, setDiscipline] = useState("");
+  const [phone, setPhone] = useState("");
   const [status, setStatus] = useState("");
   const [sending, setSending] = useState(false);
   const [celebrating, setCelebrating] = useState(false);
@@ -56,7 +64,7 @@ export default function ContactSection() {
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.error || "Unable to send inquiry.");
       form.reset();
-      setPositionId(""); setPositionTitle(""); setDiscipline(""); setQuickMessage("position"); setMessage(baseMessages.position);
+      setPositionId(""); setPositionTitle(""); setDiscipline(""); setPhone(""); setQuickMessage("position"); setMessage(baseMessages.position);
       setStatus("AGILE Success! Your inquiry has been sent. We look forward to speaking with you.");
       setCelebrating(true);
       window.setTimeout(() => setCelebrating(false), 1600);
@@ -90,7 +98,7 @@ export default function ContactSection() {
           {positionId ? <div className={`${styles.full} ${styles.positionReference}`}><span>POSITION OF INTEREST</span><strong>Position ID {positionId}{positionTitle ? ` · ${positionTitle}` : ""}</strong></div> : null}
           <label>Name<input type="text" name="career_inquiry_name" placeholder="First and last name" autoComplete="off" /></label>
           <label>Email *<input type="email" name="career_inquiry_email" placeholder="name@example.com" autoComplete="off" required /></label>
-          <label>Phone<input type="tel" name="career_inquiry_phone" placeholder="Your phone number" autoComplete="off" /></label>
+          <label>Phone<input type="tel" name="career_inquiry_phone" placeholder="(407) 868-7254" autoComplete="off" inputMode="tel" value={phone} onChange={(event)=>setPhone(formatPhone(event.target.value))} /></label>
           <label>Discipline of Interest<select name="discipline" value={discipline} onChange={(event)=>setDiscipline(event.target.value)}><option value="">Choose a discipline</option><option>Civil Engineering</option><option>Commissioning</option><option>Electrical Engineering</option><option>Fire Protection</option><option>Mechanical Engineering</option><option>Plumbing</option><option>Transportation</option></select></label>
           <label className={styles.full}>Quick Message — Optional<select name="quickMessage" value={quickMessage} onChange={handleQuickMessage}><option value="position">Tell me more about this position</option><option value="confidential">I would like to discuss confidential career options</option><option value="resume">I have a question before sharing my résumé</option></select></label>
           <label className={styles.full}>Your Message — Optional<textarea name="message" rows="4" value={message} onChange={(event)=>setMessage(event.target.value)} /></label>
