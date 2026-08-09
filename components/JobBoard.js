@@ -29,7 +29,7 @@ export default function JobBoard({jobs=[]}){
  function updateFilter(key,value){setFilters(current=>({...current,[key]:value}));setVisibleCount(jobBoardConfig.results.initialVisibleCount);}
  function resetFilters(){setFilters(initialFilters);setVisibleCount(jobBoardConfig.results.initialVisibleCount);setShortlistedJobs([]);setShareOpen(false);try{window.localStorage.removeItem(SAVED_POSITIONS_KEY);}catch{}}
  function isJobShortlisted(job){const key=job.id??job.slug;return shortlistedJobs.some(item=>(item.id??item.slug)===key);}
- function toggleShortlist(job){const key=job.id??job.slug;setShortlistedJobs(current=>{const exists=current.some(item=>(item.id??item.slug)===key);if(exists)return current.filter(item=>(item.id??item.slug)!==key);if(current.length>=MAX_SHORTLISTED_JOBS)return current;return[...current,job];});}
+ function toggleShortlist(job){const key=job.id??job.slug;setShortlistedJobs(current=>{const exists=current.some(item=>(item.id??item.slug)===key);if(exists)return current.filter(item=>(item.id??item.slug)!==key);if(current.length>=MAX_SHORTLISTED_JOBS){window.alert("3/3 positions selected. Remove one from your shortlist to add another.");return current;}return[...current,job];});}
  function openInterest(job){setSelectedJob(null);setShareOpen(false);setInterestJob(job);}
  function openShare(job){if(!isJobShortlisted(job))toggleShortlist(job);setSelectedJob(null);setShareOpen(true);}
  function viewResults(){document.getElementById("position-results")?.scrollIntoView({behavior:"smooth",block:"start"});}
