@@ -14,14 +14,13 @@ export default function InterestModal({ job, onClose }) {
   const [message, setMessage] = useState(starters.position);
   const [status, setStatus] = useState("");
   const [sending, setSending] = useState(false);
+  const [celebrating, setCelebrating] = useState(false);
 
   useEffect(() => {
     if (!job) return undefined;
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    setQuickMessage("position");
-    setMessage(starters.position);
-    setStatus("");
+    setQuickMessage("position"); setMessage(starters.position); setStatus(""); setCelebrating(false);
     const onKey = (event) => { if (event.key === "Escape") onClose?.(); };
     window.addEventListener("keydown", onKey);
     return () => { document.body.style.overflow = originalOverflow; window.removeEventListener("keydown", onKey); };
@@ -36,21 +35,20 @@ export default function InterestModal({ job, onClose }) {
     formData.set("positionId", String(job.id ?? ""));
     formData.set("positionTitle", job.title ?? "");
     formData.set("discipline", job.discipline ?? "");
-    setSending(true);
-    setStatus("");
+    setSending(true); setStatus(""); setCelebrating(false);
     try {
       const response = await fetch("/api/inquiry", { method: "POST", body: formData });
       const result = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(result.error || "Unable to send inquiry.");
-      setStatus("Inquiry sent. Thank you. We look forward to speaking with you!");
+      setStatus("Success! We look forward to connecting soon!");
+      setCelebrating(true);
+      window.setTimeout(() => setCelebrating(false), 1600);
       form.reset();
       setQuickMessage("position");
       setMessage(starters.position);
     } catch (error) {
       setStatus(error.message || "We could not send your inquiry. Please try again.");
-    } finally {
-      setSending(false);
-    }
+    } finally { setSending(false); }
   }
 
   function handleQuickMessage(event) {
@@ -59,9 +57,12 @@ export default function InterestModal({ job, onClose }) {
     setMessage(starters[value] || "");
   }
 
+  const success = status.startsWith("Success!");
+
   return (
     <div className={styles.overlay} role="presentation" onMouseDown={(event)=>{ if(event.target===event.currentTarget) onClose?.(); }}>
       <section className={styles.modal} role="dialog" aria-modal="true" aria-labelledby="interest-modal-title">
+        {celebrating ? <div className={styles.confetti} aria-hidden="true">{Array.from({length:22}).map((_,index)=><i key={index} style={{"--i":index}} />)}</div> : null}
         <button className={styles.close} type="button" onClick={onClose} aria-label="Close inquiry form">×</button>
         <p className={styles.eyebrow}>NO FORMAL APPLICATION REQUIRED</p>
         <h2 id="interest-modal-title">Start a professional conversation</h2>
@@ -73,7 +74,7 @@ export default function InterestModal({ job, onClose }) {
           <label>Quick Message — Optional<select name="quickMessage" value={quickMessage} onChange={handleQuickMessage}><option value="position">Tell me more about this position</option><option value="confidential">I would like to discuss confidential career options</option><option value="resume">I have a question before sharing my résumé</option></select></label>
           <label>Your Message — Optional<textarea name="message" rows="4" value={message} onChange={(event)=>setMessage(event.target.value)} /></label>
           <div className={styles.bottomRow}><label className={styles.resume}><span><strong>Attach Résumé</strong> <em>Optional</em></span><input type="file" name="resume" accept=".pdf,.doc,.docx" /></label><button type="submit" disabled={sending}>{sending ? "Sending..." : "Send My Inquiry"}</button></div>
-          {status ? <p className={styles.status} role="status" aria-live="polite">{status}</p> : null}
+          {status ? <p className={`${styles.status} ${success ? styles.success : styles.error}`} role="status" aria-live="polite">{status}</p> : null}
         </form>
       </section>
     </div>
