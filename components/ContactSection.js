@@ -75,11 +75,11 @@ export default function ContactSection() {
           <div className={`contact-badges ${styles.badges}`} aria-label="Inquiry details"><span>✓ Résumé optional</span><span>✓ No account required</span><span>✓ Main Office: 407-868-7254</span></div>
         </div>
 
-        <form className={`contact-form ${styles.form}`} onSubmit={handleSubmit}>
+        <form className={`contact-form ${styles.form}`} onSubmit={handleSubmit} autoComplete="off">
           {positionId ? <div className={`${styles.full} ${styles.positionReference}`}><span>POSITION OF INTEREST</span><strong>Position ID {positionId}{positionTitle ? ` · ${positionTitle}` : ""}</strong></div> : null}
-          <label>Name<input type="text" name="name" placeholder="First and last name" /></label>
-          <label>Email *<input type="email" name="email" placeholder="name@example.com" required /></label>
-          <label>Phone<input type="tel" name="phone" placeholder="(407) 868-7254" /></label>
+          <label>Name<input type="text" name="career_inquiry_name" placeholder="First and last name" autoComplete="off" /></label>
+          <label>Email *<input type="email" name="career_inquiry_email" placeholder="name@example.com" autoComplete="off" required /></label>
+          <label>Phone<input type="tel" name="career_inquiry_phone" placeholder="Your phone number" autoComplete="off" /></label>
           <label>Discipline of Interest<select name="discipline" value={discipline} onChange={(event)=>setDiscipline(event.target.value)}><option value="">Choose a discipline</option><option>Electrical Engineering</option><option>Mechanical Engineering</option><option>Plumbing</option><option>Fire Protection</option><option>Civil Engineering</option><option>Transportation</option><option>Commissioning</option></select></label>
           <label className={styles.full}>Quick Message — Optional<select name="quickMessage" value={quickMessage} onChange={handleQuickMessage}><option value="position">Tell me more about this position</option><option value="confidential">I would like to discuss confidential career options</option><option value="resume">I have a question before sharing my résumé</option></select></label>
           <label className={styles.full}>Your Message — Optional<textarea name="message" rows="4" value={message} onChange={(event)=>setMessage(event.target.value)} /></label>
