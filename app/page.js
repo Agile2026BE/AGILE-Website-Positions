@@ -17,8 +17,8 @@ export default function HomePage() {
         <SiteHeader />
         <HeroSection />
         <JobBoard jobs={jobs} />
-        <ReviewsSection />
         <WhyAgileSection />
+        <ReviewsSection />
         <MarketInsightsSection />
         <ContactSection />
         <SiteFooter />
