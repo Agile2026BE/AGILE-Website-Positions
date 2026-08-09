@@ -69,7 +69,6 @@ export default function ReviewsSection() {
         <p className={styles.badge}>✓ Professional experiences relevant to your search</p>
         <div className={styles.headingRow}>
           <h2 className={styles.heading}>What MEP and AEC professionals<br />say about AGILE.</h2>
-          <p className={styles.copy}>Two perspectives from professionals closest to your search, plus one broader AGILE experience. Reviews rotate as you explore.</p>
         </div>
         <div className={styles.grid}>
           {visibleReviews.map((review) => (
