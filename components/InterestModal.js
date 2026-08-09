@@ -9,7 +9,7 @@ const starters = {
   resume: "I have a question before sharing my résumé. Please contact me so I can learn more about the opportunity and next steps.",
 };
 
-export default function InterestModal({ job, onClose }) {
+export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
   const [quickMessage, setQuickMessage] = useState("position");
   const [message, setMessage] = useState(starters.position);
   const [status, setStatus] = useState("");
@@ -28,6 +28,9 @@ export default function InterestModal({ job, onClose }) {
 
   if (!job) return null;
 
+  const primaryKey = String(job.id ?? job.slug ?? "");
+  const otherShortlisted = shortlistedJobs.filter(item => String(item.id ?? item.slug ?? "") !== primaryKey);
+
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -35,6 +38,7 @@ export default function InterestModal({ job, onClose }) {
     formData.set("positionId", String(job.id ?? ""));
     formData.set("positionTitle", job.title ?? "");
     formData.set("discipline", job.discipline ?? "");
+    if (otherShortlisted.length) formData.set("otherShortlistedPositions", otherShortlisted.map(item => `${item.title} · ID ${item.id ?? item.slug ?? ""}`).join("\n"));
     setSending(true); setStatus(""); setCelebrating(false);
     try {
       const response = await fetch("/api/inquiry", { method: "POST", body: formData });
@@ -66,7 +70,7 @@ export default function InterestModal({ job, onClose }) {
         <button className={styles.close} type="button" onClick={onClose} aria-label="Close inquiry form">×</button>
         <p className={styles.eyebrow}>NO FORMAL APPLICATION REQUIRED</p>
         <h2 id="interest-modal-title">Start a professional conversation</h2>
-        <div className={styles.positionReference}>{job.title} · ID {job.id}</div>
+        <div className={styles.positionReference}><span className={styles.primaryLabel}>POSITION OF INTEREST</span><strong>{job.title} · ID {job.id}</strong>{otherShortlisted.length ? <div className={styles.otherPositions}><span>ALSO SHORTLISTED</span>{otherShortlisted.map(item=><div key={item.id??item.slug}>{item.title} · ID {item.id??item.slug}</div>)}</div> : null}</div>
         <form onSubmit={handleSubmit} className={styles.form}>
           <label>Name<input type="text" name="name" placeholder="First and last name" /></label>
           <label>Email *<input type="email" name="email" placeholder="name@example.com" required /></label>
