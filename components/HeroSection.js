@@ -15,7 +15,7 @@ export default function HeroSection() {
           </span>
         </h1>
         <p className={styles.lead}>
-          Explore career opportunities across MEP Consulting and Building Systems, Civil Infrastructure, Water and Wastewater, Transportation, Aviation, Rail and Transit, Commissioning, Mission Critical, and Data Centers.
+          Explore opportunities in MEP Building Systems Consulting, Civil Infrastructure, Water and Wastewater, Transportation, Aviation, Rail and Transit, Commissioning, Mission Critical, and Data Centers.
         </p>
         <div className={`hero-actions ${styles.actions}`}>
           <a className={`hero-primary ${styles.primary}`} href="/#positions">Explore Positions</a>
