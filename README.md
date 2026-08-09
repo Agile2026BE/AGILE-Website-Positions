@@ -27,6 +27,7 @@ Current structure:
 - `TESTING.md` browser, responsive, content, and deployment verification checklist
 - `.github/workflows/check.yml` automated validation, lint, and production build checks
 - `PROJECT_CHECKPOINT.md` current launch baseline, recovery instructions, protected features, and next work
+- `docs/CAREERS_BASELINE_2026-08-09.md` detailed August 9, 2026 source/design/behavior recovery record
 
 ## Project Rules
 
@@ -35,10 +36,11 @@ Current structure:
 3. Preserve verified position IDs, salaries, locations, workplace information, responsibilities, qualifications, and other factual content exactly unless Byron explicitly requests a factual change.
 4. Do not invent testimonials. Candidate reviews are real AGILE placement testimonials and use approved initials/professional titles.
 5. Protect recruiter-critical functionality: Search Careers, Similar Positions, Saved Positions, Copy Link/Share, direct position links, and inquiry routing.
-6. Every launch-relevant change should pass the Project Check workflow and Vercel deployment before it becomes a new baseline.
+6. Every launch-relevant change should pass the Project Check workflow and Vercel deployment before it becomes a new verified green baseline.
 7. Maintain responsive behavior for large desktop monitors, normal laptops, tablets, iPhone, and smaller mobile screens.
 8. Use the established AGILE visual system: deep navy/slate blue, white/warm white, light blue accents, restrained gold, readable sans-serif body copy, and Georgia/serif display headings where already established.
 9. Function and stability come before nonessential design tweaks during launch windows.
+10. Before substantial future work or any recovery, read `PROJECT_CHECKPOINT.md` and the newest dated file under `docs/CAREERS_BASELINE_*.md`.
 
 ## Current Functional Status
 
@@ -116,16 +118,17 @@ Before declaring a launch baseline, also confirm:
 
 ## Version and Recovery Discipline
 
-Git commits are the primary version history. Important launch-ready states are additionally recorded in `PROJECT_CHECKPOINT.md`.
+Git commits are the primary version history. Important launch-ready states are additionally recorded in `PROJECT_CHECKPOINT.md` and dated files under `docs/CAREERS_BASELINE_*.md`.
 
 When establishing a new baseline:
 
 1. Confirm Project Check is green.
 2. Confirm Vercel is green.
 3. Record the baseline commit SHA in `PROJECT_CHECKPOINT.md`.
-4. Record what is known-good and what remains unfinished.
-5. Do not overwrite factual position/testimonial data during recovery.
-6. If a later change breaks the site, recover by returning `main` to the last documented known-good commit, then reapply later changes one at a time.
+4. Create/update a dated detailed baseline record when meaningful architecture, behavior, design, or recovery information has changed.
+5. Record what is known-good and what remains unfinished.
+6. Do not overwrite factual position/testimonial data during recovery.
+7. If a later change breaks the site, recover by returning `main` to the last documented known-good commit, then reapply later changes one at a time.
 
 ## Current Source of Truth
 
@@ -143,4 +146,6 @@ Primary branch:
 
 ## Current Checkpoint
 
-See `PROJECT_CHECKPOINT.md`. That file is the short operational handoff for Ace/Byron and should be read before future development sessions.
+See `PROJECT_CHECKPOINT.md` for the short operational handoff.
+
+For detailed August 9, 2026 design, behavior, share-format, form, shortlist, responsive and disaster-recovery context, see `docs/CAREERS_BASELINE_2026-08-09.md`.
