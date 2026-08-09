@@ -5,7 +5,7 @@ import styles from "./ContactSection.module.css";
 
 const baseMessages = {
   position: "I'd like to learn more about the selected position and discuss my qualifications.",
-  confidential: "Hello,\nI would like to discuss confidential career options that may align with my background and goals. Please contact me when convenient.\nThank you.",
+  confidential: "Interested in discussing career opportunities that align with my professional background and personal goals.",
   resume: "Hello,\nI have a question before sharing my résumé. Please contact me so I can learn more about the opportunity and next steps.\nThank you.",
 };
 
