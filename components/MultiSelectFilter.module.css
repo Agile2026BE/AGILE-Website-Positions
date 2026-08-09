@@ -62,9 +62,9 @@
   justify-content: space-between;
   gap: 12px;
   padding: 6px 8px 8px;
-  color: var(--muted);
+  color: #1683b6;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .clear {
