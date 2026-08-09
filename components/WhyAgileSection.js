@@ -8,26 +8,18 @@ const steps = [
 
 export default function WhyAgileSection() {
   return (
-    <section className={styles.section} id="why-agile" aria-label="Why AGILE">
+    <section className={styles.section} id="agile-insights" aria-label="AGILE Insights">
+      <span id="why-agile" className={styles.legacyAnchor} aria-hidden="true" />
       <span id="contact-guide" className={styles.contactAnchor} aria-hidden="true" />
 
       <div className={styles.motionStage}>
-        <video
-          className={styles.cityVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-        >
+        <video className={styles.cityVideo} autoPlay muted loop playsInline preload="metadata" aria-hidden="true">
           <source src="https://assets.mixkit.co/videos/4169/4169-720.mp4" type="video/mp4" />
         </video>
         <div className={styles.videoOverlay} aria-hidden="true" />
         <div className={styles.centerGlow} aria-hidden="true" />
-
         <div className={styles.motionCopy}>
-          <p className={styles.eyebrow}>THE AGILE ADVANTAGE</p>
+          <p className={styles.eyebrow}>AGILE INSIGHTS</p>
           <h2>We only work with the best. <span className={styles.question}>Shouldn&apos;t you?</span></h2>
         </div>
       </div>
@@ -44,13 +36,7 @@ export default function WhyAgileSection() {
       </div>
 
       <div className={styles.grid}>
-        {steps.map((step) => (
-          <article className={styles.step} key={step.number}>
-            <span className={styles.number}>{step.number}</span>
-            <h3>{step.title}</h3>
-            <p>{step.copy}</p>
-          </article>
-        ))}
+        {steps.map((step) => <article className={styles.step} key={step.number}><span className={styles.number}>{step.number}</span><h3>{step.title}</h3><p>{step.copy}</p></article>)}
       </div>
     </section>
   );
