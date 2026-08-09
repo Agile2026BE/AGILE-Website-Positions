@@ -18,6 +18,7 @@
 .bridge { padding:32px 28px 18px; text-align:center; color:#173a58; }
 .bridgeLead { margin:0 0 7px; font-size:.78rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:#1684b6; }
 .bridge h3 { margin:0 auto; max-width:930px; font-family:Georgia,"Times New Roman",serif; font-size:clamp(1.55rem,2.7vw,2.35rem); line-height:1.22; font-weight:500; }
+.really { color:#67c6e9; font-style:italic; }
 .grid { width:min(1320px,calc(100% - 68px)); margin:0 auto; padding:30px 0 54px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:26px; }
 .step { position:relative; padding:27px 28px 30px; border-top:3px solid #67c6e9; background:#fff; box-shadow:0 10px 34px rgba(17,52,78,.07); }
 .number { display:block; margin-bottom:16px; font-size:.78rem; font-weight:800; letter-spacing:.1em; color:#1684b6; }
