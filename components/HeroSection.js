@@ -24,7 +24,7 @@ export default function HeroSection() {
           </span>
         </h1>
         <p className={styles.lead}>
-          Explore career opportunities in MEP Building Systems Consulting, Commissioning, and Owner&apos;s Representation across Commercial Buildings, Healthcare, Higher Education, Life Sciences, Mission Critical, Data Centers, Aviation, Transportation, Rail and Transit, Water and Wastewater, and Industrial markets.
+          Explore career opportunities in MEP Building Systems Consulting, Commissioning, and Owner&apos;s Representation across Healthcare, Higher Education, Life Sciences, Hospitality, Cultural, High-Rise Commercial and Residential, Mission Critical, Data Centers, Aviation, Transportation, Rail and Transit, Water and Wastewater, and Industrial markets.
         </p>
         <div className={`hero-actions ${styles.actions}`}>
           <Link className={`hero-primary ${styles.primary}`} href="/#positions">Explore Positions</Link>
