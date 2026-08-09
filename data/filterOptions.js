@@ -9,27 +9,27 @@ export const minimumSalaryOptions = [
 ];
 
 export const stateOptions = [
-  "New York",
-  "New Jersey",
-  "Pennsylvania",
-  "Massachusetts",
-  "Florida",
-  "Connecticut",
-  "Colorado",
   "California",
+  "Colorado",
+  "Connecticut",
+  "Florida",
+  "Massachusetts",
+  "New Jersey",
+  "New York",
   "North Carolina",
+  "Pennsylvania",
 ];
 
 export const disciplineOptions = [
+  "Civil Engineering",
+  "Construction Management",
   "Electrical Engineering",
+  "ICT/AV Technology",
   "Mechanical HVAC",
   "Mechanical Plumbing and Fire Protection",
-  "ICT/AV Technology",
-  "Civil Engineering",
-  "Structural Engineering",
-  "Resident Engineering",
-  "Construction Management",
   "MEP Executive Leadership",
+  "Resident Engineering",
+  "Structural Engineering",
 ];
 
-export const workplaceOptions = ["Onsite", "Hybrid", "Remote"];
+export const workplaceOptions = ["Hybrid", "Onsite", "Remote"];
