@@ -3,6 +3,7 @@
 .slogan { display:inline-flex; align-items:flex-start; gap:.12em; margin:0 0 12px; color:#59b9e6; font-family:Arial,Helvetica,sans-serif; font-size:clamp(1rem,1.3vw,1.25rem); font-weight:800; line-height:1.1; letter-spacing:.015em; white-space:nowrap; }
 .slogan sup { margin-top:-.03em; font-size:.72em; font-weight:800; line-height:1; }
 .headingRow h2 { max-width:none; white-space:nowrap; font-family:Georgia,"Times New Roman",serif; font-size:clamp(2.55rem,3.55vw,3.55rem); font-weight:400; letter-spacing:-.03em; }
+.jobHeading em { font-weight:400; }
 .intro { max-width:430px; padding-bottom:4px; }
 .filterPanel { margin-top:26px; padding:20px; border:1px solid #ccd8e0; border-radius:14px; background:#fff; box-shadow:0 12px 28px rgba(30,45,75,.07); }
 .controls { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px; margin:0; }
@@ -18,6 +19,6 @@
 .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:24px; }
 @media(max-width:1180px){.headingRow h2{white-space:normal;max-width:780px}}
 @media(max-width:980px){.headingRow{grid-template-columns:1fr;gap:12px}.intro{max-width:620px}.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.searchRow{grid-template-columns:minmax(0,1fr) auto auto}.shortlistItems{grid-template-columns:1fr}}
-@media(max-width:760px){.board{padding-top:38px}.headingRow{gap:8px}.headingRow h2{font-size:clamp(2.1rem,8vw,2.75rem);line-height:1.08}.intro{font-size:.94rem;line-height:1.5}.filterPanel{margin-top:22px}}
-@media(max-width:640px){.slogan{font-size:1rem;white-space:normal}.slogan sup{font-size:.78em}.headingRow h2{font-size:clamp(2rem,9.5vw,2.55rem)}.controls,.grid{grid-template-columns:1fr}.searchRow{grid-template-columns:1fr 1fr}.searchRow> :first-child{grid-column:1/-1}.viewResults{grid-column:1/2;min-height:48px}.filterPanel{padding:15px}.filterHint{margin-top:11px;font-size:.82rem}.grid{margin-top:18px}.shortlistPanel{padding:15px}.shortlistHeader{align-items:flex-start;flex-direction:column;gap:8px}.shortlistItems{grid-template-columns:1fr}.shortlistItem{gap:10px}}
-@media(max-width:390px){.searchRow{grid-template-columns:1fr}.searchRow> :first-child,.viewResults{grid-column:auto}.viewResults{width:100%}}
+@media(max-width:760px){.board{padding-top:38px}.headingRow{gap:8px}.headingRow h2.jobHeading{font-size:clamp(1.35rem,5.7vw,2rem);line-height:1.08;white-space:nowrap;letter-spacing:-.035em}.intro{font-size:.94rem;line-height:1.5}.filterPanel{margin-top:22px}}
+@media(max-width:640px){.slogan{font-size:1rem;white-space:normal}.slogan sup{font-size:.78em}.headingRow h2.jobHeading{font-size:clamp(1.28rem,5.55vw,1.72rem);white-space:nowrap}.controls,.grid{grid-template-columns:1fr}.searchRow{grid-template-columns:1fr 1fr}.searchRow> :first-child{grid-column:1/-1}.viewResults{grid-column:1/2;min-height:48px}.filterPanel{padding:15px}.filterHint{margin-top:11px;font-size:.82rem}.grid{margin-top:18px}.shortlistPanel{padding:15px}.shortlistHeader{align-items:flex-start;flex-direction:column;gap:8px}.shortlistItems{grid-template-columns:1fr}.shortlistItem{gap:10px}}
+@media(max-width:390px){.headingRow h2.jobHeading{font-size:5.35vw}.searchRow{grid-template-columns:1fr}.searchRow> :first-child,.viewResults{grid-column:auto}.viewResults{width:100%}}
