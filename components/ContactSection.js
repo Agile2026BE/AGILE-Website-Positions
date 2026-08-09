@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 import styles from "./ContactSection.module.css";
 
 const baseMessages = {
-  position: "Hello,\nI would like to learn more about the selected position and whether my background may be a fit. Please contact me to discuss the opportunity and timing.\nThank you.",
+  position: "I'd like to learn more about the selected position and discuss my qualifications.",
   confidential: "Hello,\nI would like to discuss confidential career options that may align with my background and goals. Please contact me when convenient.\nThank you.",
   resume: "Hello,\nI have a question before sharing my résumé. Please contact me so I can learn more about the opportunity and next steps.\nThank you.",
 };
 
 function positionMessage(id, title) {
   if (!id) return baseMessages.position;
-  return `Hello,\nI would like to learn more about Position ID ${id}${title ? `, ${title}` : ""} and whether my background may be a fit. Please contact me to discuss the opportunity and timing.\nThank you.`;
+  return `I'd like to learn more about Position ID ${id}${title ? `, ${title}` : ""} and discuss my qualifications.`;
 }
 
 function formatPhone(value) {
