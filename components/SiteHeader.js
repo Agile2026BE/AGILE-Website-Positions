@@ -15,7 +15,6 @@ export default function SiteHeader() {
           <a href={`${BASE_URL}/#reviews`}>Reviews</a>
           <a href={`${BASE_URL}/#contact`}>Contact</a>
           <a href={`${BASE_URL}/#top`}>Top</a>
-          <a className={styles.searchCareers} href={`${BASE_URL}/#positions`}>Search Careers</a>
         </nav>
       </div>
     </header>
