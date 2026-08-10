@@ -4,6 +4,7 @@ import ContactSection from "../../../components/ContactSection";
 import SiteFooter from "../../../components/SiteFooter";
 import SiteHeader from "../../../components/SiteHeader";
 import { jobs } from "../../../data/jobs";
+import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../lib/positionFreshness";
 
 const lines = (value) =>
   String(value ?? "")
@@ -35,6 +36,7 @@ export default async function PositionPage({ params }) {
 
   const responsibilities = lines(job.responsibilities);
   const qualifications = lines(job.qualifications);
+  const whyConsider = freshWhyConsider(job);
 
   return (
     <main>
@@ -42,7 +44,7 @@ export default async function PositionPage({ params }) {
 
       <section className={`section position-detail ${styles.detail}`}>
         <div className="container">
-          <p className={`contact-eyebrow ${styles.eyebrow}`}>AVAILABLE POSITION</p>
+          <p className={`contact-eyebrow ${styles.eyebrow}`}>AVAILABLE POSITION · {POSITION_REVIEW_LABEL.toUpperCase()}</p>
           <h1 className="section-title">{job.title}</h1>
           {job.summary ? <p className="section-copy">{job.summary}</p> : null}
 
@@ -74,10 +76,10 @@ export default async function PositionPage({ params }) {
             </section>
           ) : null}
 
-          {job.whyConsider ? (
+          {whyConsider.length ? (
             <section className={styles.contentSection}>
               <h2>Why Consider?</h2>
-              {lines(job.whyConsider).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {whyConsider.map((paragraph, index) => <p key={`${paragraph}-${index}`}>{paragraph}</p>)}
             </section>
           ) : null}
 
