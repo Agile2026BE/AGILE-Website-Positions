@@ -23,11 +23,73 @@
 .primary:hover,.secondary:hover { transform:translateY(-1px); }
 .primary { background:#1476a8; color:#fff; }
 .secondary { border:1px solid rgba(255,255,255,.7); color:#fff; background:rgba(255,255,255,.04); }
-.badges { display:flex; flex-wrap:wrap; gap:10px; margin-top:34px; color:rgba(255,255,255,.9); font-size:.8rem; justify-content:flex-start; }
-.badge { display:inline-flex; align-items:center; gap:5px; padding:8px 12px; border:1px solid rgba(255,255,255,.25); border-radius:999px; background:rgba(255,255,255,.035); animation:badgeArrive .42s ease-out both; animation-delay:calc(350ms + var(--badge-delay)); }
-.check { display:inline-block; font-weight:700; color:#fff; transform-origin:center; animation:checkIn .34s cubic-bezier(.2,.8,.2,1.25) both; animation-delay:calc(520ms + var(--badge-delay)); }
-@keyframes badgeArrive { from { opacity:.58; transform:translateY(3px); } to { opacity:1; transform:translateY(0); } }
-@keyframes checkIn { 0% { opacity:0; transform:scale(.25) rotate(-16deg); } 70% { opacity:1; transform:scale(1.18) rotate(2deg); } 100% { opacity:1; transform:scale(1) rotate(0); } }
+
+.badges {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:34px;
+  color:rgba(255,255,255,.9);
+  font-size:.8rem;
+  justify-content:flex-start;
+}
+
+.badge {
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;
+  background:rgba(255,255,255,.035);
+  opacity:.58;
+  transform:translateY(3px);
+}
+
+.badgeVisible {
+  animation:badgeArrive .42s ease-out both;
+  animation-delay:var(--badge-delay);
+}
+
+.check {
+  display:inline-block;
+  font-weight:700;
+  color:#fff;
+  opacity:0;
+  transform:scale(.25) rotate(-16deg);
+  transform-origin:center;
+}
+
+.badgeVisible .check {
+  animation:checkIn .34s cubic-bezier(.2,.8,.2,1.25) both;
+  animation-delay:calc(170ms + var(--badge-delay));
+}
+
+@keyframes badgeArrive {
+  from {
+    opacity:.58;
+    transform:translateY(3px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes checkIn {
+  0% {
+    opacity:0;
+    transform:scale(.25) rotate(-16deg);
+  }
+  70% {
+    opacity:1;
+    transform:scale(1.18) rotate(2deg);
+  }
+  100% {
+    opacity:1;
+    transform:scale(1) rotate(0);
+  }
+}
 
 @media (min-width: 1440px) {
   .hero { min-height: calc(100svh - 88px); padding-top:86px; }
@@ -65,5 +127,12 @@
 }
 
 @media (prefers-reduced-motion:reduce){
-  .badge,.check{animation:none}
+  .badge,
+  .badgeVisible,
+  .check,
+  .badgeVisible .check {
+    animation:none;
+    opacity:1;
+    transform:none;
+  }
 }
