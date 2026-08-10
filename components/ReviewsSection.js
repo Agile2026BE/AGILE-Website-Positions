@@ -66,7 +66,7 @@ export default function ReviewsSection() {
   return (
     <section className={`section reviews-section ${styles.section}`} id="reviews">
       <div className={`container ${styles.panel}`}>
-        <p className={styles.badge}>✓ Professional experiences relevant to your search</p>
+        <p className={styles.badge}>✓ Reviews from professionals we’ve helped</p>
         <div className={styles.headingRow}>
           <h2 className={styles.heading}>What AEC and MEP Professionals are saying...</h2>
         </div>
