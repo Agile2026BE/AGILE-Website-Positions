@@ -4,14 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./ContactSection.module.css";
 
 const baseMessages = {
-  position: "I'd like to learn more about the selected position and discuss my qualifications.",
-  confidential: "Interested in discussing career opportunities that align with my professional background and personal goals.",
-  resume: "Hello,\nI have a question before sharing my résumé. Please contact me so I can learn more about the opportunity and next steps.\nThank you.",
+  position: "Hello,\n\nI'd like to learn more about the selected position and discuss my qualifications.\n\nThank you.",
+  confidential: "Hello,\n\nInterested in discussing career opportunities that align with my professional background and personal goals.\n\nThank you.",
+  resume: "Hello,\n\nI have a question before sharing my résumé. Please contact me so I can learn more about the opportunity and next steps.\n\nThank you.",
 };
 
 function positionMessage(id, title) {
   if (!id) return baseMessages.position;
-  return `I'd like to learn more about Position ID ${id}${title ? `, ${title}` : ""} and discuss my qualifications.`;
+  return `Hello,\n\nI'd like to learn more about Position ID ${id}${title ? `, ${title}` : ""} and discuss my qualifications.\n\nThank you.`;
 }
 
 function formatPhone(value) {
@@ -40,312 +40,79 @@ export default function ContactSection() {
     const id = params.get("positionId") || "";
     const title = params.get("positionTitle") || "";
     const selectedDiscipline = params.get("discipline") || "";
-
     if (id) {
-      const frame = requestAnimationFrame(() => {
-        setPositionId(id);
-        setPositionTitle(title);
-        setDiscipline(selectedDiscipline);
-        setQuickMessage("position");
-        setMessage(positionMessage(id, title));
-      });
-
+      const frame = requestAnimationFrame(() => { setPositionId(id); setPositionTitle(title); setDiscipline(selectedDiscipline); setQuickMessage("position"); setMessage(positionMessage(id, title)); });
       return () => cancelAnimationFrame(frame);
     }
-
     return undefined;
   }, []);
 
   useEffect(() => {
     const node = badgesRef.current;
     if (!node) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setBadgesVisible(entry.isIntersecting);
-      },
-      { threshold: 0.35 }
-    );
-
+    const observer = new IntersectionObserver(([entry]) => { setBadgesVisible(entry.isIntersecting); }, { threshold: 0.35 });
     observer.observe(node);
-
     return () => observer.disconnect();
   }, []);
 
   function handleQuickMessage(event) {
     const value = event.target.value;
     setQuickMessage(value);
-    setMessage(
-      value === "position"
-        ? positionMessage(positionId, positionTitle)
-        : baseMessages[value] ?? ""
-    );
+    setMessage(value === "position" ? positionMessage(positionId, positionTitle) : baseMessages[value] ?? "");
   }
 
   async function handleSubmit(event) {
     event.preventDefault();
-
     const form = event.currentTarget;
-
-    setSending(true);
-    setStatus("");
-    setCelebrating(false);
-
+    setSending(true); setStatus(""); setCelebrating(false);
     const formData = new FormData(form);
-    formData.set("positionId", positionId);
-    formData.set("positionTitle", positionTitle);
-
+    formData.set("positionId", positionId); formData.set("positionTitle", positionTitle);
+    formData.set("textingConsent", formData.get("textingConsent") === "yes" ? "Yes" : "No");
     try {
-      const response = await fetch("/api/inquiry", {
-        method: "POST",
-        body: formData,
-      });
-
+      const response = await fetch("/api/inquiry", { method: "POST", body: formData });
       const result = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(result.error || "Unable to send inquiry.");
-      }
-
-      form.reset();
-
-      setPositionId("");
-      setPositionTitle("");
-      setDiscipline("");
-      setPhone("");
-      setQuickMessage("position");
-      setMessage(baseMessages.position);
-
-      setStatus("Success! We look forward to connecting soon!");
-      setCelebrating(true);
-
+      if (!response.ok) throw new Error(result.error || "Unable to send inquiry.");
+      form.reset(); setPositionId(""); setPositionTitle(""); setDiscipline(""); setPhone(""); setQuickMessage("position"); setMessage(baseMessages.position);
+      setStatus("Success! We look forward to connecting soon!"); setCelebrating(true);
       window.setTimeout(() => setCelebrating(false), 1600);
       window.history.replaceState({}, "", `${window.location.pathname}#contact`);
-    } catch (error) {
-      setStatus(
-        error.message || "We could not send your inquiry. Please try again."
-      );
-    } finally {
-      setSending(false);
-    }
+    } catch (error) { setStatus(error.message || "We could not send your inquiry. Please try again."); }
+    finally { setSending(false); }
   }
 
   const success = status.startsWith("Success!");
 
   return (
-    <section
-      className={`section contact-section ${styles.section}`}
-      id="contact"
-    >
+    <section className={`section contact-section ${styles.section}`} id="contact">
       <div className={`container contact-grid ${styles.grid}`}>
         <div className={styles.intro}>
-          <p className={`contact-eyebrow ${styles.eyebrow}`}>
-            PROFESSIONAL CAREER INQUIRY
-          </p>
-
+          <p className={`contact-eyebrow ${styles.eyebrow}`}>PROFESSIONAL CAREER INQUIRY</p>
           <h2 className="section-title">Start with a conversation.</h2>
-
-          <p className="section-copy">
-            Not a formal application. No fee or obligation. Tell us what matters
-            most, or simply ask about a selected position.
-          </p>
-
-          <div
-            ref={badgesRef}
-            className={`contact-badges ${styles.badges}`}
-            aria-label="Inquiry details"
-          >
-            <span
-              className={`${styles.contactBadge} ${
-                badgesVisible ? styles.contactBadgeVisible : ""
-              }`}
-              style={{ "--badge-delay": "0ms" }}
-            >
-              <b className={styles.contactCheck} aria-hidden="true">
-                ✓
-              </b>
-              Résumé optional
-            </span>
-
-            <span
-              className={`${styles.contactBadge} ${
-                badgesVisible ? styles.contactBadgeVisible : ""
-              }`}
-              style={{ "--badge-delay": "500ms" }}
-            >
-              <b className={styles.contactCheck} aria-hidden="true">
-                ✓
-              </b>
-              No account required
-            </span>
-
-            <span
-              className={`${styles.contactBadge} ${
-                badgesVisible ? styles.contactBadgeVisible : ""
-              }`}
-              style={{ "--badge-delay": "1000ms" }}
-            >
-              <b className={styles.contactCheck} aria-hidden="true">
-                ✓
-              </b>
-              Main Office: 407-868-7254
-            </span>
+          <p className="section-copy">Not a formal application. No fee or obligation. Tell us what matters most, or simply ask about a selected position.</p>
+          <div ref={badgesRef} className={`contact-badges ${styles.badges}`} aria-label="Inquiry details">
+            <span className={`${styles.contactBadge} ${badgesVisible ? styles.contactBadgeVisible : ""}`} style={{ "--badge-delay": "0ms" }}><b className={styles.contactCheck} aria-hidden="true">✓</b>Résumé optional</span>
+            <span className={`${styles.contactBadge} ${badgesVisible ? styles.contactBadgeVisible : ""}`} style={{ "--badge-delay": "500ms" }}><b className={styles.contactCheck} aria-hidden="true">✓</b>No account required</span>
+            <span className={`${styles.contactBadge} ${badgesVisible ? styles.contactBadgeVisible : ""}`} style={{ "--badge-delay": "1000ms" }}><b className={styles.contactCheck} aria-hidden="true">✓</b>Main Office: 407-868-7254</span>
           </div>
-
-          <aside
-            className={styles.peopleCard}
-            aria-label="AGILE communications and professional engagement"
-          >
-            <p className={styles.peopleLabel}>AGILE COMMUNICATIONS</p>
-            <strong>Lilly Genao</strong>
-            <span>Communications &amp; Professional Engagement</span>
-            <span>Architecture, MEP Engineering &amp; Construction</span>
-
-            <a href="mailto:lgenao@agileconsultingsolutions.com">
-              lgenao@agileconsultingsolutions.com
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/lilly-genao-771ba338a/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              View Lilly on LinkedIn ↗
-            </a>
+          <aside className={styles.peopleCard} aria-label="AGILE communications and professional engagement">
+            <p className={styles.peopleLabel}>AGILE COMMUNICATIONS</p><strong>Lilly Genao</strong><span>Communications &amp; Professional Engagement</span><span>Architecture, MEP Engineering &amp; Construction</span>
+            <a href="mailto:lgenao@agileconsultingsolutions.com">lgenao@agileconsultingsolutions.com</a>
+            <a href="https://www.linkedin.com/in/lilly-genao-771ba338a/" target="_blank" rel="noreferrer">View Lilly on LinkedIn ↗</a>
           </aside>
         </div>
-
-        <form
-          className={`contact-form ${styles.form}`}
-          onSubmit={handleSubmit}
-          autoComplete="off"
-        >
-          {celebrating ? (
-            <div className={styles.confetti} aria-hidden="true">
-              {Array.from({ length: 22 }).map((_, index) => (
-                <i key={index} style={{ "--i": index }} />
-              ))}
-            </div>
-          ) : null}
-
-          {positionId ? (
-            <div className={`${styles.full} ${styles.positionReference}`}>
-              <span>POSITION OF INTEREST</span>
-              <strong>
-                Position ID {positionId}
-                {positionTitle ? ` · ${positionTitle}` : ""}
-              </strong>
-            </div>
-          ) : null}
-
-          <label>
-            Name
-            <input
-              type="text"
-              name="career_inquiry_name"
-              placeholder="First and last name"
-              autoComplete="off"
-            />
-          </label>
-
-          <label>
-            Email *
-            <input
-              type="email"
-              name="career_inquiry_email"
-              placeholder="name@example.com"
-              autoComplete="off"
-              required
-            />
-          </label>
-
-          <label>
-            Phone
-            <input
-              type="tel"
-              name="career_inquiry_phone"
-              placeholder="(407) 868-7254"
-              autoComplete="off"
-              inputMode="tel"
-              value={phone}
-              onChange={(event) => setPhone(formatPhone(event.target.value))}
-            />
-          </label>
-
-          <label>
-            Discipline of Interest
-            <select
-              name="discipline"
-              value={discipline}
-              onChange={(event) => setDiscipline(event.target.value)}
-            >
-              <option value="">Choose a discipline</option>
-              <option>Civil Engineering</option>
-              <option>Commissioning</option>
-              <option>Electrical Engineering</option>
-              <option>Fire Protection</option>
-              <option>Mechanical Engineering</option>
-              <option>Plumbing</option>
-              <option>Transportation</option>
-            </select>
-          </label>
-
-          <label className={styles.full}>
-            Quick Message — Optional
-            <select
-              name="quickMessage"
-              value={quickMessage}
-              onChange={handleQuickMessage}
-            >
-              <option value="position">Tell me more about this position</option>
-              <option value="confidential">
-                I would like to discuss confidential career options
-              </option>
-              <option value="resume">
-                I have a question before sharing my résumé
-              </option>
-            </select>
-          </label>
-
-          <label className={styles.full}>
-            Your Message — Optional
-            <textarea
-              name="message"
-              rows="4"
-              value={message}
-              onChange={(event) => setMessage(event.target.value)}
-            />
-          </label>
-
-          <label className={styles.resume}>
-            <span className={styles.resumePrompt}>
-              <strong>Attach Résumé</strong> <em>Optional</em>
-            </span>
-
-            <input
-              type="file"
-              name="resume"
-              accept=".pdf,.doc,.docx"
-            />
-          </label>
-
-          <div className={styles.submitCell}>
-            <button type="submit" disabled={sending}>
-              {sending ? "Sending..." : "Send My Inquiry"}
-            </button>
-          </div>
-
-          {status ? (
-            <div
-              className={`${styles.full} ${
-                success ? styles.success : styles.error
-              }`}
-              role="status"
-              aria-live="polite"
-            >
-              {status}
-            </div>
-          ) : null}
+        <form className={`contact-form ${styles.form}`} onSubmit={handleSubmit} autoComplete="off">
+          {celebrating ? <div className={styles.confetti} aria-hidden="true">{Array.from({ length: 22 }).map((_, index) => <i key={index} style={{ "--i": index }} />)}</div> : null}
+          {status ? <div className={`${styles.full} ${success ? styles.success : styles.error}`} role="status" aria-live="polite">{status}</div> : null}
+          {positionId ? <div className={`${styles.full} ${styles.positionReference}`}><span>POSITION OF INTEREST</span><strong>Position ID {positionId}{positionTitle ? ` · ${positionTitle}` : ""}</strong></div> : null}
+          <label>Name *<input type="text" name="career_inquiry_name" placeholder="First and last name" autoComplete="off" required /></label>
+          <label>Email *<input type="email" name="career_inquiry_email" placeholder="name@example.com" autoComplete="off" required /></label>
+          <label>Phone<input type="tel" name="career_inquiry_phone" placeholder="(***) ***-****" autoComplete="off" inputMode="tel" value={phone} onChange={(event) => setPhone(formatPhone(event.target.value))} /></label>
+          <label>Discipline of Interest<select name="discipline" value={discipline} onChange={(event) => setDiscipline(event.target.value)}><option value="">Choose a discipline</option><option>Civil Engineering</option><option>Commissioning</option><option>Electrical Engineering</option><option>Fire Protection</option><option>Mechanical Engineering</option><option>Plumbing</option><option>Transportation</option></select></label>
+          {phone ? <label className={styles.full}><span><input type="checkbox" name="textingConsent" value="yes" style={{width:"auto",marginRight:"8px"}} />I agree that AGILE may text me at the number provided about my inquiry and career opportunities. Consent is optional and not required to receive recruiting services. Message and data rates may apply. I can opt out at any time.</span></label> : null}
+          <label className={styles.full}>Quick Message — Optional<select name="quickMessage" value={quickMessage} onChange={handleQuickMessage}><option value="position">Tell me more about this position</option><option value="confidential">I would like to discuss confidential career options</option><option value="resume">I have a question before sharing my résumé</option></select></label>
+          <label className={styles.full}>Your Message — Optional<textarea name="message" rows="4" value={message} onChange={(event) => setMessage(event.target.value)} /></label>
+          <label className={styles.resume}><span className={styles.resumePrompt}><strong>Attach Résumé</strong> <em>Optional</em></span><input type="file" name="resume" accept=".pdf,.doc,.docx" /></label>
+          <div className={styles.submitCell}><button type="submit" disabled={sending}>{sending ? "Sending..." : "Send My Inquiry"}</button></div>
         </form>
       </div>
     </section>
