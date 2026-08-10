@@ -1,10 +1,26 @@
 # AGILE Careers Project Checkpoint
 
-Last updated: August 9, 2026 · 2:10 AM ET
+Last updated: August 10, 2026
 
 ## Purpose
 
 This is the operational handoff and recovery record for AGILE Careers development. Read this file before making future production changes.
+
+## AUGUST 10 ACTIVE TESTING CHECKPOINT
+
+Current live testing and repair-queue record:
+
+`docs/CAREERS_TEST_CHECKPOINT_2026-08-10.md`
+
+Testing checkpoint commit:
+
+`5fec0123e70dd82975ff754de4f153c45b736169`
+
+This August 10 checkpoint records confirmed live behavior, Outlook/text/direct-link testing, inquiry testing, responsive observations, and the current repair/improvement queue.
+
+IMPORTANT: This is a testing checkpoint, not a replacement for the verified GREEN BASELINE below. Do not treat unverified August 10 changes as a new green recovery baseline until Project Check, Vercel, and final browser/device smoke testing pass.
+
+If work is interrupted or context is lost, read `README.md`, this file, `docs/CAREERS_BASELINE_2026-08-09.md`, and then `docs/CAREERS_TEST_CHECKPOINT_2026-08-10.md` before making additional changes.
 
 ## GREEN BASELINE
 
@@ -249,18 +265,21 @@ Never reconstruct the site from memory if a documented Git baseline exists.
 
 ## IMMEDIATE NEXT WORK
 
-Launch-critical Careers testing only:
+Launch-critical Careers testing only. The detailed August 10 pass/fail observations and repair queue are recorded in `docs/CAREERS_TEST_CHECKPOINT_2026-08-10.md`.
 
-- Visually test all navigation landings on desktop and iPhone.
-- Test Search Careers filters and result counts.
-- Test View Position and Similar Positions.
-- Test +Shortlist and refresh persistence.
-- Test Copy / Share behavior in email, SMS and LinkedIn-style text.
-- Test Career Inquiry success.
-- Test Market Insights.
-- Test Client Hiring Support.
-- Record any remaining visual/function defects.
-- Fix only those defects.
-- Freeze final Careers SHA.
+Continue the remaining launch tests before applying the collected repair batch:
+
+- Complete any remaining navigation/responsive checks.
+- Complete Search Careers/filter checks not already verified.
+- Complete View Position / Similar Positions checks not already verified.
+- Complete shortlist persistence checks not already verified.
+- Complete remaining share-channel checks, including LinkedIn-style use if still outstanding.
+- Complete Market Insights submission test.
+- Complete Client Hiring Support submission test.
+- Record any additional visual/function defects in the August 10 testing checkpoint.
+- Then fix only the documented defects.
+- Run Project Check and verify Vercel.
+- Re-test the repaired functions.
+- Freeze final Careers SHA only after the launch gate passes.
 
 After Careers is locked, immediately begin the main AGILE website rebuild using this design system and rebuild direction.
