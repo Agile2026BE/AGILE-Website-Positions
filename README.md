@@ -28,6 +28,7 @@ Current structure:
 - `.github/workflows/check.yml` automated validation, lint, and production build checks
 - `PROJECT_CHECKPOINT.md` current launch baseline, recovery instructions, protected features, and next work
 - `docs/CAREERS_BASELINE_2026-08-09.md` detailed August 9, 2026 source/design/behavior recovery record
+- `docs/CAREERS_TEST_CHECKPOINT_2026-08-10.md` active August 10, 2026 live testing, pass/fail observations, and repair queue
 
 ## Project Rules
 
@@ -40,7 +41,7 @@ Current structure:
 7. Maintain responsive behavior for large desktop monitors, normal laptops, tablets, iPhone, and smaller mobile screens.
 8. Use the established AGILE visual system: deep navy/slate blue, white/warm white, light blue accents, restrained gold, readable sans-serif body copy, and Georgia/serif display headings where already established.
 9. Function and stability come before nonessential design tweaks during launch windows.
-10. Before substantial future work or any recovery, read `PROJECT_CHECKPOINT.md` and the newest dated file under `docs/CAREERS_BASELINE_*.md`.
+10. Before substantial future work or any recovery, read `PROJECT_CHECKPOINT.md`, `docs/CAREERS_BASELINE_2026-08-09.md`, and the newest active testing checkpoint under `docs/CAREERS_TEST_CHECKPOINT_*.md`.
 
 ## Current Functional Status
 
@@ -118,7 +119,7 @@ Before declaring a launch baseline, also confirm:
 
 ## Version and Recovery Discipline
 
-Git commits are the primary version history. Important launch-ready states are additionally recorded in `PROJECT_CHECKPOINT.md` and dated files under `docs/CAREERS_BASELINE_*.md`.
+Git commits are the primary version history. Important launch-ready states are additionally recorded in `PROJECT_CHECKPOINT.md` and dated records under `docs/`.
 
 When establishing a new baseline:
 
@@ -148,4 +149,6 @@ Primary branch:
 
 See `PROJECT_CHECKPOINT.md` for the short operational handoff.
 
-For detailed August 9, 2026 design, behavior, share-format, form, shortlist, responsive and disaster-recovery context, see `docs/CAREERS_BASELINE_2026-08-09.md`.
+For the verified August 9, 2026 source/design/behavior recovery baseline, see `docs/CAREERS_BASELINE_2026-08-09.md`.
+
+For the newest active live-testing status, current pass/fail observations, and repair/improvement queue, see `docs/CAREERS_TEST_CHECKPOINT_2026-08-10.md`.
