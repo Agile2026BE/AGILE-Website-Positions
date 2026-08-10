@@ -62,10 +62,7 @@ export default function ContactSection() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setBadgesVisible(true);
-          observer.disconnect();
-        }
+        setBadgesVisible(entry.isIntersecting);
       },
       { threshold: 0.35 }
     );
@@ -174,7 +171,7 @@ export default function ContactSection() {
               className={`${styles.contactBadge} ${
                 badgesVisible ? styles.contactBadgeVisible : ""
               }`}
-              style={{ "--badge-delay": "220ms" }}
+              style={{ "--badge-delay": "500ms" }}
             >
               <b className={styles.contactCheck} aria-hidden="true">
                 ✓
@@ -186,7 +183,7 @@ export default function ContactSection() {
               className={`${styles.contactBadge} ${
                 badgesVisible ? styles.contactBadgeVisible : ""
               }`}
-              style={{ "--badge-delay": "440ms" }}
+              style={{ "--badge-delay": "1000ms" }}
             >
               <b className={styles.contactCheck} aria-hidden="true">
                 ✓
