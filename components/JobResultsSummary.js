@@ -1,4 +1,5 @@
 import styles from "./JobResultsSummary.module.css";
+import { POSITION_REVIEW_LABEL } from "../lib/positionFreshness";
 
 export default function JobResultsSummary({
   resultCount,
@@ -17,7 +18,7 @@ export default function JobResultsSummary({
           ) : null}
         </div>
         <p className={styles.guidance}>
-          Scan the matches below. Shortlist up to 3 positions to compare, copy clean links, or share them by email, text, or notes.
+          {POSITION_REVIEW_LABEL} · Current needs confirmed. Scan the matches below. Shortlist up to 3 positions to compare, copy clean links, or share them by email, text, or notes.
         </p>
       </div>
       <div className={styles.scope}>{allOpportunitiesLabel}</div>
