@@ -16,6 +16,31 @@ function formatPhone(value) {
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 }
 
+function playSuccessChime() {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const context = new AudioContext();
+    const gain = context.createGain();
+    gain.connect(context.destination);
+    const now = context.currentTime;
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(0.12, now + 0.015);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.42);
+    [659.25, 880].forEach((frequency, index) => {
+      const oscillator = context.createOscillator();
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(frequency, now + index * 0.09);
+      oscillator.connect(gain);
+      oscillator.start(now + index * 0.09);
+      oscillator.stop(now + 0.38 + index * 0.09);
+    });
+    window.setTimeout(() => context.close().catch(() => {}), 700);
+  } catch (_) {
+    // Audio is an optional enhancement; submission success must never depend on it.
+  }
+}
+
 export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
   const [quickMessage, setQuickMessage] = useState("position");
   const [message, setMessage] = useState(starters.position);
@@ -57,6 +82,7 @@ export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
       if (!response.ok) throw new Error(result.error || "Unable to send inquiry.");
       setStatus("Success! We look forward to connecting soon!");
       setCelebrating(true);
+      playSuccessChime();
       window.setTimeout(() => setCelebrating(false), 1600);
       form.reset();
       setQuickMessage("position");
