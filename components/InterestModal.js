@@ -27,8 +27,6 @@ export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
 
   useEffect(() => {
     if (!job) return undefined;
-    setStatus("");
-    setCelebrating(false);
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (event) => { if (event.key === "Escape") onClose?.(); };
