@@ -128,11 +128,9 @@ function matchesContext(review, context) {
 
 export default function ReviewsSection() {
   const [searchContext, setSearchContext] = useState("");
-  const [rotation, setRotation] = useState(0);
+  const [rotation, setRotation] = useState(() => Math.floor(Math.random() * reviews.length));
 
   useEffect(() => {
-    setRotation(Math.floor(Math.random() * reviews.length));
-
     function handleCareerSearch(event) {
       setSearchContext(normalizeSearch(event.detail));
       setRotation(current => current + 3);
