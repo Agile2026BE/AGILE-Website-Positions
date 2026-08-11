@@ -103,6 +103,18 @@ export default function MultiSelectFilter({
               );
             })}
           </div>
+
+          <div className={styles.mobileDoneBar}>
+            <span>{values.length} of {maxSelections} selected</span>
+            <button
+              type="button"
+              className={styles.doneButton}
+              onClick={() => setIsOpen(false)}
+              aria-label="Done selecting market sectors"
+            >
+              Done
+            </button>
+          </div>
         </div>
       ) : null}
     </div>

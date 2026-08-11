@@ -107,14 +107,62 @@
   cursor: not-allowed;
 }
 
+.mobileDoneBar {
+  display: none;
+}
+
 @media (max-width: 720px) {
   .trigger,
   .option {
     min-height: 48px;
   }
 
+  .trigger,
+  .option,
+  .menuHeader {
+    color: #29415a;
+  }
+
   .menu {
     width: 100%;
     max-width: 100%;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+
+  .options {
+    max-height: min(48vh, 360px);
+  }
+
+  .mobileDoneBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 8px -8px 0;
+    padding: 10px 12px max(10px, env(safe-area-inset-bottom));
+    border-top: 1px solid #cfd9e2;
+    background: #f7fbfd;
+    color: #29415a;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .doneButton {
+    min-width: 92px;
+    min-height: 44px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 6px;
+    background: #1476a8;
+    color: #fff;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .doneButton:focus-visible {
+    outline: 3px solid rgba(20,118,168,.24);
+    outline-offset: 2px;
   }
 }
