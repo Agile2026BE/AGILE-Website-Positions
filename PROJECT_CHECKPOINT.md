@@ -1,6 +1,6 @@
 # AGILE Careers Project Checkpoint
 
-Last updated: August 10, 2026 — GREEN baseline freeze
+Last updated: August 11, 2026 — GREEN baseline freeze
 
 ## Purpose
 
@@ -10,25 +10,23 @@ This is the operational handoff and recovery record for AGILE Careers developmen
 
 Current verified GREEN recovery baseline code commit:
 
-`cc2d5c8104d092426dd8efaab8e4813d8582339a`
+`3daf725af3eedf389524ac30f8ec762be9453d23`
 
 Commit message:
 
-`Standardize blue dropdown chevrons sitewide`
+`Improve mobile market selection and text contrast`
 
 Detailed baseline record:
 
-`docs/CAREERS_GREEN_BASELINE_2026-08-10.md`
+`docs/CAREERS_GREEN_BASELINE_2026-08-11.md`
 
 Verification for this exact code SHA:
 
 - GitHub Project Check: SUCCESS
-- GitHub Actions run: `31452798018`
-- Job data validation: PASS
-- ESLint: PASS
-- Next.js production build: PASS
+- GitHub Actions run: `31491504397`
+- Job data validation / lint / production build: PASS through Project Check
 - Vercel Production deployment: SUCCESS
-- GitHub deployment ID: `5843376365`
+- GitHub deployment ID: `5850441846`
 
 Production domain:
 
@@ -46,15 +44,13 @@ Inquiry delivery:
 
 Resend -> `careers@agileconsultingsolutions.com`
 
-IMPORTANT: The documentation commits created to record this baseline come after the baseline code SHA. The recovery target for site behavior remains the code commit above unless a later production code change is independently verified and documented.
+IMPORTANT: Documentation commits created to record this baseline come after the baseline code SHA. The recovery target for site behavior is the code commit above unless a later production code change is independently verified and documented.
 
-## AUGUST 10 TESTING RECORD
+## AUGUST 11 LOCKED REFINEMENTS
 
-Live testing and repair history:
+The August 11 GREEN baseline includes the approved desktop Contact landing, sitewide blue dropdown chevrons, blue Market Sectors chevron states, natural inquiry message wrapping, the three-position shortlist limit, inquiry success confirmation at the top of the modal, starburst celebration, a soft success chime, mobile-only stronger supporting-text contrast, and a mobile Market Sectors Done control.
 
-`docs/CAREERS_TEST_CHECKPOINT_2026-08-10.md`
-
-That testing cycle confirmed core position search/shortlist, direct-link/share, inquiry delivery, success-state, resume chooser, and privacy/refresh behavior before the final August 10 repair/refinement commits.
+The latest mobile-only refinements should receive a final phone smoke test, but GitHub Project Check and the exact Vercel Production deployment are GREEN.
 
 ## LOCKED REBUILD DIRECTION
 
@@ -242,7 +238,7 @@ The current baseline is frozen. For any later production code change to replace 
 If a production change breaks Careers:
 
 1. Stop adding new changes.
-2. Return to `cc2d5c8104d092426dd8efaab8e4813d8582339a`.
+2. Return to `3daf725af3eedf389524ac30f8ec762be9453d23`.
 3. Compare the breaking commit against that baseline.
 4. Restore/revert only the breaking change when possible.
 5. Confirm Project Check.
@@ -258,7 +254,7 @@ GitHub Actions currently emits one infrastructure warning: Node.js 20-based `act
 
 ## IMMEDIATE NEXT WORK
 
-Careers has a documented GREEN recovery baseline. Do not reopen broad feature work tonight unless required for a confirmed production defect.
+Careers has a documented GREEN recovery baseline. Complete the final mobile smoke test, then preserve this baseline unless a confirmed production defect requires a change.
 
 Next planned development phase after Careers is locked:
 
