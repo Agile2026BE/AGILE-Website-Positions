@@ -54,11 +54,11 @@ export default function HeroSection() {
 
         <p className={styles.lead}>
           Explore career opportunities in MEP Building Systems Consulting,
-          Commissioning, and Owner&apos;s Representation across Healthcare,
-          Higher Education, Life Sciences, Hospitality, Cultural, High-Rise
-          Commercial and Residential, Mission Critical, Data Centers, Aviation,
-          Transportation, Rail and Transit, Water and Wastewater, and Industrial
-          markets.
+          Commissioning, Civil Engineering, and Private Owner&apos;s Representation
+          across Healthcare, Higher Education, Life Sciences, Hospitality,
+          Cultural, High-Rise Commercial and Residential, Mission Critical, Data
+          Centers, Aviation, Transportation, Rail and Transit, Water and
+          Wastewater, and Industrial markets.
         </p>
 
         <div className={`hero-actions ${styles.actions}`}>
