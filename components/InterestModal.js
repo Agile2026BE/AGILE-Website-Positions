@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./InterestModal.module.css";
 
 const starters = {
-  position: "Hello,\nInterested in discussing the shortlisted positions and how my experience aligns with current opportunities.\nThank you.",
-  confidential: "Hello,\nInterested in discussing career opportunities that align with my professional background and personal goals.\nThank you.",
-  resume: "Hello,\nI have a question before sharing my résumé. Please contact me so I can learn more about the opportunity and next steps.\nThank you.",
+  position: "Hello,\nInterested in discussing the shortlisted positions and how my experience aligns with current opportunities. Thank you.",
+  confidential: "Hello,\nInterested in discussing career opportunities that align with my professional background and personal goals. Thank you.",
+  resume: "Hello,\nI have a question before sharing my résumé. Please contact me so I can learn more about the opportunity and next steps. Thank you.",
 };
 
 function formatPhone(value) {

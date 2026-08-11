@@ -57,7 +57,18 @@ export default function MultiSelectFilter({
         onClick={() => setIsOpen((open) => !open)}
       >
         <span className={styles.triggerText}>{buttonText}</span>
-        <span className={styles.chevron} aria-hidden="true">⌄</span>
+        <span
+          className={styles.chevron}
+          aria-hidden="true"
+          style={{
+            color: "#147eae",
+            display: "inline-block",
+            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+            transition: "transform 160ms ease",
+          }}
+        >
+          ⌄
+        </span>
       </button>
 
       {isOpen ? (
