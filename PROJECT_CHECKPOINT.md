@@ -1,36 +1,34 @@
 # AGILE Careers Project Checkpoint
 
-Last updated: August 10, 2026
+Last updated: August 10, 2026 — GREEN baseline freeze
 
 ## Purpose
 
 This is the operational handoff and recovery record for AGILE Careers development. Read this file before making future production changes.
 
-## AUGUST 10 ACTIVE TESTING CHECKPOINT
-
-Current live testing and repair-queue record:
-
-`docs/CAREERS_TEST_CHECKPOINT_2026-08-10.md`
-
-Testing checkpoint commit:
-
-`5fec0123e70dd82975ff754de4f153c45b736169`
-
-This August 10 checkpoint records confirmed live behavior, Outlook/text/direct-link testing, inquiry testing, responsive observations, and the current repair/improvement queue.
-
-IMPORTANT: This is a testing checkpoint, not a replacement for the verified GREEN BASELINE below. Do not treat unverified August 10 changes as a new green recovery baseline until Project Check, Vercel, and final browser/device smoke testing pass.
-
-If work is interrupted or context is lost, read `README.md`, this file, `docs/CAREERS_BASELINE_2026-08-09.md`, and then `docs/CAREERS_TEST_CHECKPOINT_2026-08-10.md` before making additional changes.
-
 ## GREEN BASELINE
 
-Current verified green baseline commit:
+Current verified GREEN recovery baseline code commit:
 
-`a570f8ae40ae33af940476fbcf7c0c00c2f2cf84`
+`cc2d5c8104d092426dd8efaab8e4813d8582339a`
 
-Commit message: `Refine position title typography for scanning`
+Commit message:
 
-Vercel status for this exact commit: SUCCESS.
+`Standardize blue dropdown chevrons sitewide`
+
+Detailed baseline record:
+
+`docs/CAREERS_GREEN_BASELINE_2026-08-10.md`
+
+Verification for this exact code SHA:
+
+- GitHub Project Check: SUCCESS
+- GitHub Actions run: `31452798018`
+- Job data validation: PASS
+- ESLint: PASS
+- Next.js production build: PASS
+- Vercel Production deployment: SUCCESS
+- GitHub deployment ID: `5843376365`
 
 Production domain:
 
@@ -44,13 +42,19 @@ Branch:
 
 `main`
 
-Deployment:
-
-Vercel
-
 Inquiry delivery:
 
 Resend -> `careers@agileconsultingsolutions.com`
+
+IMPORTANT: The documentation commits created to record this baseline come after the baseline code SHA. The recovery target for site behavior remains the code commit above unless a later production code change is independently verified and documented.
+
+## AUGUST 10 TESTING RECORD
+
+Live testing and repair history:
+
+`docs/CAREERS_TEST_CHECKPOINT_2026-08-10.md`
+
+That testing cycle confirmed core position search/shortlist, direct-link/share, inquiry delivery, success-state, resume chooser, and privacy/refresh behavior before the final August 10 repair/refinement commits.
 
 ## LOCKED REBUILD DIRECTION
 
@@ -221,65 +225,41 @@ The domain registration may remain at GoDaddy while the rebuilt website itself c
 
 Do not cancel or allow a domain registration to lapse while migration is in progress.
 
-## LAUNCH GATE — CAREERS
+## LAUNCH / CHANGE GATE — CAREERS
 
-Before declaring Careers fully locked for launch:
+The current baseline is frozen. For any later production code change to replace it:
 
-1. Current commit remains green in Vercel.
-2. Production homepage opens normally.
-3. Home navigation returns to the top correctly.
-4. Positions lands correctly on desktop and iPhone.
-5. AGILE Insights lands correctly on desktop and iPhone.
-6. Reviews lands correctly on desktop and iPhone.
-7. Market Insights lands correctly on desktop and iPhone.
-8. Contact lands correctly on desktop and iPhone.
-9. Search/filter smoke test passes.
-10. Dynamic result count updates correctly.
-11. View Position opens.
-12. Similar Positions opens selected position at the top.
-13. +Shortlist adds/removes and persists through refresh on the same browser/device.
-14. Maximum-three shortlist limit works.
-15. Copy Link opens the intended exact Position ID route.
-16. Share output remains clean in email, SMS and LinkedIn use cases.
-17. Career inquiry submission succeeds.
-18. Inquiry success state and brief AGILE celebration work.
-19. Market Insights submission succeeds.
-20. Client Hiring Support submission succeeds.
-21. Desktop, laptop/tablet and iPhone layouts remain usable.
-22. No overlapping section landings or excessive dead space.
-23. Final green baseline SHA is updated here after all tests pass.
+1. Preserve protected recruiter/candidate workflows.
+2. Run Project Check.
+3. Confirm job validation, lint, and production build pass.
+4. Confirm Vercel production deployment succeeds.
+5. Smoke-test the changed functional area in production.
+6. Check responsive behavior affected by the change.
+7. Record the replacement baseline SHA here only after verification.
 
 ## RECOVERY PROCEDURE
 
 If a production change breaks Careers:
 
 1. Stop adding new changes.
-2. Return to the last documented green baseline SHA.
+2. Return to `cc2d5c8104d092426dd8efaab8e4813d8582339a`.
 3. Compare the breaking commit against that baseline.
 4. Restore/revert only the breaking change when possible.
-5. Confirm Vercel deployment.
-6. Smoke-test the protected recruiter workflow.
-7. Update this checkpoint with the repaired green baseline.
+5. Confirm Project Check.
+6. Confirm Vercel deployment.
+7. Smoke-test the protected recruiter workflow.
+8. Update this checkpoint only after the repaired code is verified.
 
 Never reconstruct the site from memory if a documented Git baseline exists.
 
+## NON-BLOCKING MAINTENANCE
+
+GitHub Actions currently emits one infrastructure warning: Node.js 20-based `actions/checkout@v4` and `actions/setup-node@v4` are being forced to Node.js 24 by the runner. The Project Check still passes. Treat this as workflow maintenance, not a production Careers failure.
+
 ## IMMEDIATE NEXT WORK
 
-Launch-critical Careers testing only. The detailed August 10 pass/fail observations and repair queue are recorded in `docs/CAREERS_TEST_CHECKPOINT_2026-08-10.md`.
+Careers has a documented GREEN recovery baseline. Do not reopen broad feature work tonight unless required for a confirmed production defect.
 
-Continue the remaining launch tests before applying the collected repair batch:
+Next planned development phase after Careers is locked:
 
-- Complete any remaining navigation/responsive checks.
-- Complete Search Careers/filter checks not already verified.
-- Complete View Position / Similar Positions checks not already verified.
-- Complete shortlist persistence checks not already verified.
-- Complete remaining share-channel checks, including LinkedIn-style use if still outstanding.
-- Complete Market Insights submission test.
-- Complete Client Hiring Support submission test.
-- Record any additional visual/function defects in the August 10 testing checkpoint.
-- Then fix only the documented defects.
-- Run Project Check and verify Vercel.
-- Re-test the repaired functions.
-- Freeze final Careers SHA only after the launch gate passes.
-
-After Careers is locked, immediately begin the main AGILE website rebuild using this design system and rebuild direction.
+Begin the main AGILE website rebuild using the established Careers design system and rebuild direction.
