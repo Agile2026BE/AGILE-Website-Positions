@@ -36,7 +36,7 @@ export default function HeroSection() {
     <section className={`hero ${styles.hero}`} id="top">
       <div className={`container hero-inner ${styles.inner}`}>
         <p className={`hero-eyebrow ${styles.eyebrow}`}>
-          SPECIALIZED AEC RECRUITING
+          <em>SPECIALIZED</em> AEC RECRUITING
         </p>
 
         <h1 className={`hero-title ${styles.title}`}>
