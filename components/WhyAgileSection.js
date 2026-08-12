@@ -1,9 +1,9 @@
 import styles from "./WhyAgileSection.module.css";
 
 const steps = [
-  { number: "01", title: "You built the experience", copy: "We learn what matters before your name ever reaches a client." },
-  { number: "02", title: "We recommend you", copy: "We know our Client's leadership on a first-name basis." },
-  { number: "03", title: "Build what comes next", copy: "The right introduction creates the opportunity to build something better together." },
+  { number: "01", title: "Your career path is discussed clearly", copy: "We learn what matters most to you and which direction you want your career to follow." },
+  { number: "02", title: "We know our clients on a first name basis", copy: "We have established relationships directly with current hiring leadership." },
+  { number: "03", title: "Extensive market intelligence and client insight", copy: "We properly present your experience to generate interview interest on your behalf." },
 ];
 
 export default function WhyAgileSection() {
