@@ -9,6 +9,7 @@ import { jobs1133To1142 } from "./jobs/positions-1133-1142.js";
 import { jobs1143To1152 } from "./jobs/positions-1143-1152.js";
 import { jobs1153To1162 } from "./jobs/positions-1153-1162.js";
 import { jobs1163To1172 } from "./jobs/positions-1163-1172.js";
+import { jobs1173To1180 } from "./jobs/positions-1173-1180.js";
 
 import details1001To1010 from "./jobDetails/details-1001-1010.js";
 import details1011To1020 from "./jobDetails/details-1011-1020.js";
@@ -42,6 +43,7 @@ const coreJobs = [
   ...jobs1143To1152,
   ...jobs1153To1162,
   ...jobs1163To1172,
+  ...jobs1173To1180,
 ];
 
 const detailOverlays = [
