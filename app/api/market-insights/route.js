@@ -7,11 +7,13 @@ function safe(value) { return String(value ?? "").trim(); }
 export async function POST(request) {
   try {
     const form = await request.formData();
+    const name = safe(form.get("name"));
     const email = safe(form.get("email"));
     const discipline = safe(form.get("discipline"));
     const location = safe(form.get("location"));
     const experience = safe(form.get("experience"));
 
+    if (!name) return NextResponse.json({ error: "Please enter your first and last name." }, { status: 400 });
     if (!email) return NextResponse.json({ error: "Please enter your email address." }, { status: 400 });
 
     const apiKey = process.env.RESEND_API_KEY;
@@ -21,10 +23,11 @@ export async function POST(request) {
       from: process.env.INQUIRY_FROM_EMAIL || "AGILE Careers <onboarding@resend.dev>",
       to: ["careers@agileconsultingsolutions.com"],
       reply_to: email,
-      subject: `Market Insights · ${discipline || "AEC Professional"} · ${location || "Location open"}`,
+      subject: `Market Insights · ${name} · ${discipline || "AEC Professional"} · ${location || "Location open"}`,
       text: [
         "New AGILE Market Insights request",
         "",
+        `Name: ${name}`,
         `Email: ${email}`,
         `Discipline: ${discipline || "Not provided"}`,
         `Location: ${location || "Not provided"}`,
