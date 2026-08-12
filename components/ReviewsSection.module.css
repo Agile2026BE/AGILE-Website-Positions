@@ -58,6 +58,11 @@
   align-items: start;
 }
 
+/* Safety guard: the approved Reviews presentation is always exactly three rotating cards. */
+.grid > :not(:nth-last-child(-n+3)) {
+  display: none;
+}
+
 .review {
   min-height: 0;
   margin: 0;
