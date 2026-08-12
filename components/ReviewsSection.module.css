@@ -27,8 +27,8 @@
 
 .headingRow {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(260px, 0.9fr);
-  gap: 42px;
+  grid-template-columns: 1fr;
+  gap: 0;
   align-items: end;
   margin-bottom: 20px;
 }
@@ -37,10 +37,11 @@
   margin: 0;
   color: #173d5e;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.25rem, 3.55vw, 3rem);
+  font-size: clamp(2.15rem, 3.15vw, 2.85rem);
   font-weight: 400;
   line-height: 1.01;
   letter-spacing: -0.025em;
+  white-space: nowrap;
 }
 
 .copy {
@@ -83,13 +84,17 @@
   font-weight: 800;
 }
 
+@media (max-width: 1100px) {
+  .heading { font-size: clamp(2rem, 3.6vw, 2.55rem); }
+}
+
 @media (max-width: 860px) {
   .section { padding: 32px 0 28px; }
   .panel { padding: 24px 18px 22px; border-radius: 12px; }
   .headingRow,
   .grid { grid-template-columns: 1fr; }
   .headingRow { gap: 12px; margin-bottom: 16px; }
-  .heading { font-size: clamp(2rem, 8vw, 2.65rem); }
+  .heading { font-size: clamp(2rem, 8vw, 2.65rem); white-space: normal; }
   .heading br { display: none; }
   .review { padding: 18px 20px 17px; }
   .review p { font-size: 1rem; line-height: 1.46; }
