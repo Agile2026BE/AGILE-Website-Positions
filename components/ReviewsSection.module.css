@@ -94,7 +94,7 @@
   .headingRow,
   .grid { grid-template-columns: 1fr; }
   .headingRow { gap: 12px; margin-bottom: 16px; }
-  .heading { font-size: clamp(2rem, 8vw, 2.65rem); white-space: normal; }
+  .heading { font-size: clamp(1.7rem, 6.7vw, 2.05rem); line-height: 1.03; white-space: normal; }
   .heading br { display: none; }
   .review { padding: 18px 20px 17px; }
   .review p { font-size: 1rem; line-height: 1.46; }
