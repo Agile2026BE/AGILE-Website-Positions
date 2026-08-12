@@ -3,7 +3,7 @@ import styles from "./WhyAgileSection.module.css";
 const steps = [
   { number: "01", title: "Your career path is discussed clearly", copy: "We learn what matters most to you and which direction you want your career to follow." },
   { number: "02", title: "We know our clients on a first name basis", copy: "We have established relationships directly with current hiring leadership." },
-  { number: "03", title: "Extensive market intelligence and client insight", copy: "We properly present your experience to generate interview interest on your behalf." },
+  { number: "03", title: "Extensive client insight and market intelligence", copy: "We properly present your experience to generate interview interest on your behalf." },
 ];
 
 export default function WhyAgileSection() {
