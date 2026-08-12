@@ -25,7 +25,7 @@ export default function WhyAgileSection() {
       </div>
 
       <div className={styles.storyText}>
-        <p className={styles.challenge}>Your experience has created value.</p>
+        <p className={styles.challenge}>Your career has created real professional value.</p>
         <p className={styles.recommendLine}>Your introduction should reflect it.</p>
         <h3 className={styles.firstImpression}>Make your first impression <span className={styles.really}>really</span> count.</h3>
         <p className={styles.supporting}>Let our established connections and reputation be your advantage.</p>
