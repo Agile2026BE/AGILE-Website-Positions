@@ -18,9 +18,9 @@ export const jobBoardConfig = {
   results: {
     availableLabel: "Available Positions found.",
     allOpportunitiesLabel: "All current opportunities",
-    initialVisibleCount: 24,
+    initialVisibleCount: 12,
     totalPositions: 170,
-    showMoreLabel: "Show 24 More Positions",
+    showMoreLabel: "Show 12 More Positions",
   },
   cardLabels: {
     location: "Location",
