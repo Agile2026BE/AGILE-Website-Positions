@@ -16,21 +16,8 @@
   letter-spacing: .17em;
   text-transform: uppercase;
   text-align:left;
-  background: linear-gradient(90deg,
-    #a8d9ee 0%,
-    #a8d9ee 46%,
-    #d8f2ff 48.5%,
-    #ffffff 50%,
-    #d8f2ff 51.5%,
-    #a8d9ee 54%,
-    #a8d9ee 100%);
-  background-size: 360% 100%;
-  background-position: 140% 0;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: eyebrowShimmer 6.5s linear infinite;
 }
+.eyebrow em { color: inherit; font-style: italic; }
 .title { max-width: 1080px; margin: 0; color: #fff; font-family: Georgia,"Times New Roman",serif; font-size: clamp(3rem,4.15vw,4.35rem); font-weight: 400; line-height: 1.03; letter-spacing: -.03em; text-align:left; }
 .desktopTitle { display:block; }
 .mobileTitle { display:none; }
@@ -87,11 +74,6 @@
   animation-delay:calc(170ms + var(--badge-delay));
 }
 
-@keyframes eyebrowShimmer {
-  0%, 74% { background-position: 140% 0; }
-  91%, 100% { background-position: -140% 0; }
-}
-
 @keyframes badgeArrive {
   from { opacity:.58; transform:translateY(3px); }
   to { opacity:1; transform:translateY(0); }
@@ -139,12 +121,6 @@
 }
 
 @media (prefers-reduced-motion:reduce){
-  .eyebrow {
-    animation:none;
-    background:none;
-    color:#a8d9ee;
-    -webkit-text-fill-color:currentColor;
-  }
   .badge,
   .badgeVisible,
   .check,
