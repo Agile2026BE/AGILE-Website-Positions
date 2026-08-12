@@ -12,6 +12,9 @@ export async function POST(request) {
     const phone = safe(form.get("career_inquiry_phone") || form.get("phone"));
     const textingConsent = safe(form.get("textingConsent"));
     const discipline = safe(form.get("discipline"));
+    const bestTime = safe(form.get("bestTime"));
+    const contactMethod = safe(form.get("contactMethod"));
+    const reason = safe(form.get("quickMessage"));
     const positionId = safe(form.get("positionId"));
     const positionTitle = safe(form.get("positionTitle"));
     const shortlistedPositions = safe(form.get("shortlistedPositions"));
@@ -24,6 +27,14 @@ export async function POST(request) {
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) return NextResponse.json({ error: "Inquiry delivery is not configured yet. Please email careers@agileconsultingsolutions.com." }, { status: 503 });
 
+    const reasonLabels = {
+      position: "Interested in a specific position",
+      confidential: "Discuss career options",
+      resume: "Question before sharing résumé",
+      guidance: "Confidential career guidance",
+      other: "Other career inquiry",
+    };
+
     const payload = {
       from: process.env.INQUIRY_FROM_EMAIL || "AGILE Careers <onboarding@resend.dev>",
       to: ["careers@agileconsultingsolutions.com"],
@@ -32,6 +43,9 @@ export async function POST(request) {
       text: [
         "New AGILE Careers inquiry", "",
         `Name: ${name}`, `Email: ${email}`, `Phone: ${phone || "Not provided"}`,
+        `Best time to reach: ${bestTime || "No preference"}`,
+        `Preferred contact method: ${contactMethod || "No preference"}`,
+        `Reason for reaching out: ${reasonLabels[reason] || reason || "Not provided"}`,
         `Texting permission: ${phone ? (textingConsent === "Yes" ? "Yes" : "No") : "Not applicable"}`,
         `Discipline: ${discipline || "Not provided"}`, `Position ID: ${positionId || "Not selected"}`,
         `Position: ${positionTitle || "Not selected"}`,
