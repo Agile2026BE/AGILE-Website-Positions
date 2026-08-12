@@ -16,13 +16,20 @@
   letter-spacing: .17em;
   text-transform: uppercase;
   text-align:left;
-  background: linear-gradient(100deg,#a8d9ee 0%,#a8d9ee 38%,#ffffff 49%,#dff5ff 53%,#a8d9ee 64%,#a8d9ee 100%);
-  background-size: 240% 100%;
-  background-position: 120% 0;
+  background: linear-gradient(90deg,
+    #a8d9ee 0%,
+    #a8d9ee 46%,
+    #d8f2ff 48.5%,
+    #ffffff 50%,
+    #d8f2ff 51.5%,
+    #a8d9ee 54%,
+    #a8d9ee 100%);
+  background-size: 360% 100%;
+  background-position: 140% 0;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: eyebrowShimmer 6s ease-in-out infinite;
+  animation: eyebrowShimmer 6.5s linear infinite;
 }
 .title { max-width: 1080px; margin: 0; color: #fff; font-family: Georgia,"Times New Roman",serif; font-size: clamp(3rem,4.15vw,4.35rem); font-weight: 400; line-height: 1.03; letter-spacing: -.03em; text-align:left; }
 .desktopTitle { display:block; }
@@ -81,9 +88,8 @@
 }
 
 @keyframes eyebrowShimmer {
-  0%,72% { background-position:120% 0; }
-  84% { background-position:-120% 0; }
-  100% { background-position:-120% 0; }
+  0%, 74% { background-position: 140% 0; }
+  91%, 100% { background-position: -140% 0; }
 }
 
 @keyframes badgeArrive {
