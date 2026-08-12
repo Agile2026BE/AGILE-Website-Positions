@@ -1,11 +1,11 @@
 .section {
   background: #f7f9fb;
-  padding: 64px 0 72px;
+  padding: 48px 0 42px;
 }
 
 .panel {
   max-width: 1360px;
-  padding: 38px 38px 36px;
+  padding: 30px 34px 28px;
   border: 1px solid #c9dce7;
   border-radius: 16px;
   background: #edf6fa;
@@ -14,12 +14,12 @@
 .badge {
   display: inline-flex;
   align-items: center;
-  margin: 0 0 12px;
-  padding: 7px 13px;
+  margin: 0 0 10px;
+  padding: 6px 12px;
   border-radius: 999px;
   background: #d9eef7;
   color: #0878ad;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -28,38 +28,39 @@
 .headingRow {
   display: grid;
   grid-template-columns: minmax(0, 2fr) minmax(260px, 0.9fr);
-  gap: 48px;
+  gap: 42px;
   align-items: end;
-  margin-bottom: 26px;
+  margin-bottom: 20px;
 }
 
 .heading {
   margin: 0;
   color: #173d5e;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(2.45rem, 4vw, 3.35rem);
+  font-size: clamp(2.25rem, 3.55vw, 3rem);
   font-weight: 400;
-  line-height: 1.02;
+  line-height: 1.01;
   letter-spacing: -0.025em;
 }
 
 .copy {
-  margin: 0 0 4px;
+  margin: 0 0 2px;
   color: #647689;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: .94rem;
+  line-height: 1.45;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 14px;
+  align-items: start;
 }
 
 .review {
-  min-height: 220px;
+  min-height: 0;
   margin: 0;
-  padding: 25px 27px 23px;
+  padding: 20px 23px 19px;
   border: 0;
   border-left: 3px solid #e2aa00;
   border-radius: 11px;
@@ -71,41 +72,25 @@
   margin: 0;
   color: #284a65;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.16rem;
-  line-height: 1.55;
+  font-size: 1.04rem;
+  line-height: 1.48;
 }
 
 .review footer {
-  margin-top: 18px;
+  margin-top: 14px;
   color: #0878ad;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 800;
 }
 
 @media (max-width: 860px) {
-  .section {
-    padding: 38px 0 46px;
-  }
-
-  .panel {
-    padding: 28px 22px;
-    border-radius: 12px;
-  }
-
+  .section { padding: 32px 0 28px; }
+  .panel { padding: 24px 18px 22px; border-radius: 12px; }
   .headingRow,
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .headingRow {
-    gap: 16px;
-  }
-
-  .heading br {
-    display: none;
-  }
-
-  .review {
-    min-height: 0;
-  }
+  .grid { grid-template-columns: 1fr; }
+  .headingRow { gap: 12px; margin-bottom: 16px; }
+  .heading { font-size: clamp(2rem, 8vw, 2.65rem); }
+  .heading br { display: none; }
+  .review { padding: 18px 20px 17px; }
+  .review p { font-size: 1rem; line-height: 1.46; }
 }
