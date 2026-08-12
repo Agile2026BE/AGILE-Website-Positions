@@ -2,7 +2,7 @@ import styles from "./WhyAgileSection.module.css";
 
 const steps = [
   { number: "01", title: "You built the experience", copy: "We learn what matters before your name ever reaches a client." },
-  { number: "02", title: "We recommend you", copy: "We know their hiring leadership on a first name basis." },
+  { number: "02", title: "We recommend you", copy: "We know our Client's leadership on a first-name basis." },
   { number: "03", title: "Build what comes next", copy: "The right introduction creates the opportunity to build something better together." },
 ];
 
@@ -32,7 +32,7 @@ export default function WhyAgileSection() {
       </div>
 
       <div className={styles.grid}>
-        {steps.map((step) => <article className={styles.step} key={step.number}><span className={styles.number}>{step.number}</span><h3>{step.title}</h3><p>{step.copy}</p></article>)}
+        {steps.map((step) => <article className={styles.step} key={step.number}><div className={styles.stepHeading}><span className={styles.number}>{step.number}</span><h3>{step.title}</h3></div><p>{step.copy}</p></article>)}
       </div>
     </section>
   );
