@@ -30,14 +30,12 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
           isShortlisted={isShortlisted}
           onClick={() => onShortlist?.(job)}
         />
+        {job.id ? <span className={styles.positionId}>Position ID {job.id}</span> : null}
       </div>
 
       <div className={styles.cardContent}>
         <p>{job.discipline}</p>
-        <h3>
-          {job.title}
-          {job.id ? <span> · ID {job.id}</span> : null}
-        </h3>
+        <h3>{job.title}</h3>
         {job.summary ? <p className={styles.summary}>{job.summary}</p> : null}
 
         <dl className={styles.meta}>
