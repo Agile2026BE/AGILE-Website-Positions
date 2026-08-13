@@ -29,7 +29,7 @@ export default function MarketInsightsSection() {
   return (
     <section className={styles.section} id="market-insights" aria-labelledby="market-insights-title">
       <div className={styles.panel}>
-        {celebrating?<div className={styles.confetti} aria-hidden="true">{Array.from({length:48}).map((_,index)=><i key={index} style={{"--i":index}} />)}</div>:null}
+        {celebrating?<div className={styles.confetti} aria-hidden="true">{Array.from({length:40}).map((_,index)=><i key={index} style={{"--i":index}} />)}</div>:null}
         <div>
           <p className={styles.eyebrow}>AGILE MARKET INSIGHTS</p>
           <h2 className={styles.title} id="market-insights-title">Stay current on your market.</h2>
