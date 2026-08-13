@@ -9,7 +9,7 @@
 }
 .card:hover { transform:translateY(-5px); border-color:#c7d7e2; box-shadow:0 16px 34px rgba(25,57,82,.12); }
 .shortlist { position:absolute; top:18px; right:18px; z-index:2; }
-.positionId { margin:0 0 14px; color:#748292; font-size:.64rem; font-weight:700; letter-spacing:.04em; text-align:right; }
+.positionId { display:table; margin:0 0 14px auto; padding:5px 9px; border:1px solid #c9a85d; border-radius:5px; background:#f7f0df; color:#745719; font-size:.68rem; font-weight:800; letter-spacing:.05em; text-align:right; }
 .cardContent { display:block; color:inherit; }
 .cardContent > p:first-child { margin:0 105px 18px 0; color:#0874ae; font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
 .cardContent h3 { margin:0 0 9px; color:#173958; font-family:Arial,Helvetica,sans-serif; font-size:clamp(1rem,1.08vw,1.12rem); font-weight:700; line-height:1.22; letter-spacing:-.01em; text-wrap:balance; }
@@ -24,4 +24,4 @@
 .actions { display:flex; align-items:center; gap:12px; margin-top:auto; }
 .actions > :first-child { flex:1; }
 .shareStatus { align-self:flex-end; margin:7px 2px 0 0; font-size:.82rem; font-weight:700; color:var(--text-muted); text-align:right; }
-@media(max-width:520px){.card{min-height:auto;padding:18px 16px 16px}.shortlist{top:14px;right:14px}.positionId{margin-bottom:10px;font-size:.6rem;text-align:left}.cardContent>p:first-child{margin:0 96px 13px 0}.cardContent h3{font-size:1rem;line-height:1.2;text-wrap:pretty;margin-bottom:7px}.summary{font-size:.86rem;line-height:1.4;-webkit-line-clamp:6}.meta{grid-template-columns:1fr 1fr;gap:9px 12px;margin:13px 0;padding-top:13px}.metaRow dt{margin-bottom:3px}.metaRow dd{font-size:.81rem}.tags{gap:6px;margin-bottom:9px}.tags span{padding:4px 8px}.actions{gap:9px}}
+@media(max-width:520px){.card{min-height:auto;padding:18px 16px 16px}.shortlist{top:14px;right:14px}.positionId{margin:0 0 10px;padding:5px 8px;font-size:.65rem;text-align:left}.cardContent>p:first-child{margin:0 96px 13px 0}.cardContent h3{font-size:1rem;line-height:1.2;text-wrap:pretty;margin-bottom:7px}.summary{font-size:.86rem;line-height:1.4;-webkit-line-clamp:6}.meta{grid-template-columns:1fr 1fr;gap:9px 12px;margin:13px 0;padding-top:13px}.metaRow dt{margin-bottom:3px}.metaRow dd{font-size:.81rem}.tags{gap:6px;margin-bottom:9px}.tags span{padding:4px 8px}.actions{gap:9px}}
