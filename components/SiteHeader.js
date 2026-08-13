@@ -4,18 +4,10 @@ import { useEffect } from "react";
 import styles from "./SiteHeader.module.css";
 
 const BASE_URL = "https://careers.agileconsultingsolutions.com";
-const MOBILE_BREAKPOINT = 760;
 
 function getTargetId(href) {
   const hashIndex = href.indexOf("#");
   return hashIndex >= 0 ? href.slice(hashIndex + 1) : "";
-}
-
-function resolveTarget(targetId) {
-  if (targetId === "agile-insights") {
-    return document.getElementById("market-insights") || document.getElementById("agile-insights");
-  }
-  return document.getElementById(targetId);
 }
 
 function scrollToTarget(targetId, behavior = "smooth") {
@@ -24,7 +16,7 @@ function scrollToTarget(targetId, behavior = "smooth") {
     return true;
   }
 
-  const target = resolveTarget(targetId);
+  const target = document.getElementById(targetId);
   const header = document.querySelector(".site-header");
   if (!target || !header) return false;
 
@@ -49,8 +41,12 @@ export default function SiteHeader() {
 
     alignCurrentHash();
     window.addEventListener("hashchange", alignCurrentHash);
+    window.addEventListener("resize", alignCurrentHash);
 
-    return () => window.removeEventListener("hashchange", alignCurrentHash);
+    return () => {
+      window.removeEventListener("hashchange", alignCurrentHash);
+      window.removeEventListener("resize", alignCurrentHash);
+    };
   }, []);
 
   function handleNavigation(event, href) {
