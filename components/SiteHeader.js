@@ -11,22 +11,26 @@ function getTargetId(href) {
   return hashIndex >= 0 ? href.slice(hashIndex + 1) : "";
 }
 
-function scrollToTarget(targetId, behavior = "smooth") {
-  const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
-  if (!isMobile && targetId !== "contact") return false;
+function resolveTarget(targetId) {
+  if (targetId === "agile-insights") {
+    return document.getElementById("market-insights") || document.getElementById("agile-insights");
+  }
+  return document.getElementById(targetId);
+}
 
+function scrollToTarget(targetId, behavior = "smooth") {
   if (targetId === "top") {
     window.scrollTo({ top: 0, behavior });
     return true;
   }
 
-  const target = document.getElementById(targetId);
+  const target = resolveTarget(targetId);
   const header = document.querySelector(".site-header");
   if (!target || !header) return false;
 
   const headerHeight = Math.ceil(header.getBoundingClientRect().height);
   const targetTop = target.getBoundingClientRect().top + window.scrollY;
-  const landingTop = Math.max(0, targetTop - headerHeight - 2);
+  const landingTop = Math.max(0, targetTop - headerHeight - 8);
 
   window.scrollTo({ top: landingTop, behavior });
   return true;
@@ -45,24 +49,17 @@ export default function SiteHeader() {
 
     alignCurrentHash();
     window.addEventListener("hashchange", alignCurrentHash);
-    window.addEventListener("resize", alignCurrentHash);
 
-    return () => {
-      window.removeEventListener("hashchange", alignCurrentHash);
-      window.removeEventListener("resize", alignCurrentHash);
-    };
+    return () => window.removeEventListener("hashchange", alignCurrentHash);
   }, []);
 
   function handleNavigation(event, href) {
     const url = new URL(href, window.location.href);
-    const isHomePage = window.location.hostname === url.hostname && window.location.pathname === "/";
-    if (!isHomePage) return;
-
+    const sameSite = window.location.hostname === url.hostname;
+    const homePath = window.location.pathname === "/";
     const targetId = getTargetId(href);
-    if (!targetId) return;
 
-    const shouldHandle = window.innerWidth <= MOBILE_BREAKPOINT || targetId === "contact";
-    if (!shouldHandle) return;
+    if (!sameSite || !homePath || !targetId) return;
 
     event.preventDefault();
     const nextHash = `#${targetId}`;
