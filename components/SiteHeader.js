@@ -41,11 +41,9 @@ export default function SiteHeader() {
 
     alignCurrentHash();
     window.addEventListener("hashchange", alignCurrentHash);
-    window.addEventListener("resize", alignCurrentHash);
 
     return () => {
       window.removeEventListener("hashchange", alignCurrentHash);
-      window.removeEventListener("resize", alignCurrentHash);
     };
   }, []);
 
