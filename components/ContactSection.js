@@ -76,7 +76,15 @@ export default function ContactSection() {
     setStatus(""); setCelebrating(false);
     setQuickMessage("lilly");
     setMessage(baseMessages.lilly);
-    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    const section = document.getElementById("contact");
+    const header = document.querySelector(".site-header");
+    if (section && header) {
+      const headerHeight = Math.ceil(header.getBoundingClientRect().height);
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: Math.max(0, sectionTop - headerHeight - 2), behavior: "smooth" });
+    }
+
     window.setTimeout(() => formRef.current?.querySelector('input[name="career_inquiry_name"]')?.focus({ preventScroll: true }), 500);
   }
 
