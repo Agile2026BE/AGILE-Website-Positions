@@ -30,7 +30,6 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
           isShortlisted={isShortlisted}
           onClick={() => onShortlist?.(job)}
         />
-        {job.id ? <span className={styles.positionId}>Position ID {job.id}</span> : null}
       </div>
 
       <div className={styles.cardContent}>
@@ -63,6 +62,8 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
           {job.credential ? <span>{job.credential}</span> : null}
           {job.bonus ? <span>Bonus</span> : null}
         </div>
+
+        {job.id ? <p className={styles.positionId}>Position ID {job.id}</p> : null}
       </div>
 
       <div className={`job-card-actions ${styles.actions}`}>
