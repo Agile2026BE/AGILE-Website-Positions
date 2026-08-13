@@ -70,12 +70,27 @@
     padding-bottom: 9px;
   }
   .wordmark { font-size: 1.55rem; }
-  .nav { width: 100%; justify-content: center; flex-wrap: nowrap; gap: 8px 12px; }
-  .nav a { font-size: .78rem; line-height: 1.2; white-space: nowrap; }
+  .nav { width: 100%; justify-content: center; flex-wrap: nowrap; gap: 6px; }
+  .nav a {
+    padding: 5px 7px;
+    border: 1px solid #c7dfeb;
+    border-radius: 999px;
+    background: #eef7fb;
+    color: #0b6f9f;
+    font-size: .76rem;
+    font-weight: 800;
+    line-height: 1.15;
+    white-space: nowrap;
+  }
+  .nav a:hover,
+  .nav a:focus-visible {
+    background: #dceff7;
+    color: #084f73;
+  }
   .searchCareers { margin-left: 0; padding: 9px 13px !important; }
 }
 
 @media (max-width: 390px) {
-  .nav { gap: 7px 9px; }
-  .nav a { font-size: .74rem; }
+  .nav { gap: 4px; }
+  .nav a { padding: 5px 5px; font-size: .71rem; }
 }
