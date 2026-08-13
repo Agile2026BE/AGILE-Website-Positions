@@ -11,8 +11,9 @@ function getTargetId(href) {
   return hashIndex >= 0 ? href.slice(hashIndex + 1) : "";
 }
 
-function scrollToMobileTarget(targetId, behavior = "smooth") {
-  if (window.innerWidth > MOBILE_BREAKPOINT) return false;
+function scrollToTarget(targetId, behavior = "smooth") {
+  const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+  if (!isMobile && targetId !== "contact") return false;
 
   if (targetId === "top") {
     window.scrollTo({ top: 0, behavior });
@@ -38,7 +39,7 @@ export default function SiteHeader() {
       if (!targetId) return;
 
       window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => scrollToMobileTarget(targetId, "auto"));
+        window.requestAnimationFrame(() => scrollToTarget(targetId, "auto"));
       });
     }
 
@@ -53,8 +54,6 @@ export default function SiteHeader() {
   }, []);
 
   function handleNavigation(event, href) {
-    if (window.innerWidth > MOBILE_BREAKPOINT) return;
-
     const url = new URL(href, window.location.href);
     const isHomePage = window.location.hostname === url.hostname && window.location.pathname === "/";
     if (!isHomePage) return;
@@ -62,12 +61,15 @@ export default function SiteHeader() {
     const targetId = getTargetId(href);
     if (!targetId) return;
 
+    const shouldHandle = window.innerWidth <= MOBILE_BREAKPOINT || targetId === "contact";
+    if (!shouldHandle) return;
+
     event.preventDefault();
     const nextHash = `#${targetId}`;
     if (window.location.hash !== nextHash) {
       window.history.pushState(null, "", nextHash);
     }
-    scrollToMobileTarget(targetId);
+    scrollToTarget(targetId);
   }
 
   const links = [
