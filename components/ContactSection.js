@@ -72,22 +72,6 @@ export default function ContactSection() {
     setMessage(value === "position" ? positionMessage(positionId, positionTitle) : baseMessages[value] ?? "");
   }
 
-  function contactLilly() {
-    setStatus(""); setCelebrating(false);
-    setQuickMessage("lilly");
-    setMessage(baseMessages.lilly);
-
-    const section = document.getElementById("contact");
-    const header = document.querySelector(".site-header");
-    if (section && header) {
-      const headerHeight = Math.ceil(header.getBoundingClientRect().height);
-      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top: Math.max(0, sectionTop - headerHeight - 2), behavior: "smooth" });
-    }
-
-    window.setTimeout(() => formRef.current?.querySelector('input[name="career_inquiry_name"]')?.focus({ preventScroll: true }), 500);
-  }
-
   async function handleSubmit(event) {
     event.preventDefault();
     const form = event.currentTarget;
@@ -124,7 +108,7 @@ export default function ContactSection() {
           </div>
           <aside className={styles.peopleCard} aria-label="AGILE communications and professional engagement">
             <p className={styles.peopleLabel}>AGILE COMMUNICATIONS</p><strong>Lilly Genao</strong><span>Communications &amp; Professional Engagement</span><span>Architecture, MEP Engineering &amp; Construction</span>
-            <button type="button" className={styles.peopleContactLink} onClick={contactLilly}>Contact Lilly through AGILE</button>
+            <a href="mailto:lgenao@agileconsultingsolutions.com" target="_blank" rel="noopener noreferrer">lgenao@agileconsultingsolutions.com</a>
             <a href="https://www.linkedin.com/in/lilly-genao-771ba338a/" target="_blank" rel="noreferrer">View Lilly on LinkedIn ↗</a>
           </aside>
         </div>
