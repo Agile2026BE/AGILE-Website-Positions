@@ -1,13 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import styles from "./MarketInsightsSection.module.css";
 
 export default function MarketInsightsSection() {
   const [status,setStatus]=useState("");
   const [sending,setSending]=useState(false);
   const [celebrating,setCelebrating]=useState(false);
-  const sectionRef=useRef(null);
 
   async function handleSubmit(event){
     event.preventDefault();
@@ -19,9 +18,8 @@ export default function MarketInsightsSection() {
       if(!response.ok) throw new Error(result.error||"Unable to save your request.");
       form.reset();
       setStatus("Success! You’re on the AGILE Market Insights list.");
-      setCelebrating(true);
-      window.requestAnimationFrame(()=>sectionRef.current?.scrollIntoView({behavior:"smooth",block:"start"}));
-      window.setTimeout(()=>setCelebrating(false),2400);
+      window.setTimeout(()=>setCelebrating(true),180);
+      window.setTimeout(()=>setCelebrating(false),3000);
     }catch(error){setStatus(error.message||"We could not save your request. Please try again.");}
     finally{setSending(false);}
   }
@@ -29,9 +27,9 @@ export default function MarketInsightsSection() {
   const success=status.startsWith("Success!");
 
   return (
-    <section ref={sectionRef} className={styles.section} id="market-insights" aria-labelledby="market-insights-title">
+    <section className={styles.section} id="market-insights" aria-labelledby="market-insights-title">
       <div className={styles.panel}>
-        {celebrating?<div className={styles.confetti} aria-hidden="true">{Array.from({length:38}).map((_,index)=><i key={index} style={{"--i":index}} />)}</div>:null}
+        {celebrating?<div className={styles.confetti} aria-hidden="true">{Array.from({length:48}).map((_,index)=><i key={index} style={{"--i":index}} />)}</div>:null}
         <div>
           <p className={styles.eyebrow}>AGILE MARKET INSIGHTS</p>
           <h2 className={styles.title} id="market-insights-title">Stay current on your market.</h2>
