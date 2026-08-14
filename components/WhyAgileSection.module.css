@@ -37,6 +37,7 @@
   .challenge{max-width:340px;margin:0 auto 9px;font-size:1.03rem;line-height:1.35;text-align:center}
   .recommendLine{max-width:350px;margin:0 auto 8px;font-size:clamp(.90rem,3.95vw,1rem);line-height:1.2;letter-spacing:-.025em;text-align:center;white-space:nowrap}
   .firstImpression{max-width:340px;margin:0 auto 14px;font-size:1.34rem;line-height:1.2;text-align:center}
+  .really{color:#0f6f8d;font-weight:700}
   .really::before{content:"";display:block}
   .supporting{max-width:350px;margin:0 auto;font-size:1.08rem;line-height:1.38;text-align:center}
   .grid{width:auto;margin:0;grid-template-columns:1fr;gap:16px;padding:22px 22px 40px}
