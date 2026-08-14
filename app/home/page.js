@@ -15,7 +15,11 @@ export default function CorporateHomePage() {
         <div className={styles.nav}>
           <Link href="/home" className={styles.brand} aria-label="AGILE home"><BrandLogo className={styles.logo} /></Link>
           <nav aria-label="Main navigation">
-            <Link href="/">Careers</Link><a href="#professionals">Professionals</a><a href="#clients">Clients</a><a href="#insights">Insights</a><a href="#contact">Contact</a>
+            <Link href="/">Careers</Link>
+            <Link href="/professionals">Expectations</Link>
+            <Link href="/clients">Hiring Support</Link>
+            <Link href="/insights">Insights</Link>
+            <Link href="/#contact">Contact</Link>
           </nav>
           <Link href="/#positions" className={styles.navCta}>Explore Positions</Link>
         </div>
@@ -30,41 +34,59 @@ export default function CorporateHomePage() {
         <div className={styles.heroContent}>
           <p className={styles.eyebrow}>ARCHITECTURE · ENGINEERING · CONSTRUCTION</p>
           <h1>What’s Your <em>Next Move?</em></h1>
-          <p className={styles.lead}>Specialized recruiting and career representation connecting accomplished AEC Professionals with firms shaping the built environment.</p>
+          <p className={styles.lead}>Specialized recruiting and career representation connecting accomplished AEC professionals with firms shaping the built environment.</p>
           <div className={styles.heroActions}>
-            <Link href="/#positions" className={styles.primary}>Explore Career Opportunities</Link>
-            <a href="#clients" className={styles.secondary}>Hiring Support</a>
+            <Link href="/#positions" className={styles.primary}>Explore Positions</Link>
+            <Link href="/clients" className={styles.secondary}>Hiring Support</Link>
           </div>
           <div className={styles.trustRow}><span>✓ Confidential Career Representation</span><span>✓ Direct Hiring Connections</span><span>✓ No Account Setup Required</span></div>
         </div>
-        <div className={styles.scrollCue}>MOVE FORWARD <span>↓</span></div>
       </section>
 
-      <section className={styles.intro} id="professionals">
-        <div className={styles.sectionLabel}>THE AGILE ADVANTAGE</div>
+      <section className={styles.intro}>
+        <div className={styles.sectionLabel}>AGILE BUSINESS CONSULTING</div>
         <div className={styles.introGrid}>
-          <h2>Your experience has created value.<br/><em>Your next move should reflect it.</em></h2>
-          <div><p>AGILE works directly with hiring leadership across Architecture, Engineering, Construction, Commissioning, and Owner’s Representation. We help experienced Professionals understand the opportunity before making a move.</p><Link href="/" className={styles.textLink}>Search current positions →</Link></div>
+          <h2>Specialized recruiting for the built environment.<br/><em>Personal representation for your next move.</em></h2>
+          <div>
+            <p>AGILE is a specialized recruiting and staffing firm serving the Architecture, Engineering, and Construction (AEC) industry. We help professionals make informed, strategic career decisions by preparing them to connect with firms that value technical expertise, project experience, and long-term career growth.</p>
+            <p>We recruit across New York, New Jersey, Pennsylvania, Massachusetts, California, Colorado, and Florida. Our client relationships include ENR Top 100 and Top 500 Design Firms, nationally recognized multidisciplinary consulting firms, notable mid-size and regional consultants, and Best Places to Work award winners.</p>
+            <p>Professional discretion is maintained throughout the search process. AGILE provides professional representation, current market intelligence, access to direct hire opportunities, personalized interview preparation, compensation and start-date negotiation, and onboarding assistance through a dedicated point of contact.</p>
+          </div>
         </div>
       </section>
 
-      <section className={styles.disciplines}>
-        <article><span>01</span><h3>Architecture</h3><p>Design leadership, project delivery, interiors, planning, and technical architecture.</p></article>
-        <article><span>02</span><h3>Engineering</h3><p>Mechanical, Electrical, Plumbing, Fire Protection, Civil, Transportation, and Infrastructure.</p></article>
-        <article><span>03</span><h3>Construction</h3><p>Project management, construction leadership, commissioning, and owner-side representation.</p></article>
+      <section className={styles.finalCta}>
+        <p className={styles.sectionLabel}>CAREER OPPORTUNITIES</p>
+        <h2>Your next opportunity may already be here.</h2>
+        <p>Step directly into the AGILE Careers search experience.</p>
+        <div className={styles.heroActions}><Link href="/#positions" className={styles.primary}>Explore Positions</Link></div>
       </section>
 
-      <section className={styles.markets} id="insights">
-        <div><p className={styles.eyebrowDark}>BUILT ENVIRONMENT · REAL OPPORTUNITY</p><h2>Where design, infrastructure, and careers are moving.</h2></div>
-        <div className={styles.marketGrid}><span>New York</span><span>New Jersey</span><span>Pennsylvania</span><span>Massachusetts</span><span>Connecticut</span><span>North Carolina</span><span>Florida</span><span>Colorado</span><span>California</span></div>
+      <section className={styles.clientSection}>
+        <div className={styles.clientCopy}>
+          <p className={styles.eyebrow}>FOR AEC FIRMS & PRIVATE OWNERS</p>
+          <h2>Hiring support built around your standards.</h2>
+          <p>AGILE provides focused recruiting support for firms that need specialized technical talent, responsive communication, and a partner who understands the AEC market.</p>
+          <Link href="/clients" className={styles.lightButton}>Explore Hiring Support</Link>
+        </div>
+        <div className={styles.metrics}>
+          <div><strong>Direct</strong><span>Access to hiring leadership and specialized talent</span></div>
+          <div><strong>Focused</strong><span>Recruiting aligned with discipline, market, and project needs</span></div>
+          <div><strong>Confidential</strong><span>Professional representation throughout the process</span></div>
+          <div><strong>AEC</strong><span>Architecture · Engineering · Construction</span></div>
+        </div>
       </section>
 
-      <section className={styles.clientSection} id="clients">
-        <div className={styles.clientCopy}><p className={styles.eyebrow}>FOR AEC FIRMS & PRIVATE OWNERS</p><h2>Specialized talent.<br/>Stronger project teams.</h2><p>When the right hire matters, access matters. AGILE provides focused recruiting support built around your discipline, market, project demands, and hiring priorities.</p><a href="#contact" className={styles.lightButton}>Start a Hiring Conversation</a></div>
-        <div className={styles.metrics}><div><strong>9</strong><span>Key U.S. Markets</span></div><div><strong>AEC</strong><span>Specialized Recruiting</span></div><div><strong>Direct</strong><span>Hiring Leadership Access</span></div><div><strong>Focused</strong><span>Professional Representation</span></div></div>
+      <section className={styles.finalCta}>
+        <p className={styles.sectionLabel}>LEARN MORE ABOUT AGILE</p>
+        <h2>Clear information. Strong opportunities. One connected experience.</h2>
+        <div className={styles.heroActions}>
+          <Link href="/professionals" className={styles.outlineDark}>Expectations</Link>
+          <Link href="/insights" className={styles.outlineDark}>Insights</Link>
+          <Link href="/#contact" className={styles.outlineDark}>Contact</Link>
+        </div>
       </section>
 
-      <section className={styles.finalCta} id="contact"><p className={styles.sectionLabel}>YOUR NEXT MOVE</p><h2>Ready when you are.</h2><p>Explore current opportunities or start a confidential conversation with AGILE.</p><div className={styles.heroActions}><Link href="/#positions" className={styles.primary}>Search Careers</Link><a href="mailto:careers@agileconsultingsolutions.com" className={styles.outlineDark}>Start a Conversation</a></div></section>
       <SiteFooter />
     </main>
   );
