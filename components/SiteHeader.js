@@ -42,9 +42,7 @@ export default function SiteHeader() {
     alignCurrentHash();
     window.addEventListener("hashchange", alignCurrentHash);
 
-    return () => {
-      window.removeEventListener("hashchange", alignCurrentHash);
-    };
+    return () => window.removeEventListener("hashchange", alignCurrentHash);
   }, []);
 
   function handleNavigation(event, href) {
@@ -57,35 +55,36 @@ export default function SiteHeader() {
 
     event.preventDefault();
     const nextHash = `#${targetId}`;
-    if (window.location.hash !== nextHash) {
-      window.history.pushState(null, "", nextHash);
-    }
+    if (window.location.hash !== nextHash) window.history.pushState(null, "", nextHash);
     scrollToTarget(targetId);
   }
 
   const links = [
-    ["agile-insights", "AGILE Insights"],
-    ["positions", "Positions"],
-    ["reviews", "Reviews"],
-    ["contact", "Contact"],
-    ["top", "Top"],
+    ["/", "Careers"],
+    ["/professionals", "Professionals"],
+    ["/clients", "Clients"],
+    ["/insights", "Insights"],
+    ["/#contact", "Contact"],
   ];
 
   return (
     <header className={`site-header ${styles.header}`}>
       <div className={`container site-header-inner ${styles.inner}`}>
-        <a className={`brand ${styles.brand}`} href={`${BASE_URL}/`} aria-label="AGILE Careers home">
+        <a className={`brand ${styles.brand}`} href={`${BASE_URL}/home`} aria-label="AGILE home">
           <span className={styles.wordmark}>AGILE</span>
         </a>
         <nav className={`site-nav ${styles.nav}`} aria-label="Primary navigation">
-          {links.map(([targetId, label]) => {
-            const href = `${BASE_URL}/#${targetId}`;
+          {links.map(([path, label]) => {
+            const href = `${BASE_URL}${path}`;
             return (
-              <a key={targetId} href={href} onClick={(event) => handleNavigation(event, href)}>
+              <a key={path} href={href} onClick={(event) => handleNavigation(event, href)}>
                 {label}
               </a>
             );
           })}
+          <a className={styles.searchCareers} href={`${BASE_URL}/#positions`} onClick={(event) => handleNavigation(event, `${BASE_URL}/#positions`)}>
+            Explore Positions
+          </a>
         </nav>
       </div>
     </header>
