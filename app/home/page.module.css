@@ -4,10 +4,10 @@
 @media(min-width:821px){
 .header{display:none}
 .heroReference{
-background-image:url('/images/agile-homepage-reference.png');
-background-position:center top;
-background-repeat:no-repeat;
-background-size:cover;
+background-image:url('/agile-company-logo.png'),linear-gradient(#071722,#071722),url('/images/agile-homepage-reference.png');
+background-position:28px 18px,0 0,center top;
+background-repeat:no-repeat,no-repeat,no-repeat;
+background-size:170px auto,285px 205px,cover;
 width:100%;
 aspect-ratio:1024/630;
 display:block
