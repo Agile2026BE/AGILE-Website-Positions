@@ -4,7 +4,7 @@
 @media(min-width:821px){
 .header{display:none}
 .heroReference{
-background-image:url('/agile-homepage-reference.png');
+background-image:url('/images/agile-homepage-reference.png');
 background-position:center top;
 background-repeat:no-repeat;
 background-size:cover;
