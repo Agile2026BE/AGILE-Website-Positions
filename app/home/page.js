@@ -25,7 +25,20 @@ export default function CorporateHomePage() {
       </header>
 
       <section className={styles.hero}>
-        <div className={styles.heroImage} aria-hidden="true" />
+        <img
+          src="/images/agile-boardroom-hero.webp"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            zIndex: 0,
+          }}
+        />
         <div className={styles.heroShade} />
         <div className={styles.heroContent}>
           <p className={styles.eyebrow}>ARCHITECTURE · ENGINEERING · CONSTRUCTION</p>
