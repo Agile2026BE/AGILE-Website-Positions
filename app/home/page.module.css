@@ -4,13 +4,30 @@
 @media(min-width:821px){
 .header{display:none}
 .heroReference{
-background-image:url('/agile-company-logo.png'),linear-gradient(#071722,#071722),url('/images/agile-homepage-reference.png');
-background-position:28px 18px,0 0,center top;
-background-repeat:no-repeat,no-repeat,no-repeat;
-background-size:170px auto,285px 205px,cover;
+position:relative;
+background:url('/images/agile-homepage-reference.png') center top/cover no-repeat;
 width:100%;
 aspect-ratio:1024/630;
-display:block
+display:block;
+overflow:hidden
+}
+.heroReference::before{
+content:"";
+position:absolute;
+left:0;
+top:0;
+width:28%;
+height:33%;
+background:url('/images/agile-boardroom-hero.webp') left top/357% auto no-repeat;
+}
+.heroReference::after{
+content:"";
+position:absolute;
+left:28px;
+top:18px;
+width:170px;
+height:170px;
+background:url('/agile-company-logo.png') left top/contain no-repeat;
 }
 .heroImage{display:none}
 .heroShade,.heroContent{display:none}
