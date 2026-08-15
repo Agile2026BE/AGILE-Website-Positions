@@ -25,7 +25,7 @@ export default function CorporateHomePage() {
       </header>
 
       <section className={styles.hero}>
-     
+        <div className={styles.heroReference} aria-hidden="true" />
         <div className={styles.heroShade} />
         <div className={styles.heroContent}>
           <p className={styles.eyebrow}>ARCHITECTURE · ENGINEERING · CONSTRUCTION</p>
