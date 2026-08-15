@@ -26,7 +26,7 @@ export default function CorporateHomePage() {
 
       <section className={styles.hero}>
         <img
-          src="https://raw.githubusercontent.com/Agile2026BE/AGILE-Website-Positions/preview/unified-home/public/images/agile-boardroom-hero.webp"
+          src="https://raw.githubusercontent.com/Agile2026BE/AGILE-Website-Positions/25647b658970ddc93024f19f248a1ff719f3a676/public/images/agile-boardroom-hero.webp"
           alt=""
           aria-hidden="true"
           style={{
