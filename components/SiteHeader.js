@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import styles from "./SiteHeader.module.css";
 
 const BASE_URL = "https://careers.agileconsultingsolutions.com";
+const MAIN_HOME_URL = "https://agile-homepage.vercel.app/#top";
 
 function getTargetId(href) {
   const hashIndex = href.indexOf("#");
@@ -78,6 +79,7 @@ export default function SiteHeader() {
           <span className={styles.wordmark}>AGILE</span>
         </a>
         <nav className={`site-nav ${styles.nav}`} aria-label="Primary navigation">
+          <a href={MAIN_HOME_URL}>Home</a>
           {links.map(([targetId, label]) => {
             const href = `${BASE_URL}/#${targetId}`;
             return (
