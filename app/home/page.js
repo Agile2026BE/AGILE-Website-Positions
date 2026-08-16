@@ -1,5 +1,7 @@
 import Link from "next/link";
 import BrandLogo from "../../components/BrandLogo";
+import JobBoard from "../../components/JobBoard";
+import { jobs } from "../../data/jobs";
 import styles from "./page.module.css";
 
 export const metadata = {
@@ -42,6 +44,8 @@ export default function CorporateHomePage() {
           </div>
         </div>
       </section>
+
+      <JobBoard jobs={jobs} />
 
       <section className={styles.intro}>
         <p className={styles.sectionLabel}>THE AGILE ADVANTAGE</p>
