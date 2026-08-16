@@ -8,6 +8,7 @@ export default function MultiSelectFilter({
   options = [],
   values = [],
   onChange,
+  onApply,
   maxSelections = 5,
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,6 +39,11 @@ export default function MultiSelectFilter({
     }
 
     if (values.length < maxSelections) onChange([...values, option]);
+  }
+
+  function applySelections() {
+    setIsOpen(false);
+    onApply?.();
   }
 
   const buttonText =
@@ -104,15 +110,15 @@ export default function MultiSelectFilter({
             })}
           </div>
 
-          <div className={styles.mobileDoneBar}>
+          <div className={styles.applyBar}>
             <span>{values.length} of {maxSelections} selected</span>
             <button
               type="button"
-              className={styles.doneButton}
-              onClick={() => setIsOpen(false)}
-              aria-label="Done selecting market sectors"
+              className={styles.applyButton}
+              onClick={applySelections}
+              aria-label="View positions matching selected market sectors"
             >
-              Done
+              View Results
             </button>
           </div>
         </div>
