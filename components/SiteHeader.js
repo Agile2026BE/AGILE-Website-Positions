@@ -3,8 +3,6 @@
 import { useEffect } from "react";
 import styles from "./SiteHeader.module.css";
 
-const BASE_URL = "https://careers.agileconsultingsolutions.com";
-
 function getTargetId(href) {
   const hashIndex = href.indexOf("#");
   return hashIndex >= 0 ? href.slice(hashIndex + 1) : "";
@@ -41,51 +39,43 @@ export default function SiteHeader() {
 
     alignCurrentHash();
     window.addEventListener("hashchange", alignCurrentHash);
-
-    return () => {
-      window.removeEventListener("hashchange", alignCurrentHash);
-    };
+    return () => window.removeEventListener("hashchange", alignCurrentHash);
   }, []);
 
   function handleNavigation(event, href) {
-    const url = new URL(href, window.location.href);
-    const sameSite = window.location.hostname === url.hostname;
+    const url = new URL(href, window.location.origin);
     const homePath = window.location.pathname === "/";
     const targetId = getTargetId(href);
 
-    if (!sameSite || !homePath || !targetId) return;
+    if (!homePath || !targetId) return;
 
     event.preventDefault();
     const nextHash = `#${targetId}`;
-    if (window.location.hash !== nextHash) {
-      window.history.pushState(null, "", nextHash);
-    }
+    if (window.location.hash !== nextHash) window.history.pushState(null, "", nextHash);
     scrollToTarget(targetId);
   }
 
   const links = [
-    ["agile-insights", "AGILE Insights"],
-    ["positions", "Positions"],
-    ["reviews", "Reviews"],
-    ["contact", "Contact"],
-    ["top", "Top"],
+    ["/home", "Home"],
+    ["/professionals", "Professionals"],
+    ["/clients", "Clients"],
+    ["/insights", "Insights"],
+    ["/#contact", "Contact"],
   ];
 
   return (
     <header className={`site-header ${styles.header}`}>
       <div className={`container site-header-inner ${styles.inner}`}>
-        <a className={`brand ${styles.brand}`} href={`${BASE_URL}/`} aria-label="AGILE Careers home">
+        <a className={`brand ${styles.brand}`} href="/home" aria-label="AGILE home">
           <span className={styles.wordmark}>AGILE</span>
         </a>
         <nav className={`site-nav ${styles.nav}`} aria-label="Primary navigation">
-          {links.map(([targetId, label]) => {
-            const href = `${BASE_URL}/#${targetId}`;
-            return (
-              <a key={targetId} href={href} onClick={(event) => handleNavigation(event, href)}>
-                {label}
-              </a>
-            );
-          })}
+          {links.map(([href, label]) => (
+            <a key={href} href={href} onClick={(event) => handleNavigation(event, href)}>
+              {label}
+            </a>
+          ))}
+          <a className={styles.searchCareers} href="/#positions" onClick={(event) => handleNavigation(event, "/#positions")}>Explore Positions</a>
         </nav>
       </div>
     </header>
