@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import Link from "next/link";
 import BrandLogo from "../../components/BrandLogo";
 import JobBoard from "../../components/JobBoard";
@@ -12,10 +10,6 @@ export const metadata = {
 };
 
 export default function CorporateHomePage() {
-  const approvedHeroBase64 = fs
-    .readFileSync(path.join(process.cwd(), "public/images/NEW-homepage-reference.txt"), "utf8")
-    .trim();
-
   return (
     <main className={styles.page}>
       <header className={styles.header}>
@@ -33,11 +27,7 @@ export default function CorporateHomePage() {
       </header>
 
       <section className={styles.hero}>
-        <div
-          className={styles.heroReference}
-          aria-hidden="true"
-          style={{ backgroundImage: `url(data:image/webp;base64,${approvedHeroBase64})` }}
-        />
+        <div className={styles.heroReference} aria-hidden="true" />
         <div className={styles.heroShade} />
         <div className={styles.heroContent}>
           <p className={styles.eyebrow}>ARCHITECTURE · ENGINEERING · CONSTRUCTION</p>
