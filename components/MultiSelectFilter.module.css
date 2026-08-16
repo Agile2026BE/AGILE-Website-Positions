@@ -107,8 +107,41 @@
   cursor: not-allowed;
 }
 
-.mobileDoneBar {
-  display: none;
+.applyBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px -8px -8px;
+  padding: 10px 12px;
+  border-top: 1px solid #cfd9e2;
+  border-radius: 0 0 12px 12px;
+  background: #f7fbfd;
+  color: #29415a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.applyButton {
+  min-width: 112px;
+  min-height: 42px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #1476a8;
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.applyButton:hover {
+  background: #0f6795;
+}
+
+.applyButton:focus-visible {
+  outline: 3px solid rgba(20, 118, 168, 0.24);
+  outline-offset: 2px;
 }
 
 @media (max-width: 720px) {
@@ -134,35 +167,15 @@
     max-height: min(48vh, 360px);
   }
 
-  .mobileDoneBar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+  .applyBar {
     margin: 8px -8px 0;
     padding: 10px 12px max(10px, env(safe-area-inset-bottom));
-    border-top: 1px solid #cfd9e2;
-    background: #f7fbfd;
-    color: #29415a;
-    font-size: 13px;
-    font-weight: 700;
+    border-radius: 0;
   }
 
-  .doneButton {
-    min-width: 92px;
+  .applyButton {
+    min-width: 112px;
     min-height: 44px;
     padding: 0 18px;
-    border: 0;
-    border-radius: 6px;
-    background: #1476a8;
-    color: #fff;
-    font: inherit;
-    font-weight: 800;
-    cursor: pointer;
-  }
-
-  .doneButton:focus-visible {
-    outline: 3px solid rgba(20,118,168,.24);
-    outline-offset: 2px;
   }
 }
