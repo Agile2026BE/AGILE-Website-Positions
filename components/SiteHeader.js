@@ -24,7 +24,7 @@ function scrollToTarget(targetId, behavior = "smooth") {
   const headerHeight = Math.ceil(header.getBoundingClientRect().height);
   const targetTop = target.getBoundingClientRect().top + window.scrollY;
   const marketInsightsAdjustment = targetId === "market-insights" ? 33 : 0;
-  const reviewsAdjustment = targetId === "reviews" ? -117 : 0;
+  const reviewsAdjustment = targetId === "reviews" ? -128 : 0;
   const landingTop = Math.max(
     0,
     targetTop - headerHeight - 8 + marketInsightsAdjustment + reviewsAdjustment
