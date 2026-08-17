@@ -68,7 +68,7 @@ export default function SiteHeader() {
     ["agile-insights", "AGILE Insights"],
     ["positions", "Positions"],
     ["reviews", "Reviews"],
-    ["contact", "Contact"],
+    ["market-insights", "Contact"],
     ["top", "Top"],
   ];
 
