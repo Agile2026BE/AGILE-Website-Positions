@@ -23,7 +23,8 @@ function scrollToTarget(targetId, behavior = "smooth") {
 
   const headerHeight = Math.ceil(header.getBoundingClientRect().height);
   const targetTop = target.getBoundingClientRect().top + window.scrollY;
-  const landingTop = Math.max(0, targetTop - headerHeight - 8);
+  const extraGap = targetId === "contact" ? 24 : 8;
+  const landingTop = Math.max(0, targetTop - headerHeight - extraGap);
 
   window.scrollTo({ top: landingTop, behavior });
   return true;
