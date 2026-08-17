@@ -62,12 +62,12 @@ export default function HeroSection() {
         </p>
 
         <div className={`hero-actions ${styles.actions}`}>
-          <Link
+          <a
             className={`hero-primary ${styles.primary}`}
-            href="/#positions"
+            href="https://careers.agileconsultingsolutions.com/#positions"
           >
             Explore Positions
-          </Link>
+          </a>
 
           <Link
             className={`hero-secondary ${styles.secondary}`}
