@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./HeroSection.module.css";
 
@@ -69,12 +68,12 @@ export default function HeroSection() {
             Explore Positions
           </a>
 
-          <Link
+          <a
             className={`hero-secondary ${styles.secondary}`}
-            href="/#contact"
+            href="https://careers.agileconsultingsolutions.com/#contact"
           >
             Start a Conversation
-          </Link>
+          </a>
         </div>
 
         <div
