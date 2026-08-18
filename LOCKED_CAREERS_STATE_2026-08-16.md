@@ -1,5 +1,13 @@
 # AGILE Careers — Locked Protected State
 
+## Current Main-Site Integration Reference — 2026-08-18 4:53 PM ET
+
+The protected cross-repository reference for planned main-site menu routing into existing Careers functions is:
+
+`docs/MAIN_SITE_MENU_INTEGRATION_REFERENCE_2026-08-18_1653.md`
+
+This documentation does not authorize any Careers code, design, form, landing, anchor, offset, section, or navigation change.
+
 Locked on: 2026-08-16
 
 ## Purpose
