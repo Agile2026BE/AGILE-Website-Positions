@@ -74,6 +74,32 @@
   animation-delay:calc(170ms + var(--badge-delay));
 }
 
+.storyBand {
+  position:relative;
+  width:min(100%,1000px);
+  aspect-ratio:3.4 / 1;
+  margin:36px 0 0;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:10px;
+  background:#102f49;
+  box-shadow:0 16px 36px rgba(4,25,40,.22);
+}
+
+.storyBand::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(23,57,84,.12),transparent 38%,rgba(12,42,62,.2));
+}
+
+.storyPoster {
+  object-fit:cover;
+  object-position:center;
+}
+
 @keyframes badgeArrive {
   from { opacity:.58; transform:translateY(3px); }
   to { opacity:1; transform:translateY(0); }
@@ -100,6 +126,7 @@
   .desktopTitle { display:none; }
   .mobileTitle { display:block; }
   .lead { max-width:720px; }
+  .storyBand { aspect-ratio:3 / 1; margin-top:32px; }
 }
 
 @media (max-width:640px){
@@ -113,6 +140,7 @@
   .primary,.secondary{width:100%}
   .badges{margin-top:26px;gap:8px;justify-content:flex-start}
   .badge{padding:7px 10px;font-size:.76rem}
+  .storyBand{aspect-ratio:16 / 9;margin-top:28px}
 }
 
 @media (max-width:390px){

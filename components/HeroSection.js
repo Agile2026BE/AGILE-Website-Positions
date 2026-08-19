@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./HeroSection.module.css";
@@ -97,6 +98,16 @@ export default function HeroSection() {
             </span>
           ))}
         </div>
+
+        <figure className={styles.storyBand}>
+          <Image
+            className={styles.storyPoster}
+            src="/agile-informed-move-storyboard-v1.png"
+            alt="Professionals moving through a city, reviewing engineering plans, and considering a skyline before a meeting."
+            fill
+            sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1100px) calc(100vw - 64px), 1000px"
+          />
+        </figure>
       </div>
     </section>
   );
