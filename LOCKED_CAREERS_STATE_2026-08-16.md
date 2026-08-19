@@ -1,5 +1,17 @@
 # AGILE Careers — Locked Protected State
 
+## Approved Mobile Hero Baseline — 2026-08-19
+
+Byron Evans explicitly approved and locked the current Careers hero treatment on August 19, 2026.
+
+- Published implementation commit: `4130164e08c0d8c61c848d393822d2eac308f555`
+- Recovery record: `docs/APPROVED_CAREERS_MOBILE_HERO_2026-08-19.md`
+- Desktop story band remains the approved three-image storyboard.
+- Mobile uses the single executive-at-the-window image with a subtle slow push-in.
+- Mobile capsules use the approved three-over-two order and a one-time 750-millisecond sequential activation.
+
+Do not change this approved hero baseline without a new explicit current instruction from Byron Evans.
+
 ## Current Main-Site Integration Reference — 2026-08-18 4:53 PM ET
 
 The protected cross-repository reference for planned main-site menu routing into existing Careers functions is:
