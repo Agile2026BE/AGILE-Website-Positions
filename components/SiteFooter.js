@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BrandLogo from "./BrandLogo";
 import styles from "./SiteFooter.module.css";
 
@@ -13,6 +13,7 @@ function formatPhone(value){const digits=value.replace(/\D/g,"").slice(0,10);if(
 export default function SiteFooter() {
   const[clientOpen,setClientOpen]=useState(false);const[sending,setSending]=useState(false);const[status,setStatus]=useState("");const[inquirySubject,setInquirySubject]=useState("hiring");const[clientMessage,setClientMessage]=useState(inquiryMessages.hiring);const[clientPhone,setClientPhone]=useState("");const[celebrating,setCelebrating]=useState(false);const clientModalRef=useRef(null);
   function openClientSupport(){setStatus("");setInquirySubject("hiring");setClientMessage(inquiryMessages.hiring);setClientPhone("");setCelebrating(false);setClientOpen(true);}
+  useEffect(()=>{function openFromAddress(){if(window.location.hash==="#client-hiring-support")openClientSupport();}openFromAddress();window.addEventListener("hashchange",openFromAddress);return()=>window.removeEventListener("hashchange",openFromAddress);},[]);
   function changeInquirySubject(event){const value=event.target.value;setInquirySubject(value);setClientMessage(inquiryMessages[value]||"");}
   async function submitClient(event){event.preventDefault();const form=event.currentTarget;setSending(true);setStatus("");setCelebrating(false);try{const response=await fetch("/api/client-hiring-support",{method:"POST",body:new FormData(form)});const result=await response.json().catch(()=>({}));if(!response.ok)throw new Error(result.error||"Unable to send your request.");form.reset();setInquirySubject("hiring");setClientMessage(inquiryMessages.hiring);setClientPhone("");setStatus("Success! Your message has been sent. We look forward to connecting soon!");setCelebrating(true);window.requestAnimationFrame(()=>{clientModalRef.current?.scrollTo({top:0,behavior:"smooth"});});window.setTimeout(()=>setCelebrating(false),2600);}catch(error){setStatus(error.message||"We could not send your request. Please try again.");}finally{setSending(false);}}
   const success=status.startsWith("Success!");
