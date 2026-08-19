@@ -15,7 +15,10 @@ export default function HeroSection() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setBadgesVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setBadgesVisible(true);
+          observer.disconnect();
+        }
       },
       { threshold: 0.35 }
     );
@@ -28,8 +31,8 @@ export default function HeroSection() {
   const trustBadges = [
     "Salary disclosed",
     "Location disclosed",
-    "Work schedule disclosed",
     "Virtual Interviews",
+    "Work schedule disclosed",
     "No Account Setup Required",
   ];
 
@@ -88,7 +91,7 @@ export default function HeroSection() {
               className={`${styles.badge} ${
                 badgesVisible ? styles.badgeVisible : ""
               }`}
-              style={{ "--badge-delay": `${index * 500}ms` }}
+              style={{ "--badge-delay": `${index * 750}ms` }}
               key={label}
             >
               <b className={styles.check} aria-hidden="true">
@@ -99,13 +102,23 @@ export default function HeroSection() {
           ))}
         </div>
 
-        <figure className={styles.storyBand}>
+        <figure className={`${styles.storyBand} ${styles.desktopStoryBand}`}>
           <Image
             className={styles.storyPoster}
             src="/agile-informed-move-storyboard-v1.png"
             alt="Professionals moving through a city, reviewing engineering plans, and considering a skyline before a meeting."
             fill
             sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1100px) calc(100vw - 64px), 1000px"
+          />
+        </figure>
+
+        <figure className={`${styles.storyBand} ${styles.mobileStoryBand}`}>
+          <Image
+            className={styles.mobileStoryPoster}
+            src="/agile-executive-window.webp"
+            alt="An executive looking through a contemporary office window while considering his next career move."
+            fill
+            sizes="calc(100vw - 24px)"
           />
         </figure>
       </div>
