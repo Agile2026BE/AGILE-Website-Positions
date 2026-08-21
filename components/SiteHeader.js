@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import styles from "./SiteHeader.module.css";
 
 function getTargetId(href) {
@@ -66,16 +67,20 @@ export default function SiteHeader() {
   return (
     <header className={`site-header ${styles.header}`}>
       <div className={`container site-header-inner ${styles.inner}`}>
-        <a className={`brand ${styles.brand}`} href="/home" aria-label="AGILE home">
+        <Link className={`brand ${styles.brand}`} href="/home" aria-label="AGILE home">
           <span className={styles.wordmark}>AGILE</span>
-        </a>
+        </Link>
         <nav className={`site-nav ${styles.nav}`} aria-label="Primary navigation">
           {links.map(([href, label]) => (
-            <a key={href} href={href} onClick={(event) => handleNavigation(event, href)}>
+            <Link key={href} href={href} onClick={(event) => handleNavigation(event, href)}>
               {label}
-            </a>
+            </Link>
           ))}
-          <a className={styles.searchCareers} href="/#positions" onClick={(event) => handleNavigation(event, "/#positions")}>Explore Positions</a>
+          <span className={styles.comingSoon} title="Salary Calculator — coming soon">
+            Salary Calculator
+            <span className={styles.comingSoonBadge}>Coming Soon</span>
+          </span>
+          <Link className={styles.searchCareers} href="/#positions" onClick={(event) => handleNavigation(event, "/#positions")}>Explore Positions</Link>
         </nav>
       </div>
     </header>
