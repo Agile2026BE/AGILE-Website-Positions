@@ -15,10 +15,7 @@ export default function HeroSection() {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setBadgesVisible(true);
-          observer.disconnect();
-        }
+        setBadgesVisible(entry.isIntersecting);
       },
       { threshold: 0.35 }
     );

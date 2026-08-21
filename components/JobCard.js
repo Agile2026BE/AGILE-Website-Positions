@@ -7,6 +7,7 @@ import ShortlistButton from "./ShortlistButton";
 import ViewPositionLink from "./ViewPositionLink";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { shareJob } from "../lib/shareJob";
+import { formatExperienceDisplay } from "../lib/jobFilters";
 
 export default function JobCard({ job, isShortlisted = false, onShortlist, onViewPosition }) {
   const labels = jobBoardConfig.cardLabels;
@@ -52,7 +53,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
           </div>
           <div className={styles.metaRow}>
             <dt>{labels.experience}</dt>
-            <dd>{job.experience}</dd>
+            <dd>{formatExperienceDisplay(job.experience)}</dd>
           </div>
         </dl>
 

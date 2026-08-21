@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./ContactSection.module.css";
+import { disciplineOptions } from "../data/filterOptions";
 
 const baseMessages = {
   position: "Hello,\nI'd like to learn more about the selected position and discuss my qualifications. Thank you.",
@@ -119,7 +120,7 @@ export default function ContactSection() {
           <label>Name *<input type="text" name="career_inquiry_name" placeholder="First and last name" autoComplete="off" required /></label>
           <label>Email *<input type="email" name="career_inquiry_email" placeholder="name@example.com" autoComplete="off" required /></label>
           <label>Phone<input type="tel" name="career_inquiry_phone" placeholder="(***) ***-****" autoComplete="off" inputMode="tel" value={phone} onChange={(event) => setPhone(formatPhone(event.target.value))} /></label>
-          <label>Discipline of Interest<select name="discipline" value={discipline} onChange={(event) => setDiscipline(event.target.value)}><option value="">Choose a discipline</option><option>Architecture</option><option>Civil Engineering</option><option>Commissioning</option><option>Construction</option><option>Electrical Engineering</option><option>Fire Protection</option><option>Mechanical Engineering</option><option>Plumbing</option><option>Transportation</option><option>Other</option></select></label>
+          <label>Discipline of Interest<select name="discipline" value={discipline} onChange={(event) => setDiscipline(event.target.value)}><option value="">Choose a discipline</option>{disciplineOptions.map((option)=><option key={option}>{option}</option>)}<option>Other</option></select></label>
           <label>Best Time to Reach Me<select name="bestTime" defaultValue=""><option value="">Choose a time</option><option>Morning · 8 AM–11 AM</option><option>Midday · 11 AM–2 PM</option><option>Afternoon · 2 PM–5 PM</option><option>Evening · 5 PM–8 PM</option><option>Flexible</option></select></label>
           <label>Preferred Contact Method<select name="contactMethod" defaultValue=""><option value="">No preference</option><option>Phone</option><option>Text</option><option>Email</option></select></label>
           {phone ? <label className={`${styles.full} ${styles.consent}`}><input type="checkbox" name="textingConsent" value="yes" /><span>AGILE may text me about my inquiry and career opportunities. Consent is optional and is not required. Message/data rates may apply. Reply STOP to opt out.</span></label> : null}
