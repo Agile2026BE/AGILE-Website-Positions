@@ -66,9 +66,19 @@ export default function HomeAccessMenu() {
       <div className={`${styles.accessPanel} ${menuOpen ? styles.accessPanelOpen : ""}`}>
         <div className={styles.accessPanelHead}>Access</div>
 
-        <a href="/#professionals" className={styles.accessRowLink} onClick={closeAll}>
-          About Us
-        </a>
+        <div className={`${styles.accessRow} ${openRow === "about" ? styles.accessRowExpanded : ""}`}>
+          <div className={styles.accessRowHead} onClick={() => toggleRow("about")}>
+            About Us <span className={styles.accessRowChev}></span>
+          </div>
+          <div className={styles.accessRowBody}>
+            <p className={styles.accessText}>
+              Specialized recruiting and professional representation connecting architects, engineers, and construction professionals with firms shaping the built environment.
+            </p>
+            <a href="/#professionals" className={styles.accessInlineLink} onClick={closeAll}>
+              Learn more about AGILE →
+            </a>
+          </div>
+        </div>
 
         <div className={`${styles.accessRow} ${openRow === "candidate" ? styles.accessRowExpanded : ""}`}>
           <div className={styles.accessRowHead} onClick={() => toggleRow("candidate")}>

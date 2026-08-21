@@ -46,11 +46,8 @@
 .badge {
   display:inline-flex;
   align-items:center;
-  gap:5px;
-  padding:8px 12px;
-  border:1px solid rgba(255,255,255,.25);
-  border-radius:999px;
-  background:rgba(255,255,255,.035);
+  gap:6px;
+  color:rgba(255,255,255,.9);
   opacity:.58;
   transform:translateY(3px) scale(.97);
 }
@@ -63,7 +60,7 @@
 .check {
   display:inline-block;
   font-weight:700;
-  color:#fff;
+  color:#66c7e9;
   opacity:0;
   transform:scale(.25) rotate(-16deg);
   transform-origin:center;
@@ -114,16 +111,10 @@
 
 @keyframes badgeArrive {
   from {
-    border-color:rgba(255,255,255,.25);
-    background:rgba(255,255,255,.035);
-    box-shadow:none;
     opacity:.58;
     transform:translateY(3px) scale(.97);
   }
   to {
-    border-color:rgba(158,216,236,.72);
-    background:rgba(20,118,168,.2);
-    box-shadow:0 0 16px rgba(32,185,238,.24);
     opacity:1;
     transform:translateY(0) scale(1);
   }
