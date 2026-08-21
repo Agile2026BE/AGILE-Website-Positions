@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
-import ContactSection from "../../../components/ContactSection";
-import SiteFooter from "../../../components/SiteFooter";
-import SiteHeader from "../../../components/SiteHeader";
-import { jobs } from "../../../data/jobs";
-import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../lib/positionFreshness";
-import { formatExperienceDisplay } from "../../../lib/jobFilters";
+import ContactSection from "../../../../components/ContactSection";
+import SiteFooter from "../../../../components/SiteFooter";
+import SiteHeader from "../../../../components/SiteHeader";
+import { jobs } from "../../../../data/jobs";
+import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../../lib/positionFreshness";
+import { formatExperienceDisplay } from "../../../../lib/jobFilters";
 
 const lines = (value) =>
   String(value ?? "")

@@ -4,8 +4,10 @@ import { useEffect } from "react";
 import Link from "next/link";
 import styles from "./SiteHeader.module.css";
 
-const BASE_URL = "https://careers.agileconsultingsolutions.com";
-const MAIN_HOME_URL = "https://agile-homepage.vercel.app";
+// The careers engine now lives at /careers within the same unified deployment
+// (it used to be a separate site at careers.agileconsultingsolutions.com root).
+const CAREERS_PATH = "/careers";
+const MAIN_HOME_URL = "/";
 
 function getTargetId(href) {
   const hashIndex = href.indexOf("#");
@@ -57,7 +59,7 @@ export default function SiteHeader() {
   function handleNavigation(event, href) {
     const url = new URL(href, window.location.href);
     const sameSite = window.location.hostname === url.hostname;
-    const homePath = window.location.pathname === "/";
+    const homePath = window.location.pathname === CAREERS_PATH;
     const targetId = getTargetId(href);
 
     if (!sameSite || !homePath || !targetId) return;
@@ -81,23 +83,19 @@ export default function SiteHeader() {
   return (
     <header className={`site-header ${styles.header}`}>
       <div className={`container site-header-inner ${styles.inner}`}>
-        <a className={`brand ${styles.brand}`} href={`${BASE_URL}/`} aria-label="AGILE Careers home">
+        <a className={`brand ${styles.brand}`} href={CAREERS_PATH} aria-label="AGILE Careers home">
           <span className={styles.wordmark}>AGILE</span>
         </a>
         <nav className={`site-nav ${styles.nav}`} aria-label="Primary navigation">
           <a href={MAIN_HOME_URL}>Home</a>
           {links.map(([targetId, label]) => {
-            const href = `${BASE_URL}/#${targetId}`;
+            const href = `${CAREERS_PATH}/#${targetId}`;
             return (
               <a key={targetId} href={href} onClick={(event) => handleNavigation(event, href)}>
                 {label}
               </a>
             );
           })}
-          <span className={styles.comingSoon} title="Salary Calculator — coming soon">
-            Salary Calculator
-            <span className={styles.comingSoonBadge}>Coming Soon</span>
-          </span>
         </nav>
       </div>
     </header>

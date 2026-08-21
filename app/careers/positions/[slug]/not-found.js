@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./not-found.module.css";
-import SiteFooter from "../../../components/SiteFooter";
-import SiteHeader from "../../../components/SiteHeader";
+import SiteFooter from "../../../../components/SiteFooter";
+import SiteHeader from "../../../../components/SiteHeader";
 
 export default function PositionNotFound() {
   return (
@@ -16,8 +16,8 @@ export default function PositionNotFound() {
             Return to the current AGILE career opportunities to continue your search.
           </p>
           <div className={`hero-actions ${styles.actions}`}>
-            <Link className={`hero-primary ${styles.primary}`} href="/#positions">View Current Positions</Link>
-            <Link className={`hero-secondary ${styles.secondary}`} href="/#contact">Start a Conversation</Link>
+            <Link className={`hero-primary ${styles.primary}`} href="/careers/#positions">View Current Positions</Link>
+            <Link className={`hero-secondary ${styles.secondary}`} href="/careers/#contact">Start a Conversation</Link>
           </div>
         </div>
       </section>

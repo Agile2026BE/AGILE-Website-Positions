@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import styles from "../../app/home/page.module.css";
+import styles from "../../app/page.module.css";
 
 const CANDIDATE_EXPECTATIONS = [
   "Careful review of experience and project portfolios to align your expertise with the right opportunities.",
@@ -66,7 +66,7 @@ export default function HomeAccessMenu() {
       <div className={`${styles.accessPanel} ${menuOpen ? styles.accessPanelOpen : ""}`}>
         <div className={styles.accessPanelHead}>Access</div>
 
-        <a href="/home#professionals" className={styles.accessRowLink} onClick={closeAll}>
+        <a href="/#professionals" className={styles.accessRowLink} onClick={closeAll}>
           About Us
         </a>
 
@@ -117,7 +117,7 @@ export default function HomeAccessMenu() {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
-                <a href="/home#client-hiring-support" className={styles.accessInlineLink} onClick={closeAll}>
+                <a href="/#client-hiring-support" className={styles.accessInlineLink} onClick={closeAll}>
                   Start a Client Conversation
                 </a>
               </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import styles from "../../app/home/page.module.css";
+import styles from "../../app/page.module.css";
 
 const badges = [
   "Focused AEC Expertise",

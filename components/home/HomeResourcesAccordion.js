@@ -1,17 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "../../app/home/page.module.css";
+import styles from "../../app/page.module.css";
 import PlayAgileChess from "./PlayAgileChess";
 
-// This corporate site is a separate deployment from careers.agileconsultingsolutions.com,
-// so it can't import that repo's data file directly at build time. Instead it fetches
-// live numbers at runtime from a small public endpoint on the careers site
+// The careers engine now lives at /careers within this same unified deployment,
+// so this fetches live numbers at runtime from its public endpoint
 // (/api/jobs-summary). The constants below are only a fallback, used if that fetch
 // ever fails — a real, verified snapshot of live AGILE postings captured August 2026,
 // not invented data. The "View All" and "Explore Additional Opportunities" links always
 // go straight to the live, up-to-the-minute search either way.
-const JOBS_SUMMARY_URL = "https://careers.agileconsultingsolutions.com/api/jobs-summary";
+const JOBS_SUMMARY_URL = "/api/jobs-summary";
 
 const FALLBACK_STATS = { count: 183, min: 65000, max: 250000 };
 
@@ -93,7 +92,7 @@ function buildCareersSearchUrl(filters) {
   if (filters.market) params.append("market", filters.market);
   if (filters.experience) params.set("experience", filters.experience);
   const query = params.toString();
-  return `https://careers.agileconsultingsolutions.com/${query ? `?${query}` : ""}#positions`;
+  return `/careers/${query ? `?${query}` : ""}#positions`;
 }
 
 export default function HomeResourcesAccordion({ variant }) {
@@ -225,7 +224,7 @@ export default function HomeResourcesAccordion({ variant }) {
 
               <div className={styles.resourcesPositionList}>
                 {calcSample.map((job) => (
-                  <a key={job.id} href={`https://careers.agileconsultingsolutions.com/positions/${job.slug}`} className={styles.resourcesPositionItem}>
+                  <a key={job.id} href={`/careers/positions/${job.slug}`} className={styles.resourcesPositionItem}>
                     <strong>{job.title}</strong>
                     <span>{job.location} · {job.salaryDisplay}</span>
                   </a>
@@ -236,7 +235,7 @@ export default function HomeResourcesAccordion({ variant }) {
                 {hasCalcFilters ? `View ${calcStats.count} Matching Position${calcStats.count === 1 ? "" : "s"}` : `View All ${stats.count} Positions`}
               </a>
               {hasCalcFilters ? (
-                <a href="https://careers.agileconsultingsolutions.com/#positions" className={styles.resourcesCtaSecondary}>See All {stats.count} Positions</a>
+                <a href="/careers/#positions" className={styles.resourcesCtaSecondary}>See All {stats.count} Positions</a>
               ) : null}
             </div>
           </div>
@@ -248,13 +247,13 @@ export default function HomeResourcesAccordion({ variant }) {
             <div className={styles.accessRowBody}>
               <div className={styles.resourcesPositionList}>
                 {featured.map((job) => (
-                  <a key={job.id} href={`https://careers.agileconsultingsolutions.com/positions/${job.slug}`} className={styles.resourcesPositionItem}>
+                  <a key={job.id} href={`/careers/positions/${job.slug}`} className={styles.resourcesPositionItem}>
                     <strong>{job.title}</strong>
                     <span>{job.location} · {job.salaryDisplay}</span>
                   </a>
                 ))}
               </div>
-              <a href="https://careers.agileconsultingsolutions.com/#positions" className={styles.resourcesCta}>Explore Additional Opportunities</a>
+              <a href="/careers/#positions" className={styles.resourcesCta}>Explore Additional Opportunities</a>
             </div>
           </div>
 
