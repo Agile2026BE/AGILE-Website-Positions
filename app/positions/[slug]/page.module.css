@@ -84,7 +84,7 @@
 
 @media (max-width: 720px) {
   .detail { padding-top: 28px; padding-bottom: 32px; }
-  .detail :global(.section-title) { line-height: 1.08; }
+  .detail :global(.section-title) { line-height: 1.08; font-size: 1.75rem; }
   .detail :global(.section-copy) { line-height: 1.5; }
   .grid { grid-template-columns: 1fr 1fr; gap: 9px; margin: 20px 0 24px; }
   .grid div { padding: 12px; }
