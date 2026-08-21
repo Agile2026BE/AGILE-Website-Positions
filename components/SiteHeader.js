@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./SiteHeader.module.css";
 
 const BASE_URL = "https://careers.agileconsultingsolutions.com";
-const MAIN_HOME_URL = "https://agile-homepage-git-agent-c-a9485c-byronevans2024-4746s-projects.vercel.app/#top";
+const MAIN_HOME_URL = "/home";
 
 function getTargetId(href) {
   const hashIndex = href.indexOf("#");
