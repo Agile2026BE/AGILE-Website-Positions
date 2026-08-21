@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import styles from "./SiteHeader.module.css";
 
 const BASE_URL = "https://careers.agileconsultingsolutions.com";
@@ -93,6 +94,10 @@ export default function SiteHeader() {
               </a>
             );
           })}
+          <span className={styles.comingSoon} title="Salary Calculator — coming soon">
+            Salary Calculator
+            <span className={styles.comingSoonBadge}>Coming Soon</span>
+          </span>
         </nav>
       </div>
     </header>

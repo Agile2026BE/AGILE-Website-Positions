@@ -25,6 +25,7 @@ export const disciplineOptions = [
   "Construction Management",
   "Electrical Engineering",
   "ICT/AV Technology",
+  "Mechanical Engineering",
   "Mechanical HVAC",
   "Mechanical Plumbing and Fire Protection",
   "MEP Executive Leadership",

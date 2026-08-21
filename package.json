@@ -9,6 +9,8 @@
     "start": "next start",
     "lint": "eslint .",
     "validate:jobs": "node scripts/validate-jobs.mjs",
+    "check:positions": "node scripts/check-positions.mjs",
+    "recommend:salary": "node scripts/recommend-salary.mjs",
     "check": "npm run validate:jobs && npm run lint && npm run build"
   },
   "dependencies": {
