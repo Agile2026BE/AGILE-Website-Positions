@@ -266,7 +266,7 @@ export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
             <label className={styles.consent}>
               <input type="checkbox" name="textingConsent" value="yes" />
               <span>
-                AGILE may text me about my inquiry and career opportunities. Consent is optional and not required for services. Message/data rates may apply. Reply STOP to opt out.
+                AGILE may text me about my inquiry and career opportunities. Consent is optional and is not required. Message/data rates may apply. Reply STOP to opt out.
               </span>
             </label>
           ) : null}

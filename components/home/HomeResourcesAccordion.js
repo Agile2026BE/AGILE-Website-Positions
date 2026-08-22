@@ -209,7 +209,7 @@ export default function HomeResourcesAccordion({ variant }) {
                     <FilterSelect label="Any Experience" value={calcFilters.experience} options={filterOptions.experience || []} onChange={(value) => updateCalcFilter("experience", value)} />
                   </div>
                   <div className={styles.resourcesFilterField}>
-                    <label>Market Sector · pick any number</label>
+                    <label>Market Sector · pick up to 5</label>
                     <MultiSelectFilter label="All Sectors" values={calcFilters.market} options={filterOptions.market} maxSelections={MAX_CALC_MARKET_SELECTIONS} onChange={(value) => updateCalcFilter("market", value)} />
                   </div>
                   {hasCalcFilters ? (

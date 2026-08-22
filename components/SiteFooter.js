@@ -5,7 +5,7 @@ import BrandLogo from "./BrandLogo";
 import styles from "./SiteFooter.module.css";
 import ConfettiBurst from "./ConfettiBurst";
 
-const disciplines=["Electrical Engineering","Mechanical Engineering","Fire Protection","Plumbing"];
+const disciplines=["Civil Engineering","Construction Administration","Electrical Engineering","Mechanical Engineering","Fire Protection","Plumbing"];
 const markets=["New York","New Jersey","Pennsylvania","Massachusetts","Connecticut","North Carolina","Florida","Colorado","California","Other"];
 const projectTypes=["Commercial","Data Centers / Mission Critical","Education / Higher Education","Healthcare","Hospitality","Infrastructure / Civil","Transportation / Aviation / Rail","Water / Wastewater","Other"];
 const inquiryMessages={hiring:"Hello,\nI am interested in discussing our company hiring needs and learning how AGILE may be able to support our recruiting efforts. Please reach back to me to discuss our current priorities and hiring needs.  Thank you.",services:"Hello,\nI am interested in learning more about AGILE's recruiting services, including recruiting fees and placement guarantees. Please reach back to me so we can discuss how your services may support our company.  Thank you."};
