@@ -174,7 +174,7 @@ export default function PlayAgileChess() {
         </div>
       ) : null}
 
-      <p className={styles.chessSub}>A quick game while you&apos;re on the way to work. You&apos;re silver and move first — tap a piece, then tap where it moves.</p>
+      <p className={styles.chessSub}>A quick game for your commute. You&apos;re silver, moving first — tap a piece, then tap where it moves.</p>
 
       <div className={`${styles.chessStatus} ${status === "check" ? styles.chessStatusCheck : ""} ${gameOver ? styles.chessStatusOver : ""} ${state.turn === BLACK && !gameOver ? styles.chessStatusThinking : ""}`}>
         {statusText()}

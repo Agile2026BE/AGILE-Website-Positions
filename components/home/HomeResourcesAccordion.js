@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import styles from "../../app/page.module.css";
 import PlayAgileChess from "./PlayAgileChess";
+import FilterSelect from "../FilterSelect";
+import MultiSelectFilter from "../MultiSelectFilter";
 
 // The careers engine now lives at /careers within this same unified deployment,
 // so this fetches live numbers at runtime from its public endpoint
@@ -52,7 +54,8 @@ function buildConicGradient(slices) {
   return `conic-gradient(${stops.join(", ")})`;
 }
 
-const EMPTY_CALC_FILTERS = { state: "", discipline: "", workplace: "", market: "", experience: "" };
+const EMPTY_CALC_FILTERS = { state: "", discipline: "", workplace: "", market: [], experience: "" };
+const MAX_CALC_MARKET_SELECTIONS = 5;
 
 // Real postings' "experience" field is free text; the live API (jobs-summary,
 // backed by lib/jobFilters.js) pre-parses each one into experienceMin/experienceMax
@@ -76,9 +79,10 @@ function jobMatchesCalcFilters(job, filters, experienceBands) {
   if (filters.state && !String(job.state || "").toLowerCase().includes(filters.state.toLowerCase())) return false;
   if (filters.discipline && String(job.discipline || "").toLowerCase() !== filters.discipline.toLowerCase()) return false;
   if (filters.workplace && !String(job.workplace || "").toLowerCase().includes(filters.workplace.toLowerCase())) return false;
-  if (filters.market) {
+  if (filters.market && filters.market.length) {
     const markets = String(job.market || "").split("|").map((m) => m.trim().toLowerCase());
-    if (!markets.includes(filters.market.toLowerCase())) return false;
+    const selected = filters.market.map((m) => m.toLowerCase());
+    if (!selected.some((m) => markets.includes(m))) return false;
   }
   if (!experienceQualifies(job, filters.experience, experienceBands)) return false;
   return true;
@@ -89,7 +93,7 @@ function buildCareersSearchUrl(filters) {
   if (filters.state) params.set("state", filters.state);
   if (filters.discipline) params.set("discipline", filters.discipline);
   if (filters.workplace) params.set("workplace", filters.workplace);
-  if (filters.market) params.append("market", filters.market);
+  if (filters.market) filters.market.forEach((m) => params.append("market", m));
   if (filters.experience) params.set("experience", filters.experience);
   const query = params.toString();
   return `/careers/${query ? `?${query}` : ""}#positions`;
@@ -122,7 +126,7 @@ export default function HomeResourcesAccordion({ variant }) {
   const featured = live?.featured ?? FALLBACK_FEATURED_JOBS;
   const filterOptions = live?.filterOptions ?? null;
 
-  const hasCalcFilters = Boolean(calcFilters.state || calcFilters.discipline || calcFilters.workplace || calcFilters.market || calcFilters.experience);
+  const hasCalcFilters = Boolean(calcFilters.state || calcFilters.discipline || calcFilters.workplace || calcFilters.market.length || calcFilters.experience);
   const calcMatches = live?.jobs && hasCalcFilters ? live.jobs.filter((job) => jobMatchesCalcFilters(job, calcFilters, filterOptions?.experience)) : null;
   const calcMins = calcMatches ? calcMatches.map((j) => j.salaryMin).filter(Boolean) : [];
   const calcMaxs = calcMatches ? calcMatches.map((j) => j.salaryMax).filter(Boolean) : [];
@@ -175,38 +179,23 @@ export default function HomeResourcesAccordion({ variant }) {
                 <div className={styles.resourcesFilterGrid}>
                   <div className={styles.resourcesFilterField}>
                     <label>State</label>
-                    <select value={calcFilters.state} onChange={(e) => updateCalcFilter("state", e.target.value)}>
-                      <option value="">All States</option>
-                      {filterOptions.state.map((s) => <option key={s} value={s}>{s}</option>)}
-                    </select>
+                    <FilterSelect label="All States" value={calcFilters.state} options={filterOptions.state} onChange={(value) => updateCalcFilter("state", value)} />
                   </div>
                   <div className={styles.resourcesFilterField}>
                     <label>Discipline</label>
-                    <select value={calcFilters.discipline} onChange={(e) => updateCalcFilter("discipline", e.target.value)}>
-                      <option value="">All Disciplines</option>
-                      {filterOptions.discipline.map((d) => <option key={d} value={d}>{d}</option>)}
-                    </select>
+                    <FilterSelect label="All Disciplines" value={calcFilters.discipline} options={filterOptions.discipline} onChange={(value) => updateCalcFilter("discipline", value)} />
                   </div>
                   <div className={styles.resourcesFilterField}>
                     <label>Schedule</label>
-                    <select value={calcFilters.workplace} onChange={(e) => updateCalcFilter("workplace", e.target.value)}>
-                      <option value="">All Types</option>
-                      {filterOptions.workplace.map((w) => <option key={w} value={w}>{w}</option>)}
-                    </select>
+                    <FilterSelect label="All Types" value={calcFilters.workplace} options={filterOptions.workplace} onChange={(value) => updateCalcFilter("workplace", value)} />
                   </div>
                   <div className={styles.resourcesFilterField}>
                     <label>Years of Experience</label>
-                    <select value={calcFilters.experience} onChange={(e) => updateCalcFilter("experience", e.target.value)}>
-                      <option value="">Any Experience</option>
-                      {(filterOptions.experience || []).map((band) => <option key={band.value} value={band.value}>{band.label}</option>)}
-                    </select>
+                    <FilterSelect label="Any Experience" value={calcFilters.experience} options={filterOptions.experience || []} onChange={(value) => updateCalcFilter("experience", value)} />
                   </div>
                   <div className={styles.resourcesFilterField}>
-                    <label>Market Sector</label>
-                    <select value={calcFilters.market} onChange={(e) => updateCalcFilter("market", e.target.value)}>
-                      <option value="">All Sectors</option>
-                      {filterOptions.market.map((m) => <option key={m} value={m}>{m}</option>)}
-                    </select>
+                    <label>Market Sector · pick any number</label>
+                    <MultiSelectFilter label="All Sectors" values={calcFilters.market} options={filterOptions.market} maxSelections={MAX_CALC_MARKET_SELECTIONS} onChange={(value) => updateCalcFilter("market", value)} />
                   </div>
                   {hasCalcFilters ? (
                     <button type="button" className={styles.resourcesFilterReset} onClick={resetCalcFilters}>Reset filters</button>

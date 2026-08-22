@@ -45,8 +45,9 @@ export default async function PositionPage({ params }) {
 
       <section className={`section position-detail ${styles.detail}`}>
         <div className="container">
+          <a className={styles.backLink} href="/careers/#positions">← Back to Positions</a>
           <p className={`contact-eyebrow ${styles.eyebrow}`}>AVAILABLE POSITION · {POSITION_REVIEW_LABEL.toUpperCase()}</p>
-          <h1 className="section-title">{job.title}</h1>
+          <h1 className={styles.title}>{job.title}</h1>
           {job.summary ? <p className="section-copy">{job.summary}</p> : null}
 
           <dl className={`position-detail-grid ${styles.grid}`}>

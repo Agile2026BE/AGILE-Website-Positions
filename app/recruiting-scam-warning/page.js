@@ -61,13 +61,6 @@ export default function RecruitingScamWarningPage() {
               <br />
               Main Office · 407-868-7254
             </div>
-
-            <p className={styles.sourceNote}>
-              This page mirrors the Recruiting Scam Warning published at
-              agileconsultingsolutions.com. If you maintain a longer or more
-              current version of this notice elsewhere, send it over and we
-              will replace this text with it exactly.
-            </p>
           </div>
         </div>
       </section>

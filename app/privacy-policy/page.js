@@ -70,13 +70,6 @@ export default function PrivacyPolicyPage() {
               <br />
               Main Office · 407-868-7254
             </div>
-
-            <p className={styles.sourceNote}>
-              This page mirrors the Privacy Policy published at
-              agileconsultingsolutions.com. If you maintain a longer or more
-              current version of this policy elsewhere, send it over and we
-              will replace this text with it exactly.
-            </p>
           </div>
         </div>
       </section>
