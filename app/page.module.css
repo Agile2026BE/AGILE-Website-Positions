@@ -173,5 +173,5 @@ a.accessSubRowHead{color:#1c4d8f}
      than touching the button-to-check-off gap, which stays as requested. */
   .heroContent{padding-top:50px}
   .hero h1{margin:16px 0 14px}
-  .heroAdvantage{margin-top:0;padding-top:18px}
+  .heroAdvantage{margin-top:0;padding-top:18px;border-top:none}
 }
