@@ -75,6 +75,7 @@ export default function HeroSection() {
           <Link
             className={`hero-secondary ${styles.secondary}`}
             href="/careers/#contact"
+            onClick={(event) => handleSamePageNav(event, "/careers/#contact", "/careers")}
           >
             Start a Conversation
           </Link>

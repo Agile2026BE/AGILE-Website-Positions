@@ -91,7 +91,7 @@ export default function SiteHeader() {
           // way, correct it now rather than assuming "unchanged" means
           // "right".
           stableCount = 0;
-          window.scrollTo({ top: desiredTop, behavior: "auto" });
+          scrollToTarget(targetId, "auto");
         }
       }
 

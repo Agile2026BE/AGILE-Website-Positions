@@ -4,6 +4,7 @@ import ContactSection from "../../../../components/ContactSection";
 import SiteFooter from "../../../../components/SiteFooter";
 import SiteHeader from "../../../../components/SiteHeader";
 import PositionBackLink from "../../../../components/PositionBackLink";
+import PositionContactCta from "../../../../components/PositionContactCta";
 import { jobs } from "../../../../data/jobs";
 import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../../lib/positionFreshness";
 import { formatExperienceDisplay } from "../../../../lib/jobFilters";
@@ -86,7 +87,7 @@ export default async function PositionPage({ params }) {
             </section>
           ) : null}
 
-          <a className={`hero-primary ${styles.cta}`} href="#contact">Start a Conversation</a>
+          <PositionContactCta className={`hero-primary ${styles.cta}`} />
         </div>
       </section>
 

@@ -33,6 +33,8 @@ import details1163To1167 from "./jobDetails/details-1163-1167.js";
 import details1168To1172 from "./jobDetails/details-1168-1172.js";
 import details1181To1185 from "./jobDetails/details-1181-1185.js";
 
+import { retiredPositionIds } from "./retiredPositionIds.js";
+
 const coreJobs = [
   ...jobs1001To1020,
   ...jobs1021To1040,
@@ -76,7 +78,14 @@ const detailsById = new Map(
   detailOverlays.map((details) => [String(details.id), details]),
 );
 
-export const jobs = coreJobs.map((job) => ({
-  ...job,
-  ...(detailsById.get(String(job.id)) ?? {}),
-}));
+// See retiredPositionIds.js: retired IDs stay in the underlying data files
+// (nothing above this point is touched) but are filtered out here so they
+// never reach the live site.
+const retiredIds = new Set(retiredPositionIds.map((entry) => String(entry.id)));
+
+export const jobs = coreJobs
+  .filter((job) => !retiredIds.has(String(job.id)))
+  .map((job) => ({
+    ...job,
+    ...(detailsById.get(String(job.id)) ?? {}),
+  }));
