@@ -165,4 +165,8 @@ a.accessSubRowHead{color:#1c4d8f}
   .hero .primary,.hero .secondary{min-height:50px;padding:0 26px;font-size:1.04rem}
   .hero .actionGrid .actionBadge{gap:8px}
   .hero .actionGrid .actionBadge:nth-of-type(-n+2){margin-top:28px}
+  /* Raise the "We work directly with leadership teams..." paragraph up
+     ~0.3in (base margin-top is 36px) so its white text sits further clear
+     of the white blueprint sheet in the photo below it. */
+  .heroAdvantage{margin-top:8px}
 }
