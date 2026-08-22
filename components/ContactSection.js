@@ -102,7 +102,7 @@ export default function ContactSection() {
         <div className={styles.intro}>
           <p className={`contact-eyebrow ${styles.eyebrow}`}>PROFESSIONAL CAREER INQUIRY</p>
           <h2 className="section-title">Start with a conversation.</h2>
-          <p className="section-copy">Not a formal application. No fee or obligation. Tell us what matters most, or simply ask about a selected position.</p>
+          <p className="section-copy">Not a formal application. No fee or obligation.<br />Tell us what matters most, or simply ask about a selected position.</p>
           <div ref={badgesRef} className={`contact-badges ${styles.badges}`} aria-label="Inquiry details">
             <span className={`${styles.contactBadge} ${badgesVisible ? styles.contactBadgeVisible : ""}`} style={{ "--badge-delay": "0ms" }}><b className={styles.contactCheck} aria-hidden="true">✓</b>Résumé optional</span>
             <span className={`${styles.contactBadge} ${badgesVisible ? styles.contactBadgeVisible : ""}`} style={{ "--badge-delay": "900ms" }}><b className={styles.contactCheck} aria-hidden="true">✓</b>No account required</span>

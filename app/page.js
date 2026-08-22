@@ -22,7 +22,7 @@ export default function CorporateHomePage() {
           <HomeAccessMenu />
         </div>
         <div className={styles.heroContent}>
-          <p className={styles.eyebrow}>AEC RECRUITING AND CONSULTING</p>
+          <p className={styles.eyebrow}><em>AEC</em> RECRUITING AND CONSULTING</p>
           <h1>What’s Your<br />Next <em>Move?</em></h1>
           <p className={styles.lead}>Specialized recruiting and professional representation connecting architects, engineers, and construction professionals with firms shaping the built environment.</p>
           <div className={styles.actionGrid}>
@@ -31,7 +31,7 @@ export default function CorporateHomePage() {
             <HomeActionBadges />
           </div>
           <div className={styles.heroAdvantage} id="professionals">
-            <p className={styles.heroAdvantageText}>We work directly with leadership teams across Architecture, Engineering, Construction, Commissioning, and Owner’s Representation. That gives experienced professionals real insight into our clients — their projects, expectations, culture, and work environment. We help AEC professionals look past the role itself to understand the true opportunity, the growth it offers, and whether it truly fits their experience, priorities, and career goals before making their next move.</p>
+            <p className={styles.heroAdvantageText}>We work directly with leadership teams across Architecture, Engineering, Construction, Commissioning, and Owner’s Representation, giving experienced professionals genuine insight into each client’s projects, culture, and expectations — so they can look past the job title to the real opportunity and decide with confidence before making their next move.</p>
           </div>
         </div>
         <HomeResourcesAccordion variant="desktop" />
