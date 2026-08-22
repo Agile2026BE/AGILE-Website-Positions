@@ -17,19 +17,19 @@ const JOBS_SUMMARY_URL = "/api/jobs-summary";
 const FALLBACK_STATS = { count: 183, min: 65000, max: 250000 };
 
 const FALLBACK_SAMPLE_JOBS = [
-  { id: "1001", title: "Associate Electrical Engineer- Technical", location: "NYC, NY", salaryDisplay: "$110,000–$145,000+", slug: "1001-associate-electrical-engineer-technical" },
-  { id: "1002", title: "Associate Electrical Engineer – Power Systems and Modeling", location: "NYC, NY", salaryDisplay: "$122,000–$140,000+", slug: "1002-associate-electrical-engineer-power-systems-and-modeling" },
-  { id: "1003", title: "Associate, Electrical", location: "NYC, NY", salaryDisplay: "$130,000–$155,000", slug: "1003-associate-electrical" },
-  { id: "1004", title: "Associate, Building Management Systems (BMS)", location: "NYC, NY", salaryDisplay: "$122,000–$140,000", slug: "1004-associate-building-management-systems-bms" },
-  { id: "1005", title: "Electrical Engineer", location: "NYC, NY", salaryDisplay: "$80,000–$85,000", slug: "1005-electrical-engineer" },
+  { id: "1001", title: "Associate Electrical Engineer- Technical", location: "NYC, NY", salaryDisplay: "$110,000 – $145,000+", slug: "1001-associate-electrical-engineer-technical" },
+  { id: "1002", title: "Associate Electrical Engineer – Power Systems and Modeling", location: "NYC, NY", salaryDisplay: "$122,000 – $140,000+", slug: "1002-associate-electrical-engineer-power-systems-and-modeling" },
+  { id: "1003", title: "Associate, Electrical", location: "NYC, NY", salaryDisplay: "$130,000 – $155,000", slug: "1003-associate-electrical" },
+  { id: "1004", title: "Associate, Building Management Systems (BMS)", location: "NYC, NY", salaryDisplay: "$122,000 – $140,000", slug: "1004-associate-building-management-systems-bms" },
+  { id: "1005", title: "Electrical Engineer", location: "NYC, NY", salaryDisplay: "$80,000 – $85,000", slug: "1005-electrical-engineer" },
 ];
 
 const FALLBACK_FEATURED_JOBS = [
-  { id: "1010", title: "Senior Electrical Commissioning Engineer", location: "NYC, NY", salaryDisplay: "$150,000–$200,000", slug: "1010-senior-electrical-commissioning-engineer" },
-  { id: "1040", title: "Associate Mechanical Engineer –Data Centers (HVAC)", location: "NYC, NY", salaryDisplay: "$125,000–$150,000+", slug: "1040-associate-mechanical-engineer-data-centers-hvac" },
-  { id: "1075", title: "Director, Healthcare/Sciences Department: Health/Sciences", location: "Voorhees, NJ and NYC, NY", salaryDisplay: "$200,000–$250,000", slug: "1075-director-healthcare-sciences-department-health-sciences" },
-  { id: "1129", title: "Senior Electrical Engineer – Water/Wastewater", location: "NYC, NY", salaryDisplay: "$135,000–$190,000", slug: "1129-senior-electrical-engineer-water-wastewater" },
-  { id: "1181", title: "Assistant Chief Engineer, Structural (Bridge)", location: "Wall Township, NJ", salaryDisplay: "$150,000–$200,000", slug: "1181-assistant-chief-engineer-structural-bridge" },
+  { id: "1010", title: "Senior Electrical Commissioning Engineer", location: "NYC, NY", salaryDisplay: "$150,000 – $200,000", slug: "1010-senior-electrical-commissioning-engineer" },
+  { id: "1040", title: "Associate Mechanical Engineer –Data Centers (HVAC)", location: "NYC, NY", salaryDisplay: "$125,000 – $150,000+", slug: "1040-associate-mechanical-engineer-data-centers-hvac" },
+  { id: "1075", title: "Director, Healthcare/Sciences Department: Health/Sciences", location: "Voorhees, NJ and NYC, NY", salaryDisplay: "$200,000 – $250,000", slug: "1075-director-healthcare-sciences-department-health-sciences" },
+  { id: "1129", title: "Senior Electrical Engineer – Water/Wastewater", location: "NYC, NY", salaryDisplay: "$135,000 – $190,000", slug: "1129-senior-electrical-engineer-water-wastewater" },
+  { id: "1181", title: "Assistant Chief Engineer, Structural (Bridge)", location: "Wall Township, NJ", salaryDisplay: "$150,000 – $200,000", slug: "1181-assistant-chief-engineer-structural-bridge" },
 ];
 
 const PORTFOLIO_SLICES = [

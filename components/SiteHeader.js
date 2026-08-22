@@ -3,42 +3,51 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import styles from "./SiteHeader.module.css";
-import { getTargetId, scrollToTarget, handleSamePageNav } from "../lib/scrollToSection";
+import { getTargetId, getTargetScrollTop, scrollToTarget, handleSamePageNav } from "../lib/scrollToSection";
 
 // The careers engine now lives at /careers within the same unified deployment
 // (it used to be a separate site at careers.agileconsultingsolutions.com root).
 const CAREERS_PATH = "/careers";
 const MAIN_HOME_URL = "/";
 
-// Images above/around the target (hero photos, storyboard figures) can
-// still be loading and shifting the page's layout well after the initial
-// scroll-into-view already ran, which was silently landing fresh
-// cross-page navigations (e.g. Home -> /careers/#contact, or the ACCESS
-// menu's "Start a Career Conversation") short of the real target, leaving
-// the previous section visible above it. A fixed timing budget isn't
-// reliable here — image load time depends entirely on the visitor's
-// connection — so this listens directly for every image on the page to
-// actually finish loading and re-aligns immediately when one does, on top
-// of a background poll as a catch-all for shifts images don't explain
-// (fonts swapping, etc). It keeps working until the target's position
-// holds steady, the visitor starts scrolling on their own, or a generous
-// bounded time window elapses (long enough to cover a slow connection).
+// Content above/around the target (hero photos, storyboard figures, fonts
+// swapping in, etc.) can still be loading and shifting the page's layout
+// well after the initial scroll-into-view already ran, which was silently
+// landing fresh cross-page navigations (e.g. Home -> /careers/#contact, or
+// the ACCESS menu's "Start a Career Conversation") short of the real
+// target, leaving the previous section visible above it. A fixed timing
+// budget isn't reliable here — load time depends entirely on the visitor's
+// connection — so this locks onto the target with three layers: a
+// ResizeObserver on the whole page (catches literally any layout size
+// change, whatever causes it), direct load listeners on every still-loading
+// image (fires the instant one finishes, faster than waiting for the
+// resize to be reported), and a background poll as a final catch-all.
+//
+// IMPORTANT: every check re-computes the CORRECT scroll position and
+// compares it against where the page actually is right now — it does not
+// just watch for movement. An earlier version only re-corrected when the
+// target's position visibly shifted between checks, which meant a landing
+// that was wrong from the very first frame (but never moved again, e.g. on
+// a fast connection with nothing left to load) would be treated as
+// "stable" and left wrong. Checking absolute correctness every tick fixes
+// that regardless of whether anything else on the page ever shifts.
 const SETTLE_POLL_INTERVAL_MS = 150;
 const SETTLE_MAX_ATTEMPTS = 80; // ~12s, covers slow-connection image loads
+const SETTLE_TOLERANCE_PX = 2;
 
 export default function SiteHeader() {
   useEffect(() => {
     let pollTimer = null;
     let userInteracted = false;
-    let imageListenerCleanups = [];
+    let settleCleanups = [];
 
     function stopSettling() {
       if (pollTimer) {
         window.clearInterval(pollTimer);
         pollTimer = null;
       }
-      imageListenerCleanups.forEach((cleanup) => cleanup());
-      imageListenerCleanups = [];
+      settleCleanups.forEach((cleanup) => cleanup());
+      settleCleanups = [];
     }
 
     function markUserInteracted() {
@@ -60,7 +69,6 @@ export default function SiteHeader() {
       const targetId = window.location.hash.replace(/^#/, "");
       if (!targetId || targetId === "top") return;
 
-      let lastTop = null;
       let stableCount = 0;
       let attempts = 0;
 
@@ -69,26 +77,46 @@ export default function SiteHeader() {
           stopSettling();
           return;
         }
-        const target = document.getElementById(targetId);
-        if (!target) {
+        const desiredTop = getTargetScrollTop(targetId);
+        if (desiredTop === null) {
           stopSettling();
           return;
         }
-        const top = Math.round(target.getBoundingClientRect().top);
-        if (lastTop !== null && Math.abs(top - lastTop) <= 1) {
+        const currentTop = window.scrollY;
+        if (Math.abs(currentTop - desiredTop) <= SETTLE_TOLERANCE_PX) {
           stableCount += 1;
         } else {
-          // The target moved since the last check, so the page is still
-          // settling underneath it — catch up before checking again.
+          // Either the page just settled into a new layout underneath the
+          // target, or the earlier landing simply wasn't correct — either
+          // way, correct it now rather than assuming "unchanged" means
+          // "right".
           stableCount = 0;
-          scrollToTarget(targetId, "auto");
+          window.scrollTo({ top: desiredTop, behavior: "auto" });
         }
-        lastTop = top;
       }
 
-      // Re-check the instant any not-yet-loaded image on the page finishes,
-      // since that's the actual event that shifts layout — far more
-      // precise than waiting for the next poll tick.
+      // Check immediately rather than waiting for the first observer
+      // callback or poll tick — if the landing was already wrong on
+      // arrival, fix it right away instead of leaving it visible even
+      // briefly.
+      recheck();
+
+      // Catch literally any layout size change on the page — image loads,
+      // font swaps, video metadata, dynamically-inserted content, anything
+      // — and re-align the instant one happens. This is the general-purpose
+      // net; it doesn't need to know what might shift the layout.
+      if (typeof ResizeObserver !== "undefined") {
+        const ro = new ResizeObserver(() => {
+          stableCount = 0;
+          recheck();
+        });
+        ro.observe(document.body);
+        settleCleanups.push(() => ro.disconnect());
+      }
+
+      // Also listen directly on every still-loading image so the very
+      // first correction can happen the instant it finishes, without
+      // waiting on the ResizeObserver's own reporting delay.
       Array.prototype.forEach.call(document.images || [], (img) => {
         if (img.complete) return;
         const onSettled = () => {
@@ -97,7 +125,7 @@ export default function SiteHeader() {
         };
         img.addEventListener("load", onSettled);
         img.addEventListener("error", onSettled);
-        imageListenerCleanups.push(() => {
+        settleCleanups.push(() => {
           img.removeEventListener("load", onSettled);
           img.removeEventListener("error", onSettled);
         });
