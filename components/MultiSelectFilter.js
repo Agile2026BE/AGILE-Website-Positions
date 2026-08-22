@@ -13,6 +13,7 @@ export default function MultiSelectFilter({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const rootRef = useRef(null);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     function handlePointerDown(event) {
@@ -30,6 +31,20 @@ export default function MultiSelectFilter({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  // When this control sits inside a scrollable panel (e.g. the homepage's
+  // Explore Resources accordion), an ancestor's overflow:auto can clip the
+  // bottom of this dropdown — including the "View Results" bar — without
+  // the browser ever scrolling that ancestor to reveal it. Nudge the open
+  // menu into view of whichever ancestor actually scrolls so it always
+  // renders exactly like it does on the full careers filter bar.
+  useEffect(() => {
+    if (!isOpen) return;
+    const frame = window.requestAnimationFrame(() => {
+      menuRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [isOpen]);
 
   function toggleValue(option) {
     const exists = values.includes(option);
@@ -63,7 +78,6 @@ export default function MultiSelectFilter({
         onClick={() => setIsOpen((open) => !open)}
       >
         <span className={styles.triggerText}>{buttonText}</span>
-        <span className={styles.multiBadge} aria-hidden="true" title="Choose more than one">☑︎</span>
         <span
           className={styles.chevron}
           aria-hidden="true"
@@ -79,7 +93,7 @@ export default function MultiSelectFilter({
       </button>
 
       {isOpen ? (
-        <div className={styles.menu} role="listbox" aria-multiselectable="true">
+        <div className={styles.menu} ref={menuRef} role="listbox" aria-multiselectable="true">
           <div className={styles.menuHeader}>
             <span>Pick any number, up to {maxSelections}</span>
             {values.length ? (

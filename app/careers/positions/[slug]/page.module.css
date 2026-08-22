@@ -64,10 +64,6 @@
 }
 
 .grid .salaryValue {
-  display: inline-block;
-  padding: 2px 9px;
-  border-radius: 5px;
-  background: #e6f6ec;
   color: #00c853;
   font-weight: 800;
 }

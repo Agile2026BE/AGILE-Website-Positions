@@ -73,22 +73,7 @@ export default function HomeAccessMenu() {
           <div className={styles.accessRowBody}>
             <div className={styles.accessText}>
               <p>
-                <strong>AGILE</strong> is a specialized recruiting and staffing firm serving the Architecture, Engineering, and Construction (AEC) industry. We help professionals make informed, strategic career decisions by preparing them to connect with firms that value technical expertise, project experience, and long-term career growth.
-              </p>
-              <p>
-                We recruit across the New York, New Jersey, Pennsylvania, Massachusetts, California, Colorado, and Florida markets. Our client relationships include ENR Top 100 and Top 500 Design Firms, nationally recognized multidisciplinary consulting firms, notable mid-size and regional consultants, and Best Places to Work award winners.
-              </p>
-              <p>
-                Our carefully chosen client relationships allow us to advise candidates on opportunities across a wide range of project types, firm cultures, and leadership environments.
-              </p>
-              <p>
-                Whether you&apos;re an emerging professional beginning your career or a seasoned engineer looking to leverage years of experience toward continued career advancement, understanding changes in the current job market is the first step toward making an informed career decision.
-              </p>
-              <p>
-                Professional discretion is maintained throughout the search process, allowing candidates to confidently explore opportunities across our exclusive portfolio of industry-leading clients before completing a formal job application.
-              </p>
-              <p>
-                <strong>AGILE</strong> provides candidates with professional representation, access to our trusted business relationships, and an exclusive portfolio of industry-leading clients. They also benefit from current market intelligence, access to direct hire opportunities, personalized interview preparation, coordination throughout the hiring process, compensation and start-date negotiation, and onboarding assistance—all through a dedicated point of contact.
+                <strong>AGILE</strong> is a specialized AEC recruiting and professional advisory firm connecting professionals with respected architecture, engineering, construction, commissioning, and owner&apos;s representation organizations. Through trusted client relationships, market insight, confidential guidance, scheduling, interview preparation, and offer negotiations, we help candidates understand opportunities fully and make informed decisions about what comes next.
               </p>
             </div>
           </div>

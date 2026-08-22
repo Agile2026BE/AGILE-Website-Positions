@@ -60,7 +60,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
         <div className={styles.tags} aria-label="Position details">
           {job.specialty ? <span>{job.specialty}</span> : null}
           {job.market ? <span>{job.market.split("|")[0].trim()}</span> : null}
-          {job.credential ? <span>{job.credential}</span> : null}
+          {job.credential && job.credential.trim().toLowerCase() !== "not stated" ? <span>{job.credential}</span> : null}
           {job.bonus ? <span>Bonus</span> : null}
         </div>
 

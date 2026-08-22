@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import ContactSection from "../../../../components/ContactSection";
 import SiteFooter from "../../../../components/SiteFooter";
 import SiteHeader from "../../../../components/SiteHeader";
+import PositionBackLink from "../../../../components/PositionBackLink";
 import { jobs } from "../../../../data/jobs";
 import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../../lib/positionFreshness";
 import { formatExperienceDisplay } from "../../../../lib/jobFilters";
@@ -45,7 +46,7 @@ export default async function PositionPage({ params }) {
 
       <section className={`section position-detail ${styles.detail}`}>
         <div className="container">
-          <a className={styles.backLink} href="/careers/#positions">← Back to Positions</a>
+          <PositionBackLink className={styles.backLink} />
           <p className={`contact-eyebrow ${styles.eyebrow}`}>AVAILABLE POSITION · {POSITION_REVIEW_LABEL.toUpperCase()}</p>
           <h1 className={styles.title}>{job.title}</h1>
           {job.summary ? <p className="section-copy">{job.summary}</p> : null}

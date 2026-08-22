@@ -6,8 +6,8 @@
 .titleRow { display:flex; gap:16px; align-items:flex-start; justify-content:space-between; }
 .titleRow h2 { margin:0; max-width:590px; color:#173958; font-family:Arial,Helvetica,sans-serif; font-size:clamp(1.12rem,1.35vw,1.3rem); font-weight:700; line-height:1.24; letter-spacing:0; overflow-wrap:normal; word-break:normal; }
 .pills { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 10px; }.pills span { padding:8px 11px; border-radius:5px; background:#eef5f8; color:#244259; font-size:.76rem; font-weight:700; }
-.pills .salaryPill { background:#e6f6ec; color:#00c853; font-weight:800; }
-.similarList span.salaryValue { display:inline-block; padding:1px 7px; border-radius:4px; background:#e6f6ec; color:#00c853; font-weight:800; }
+.pills .salaryPill { background:transparent; padding-left:0; padding-right:0; color:#00c853; font-weight:800; }
+.similarList span.salaryValue { color:#00c853; font-weight:800; }
 .specialty { margin:10px 0 16px; padding:10px 12px; border-left:3px solid #1386bd; background:#dff1f8; color:#25445a; font-size:.7rem; font-weight:800; letter-spacing:.07em; line-height:1.4; }
 .summary { margin:0 0 22px; color:#4b667b; font-size:.94rem; line-height:1.55; }
 .sectionBlock { margin:0 0 23px; }.sectionBlock h3 { margin:0 0 8px; color:#173958; font-size:1.05rem; }.sectionBlock p { margin:0 0 8px; color:#4b667b; font-size:.92rem; line-height:1.5; }.sectionBlock ul { margin:0; padding-left:20px; color:#4b667b; }.sectionBlock li { margin:0 0 7px; font-size:.92rem; line-height:1.48; }

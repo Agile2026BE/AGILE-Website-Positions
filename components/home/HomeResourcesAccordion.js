@@ -143,6 +143,21 @@ export default function HomeResourcesAccordion({ variant }) {
     setCalcFilters(EMPTY_CALC_FILTERS);
   }
 
+  // Position detail pages reached via the Featured Positions list send visitors
+  // back here with "#explore-resources-featured" (see PositionBackLink) — reopen
+  // this same panel to the same tab so "Back" actually feels like going back.
+  useEffect(() => {
+    function openFromHash() {
+      if (window.location.hash === "#explore-resources-featured") {
+        setOpen(true);
+        setOpenTab("featured");
+      }
+    }
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, []);
+
   function toggleTab(tab) {
     setOpenTab((current) => (current === tab ? null : tab));
   }
@@ -236,7 +251,7 @@ export default function HomeResourcesAccordion({ variant }) {
             <div className={styles.accessRowBody}>
               <div className={styles.resourcesPositionList}>
                 {featured.map((job) => (
-                  <a key={job.id} href={`/careers/positions/${job.slug}`} className={styles.resourcesPositionItem}>
+                  <a key={job.id} href={`/careers/positions/${job.slug}?from=home-featured`} className={styles.resourcesPositionItem}>
                     <strong>{job.title}</strong>
                     <span>{job.location} · <span className={styles.salaryValue}>{job.salaryDisplay}</span></span>
                   </a>

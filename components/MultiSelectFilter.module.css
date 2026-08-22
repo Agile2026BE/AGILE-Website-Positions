@@ -29,13 +29,6 @@
   font-weight: 800;
 }
 
-.multiBadge {
-  flex: 0 0 auto;
-  font-size: 13px;
-  opacity: 0.55;
-  line-height: 1;
-}
-
 .trigger:hover,
 .trigger:focus-visible {
   border-color: #147eae;
