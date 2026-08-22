@@ -173,5 +173,13 @@ a.accessSubRowHead{color:#1c4d8f}
      than touching the button-to-check-off gap, which stays as requested. */
   .heroContent{padding-top:50px}
   .hero h1{margin:16px 0 14px}
-  .heroAdvantage{margin-top:0;padding-top:18px;border-top:none}
+  /* Give the paragraph a quarter inch (~24px) of breathing room back from
+     the check-offs above it, now that the divider line is gone — while
+     still sitting well clear of the blueprint below. */
+  .heroAdvantage{margin-top:24px;padding-top:18px;border-top:none}
+  /* Wordmark polish: nudge "AGILE" up slightly (independent of the ACCESS
+     menu button beside it, which stays put) and indent it a touch more to
+     the right, so it has cleaner separation from "AEC RECRUITING AND
+     CONSULTING" underneath and sits better aligned overall. */
+  .miniLogo{margin-left:30px;transform:translateY(-6px)}
 }
