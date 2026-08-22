@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./HeroSection.module.css";
+import { handleSamePageNav } from "../lib/scrollToSection";
 
 export default function HeroSection() {
   const badgesRef = useRef(null);
@@ -66,6 +67,7 @@ export default function HeroSection() {
           <a
             className={`hero-primary ${styles.primary}`}
             href="/careers/#positions"
+            onClick={(event) => handleSamePageNav(event, "/careers/#positions", "/careers")}
           >
             Explore Positions
           </a>

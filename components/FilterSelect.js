@@ -8,7 +8,7 @@ export default function FilterSelect({
 }) {
   return (
     <select
-      className={styles.select}
+      className={`${styles.select} ${value ? styles.selectActive : ""}`}
       value={value}
       onChange={(event) => onChange(event.target.value)}
       aria-label={label}

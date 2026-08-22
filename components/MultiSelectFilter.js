@@ -57,12 +57,13 @@ export default function MultiSelectFilter({
     <div className={styles.root} ref={rootRef}>
       <button
         type="button"
-        className={styles.trigger}
+        className={`${styles.trigger} ${values.length ? styles.triggerActive : ""}`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         onClick={() => setIsOpen((open) => !open)}
       >
         <span className={styles.triggerText}>{buttonText}</span>
+        <span className={styles.multiBadge} aria-hidden="true" title="Choose more than one">☑︎</span>
         <span
           className={styles.chevron}
           aria-hidden="true"
@@ -80,7 +81,7 @@ export default function MultiSelectFilter({
       {isOpen ? (
         <div className={styles.menu} role="listbox" aria-multiselectable="true">
           <div className={styles.menuHeader}>
-            <span>Select up to {maxSelections}</span>
+            <span>Pick any number, up to {maxSelections}</span>
             {values.length ? (
               <button type="button" className={styles.clear} onClick={() => onChange([])}>
                 Clear

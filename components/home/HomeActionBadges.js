@@ -5,9 +5,9 @@ import styles from "../../app/page.module.css";
 
 const badges = [
   "Focused AEC Expertise",
-  "Marketplace Intelligence",
-  "Premier Client Connections",
   "Career & Hiring Insight",
+  "Premier Client Connections",
+  "Marketplace Intelligence",
 ];
 
 export default function HomeActionBadges() {

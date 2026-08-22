@@ -9,25 +9,41 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
   padding: 0 14px;
-  border: 1px solid var(--border);
+  border: 1.5px solid #b7c2d1;
   border-radius: 10px;
   background: var(--surface);
-  color: var(--text);
+  color: #3d5573;
   font: inherit;
+  font-weight: 600;
   text-align: left;
   cursor: pointer;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.triggerActive {
+  border: 2px solid #2f5586;
+  background: #eef2f8;
+  color: #173958;
+  font-weight: 800;
+}
+
+.multiBadge {
+  flex: 0 0 auto;
+  font-size: 13px;
+  opacity: 0.55;
+  line-height: 1;
 }
 
 .trigger:hover,
 .trigger:focus-visible {
-  border-color: var(--navy);
+  border-color: #147eae;
 }
 
 .trigger:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(36, 59, 103, 0.16);
+  box-shadow: 0 0 0 4px rgba(20, 126, 174, 0.22);
 }
 
 .triggerText {
@@ -50,7 +66,7 @@
   width: max(100%, 260px);
   max-width: min(360px, calc(100vw - 32px));
   padding: 8px;
-  border: 1px solid var(--border);
+  border: 1.5px solid #b7c2d1;
   border-radius: 12px;
   background: var(--surface);
   box-shadow: 0 16px 40px rgba(16, 42, 67, 0.18);
@@ -62,15 +78,20 @@
   justify-content: space-between;
   gap: 12px;
   padding: 6px 8px 8px;
-  color: #1683b6;
+  color: #2f5586;
   font-size: 12px;
   font-weight: 800;
+}
+
+.menuHeader span:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .clear {
   border: 0;
   background: transparent;
-  color: var(--navy);
+  color: #2f5586;
   font: inherit;
   font-weight: 700;
   cursor: pointer;
@@ -114,10 +135,10 @@
   gap: 12px;
   margin: 8px -8px -8px;
   padding: 10px 12px;
-  border-top: 1px solid #cfd9e2;
+  border-top: 1px solid #d3dbe6;
   border-radius: 0 0 12px 12px;
-  background: #f7fbfd;
-  color: #29415a;
+  background: #eef2f8;
+  color: #2f5586;
   font-size: 13px;
   font-weight: 700;
 }
@@ -128,19 +149,19 @@
   padding: 0 16px;
   border: 0;
   border-radius: 6px;
-  background: #1476a8;
-  color: #fff;
+  background: #2f5586;
+  color: #f7e3ae;
   font: inherit;
   font-weight: 800;
   cursor: pointer;
 }
 
 .applyButton:hover {
-  background: #0f6795;
+  background: #24406b;
 }
 
 .applyButton:focus-visible {
-  outline: 3px solid rgba(20, 118, 168, 0.24);
+  outline: 3px solid rgba(20, 126, 174, 0.3);
   outline-offset: 2px;
 }
 
@@ -153,7 +174,7 @@
   .trigger,
   .option,
   .menuHeader {
-    color: #29415a;
+    color: #2f5586;
   }
 
   .menu {

@@ -26,7 +26,7 @@ export default function CorporateHomePage() {
           <h1>What’s Your<br />Next <em>Move?</em></h1>
           <p className={styles.lead}>Specialized recruiting and professional representation connecting architects, engineers, and construction professionals with firms shaping the built environment.</p>
           <div className={styles.actionGrid}>
-            <a href="/careers/#positions" className={styles.primary}>Explore Opportunities</a>
+            <a href="/careers" className={styles.primary}>Explore Opportunities</a>
             <a href="#contact" className={styles.secondary}>Start a Conversation</a>
             <HomeActionBadges />
           </div>

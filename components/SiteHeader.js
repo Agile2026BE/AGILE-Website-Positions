@@ -3,39 +3,12 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import styles from "./SiteHeader.module.css";
+import { getTargetId, scrollToTarget, handleSamePageNav } from "../lib/scrollToSection";
 
 // The careers engine now lives at /careers within the same unified deployment
 // (it used to be a separate site at careers.agileconsultingsolutions.com root).
 const CAREERS_PATH = "/careers";
 const MAIN_HOME_URL = "/";
-
-function getTargetId(href) {
-  const hashIndex = href.indexOf("#");
-  return hashIndex >= 0 ? href.slice(hashIndex + 1) : "";
-}
-
-function scrollToTarget(targetId, behavior = "smooth") {
-  if (targetId === "top") {
-    window.scrollTo({ top: 0, behavior });
-    return true;
-  }
-
-  const target = document.getElementById(targetId);
-  const header = document.querySelector(".site-header");
-  if (!target || !header) return false;
-
-  const headerHeight = Math.ceil(header.getBoundingClientRect().height);
-  const targetTop = target.getBoundingClientRect().top + window.scrollY;
-  const marketInsightsAdjustment = targetId === "market-insights" ? 33 : 0;
-  const reviewsAdjustment = targetId === "reviews" ? -128 : 0;
-  const landingTop = Math.max(
-    0,
-    targetTop - headerHeight - 8 + marketInsightsAdjustment + reviewsAdjustment
-  );
-
-  window.scrollTo({ top: landingTop, behavior });
-  return true;
-}
 
 export default function SiteHeader() {
   useEffect(() => {
@@ -57,19 +30,7 @@ export default function SiteHeader() {
   }, []);
 
   function handleNavigation(event, href) {
-    const url = new URL(href, window.location.href);
-    const sameSite = window.location.hostname === url.hostname;
-    const homePath = window.location.pathname === CAREERS_PATH;
-    const targetId = getTargetId(href);
-
-    if (!sameSite || !homePath || !targetId) return;
-
-    event.preventDefault();
-    const nextHash = `#${targetId}`;
-    if (window.location.hash !== nextHash) {
-      window.history.pushState(null, "", nextHash);
-    }
-    scrollToTarget(targetId);
+    handleSamePageNav(event, href, CAREERS_PATH);
   }
 
   const links = [
