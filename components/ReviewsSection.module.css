@@ -99,6 +99,7 @@
   .headingRow,
   .grid { grid-template-columns: 1fr; }
   .headingRow { gap: 12px; margin-bottom: 16px; }
+  .badge { font-size: 0.62rem; letter-spacing: 0.06em; white-space: nowrap; padding: 6px 10px; }
   .heading { font-size: clamp(1.7rem, 6.7vw, 2.05rem); line-height: 1.03; white-space: normal; }
   .heading br { display: none; }
   .review { padding: 18px 20px 17px; }

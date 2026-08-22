@@ -15,7 +15,7 @@ export default function RecruitingScamWarningPage() {
       <section className={`section ${styles.detail}`}>
         <div className={`container ${styles.inner}`}>
           <p className={`contact-eyebrow ${styles.eyebrow}`}>TRUST &amp; SECURITY</p>
-          <h1 className="section-title">Recruiting Scam Warning</h1>
+          <h1 className={`section-title ${styles.pageTitle}`}>Recruiting Scam Warning</h1>
 
           <div className={styles.body}>
             <p>

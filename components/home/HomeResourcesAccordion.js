@@ -230,7 +230,10 @@ export default function HomeResourcesAccordion({ variant }) {
                 {calcSample.map((job) => (
                   <a key={job.id} href={`/careers/positions/${job.slug}`} className={styles.resourcesPositionItem}>
                     <strong>{job.title}</strong>
-                    <span>{job.location} · <span className={styles.salaryValue}>{job.salaryDisplay}</span></span>
+                    <span className={styles.resourcesPositionMeta}>
+                      <span>{job.location}</span>
+                      <span className={styles.salaryValue}>{job.salaryDisplay}</span>
+                    </span>
                   </a>
                 ))}
               </div>

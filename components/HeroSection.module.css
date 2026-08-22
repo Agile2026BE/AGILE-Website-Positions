@@ -161,8 +161,8 @@
   .title{max-width:100%;font-size:clamp(2rem,10.2vw,2.65rem);line-height:1.06;letter-spacing:-.025em}
   .titleLine{display:block;white-space:normal}
   .lead{max-width:100%;margin-top:22px;font-size:.94rem;line-height:1.5}
-  .actions{flex-direction:column;align-items:stretch;justify-content:flex-start;margin-top:24px}
-  .primary,.secondary{width:100%}
+  .actions{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:10px;margin-top:24px}
+  .primary,.secondary{width:100%;min-height:46px;padding:0 20px;border-radius:10px;font-weight:600;font-size:.95rem}
   .badges{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin-top:26px;gap:8px}
   .badge{grid-column:span 2;justify-content:center;min-height:32px;padding:4px 6px;font-size:.64rem;line-height:1.15;text-align:center}
   .badge:nth-child(4),.badge:nth-child(5){grid-column:span 3}

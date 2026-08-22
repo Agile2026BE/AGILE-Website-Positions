@@ -15,7 +15,7 @@ export default function PrivacyPolicyPage() {
       <section className={`section ${styles.detail}`}>
         <div className={`container ${styles.inner}`}>
           <p className={`contact-eyebrow ${styles.eyebrow}`}>TRUST &amp; SECURITY</p>
-          <h1 className="section-title">Privacy Policy</h1>
+          <h1 className={`section-title ${styles.pageTitle}`}>Privacy Policy</h1>
 
           <div className={styles.body}>
             <p>

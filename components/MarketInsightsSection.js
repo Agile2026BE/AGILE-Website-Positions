@@ -44,7 +44,7 @@ export default function MarketInsightsSection() {
           <label>Location<select name="location" defaultValue=""><option value="">Choose a market</option>{stateOptions.map((state)=><option key={state}>{state}</option>)}</select></label>
           <label>Discipline<select name="discipline" defaultValue=""><option value="">Choose a discipline</option>{disciplineOptions.map((discipline)=><option key={discipline}>{discipline}</option>)}</select></label>
           <label>Experience Level<select name="experience" defaultValue=""><option value="">Choose experience</option>{experienceOptions.map((band)=><option key={band.value} value={band.label}>{band.label}</option>)}</select></label>
-          <div className={styles.actions}><p className={styles.consent}>By selecting Keep Me Updated, you are asking AGILE to send occasional professional market and career updates to this email address.</p><button className={styles.button} type="submit" disabled={sending}>{sending?"Saving...":"Keep Me Updated"}</button></div>
+          <div className={styles.actions}><p className={styles.consent}>By continuing, you agree AGILE may email or text you career and market updates — opt out anytime.</p><button className={styles.button} type="submit" disabled={sending}>{sending?"Saving...":"Keep Me Updated"}</button></div>
         </form>
       </div>
     </section>

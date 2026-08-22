@@ -31,7 +31,7 @@ export default function CorporateHomePage() {
             <HomeActionBadges />
           </div>
           <div className={styles.heroAdvantage} id="professionals">
-            <p className={styles.heroAdvantageText}>We work directly with leadership teams across Architecture, Engineering, Construction, Commissioning, and Owner’s Representation, giving experienced professionals greater insight into our clients, their projects, expectations, company cultures, and work environments. We help AEC professionals look beyond the role itself to understand the opportunity being presented, the advancement it may offer, and whether it truly aligns with their experience, priorities, and career goals—before making their next{" "}move.</p>
+            <p className={styles.heroAdvantageText}>We work directly with leadership teams across Architecture, Engineering, Construction, Commissioning, and Owner’s Representation. That gives experienced professionals real insight into our clients — their projects, expectations, culture, and work environment. We help AEC professionals look past the role itself to understand the true opportunity, the growth it offers, and whether it truly fits their experience, priorities, and career goals before making their next move.</p>
           </div>
         </div>
         <HomeResourcesAccordion variant="desktop" />

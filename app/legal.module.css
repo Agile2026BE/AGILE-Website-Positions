@@ -15,6 +15,13 @@
   letter-spacing: 0.12em;
 }
 
+@media (max-width: 760px) {
+  h1.pageTitle {
+    font-size: 1.5rem;
+    line-height: 1.18;
+  }
+}
+
 .updated {
   margin: 0 0 32px;
   color: var(--text-muted);

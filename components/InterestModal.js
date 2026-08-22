@@ -150,10 +150,9 @@ export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
       setMessage(starters.position);
       setPhone("");
       setInvalidField("");
-      window.setTimeout(
-        () => modalRef.current?.scrollTo({ top: 0, behavior: "smooth" }),
-        0
-      );
+      window.requestAnimationFrame(() => {
+        modalRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+      });
     } catch (error) {
       setStatus(error.message || "We could not send your inquiry. Please try again.");
     } finally {
@@ -266,7 +265,7 @@ export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
             <label className={styles.consent}>
               <input type="checkbox" name="textingConsent" value="yes" />
               <span>
-                AGILE may text me about my inquiry and career opportunities. Consent is optional and is not required. Message/data rates may apply. Reply STOP to opt out.
+                OK to text me about this inquiry and future opportunities. Optional — msg &amp; data rates may apply, reply STOP to opt out.
               </span>
             </label>
           ) : null}
