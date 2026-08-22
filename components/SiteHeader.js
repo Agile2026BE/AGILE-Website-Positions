@@ -23,9 +23,17 @@ export default function SiteHeader() {
 
     alignCurrentHash();
     window.addEventListener("hashchange", alignCurrentHash);
+    // Images below the fold (hero photos, storyboard figures) can still be
+    // settling into their final layout when the RAF-based alignment above
+    // runs, which was landing the page a bit short of the real target and
+    // leaving the previous section (e.g. Market Insights before Contact)
+    // visible at the top. Re-run the same alignment once everything has
+    // finished loading as a corrective second pass.
+    window.addEventListener("load", alignCurrentHash);
 
     return () => {
       window.removeEventListener("hashchange", alignCurrentHash);
+      window.removeEventListener("load", alignCurrentHash);
     };
   }, []);
 

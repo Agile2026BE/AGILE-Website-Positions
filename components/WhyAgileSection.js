@@ -1,11 +1,5 @@
 import styles from "./WhyAgileSection.module.css";
 
-const steps = [
-  { number: "01", title: "Your career path is clearly discussed", copy: "We learn what matters most to you and which direction you want your career to follow." },
-  { number: "02", title: "We know our clients on a first name basis", copy: "We have established relationships directly with current hiring leadership." },
-  { number: "03", title: "Extensive client insight and market intelligence", copy: "We expertly present your experience to generate interview interest for you." },
-];
-
 export default function WhyAgileSection() {
   return (
     <section className={styles.section} id="agile-insights" aria-label="AGILE Insights">
@@ -29,10 +23,6 @@ export default function WhyAgileSection() {
         <p className={styles.recommendLine}>Your introduction should reflect it.</p>
         <h3 className={styles.firstImpression}>Make your first impression <span className={styles.really}>really</span> count.</h3>
         <p className={styles.supporting}>Let our established connections and reputation be your advantage.</p>
-      </div>
-
-      <div className={styles.grid}>
-        {steps.map((step) => <article className={styles.step} key={step.number}><div className={styles.stepHeading}><span className={styles.number}>{step.number}</span><h3>{step.title}</h3></div><p>{step.copy}</p></article>)}
       </div>
     </section>
   );

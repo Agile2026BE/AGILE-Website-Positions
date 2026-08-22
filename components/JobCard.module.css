@@ -8,6 +8,7 @@
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 .card:hover { transform:translateY(-5px); border-color:#c7d7e2; box-shadow:0 16px 34px rgba(25,57,82,.12); }
+.salaryValue { color:#178a4c; font-weight:800; }
 .shortlist { position:absolute; top:18px; right:18px; z-index:2; }
 .positionId { display:table; margin:0 0 14px auto; padding:5px 9px; border:1px solid #c9a85d; border-radius:5px; background:#f7f0df; color:#745719; font-size:.68rem; font-weight:800; letter-spacing:.05em; text-align:right; }
 .cardContent { display:block; color:inherit; }

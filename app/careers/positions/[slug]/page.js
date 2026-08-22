@@ -54,7 +54,7 @@ export default async function PositionPage({ params }) {
             <div><dt>Location</dt><dd>{job.location}</dd></div>
             <div><dt>State</dt><dd>{job.state}</dd></div>
             <div><dt>Workplace</dt><dd>{job.workplace}</dd></div>
-            <div><dt>Salary</dt><dd>{job.salaryDisplay}</dd></div>
+            <div><dt>Salary</dt><dd className={styles.salaryValue}>{job.salaryDisplay}</dd></div>
             <div><dt>Experience</dt><dd>{formatExperienceDisplay(job.experience)}</dd></div>
             <div><dt>Discipline</dt><dd>{job.discipline}</dd></div>
             {job.specialty ? <div><dt>Specialty</dt><dd>{job.specialty}</dd></div> : null}

@@ -205,7 +205,7 @@ export default function HomeResourcesAccordion({ variant }) {
 
               <div className={styles.resourcesStatBox}>
                 <span className={styles.resourcesStatLabel}>{hasCalcFilters ? "Salary range for this search" : "Current posted salary range"}</span>
-                <strong>{calcStats.min != null && calcStats.max != null ? `${money(calcStats.min)} – ${money(calcStats.max)}` : "No matches yet"}</strong>
+                <strong className={styles.resourcesStatValue}>{calcStats.min != null && calcStats.max != null ? `${money(calcStats.min)} – ${money(calcStats.max)}` : "No matches yet"}</strong>
                 <span className={styles.resourcesStatSub}>
                   {calcStats.count} {hasCalcFilters ? "matching postings" : "current postings"} · all current AGILE opportunities
                 </span>
@@ -215,7 +215,7 @@ export default function HomeResourcesAccordion({ variant }) {
                 {calcSample.map((job) => (
                   <a key={job.id} href={`/careers/positions/${job.slug}`} className={styles.resourcesPositionItem}>
                     <strong>{job.title}</strong>
-                    <span>{job.location} · {job.salaryDisplay}</span>
+                    <span>{job.location} · <span className={styles.salaryValue}>{job.salaryDisplay}</span></span>
                   </a>
                 ))}
               </div>
@@ -238,7 +238,7 @@ export default function HomeResourcesAccordion({ variant }) {
                 {featured.map((job) => (
                   <a key={job.id} href={`/careers/positions/${job.slug}`} className={styles.resourcesPositionItem}>
                     <strong>{job.title}</strong>
-                    <span>{job.location} · {job.salaryDisplay}</span>
+                    <span>{job.location} · <span className={styles.salaryValue}>{job.salaryDisplay}</span></span>
                   </a>
                 ))}
               </div>

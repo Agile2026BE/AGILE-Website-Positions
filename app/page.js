@@ -30,6 +30,9 @@ export default function CorporateHomePage() {
             <a href="/careers/#contact" className={styles.secondary}>Start a Conversation</a>
             <HomeActionBadges />
           </div>
+          <div className={styles.heroAdvantage} id="professionals">
+            <p className={styles.heroAdvantageText}>We work directly with leadership teams across Architecture, Engineering, Construction, Commissioning, and Owner’s Representation, giving experienced professionals greater insight into our clients, their projects, expectations, company cultures, and work environments. We help AEC professionals look beyond the position itself to understand the opportunity being presented, the advancement it may offer, and whether it truly aligns with their experience, priorities, and career goals—before making their next move.</p>
+          </div>
         </div>
         <HomeResourcesAccordion variant="desktop" />
 
@@ -38,14 +41,6 @@ export default function CorporateHomePage() {
             <div className={styles.mobilePhotoFade}></div>
           </div>
           <HomeResourcesAccordion variant="mobile" />
-        </div>
-      </section>
-
-      <section className={styles.intro} id="professionals">
-        <div className={styles.sectionLabel}>THE AGILE ADVANTAGE</div>
-        <div className={styles.introGrid}>
-          <h2>Your experience has created value.<br/><em>Your next move should reflect it.</em></h2>
-          <div><p>AGILE works directly with hiring leadership across Architecture, Engineering, Construction, Commissioning, and Owner’s Representation. We help experienced Professionals understand the opportunity before making a move.</p><a href="/careers" className={styles.textLink}>Search current positions →</a></div>
         </div>
       </section>
 

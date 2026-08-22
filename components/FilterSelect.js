@@ -5,10 +5,11 @@ export default function FilterSelect({
   value,
   options = [],
   onChange,
+  tone,
 }) {
   return (
     <select
-      className={`${styles.select} ${value ? styles.selectActive : ""}`}
+      className={`${styles.select} ${value ? styles.selectActive : ""} ${tone === "money" ? styles.selectMoney : ""}`}
       value={value}
       onChange={(event) => onChange(event.target.value)}
       aria-label={label}

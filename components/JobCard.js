@@ -49,7 +49,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
           </div>
           <div className={styles.metaRow}>
             <dt>{labels.salary}</dt>
-            <dd>{job.salaryDisplay}</dd>
+            <dd className={styles.salaryValue}>{job.salaryDisplay}</dd>
           </div>
           <div className={styles.metaRow}>
             <dt>{labels.experience}</dt>

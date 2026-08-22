@@ -63,6 +63,11 @@
   font-weight: 700;
 }
 
+.grid .salaryValue {
+  color: #178a4c;
+  font-weight: 800;
+}
+
 .contentSection {
   max-width: 760px;
   margin: 30px 0;

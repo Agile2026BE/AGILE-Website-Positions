@@ -1,6 +1,7 @@
 .section { position:relative; overflow:hidden; background:#f7f8fa; }
 .contactAnchor,.legacyAnchor { position:absolute; top:0; left:0; width:1px; height:1px; }
 .motionStage { position:relative; min-height:430px; height:min(48vw,520px); max-height:520px; overflow:hidden; isolation:isolate; display:grid; place-items:center; padding:54px 34px 62px; background:#102f49; }
+.motionStageVideoOnly { padding:0; }
 .cityVideo { position:absolute; inset:0; z-index:-4; width:100%; height:100%; object-fit:cover; object-position:center 48%; transform:scale(1.015); }
 .videoOverlay { position:absolute; inset:0; z-index:-3; background:linear-gradient(180deg,rgba(7,31,50,.32) 0%,rgba(8,39,61,.40) 42%,rgba(4,24,39,.66) 100%); }
 .centerGlow { position:absolute; inset:0; z-index:-2; background:radial-gradient(ellipse at 50% 44%,rgba(16,58,85,.03) 0%,rgba(3,20,33,.09) 70%); }
