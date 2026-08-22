@@ -161,12 +161,17 @@ a.accessSubRowHead{color:#1c4d8f}
    earlier .trustRow rule elsewhere in this file is unused dead CSS left
    over from a prior layout and has no effect on this page. */
 @media(min-width:821px){
-  .hero .actionGrid{column-gap:26px;row-gap:16px;margin-top:34px;font-size:.95rem}
+  .hero .actionGrid{column-gap:26px;row-gap:16px;margin-top:22px;font-size:.95rem}
   .hero .primary,.hero .secondary{min-height:50px;padding:0 26px;font-size:1.04rem}
   .hero .actionGrid .actionBadge{gap:8px}
   .hero .actionGrid .actionBadge:nth-of-type(-n+2){margin-top:28px}
-  /* Raise the "We work directly with leadership teams..." paragraph up
-     ~0.3in (base margin-top is 36px) so its white text sits further clear
-     of the white blueprint sheet in the photo below it. */
-  .heroAdvantage{margin-top:8px}
+  /* Raise the "We work directly with leadership teams..." paragraph up a
+     further ~0.5in so its white text clears the white blueprint sheet and
+     conference table in the photo below it — compressing the padding/
+     margins above it slightly (hero top padding, headline bottom margin,
+     button-row top margin, and this paragraph's own top spacing) rather
+     than touching the button-to-check-off gap, which stays as requested. */
+  .heroContent{padding-top:50px}
+  .hero h1{margin:16px 0 14px}
+  .heroAdvantage{margin-top:0;padding-top:18px}
 }
