@@ -1,34 +1,35 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import styles from "../../app/home/page.module.css";
+import styles from "../../app/page.module.css";
 import PlayAgileChess from "./PlayAgileChess";
+import FilterSelect from "../FilterSelect";
+import MultiSelectFilter from "../MultiSelectFilter";
 
-// This corporate site is a separate deployment from careers.agileconsultingsolutions.com,
-// so it can't import that repo's data file directly at build time. Instead it fetches
-// live numbers at runtime from a small public endpoint on the careers site
+// The careers engine now lives at /careers within this same unified deployment,
+// so this fetches live numbers at runtime from its public endpoint
 // (/api/jobs-summary). The constants below are only a fallback, used if that fetch
 // ever fails — a real, verified snapshot of live AGILE postings captured August 2026,
 // not invented data. The "View All" and "Explore Additional Opportunities" links always
 // go straight to the live, up-to-the-minute search either way.
-const JOBS_SUMMARY_URL = "https://careers.agileconsultingsolutions.com/api/jobs-summary";
+const JOBS_SUMMARY_URL = "/api/jobs-summary";
 
 const FALLBACK_STATS = { count: 183, min: 65000, max: 250000 };
 
 const FALLBACK_SAMPLE_JOBS = [
-  { id: "1001", title: "Associate Electrical Engineer- Technical", location: "NYC, NY", salaryDisplay: "$110,000–$145,000+", slug: "1001-associate-electrical-engineer-technical" },
-  { id: "1002", title: "Associate Electrical Engineer – Power Systems and Modeling", location: "NYC, NY", salaryDisplay: "$122,000–$140,000+", slug: "1002-associate-electrical-engineer-power-systems-and-modeling" },
-  { id: "1003", title: "Associate, Electrical", location: "NYC, NY", salaryDisplay: "$130,000–$155,000", slug: "1003-associate-electrical" },
-  { id: "1004", title: "Associate, Building Management Systems (BMS)", location: "NYC, NY", salaryDisplay: "$122,000–$140,000", slug: "1004-associate-building-management-systems-bms" },
-  { id: "1005", title: "Electrical Engineer", location: "NYC, NY", salaryDisplay: "$80,000–$85,000", slug: "1005-electrical-engineer" },
+  { id: "1001", title: "Associate Electrical Engineer- Technical", location: "NYC, NY", salaryDisplay: "$110,000 – $145,000+", slug: "1001-associate-electrical-engineer-technical" },
+  { id: "1002", title: "Associate Electrical Engineer – Power Systems and Modeling", location: "NYC, NY", salaryDisplay: "$122,000 – $140,000+", slug: "1002-associate-electrical-engineer-power-systems-and-modeling" },
+  { id: "1003", title: "Associate, Electrical", location: "NYC, NY", salaryDisplay: "$130,000 – $155,000", slug: "1003-associate-electrical" },
+  { id: "1004", title: "Associate, Building Management Systems (BMS)", location: "NYC, NY", salaryDisplay: "$122,000 – $140,000", slug: "1004-associate-building-management-systems-bms" },
+  { id: "1005", title: "Electrical Engineer", location: "NYC, NY", salaryDisplay: "$80,000 – $85,000", slug: "1005-electrical-engineer" },
 ];
 
 const FALLBACK_FEATURED_JOBS = [
-  { id: "1010", title: "Senior Electrical Commissioning Engineer", location: "NYC, NY", salaryDisplay: "$150,000–$200,000", slug: "1010-senior-electrical-commissioning-engineer" },
-  { id: "1040", title: "Associate Mechanical Engineer –Data Centers (HVAC)", location: "NYC, NY", salaryDisplay: "$125,000–$150,000+", slug: "1040-associate-mechanical-engineer-data-centers-hvac" },
-  { id: "1075", title: "Director, Healthcare/Sciences Department: Health/Sciences", location: "Voorhees, NJ and NYC, NY", salaryDisplay: "$200,000–$250,000", slug: "1075-director-healthcare-sciences-department-health-sciences" },
-  { id: "1129", title: "Senior Electrical Engineer – Water/Wastewater", location: "NYC, NY", salaryDisplay: "$135,000–$190,000", slug: "1129-senior-electrical-engineer-water-wastewater" },
-  { id: "1181", title: "Assistant Chief Engineer, Structural (Bridge)", location: "Wall Township, NJ", salaryDisplay: "$150,000–$200,000", slug: "1181-assistant-chief-engineer-structural-bridge" },
+  { id: "1010", title: "Senior Electrical Commissioning Engineer", location: "NYC, NY", salaryDisplay: "$150,000 – $200,000", slug: "1010-senior-electrical-commissioning-engineer" },
+  { id: "1040", title: "Associate Mechanical Engineer –Data Centers (HVAC)", location: "NYC, NY", salaryDisplay: "$125,000 – $150,000+", slug: "1040-associate-mechanical-engineer-data-centers-hvac" },
+  { id: "1075", title: "Director, Healthcare/Sciences Department: Health/Sciences", location: "Voorhees, NJ and NYC, NY", salaryDisplay: "$200,000 – $250,000", slug: "1075-director-healthcare-sciences-department-health-sciences" },
+  { id: "1129", title: "Senior Electrical Engineer – Water/Wastewater", location: "NYC, NY", salaryDisplay: "$135,000 – $190,000", slug: "1129-senior-electrical-engineer-water-wastewater" },
+  { id: "1181", title: "Assistant Chief Engineer, Structural (Bridge)", location: "Wall Township, NJ", salaryDisplay: "$150,000 – $200,000", slug: "1181-assistant-chief-engineer-structural-bridge" },
 ];
 
 const PORTFOLIO_SLICES = [
@@ -53,7 +54,8 @@ function buildConicGradient(slices) {
   return `conic-gradient(${stops.join(", ")})`;
 }
 
-const EMPTY_CALC_FILTERS = { state: "", discipline: "", workplace: "", market: "", experience: "" };
+const EMPTY_CALC_FILTERS = { state: "", discipline: "", workplace: "", market: [], experience: "" };
+const MAX_CALC_MARKET_SELECTIONS = 5;
 
 // Real postings' "experience" field is free text; the live API (jobs-summary,
 // backed by lib/jobFilters.js) pre-parses each one into experienceMin/experienceMax
@@ -77,9 +79,10 @@ function jobMatchesCalcFilters(job, filters, experienceBands) {
   if (filters.state && !String(job.state || "").toLowerCase().includes(filters.state.toLowerCase())) return false;
   if (filters.discipline && String(job.discipline || "").toLowerCase() !== filters.discipline.toLowerCase()) return false;
   if (filters.workplace && !String(job.workplace || "").toLowerCase().includes(filters.workplace.toLowerCase())) return false;
-  if (filters.market) {
+  if (filters.market && filters.market.length) {
     const markets = String(job.market || "").split("|").map((m) => m.trim().toLowerCase());
-    if (!markets.includes(filters.market.toLowerCase())) return false;
+    const selected = filters.market.map((m) => m.toLowerCase());
+    if (!selected.some((m) => markets.includes(m))) return false;
   }
   if (!experienceQualifies(job, filters.experience, experienceBands)) return false;
   return true;
@@ -90,10 +93,10 @@ function buildCareersSearchUrl(filters) {
   if (filters.state) params.set("state", filters.state);
   if (filters.discipline) params.set("discipline", filters.discipline);
   if (filters.workplace) params.set("workplace", filters.workplace);
-  if (filters.market) params.append("market", filters.market);
+  if (filters.market) filters.market.forEach((m) => params.append("market", m));
   if (filters.experience) params.set("experience", filters.experience);
   const query = params.toString();
-  return `https://careers.agileconsultingsolutions.com/${query ? `?${query}` : ""}#positions`;
+  return `/careers/${query ? `?${query}` : ""}#positions`;
 }
 
 export default function HomeResourcesAccordion({ variant }) {
@@ -123,7 +126,7 @@ export default function HomeResourcesAccordion({ variant }) {
   const featured = live?.featured ?? FALLBACK_FEATURED_JOBS;
   const filterOptions = live?.filterOptions ?? null;
 
-  const hasCalcFilters = Boolean(calcFilters.state || calcFilters.discipline || calcFilters.workplace || calcFilters.market || calcFilters.experience);
+  const hasCalcFilters = Boolean(calcFilters.state || calcFilters.discipline || calcFilters.workplace || calcFilters.market.length || calcFilters.experience);
   const calcMatches = live?.jobs && hasCalcFilters ? live.jobs.filter((job) => jobMatchesCalcFilters(job, calcFilters, filterOptions?.experience)) : null;
   const calcMins = calcMatches ? calcMatches.map((j) => j.salaryMin).filter(Boolean) : [];
   const calcMaxs = calcMatches ? calcMatches.map((j) => j.salaryMax).filter(Boolean) : [];
@@ -139,6 +142,21 @@ export default function HomeResourcesAccordion({ variant }) {
   function resetCalcFilters() {
     setCalcFilters(EMPTY_CALC_FILTERS);
   }
+
+  // Position detail pages reached via the Featured Positions list send visitors
+  // back here with "#explore-resources-featured" (see PositionBackLink) — reopen
+  // this same panel to the same tab so "Back" actually feels like going back.
+  useEffect(() => {
+    function openFromHash() {
+      if (window.location.hash === "#explore-resources-featured") {
+        setOpen(true);
+        setOpenTab("featured");
+      }
+    }
+    openFromHash();
+    window.addEventListener("hashchange", openFromHash);
+    return () => window.removeEventListener("hashchange", openFromHash);
+  }, []);
 
   function toggleTab(tab) {
     setOpenTab((current) => (current === tab ? null : tab));
@@ -176,38 +194,23 @@ export default function HomeResourcesAccordion({ variant }) {
                 <div className={styles.resourcesFilterGrid}>
                   <div className={styles.resourcesFilterField}>
                     <label>State</label>
-                    <select value={calcFilters.state} onChange={(e) => updateCalcFilter("state", e.target.value)}>
-                      <option value="">All States</option>
-                      {filterOptions.state.map((s) => <option key={s} value={s}>{s}</option>)}
-                    </select>
+                    <FilterSelect label="All States" value={calcFilters.state} options={filterOptions.state} onChange={(value) => updateCalcFilter("state", value)} />
                   </div>
                   <div className={styles.resourcesFilterField}>
                     <label>Discipline</label>
-                    <select value={calcFilters.discipline} onChange={(e) => updateCalcFilter("discipline", e.target.value)}>
-                      <option value="">All Disciplines</option>
-                      {filterOptions.discipline.map((d) => <option key={d} value={d}>{d}</option>)}
-                    </select>
+                    <FilterSelect label="All Disciplines" value={calcFilters.discipline} options={filterOptions.discipline} onChange={(value) => updateCalcFilter("discipline", value)} />
                   </div>
                   <div className={styles.resourcesFilterField}>
                     <label>Schedule</label>
-                    <select value={calcFilters.workplace} onChange={(e) => updateCalcFilter("workplace", e.target.value)}>
-                      <option value="">All Types</option>
-                      {filterOptions.workplace.map((w) => <option key={w} value={w}>{w}</option>)}
-                    </select>
+                    <FilterSelect label="All Types" value={calcFilters.workplace} options={filterOptions.workplace} onChange={(value) => updateCalcFilter("workplace", value)} />
                   </div>
                   <div className={styles.resourcesFilterField}>
                     <label>Years of Experience</label>
-                    <select value={calcFilters.experience} onChange={(e) => updateCalcFilter("experience", e.target.value)}>
-                      <option value="">Any Experience</option>
-                      {(filterOptions.experience || []).map((band) => <option key={band.value} value={band.value}>{band.label}</option>)}
-                    </select>
+                    <FilterSelect label="Any Experience" value={calcFilters.experience} options={filterOptions.experience || []} onChange={(value) => updateCalcFilter("experience", value)} />
                   </div>
                   <div className={styles.resourcesFilterField}>
-                    <label>Market Sector</label>
-                    <select value={calcFilters.market} onChange={(e) => updateCalcFilter("market", e.target.value)}>
-                      <option value="">All Sectors</option>
-                      {filterOptions.market.map((m) => <option key={m} value={m}>{m}</option>)}
-                    </select>
+                    <label>Market Sector · pick up to 5</label>
+                    <MultiSelectFilter label="All Sectors" values={calcFilters.market} options={filterOptions.market} maxSelections={MAX_CALC_MARKET_SELECTIONS} onChange={(value) => updateCalcFilter("market", value)} />
                   </div>
                   {hasCalcFilters ? (
                     <button type="button" className={styles.resourcesFilterReset} onClick={resetCalcFilters}>Reset filters</button>
@@ -217,7 +220,7 @@ export default function HomeResourcesAccordion({ variant }) {
 
               <div className={styles.resourcesStatBox}>
                 <span className={styles.resourcesStatLabel}>{hasCalcFilters ? "Salary range for this search" : "Current posted salary range"}</span>
-                <strong>{calcStats.min != null && calcStats.max != null ? `${money(calcStats.min)} – ${money(calcStats.max)}` : "No matches yet"}</strong>
+                <strong className={styles.resourcesStatValue}>{calcStats.min != null && calcStats.max != null ? `${money(calcStats.min)} – ${money(calcStats.max)}` : "No matches yet"}</strong>
                 <span className={styles.resourcesStatSub}>
                   {calcStats.count} {hasCalcFilters ? "matching postings" : "current postings"} · all current AGILE opportunities
                 </span>
@@ -225,9 +228,12 @@ export default function HomeResourcesAccordion({ variant }) {
 
               <div className={styles.resourcesPositionList}>
                 {calcSample.map((job) => (
-                  <a key={job.id} href={`https://careers.agileconsultingsolutions.com/positions/${job.slug}`} className={styles.resourcesPositionItem}>
+                  <a key={job.id} href={`/careers/positions/${job.slug}`} className={styles.resourcesPositionItem}>
                     <strong>{job.title}</strong>
-                    <span>{job.location} · {job.salaryDisplay}</span>
+                    <span className={styles.resourcesPositionMeta}>
+                      <span>{job.location}</span>
+                      <span className={styles.salaryValue}>{job.salaryDisplay}</span>
+                    </span>
                   </a>
                 ))}
               </div>
@@ -236,7 +242,7 @@ export default function HomeResourcesAccordion({ variant }) {
                 {hasCalcFilters ? `View ${calcStats.count} Matching Position${calcStats.count === 1 ? "" : "s"}` : `View All ${stats.count} Positions`}
               </a>
               {hasCalcFilters ? (
-                <a href="https://careers.agileconsultingsolutions.com/#positions" className={styles.resourcesCtaSecondary}>See All {stats.count} Positions</a>
+                <a href="/careers/#positions" className={styles.resourcesCtaSecondary}>See All {stats.count} Positions</a>
               ) : null}
             </div>
           </div>
@@ -248,13 +254,16 @@ export default function HomeResourcesAccordion({ variant }) {
             <div className={styles.accessRowBody}>
               <div className={styles.resourcesPositionList}>
                 {featured.map((job) => (
-                  <a key={job.id} href={`https://careers.agileconsultingsolutions.com/positions/${job.slug}`} className={styles.resourcesPositionItem}>
+                  <a key={job.id} href={`/careers/positions/${job.slug}?from=home-featured`} className={styles.resourcesPositionItem}>
                     <strong>{job.title}</strong>
-                    <span>{job.location} · {job.salaryDisplay}</span>
+                    <span className={styles.resourcesPositionMeta}>
+                      <span>{job.location}</span>
+                      <span className={styles.salaryValue}>{job.salaryDisplay}</span>
+                    </span>
                   </a>
                 ))}
               </div>
-              <a href="https://careers.agileconsultingsolutions.com/#positions" className={styles.resourcesCta}>Explore Additional Opportunities</a>
+              <a href="/careers/#positions" className={styles.resourcesCta}>Explore Additional Opportunities</a>
             </div>
           </div>
 

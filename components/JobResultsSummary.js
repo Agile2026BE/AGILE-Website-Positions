@@ -18,7 +18,7 @@ export default function JobResultsSummary({
           ) : null}
         </div>
         <p className={styles.guidance}>
-          {POSITION_REVIEW_LABEL} · Current needs confirmed. Scan the matches below. Shortlist up to 3 positions to compare, copy clean links, or share them by email, text, or notes.
+          {POSITION_REVIEW_LABEL} · Positions current. Shortlist up to 3 to compare and share by link, email, or text.
         </p>
       </div>
       <div className={styles.scope}>{allOpportunitiesLabel}</div>

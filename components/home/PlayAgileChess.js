@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import styles from "../../app/home/page.module.css";
+import styles from "../../app/page.module.css";
+import ChessPieceIcon from "./ChessPieceIcon";
 import {
   WHITE,
   BLACK,
@@ -14,11 +15,6 @@ import {
 
 const SAVE_KEY = "agileChessSave";
 const AI_DEPTH = 3;
-
-const GLYPHS = {
-  w: { K: "♔", Q: "♕", R: "♖", B: "♗", N: "♘", P: "♙" },
-  b: { K: "♚", Q: "♛", R: "♜", B: "♝", N: "♞", P: "♟" },
-};
 
 // Candidate (you) plays white and moves first, shown in silver. AGILE plays
 // black, shown in gold — matching the hero image where gold sits on AGILE's
@@ -178,7 +174,7 @@ export default function PlayAgileChess() {
         </div>
       ) : null}
 
-      <p className={styles.chessSub}>A quick game while you&apos;re on the way to work. You&apos;re silver and move first — tap a piece, then tap where it moves.</p>
+      <p className={styles.chessSub}>A quick game for your commute. You&apos;re silver, moving first — tap a piece, then tap where it moves.</p>
 
       <div className={`${styles.chessStatus} ${status === "check" ? styles.chessStatusCheck : ""} ${gameOver ? styles.chessStatusOver : ""} ${state.turn === BLACK && !gameOver ? styles.chessStatusThinking : ""}`}>
         {statusText()}
@@ -197,7 +193,9 @@ export default function PlayAgileChess() {
                   onClick={() => onSquareClick(r, c)}
                 >
                   {piece ? (
-                    <span className={`${styles.chessPiece} ${pieceColorClass(piece.color)}`}>{GLYPHS[piece.color][piece.type]}</span>
+                    <span className={`${styles.chessPiece} ${pieceColorClass(piece.color)}`}>
+                      <ChessPieceIcon type={piece.type} />
+                    </span>
                   ) : null}
                   {destMove ? <div className={destMove.capture ? styles.chessCapMark : styles.chessDot}></div> : null}
                 </div>

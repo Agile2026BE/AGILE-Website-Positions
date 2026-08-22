@@ -12,7 +12,7 @@ export async function generateMetadata({ params }) {
   return {
     title: job.seoTitle || `${job.title} | AGILE Position ${job.id}`,
     description: job.metaDescription || job.summary,
-    alternates: { canonical: `/positions/${job.slug}` },
+    alternates: { canonical: `/careers/positions/${job.slug}` },
   };
 }
 
@@ -20,5 +20,5 @@ export default async function ShortPositionPage({ params }) {
   const { id } = await params;
   const job = jobs.find((item) => String(item.id) === String(id));
   if (!job || !job.slug) notFound();
-  redirect(`/positions/${job.slug}`);
+  redirect(`/careers/positions/${job.slug}`);
 }

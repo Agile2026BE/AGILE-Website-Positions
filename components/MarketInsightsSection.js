@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./MarketInsightsSection.module.css";
 import { disciplineOptions, experienceOptions, stateOptions } from "../data/filterOptions";
+import ConfettiBurst from "./ConfettiBurst";
 
 export default function MarketInsightsSection() {
   const [status,setStatus]=useState("");
@@ -30,20 +31,20 @@ export default function MarketInsightsSection() {
   return (
     <section className={styles.section} id="market-insights" aria-labelledby="market-insights-title">
       <div className={styles.panel}>
-        {celebrating?<div className={styles.confetti} aria-hidden="true">{Array.from({length:40}).map((_,index)=><i key={index} style={{"--i":index}} />)}</div>:null}
+        {celebrating?<ConfettiBurst className={styles.confettiBurst} />:null}
         <div>
           <p className={styles.eyebrow}>AGILE MARKET INSIGHTS</p>
           <h2 className={styles.title} id="market-insights-title">Stay current on your market.</h2>
           <p className={styles.copy}>Hiring activity, compensation trends, new opportunities, and demand in your discipline and location, <span className={styles.quiet}>quietly emailed to you.</span></p>
         </div>
         <form className={styles.form} onSubmit={handleSubmit}>
-          {status?<p className={`${styles.status} ${success?styles.success:styles.error}`} role="status" aria-live="polite">{status}</p>:null}
+          {status?<p className={`${styles.status} ${success?styles.success:styles.error} ${celebrating?styles.statusPop:""}`} role="status" aria-live="polite">{status}</p>:null}
           <label>First and Last Name *<input type="text" name="name" placeholder="First and last name" autoComplete="name" required /></label>
           <label>Email *<input type="email" name="email" placeholder="name@example.com" autoComplete="email" required /></label>
           <label>Location<select name="location" defaultValue=""><option value="">Choose a market</option>{stateOptions.map((state)=><option key={state}>{state}</option>)}</select></label>
           <label>Discipline<select name="discipline" defaultValue=""><option value="">Choose a discipline</option>{disciplineOptions.map((discipline)=><option key={discipline}>{discipline}</option>)}</select></label>
           <label>Experience Level<select name="experience" defaultValue=""><option value="">Choose experience</option>{experienceOptions.map((band)=><option key={band.value} value={band.label}>{band.label}</option>)}</select></label>
-          <div className={styles.actions}><p className={styles.consent}>By selecting Keep Me Updated, you are asking AGILE to send occasional professional market and career updates to this email address.</p><button className={styles.button} type="submit" disabled={sending}>{sending?"Saving...":"Keep Me Updated"}</button></div>
+          <div className={styles.actions}><p className={styles.consent}>By continuing, you agree AGILE may email or text you career and market updates — opt out anytime.</p><button className={styles.button} type="submit" disabled={sending}>{sending?"Saving...":"Keep Me Updated"}</button></div>
         </form>
       </div>
     </section>

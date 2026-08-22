@@ -13,6 +13,7 @@ export default function MultiSelectFilter({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const rootRef = useRef(null);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     function handlePointerDown(event) {
@@ -30,6 +31,20 @@ export default function MultiSelectFilter({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  // When this control sits inside a scrollable panel (e.g. the homepage's
+  // Explore Resources accordion), an ancestor's overflow:auto can clip the
+  // bottom of this dropdown — including the "View Results" bar — without
+  // the browser ever scrolling that ancestor to reveal it. Nudge the open
+  // menu into view of whichever ancestor actually scrolls so it always
+  // renders exactly like it does on the full careers filter bar.
+  useEffect(() => {
+    if (!isOpen) return;
+    const frame = window.requestAnimationFrame(() => {
+      menuRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [isOpen]);
 
   function toggleValue(option) {
     const exists = values.includes(option);
@@ -57,7 +72,7 @@ export default function MultiSelectFilter({
     <div className={styles.root} ref={rootRef}>
       <button
         type="button"
-        className={styles.trigger}
+        className={`${styles.trigger} ${values.length ? styles.triggerActive : ""}`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         onClick={() => setIsOpen((open) => !open)}
@@ -78,9 +93,9 @@ export default function MultiSelectFilter({
       </button>
 
       {isOpen ? (
-        <div className={styles.menu} role="listbox" aria-multiselectable="true">
+        <div className={styles.menu} ref={menuRef} role="listbox" aria-multiselectable="true">
           <div className={styles.menuHeader}>
-            <span>Select up to {maxSelections}</span>
+            <span>Pick any number, up to {maxSelections}</span>
             {values.length ? (
               <button type="button" className={styles.clear} onClick={() => onChange([])}>
                 Clear

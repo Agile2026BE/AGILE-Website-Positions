@@ -2,6 +2,19 @@
   background: linear-gradient(180deg, #f7f8fc 0%, #fff 100%);
 }
 
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 18px;
+  color: #147eae;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.backLink:hover { text-decoration: underline; }
+
 .eyebrow {
   margin: 0 0 12px;
   color: var(--navy);
@@ -10,8 +23,15 @@
   letter-spacing: 0.12em;
 }
 
+.title {
+  margin: 0 0 12px;
+  max-width: 760px;
+  color: var(--navy-dark);
+  font-size: clamp(1.3rem, 1.6vw, 1.65rem);
+  line-height: 1.2;
+}
+
 .detail > :global(.container) { max-width: 1120px; }
-.detail :global(.section-title),
 .detail :global(.section-copy) { max-width: 760px; }
 
 .grid {
@@ -41,6 +61,11 @@
   margin: 0;
   color: var(--navy-dark);
   font-weight: 700;
+}
+
+.grid .salaryValue {
+  color: #00c853;
+  font-weight: 800;
 }
 
 .contentSection {
@@ -84,7 +109,6 @@
 
 @media (max-width: 720px) {
   .detail { padding-top: 28px; padding-bottom: 32px; }
-  .detail :global(.section-title) { line-height: 1.08; font-size: 1.75rem; }
   .detail :global(.section-copy) { line-height: 1.5; }
   .grid { grid-template-columns: 1fr 1fr; gap: 9px; margin: 20px 0 24px; }
   .grid div { padding: 12px; }

@@ -11,14 +11,14 @@ export default function ErrorPage({ reset }) {
           <p className={styles.eyebrow}>SOMETHING WENT WRONG</p>
           <h1 className="section-title">We could not load this page.</h1>
           <p className="section-copy">
-            Please try the page again. If the issue continues, return to the careers homepage.
+            Please try the page again. If the issue continues, return to the homepage.
           </p>
           <div className={styles.actions}>
             <button className={styles.button} type="button" onClick={() => reset()}>
               Try Again
             </button>
             <Link className={styles.link} href="/">
-              Return to Careers
+              Return to Home
             </Link>
           </div>
         </div>

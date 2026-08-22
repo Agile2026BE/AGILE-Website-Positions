@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./HeroSection.module.css";
+import { handleSamePageNav } from "../lib/scrollToSection";
 
 export default function HeroSection() {
   const badgesRef = useRef(null);
@@ -26,9 +27,9 @@ export default function HeroSection() {
   }, []);
 
   const trustBadges = [
+    "Virtual Interviews",
     "Salary disclosed",
     "Location disclosed",
-    "Virtual Interviews",
     "Work schedule disclosed",
     "No Account Setup Required",
   ];
@@ -37,7 +38,7 @@ export default function HeroSection() {
     <section className={`hero ${styles.hero}`} id="top">
       <div className={`container hero-inner ${styles.inner}`}>
         <p className={`hero-eyebrow ${styles.eyebrow}`}>
-          <em>SPECIALIZED</em> AEC RECRUITING
+          <em>AEC</em> Recruiting and Consulting
         </p>
 
         <h1 className={`hero-title ${styles.title}`}>
@@ -65,14 +66,16 @@ export default function HeroSection() {
         <div className={`hero-actions ${styles.actions}`}>
           <a
             className={`hero-primary ${styles.primary}`}
-            href="https://careers.agileconsultingsolutions.com/#positions"
+            href="/careers/#positions"
+            onClick={(event) => handleSamePageNav(event, "/careers/#positions", "/careers")}
           >
             Explore Positions
           </a>
 
           <Link
             className={`hero-secondary ${styles.secondary}`}
-            href="/#contact"
+            href="/careers/#contact"
+            onClick={(event) => handleSamePageNav(event, "/careers/#contact", "/careers")}
           >
             Start a Conversation
           </Link>

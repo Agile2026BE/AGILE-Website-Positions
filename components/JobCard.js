@@ -49,7 +49,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
           </div>
           <div className={styles.metaRow}>
             <dt>{labels.salary}</dt>
-            <dd>{job.salaryDisplay}</dd>
+            <dd className={styles.salaryValue}>{job.salaryDisplay}</dd>
           </div>
           <div className={styles.metaRow}>
             <dt>{labels.experience}</dt>
@@ -60,7 +60,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
         <div className={styles.tags} aria-label="Position details">
           {job.specialty ? <span>{job.specialty}</span> : null}
           {job.market ? <span>{job.market.split("|")[0].trim()}</span> : null}
-          {job.credential ? <span>{job.credential}</span> : null}
+          {job.credential && job.credential.trim().toLowerCase() !== "not stated" ? <span>{job.credential}</span> : null}
           {job.bonus ? <span>Bonus</span> : null}
         </div>
 

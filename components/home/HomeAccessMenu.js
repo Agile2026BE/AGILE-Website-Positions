@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import styles from "../../app/home/page.module.css";
+import styles from "../../app/page.module.css";
 
 const CANDIDATE_EXPECTATIONS = [
   "Careful review of experience and project portfolios to align your expertise with the right opportunities.",
@@ -64,11 +64,20 @@ export default function HomeAccessMenu() {
       </button>
 
       <div className={`${styles.accessPanel} ${menuOpen ? styles.accessPanelOpen : ""}`}>
-        <div className={styles.accessPanelHead}>Access</div>
+        <div className={styles.accessPanelHead} onClick={closeAll} role="button" tabIndex={0} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") closeAll(); }}>Access</div>
 
-        <a href="/home#professionals" className={styles.accessRowLink} onClick={closeAll}>
-          About Us
-        </a>
+        <div className={`${styles.accessRow} ${openRow === "about" ? styles.accessRowExpanded : ""}`}>
+          <div className={styles.accessRowHead} onClick={() => toggleRow("about")}>
+            About Us <span className={styles.accessRowChev}></span>
+          </div>
+          <div className={styles.accessRowBody}>
+            <div className={styles.accessText}>
+              <p>
+                <strong>AGILE</strong> is a specialized AEC recruiting and professional advisory firm connecting professionals with respected architecture, engineering, construction, commissioning, and owner&apos;s representation organizations. Through trusted client relationships, market insight, confidential guidance, scheduling, interview preparation, and offer negotiations, we help candidates understand opportunities fully and make informed decisions about the possibilities ahead.
+              </p>
+            </div>
+          </div>
+        </div>
 
         <div className={`${styles.accessRow} ${openRow === "candidate" ? styles.accessRowExpanded : ""}`}>
           <div className={styles.accessRowHead} onClick={() => toggleRow("candidate")}>
@@ -99,6 +108,11 @@ export default function HomeAccessMenu() {
                 </ul>
               </div>
             </div>
+            <div className={styles.accessSubRow}>
+              <a href="/careers/#contact" className={styles.accessSubRowHead} onClick={closeAll}>
+                Start a Career Conversation →
+              </a>
+            </div>
           </div>
         </div>
 
@@ -117,10 +131,12 @@ export default function HomeAccessMenu() {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
-                <a href="/home#client-hiring-support" className={styles.accessInlineLink} onClick={closeAll}>
-                  Start a Client Conversation
-                </a>
               </div>
+            </div>
+            <div className={styles.accessSubRow}>
+              <a href="/#client-hiring-support" className={styles.accessSubRowHead} onClick={closeAll}>
+                Start a Client Conversation →
+              </a>
             </div>
           </div>
         </div>
@@ -131,7 +147,7 @@ export default function HomeAccessMenu() {
           </div>
           <div className={styles.accessRowBody}>
             <div className={styles.accessContact}>
-              <strong>Start a Career Conversation</strong>
+              <strong>We&apos;re Ready to Listen.</strong>
               <a href="mailto:careers@agileconsultingsolutions.com">careers@agileconsultingsolutions.com</a>
               <strong>AGILE | 407-868-7254</strong>
               <a href="https://www.agileconsultingsolutions.com">www.agileconsultingsolutions.com</a>

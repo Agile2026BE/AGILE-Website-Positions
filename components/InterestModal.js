@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./InterestModal.module.css";
+import ConfettiBurst from "./ConfettiBurst";
 
 const starters = {
   position: "Hello,\nInterested in discussing the shortlisted positions and how my experience aligns with current opportunities. Thank you.",
@@ -149,10 +150,9 @@ export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
       setMessage(starters.position);
       setPhone("");
       setInvalidField("");
-      window.setTimeout(
-        () => modalRef.current?.scrollTo({ top: 0, behavior: "smooth" }),
-        0
-      );
+      window.requestAnimationFrame(() => {
+        modalRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+      });
     } catch (error) {
       setStatus(error.message || "We could not send your inquiry. Please try again.");
     } finally {
@@ -191,13 +191,7 @@ export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
         aria-modal="true"
         aria-labelledby="interest-modal-title"
       >
-        {celebrating ? (
-          <div className={styles.confetti} aria-hidden="true">
-            {Array.from({ length: 30 }).map((_, index) => (
-              <i key={index} style={{ "--i": index }} />
-            ))}
-          </div>
-        ) : null}
+        {celebrating ? <ConfettiBurst className={styles.confettiBurst} /> : null}
         <button
           className={styles.close}
           type="button"
@@ -210,7 +204,7 @@ export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
         <h2 id="interest-modal-title">Start a professional conversation</h2>
         {status ? (
           <p
-            className={`${styles.status} ${success ? styles.success : styles.error}`}
+            className={`${styles.status} ${success ? styles.success : styles.error} ${celebrating ? styles.statusPop : ""}`}
             role="status"
             aria-live="polite"
           >
@@ -271,7 +265,7 @@ export default function InterestModal({ job, shortlistedJobs = [], onClose }) {
             <label className={styles.consent}>
               <input type="checkbox" name="textingConsent" value="yes" />
               <span>
-                AGILE may text me about my inquiry and career opportunities. Consent is optional and not required for services. Message/data rates may apply. Reply STOP to opt out.
+                OK to text me about this inquiry and future opportunities. Optional — msg &amp; data rates may apply, reply STOP to opt out.
               </span>
             </label>
           ) : null}
