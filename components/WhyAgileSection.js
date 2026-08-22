@@ -13,7 +13,7 @@ export default function WhyAgileSection() {
         <div className={styles.videoOverlay} aria-hidden="true" />
         <div className={styles.centerGlow} aria-hidden="true" />
         <div className={styles.motionCopy}>
-          <p className={styles.eyebrow}>AGILE INSIGHTS</p>
+          <p className={styles.eyebrow}>MARKET INSIGHTS</p>
           <h2>We only work with the best. <span className={styles.question}>Shouldn&apos;t you?</span></h2>
         </div>
       </div>

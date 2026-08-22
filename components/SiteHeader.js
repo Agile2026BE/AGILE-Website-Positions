@@ -10,28 +10,35 @@ import { getTargetId, scrollToTarget, handleSamePageNav } from "../lib/scrollToS
 const CAREERS_PATH = "/careers";
 const MAIN_HOME_URL = "/";
 
-// Images below the fold (hero photos, storyboard figures) can still be
-// decoding and settling into their final layout well after the initial
+// Images above/around the target (hero photos, storyboard figures) can
+// still be loading and shifting the page's layout well after the initial
 // scroll-into-view already ran, which was silently landing fresh
 // cross-page navigations (e.g. Home -> /careers/#contact, or the ACCESS
 // menu's "Start a Career Conversation") short of the real target, leaving
-// the previous section visible above it. Rather than guess a fixed delay,
-// poll the target's on-screen position and keep re-aligning until it holds
-// steady across two checks in a row, the visitor starts scrolling on their
-// own, or a bounded time window elapses.
+// the previous section visible above it. A fixed timing budget isn't
+// reliable here — image load time depends entirely on the visitor's
+// connection — so this listens directly for every image on the page to
+// actually finish loading and re-aligns immediately when one does, on top
+// of a background poll as a catch-all for shifts images don't explain
+// (fonts swapping, etc). It keeps working until the target's position
+// holds steady, the visitor starts scrolling on their own, or a generous
+// bounded time window elapses (long enough to cover a slow connection).
 const SETTLE_POLL_INTERVAL_MS = 150;
-const SETTLE_MAX_ATTEMPTS = 20; // ~3s
+const SETTLE_MAX_ATTEMPTS = 80; // ~12s, covers slow-connection image loads
 
 export default function SiteHeader() {
   useEffect(() => {
     let pollTimer = null;
     let userInteracted = false;
+    let imageListenerCleanups = [];
 
     function stopSettling() {
       if (pollTimer) {
         window.clearInterval(pollTimer);
         pollTimer = null;
       }
+      imageListenerCleanups.forEach((cleanup) => cleanup());
+      imageListenerCleanups = [];
     }
 
     function markUserInteracted() {
@@ -57,9 +64,8 @@ export default function SiteHeader() {
       let stableCount = 0;
       let attempts = 0;
 
-      pollTimer = window.setInterval(() => {
-        attempts += 1;
-        if (userInteracted || attempts > SETTLE_MAX_ATTEMPTS) {
+      function recheck() {
+        if (userInteracted) {
           stopSettling();
           return;
         }
@@ -71,10 +77,6 @@ export default function SiteHeader() {
         const top = Math.round(target.getBoundingClientRect().top);
         if (lastTop !== null && Math.abs(top - lastTop) <= 1) {
           stableCount += 1;
-          if (stableCount >= 2) {
-            stopSettling();
-            return;
-          }
         } else {
           // The target moved since the last check, so the page is still
           // settling underneath it — catch up before checking again.
@@ -82,6 +84,35 @@ export default function SiteHeader() {
           scrollToTarget(targetId, "auto");
         }
         lastTop = top;
+      }
+
+      // Re-check the instant any not-yet-loaded image on the page finishes,
+      // since that's the actual event that shifts layout — far more
+      // precise than waiting for the next poll tick.
+      Array.prototype.forEach.call(document.images || [], (img) => {
+        if (img.complete) return;
+        const onSettled = () => {
+          stableCount = 0;
+          recheck();
+        };
+        img.addEventListener("load", onSettled);
+        img.addEventListener("error", onSettled);
+        imageListenerCleanups.push(() => {
+          img.removeEventListener("load", onSettled);
+          img.removeEventListener("error", onSettled);
+        });
+      });
+
+      pollTimer = window.setInterval(() => {
+        attempts += 1;
+        if (userInteracted || attempts > SETTLE_MAX_ATTEMPTS) {
+          stopSettling();
+          return;
+        }
+        recheck();
+        if (stableCount >= 2) {
+          stopSettling();
+        }
       }, SETTLE_POLL_INTERVAL_MS);
     }
 
