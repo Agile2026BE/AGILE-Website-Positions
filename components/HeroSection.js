@@ -27,9 +27,9 @@ export default function HeroSection() {
   }, []);
 
   const trustBadges = [
+    "Virtual Interviews",
     "Salary disclosed",
     "Location disclosed",
-    "Virtual Interviews",
     "Work schedule disclosed",
     "No Account Setup Required",
   ];

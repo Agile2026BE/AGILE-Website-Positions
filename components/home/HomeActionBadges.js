@@ -6,7 +6,7 @@ import styles from "../../app/page.module.css";
 const badges = [
   "Focused AEC Expertise",
   "Career & Hiring Insight",
-  "Premier Client Connections",
+  "Direct Client Connections",
   "Marketplace Intelligence",
 ];
 

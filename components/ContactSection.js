@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./ContactSection.module.css";
 import { disciplineOptions } from "../data/filterOptions";
+import ConfettiBurst from "./ConfettiBurst";
 
 const baseMessages = {
   position: "Hello,\nI'd like to learn more about the selected position and discuss my qualifications. Thank you.",
@@ -114,8 +115,8 @@ export default function ContactSection() {
           </aside>
         </div>
         <form ref={formRef} id="candidate-inquiry-form" className={`contact-form ${styles.form}`} onSubmit={handleSubmit} autoComplete="off" onChange={()=>{ if(status){ setStatus(""); setCelebrating(false); } }}>
-          {celebrating ? <div className={styles.confetti} aria-hidden="true">{Array.from({ length: 40 }).map((_, index) => <i key={index} style={{ "--i": index }} />)}</div> : null}
-          {status ? <div className={`${styles.full} ${success ? styles.success : styles.error}`} role="status" aria-live="polite">{status}</div> : null}
+          {celebrating ? <ConfettiBurst className={styles.confettiBurst} /> : null}
+          {status ? <div className={`${styles.full} ${success ? styles.success : styles.error} ${celebrating ? styles.statusPop : ""}`} role="status" aria-live="polite">{status}</div> : null}
           {positionId ? <div className={`${styles.full} ${styles.positionReference}`}><span>POSITION OF INTEREST</span><strong>Position ID {positionId}{positionTitle ? ` · ${positionTitle}` : ""}</strong></div> : null}
           <label>Name *<input type="text" name="career_inquiry_name" placeholder="First and last name" autoComplete="off" required /></label>
           <label>Email *<input type="email" name="career_inquiry_email" placeholder="name@example.com" autoComplete="off" required /></label>

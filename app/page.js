@@ -31,7 +31,7 @@ export default function CorporateHomePage() {
             <HomeActionBadges />
           </div>
           <div className={styles.heroAdvantage} id="professionals">
-            <p className={styles.heroAdvantageText}>We work directly with leadership teams across Architecture, Engineering, Construction, Commissioning, and Owner’s Representation, giving experienced professionals greater insight into our clients, their projects, expectations, company cultures, and work environments. We help AEC professionals look beyond the position itself to understand the opportunity being presented, the advancement it may offer, and whether it truly aligns with their experience, priorities, and career goals—before making their next move.</p>
+            <p className={styles.heroAdvantageText}>We work directly with leadership teams across Architecture, Engineering, Construction, Commissioning, and Owner’s Representation, giving experienced professionals greater insight into our clients, their projects, expectations, company cultures, and work environments. We help AEC professionals look beyond the role itself to understand the opportunity being presented, the advancement it may offer, and whether it truly aligns with their experience, priorities, and career goals—before making their next{" "}move.</p>
           </div>
         </div>
         <HomeResourcesAccordion variant="desktop" />
@@ -41,6 +41,19 @@ export default function CorporateHomePage() {
             <div className={styles.mobilePhotoFade}></div>
           </div>
           <HomeResourcesAccordion variant="mobile" />
+        </div>
+      </section>
+
+      <section className={styles.aboutSection} id="about-agile" aria-labelledby="about-agile-title">
+        <div className={styles.aboutInner}>
+          <p className={styles.aboutEyebrow}>ABOUT AGILE</p>
+          <h2 className={styles.aboutTitle} id="about-agile-title">Specialized AEC Recruiting, Built on Trust.</h2>
+          <p className={styles.aboutCopy}><strong>AGILE</strong> is a specialized recruiting and staffing firm serving the Architecture, Engineering, and Construction (AEC) industry. We help professionals make informed, strategic career decisions by preparing them to connect with firms that value technical expertise, project experience, and long-term career growth.</p>
+          <p className={styles.aboutCopy}>We recruit across the New York, New Jersey, Pennsylvania, Massachusetts, California, Colorado, and Florida markets. Our client relationships include ENR Top 100 and Top 500 Design Firms, nationally recognized multidisciplinary consulting firms, notable mid-size and regional consultants, and Best Places to Work award winners.</p>
+          <p className={styles.aboutCopy}>Our carefully chosen client relationships allow us to advise candidates on opportunities across a wide range of project types, firm cultures, and leadership environments.</p>
+          <p className={styles.aboutCopy}>Whether you&apos;re an emerging professional beginning your career or a seasoned engineer looking to leverage years of experience toward continued career advancement, understanding changes in the current job market is the first step toward making an informed career decision.</p>
+          <p className={styles.aboutCopy}>Professional discretion is maintained throughout the search process, allowing candidates to confidently explore opportunities across our exclusive portfolio of industry-leading clients before completing a formal job application.</p>
+          <p className={styles.aboutCopy}><strong>AGILE</strong> provides candidates with professional representation, access to our trusted business relationships, and an exclusive portfolio of industry-leading clients. They also benefit from current market intelligence, access to direct hire opportunities, personalized interview preparation, coordination throughout the hiring process, compensation and start-date negotiation, and onboarding assistance—all through a dedicated point of contact.</p>
         </div>
       </section>
 

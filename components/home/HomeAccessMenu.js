@@ -64,19 +64,33 @@ export default function HomeAccessMenu() {
       </button>
 
       <div className={`${styles.accessPanel} ${menuOpen ? styles.accessPanelOpen : ""}`}>
-        <div className={styles.accessPanelHead}>Access</div>
+        <div className={styles.accessPanelHead} onClick={closeAll} role="button" tabIndex={0} onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") closeAll(); }}>Access</div>
 
         <div className={`${styles.accessRow} ${openRow === "about" ? styles.accessRowExpanded : ""}`}>
           <div className={styles.accessRowHead} onClick={() => toggleRow("about")}>
             About Us <span className={styles.accessRowChev}></span>
           </div>
           <div className={styles.accessRowBody}>
-            <p className={styles.accessText}>
-              Specialized recruiting and professional representation connecting architects, engineers, and construction professionals with firms shaping the built environment.
-            </p>
-            <a href="/#professionals" className={styles.accessInlineLink} onClick={closeAll}>
-              Learn more about AGILE →
-            </a>
+            <div className={styles.accessText}>
+              <p>
+                <strong>AGILE</strong> is a specialized recruiting and staffing firm serving the Architecture, Engineering, and Construction (AEC) industry. We help professionals make informed, strategic career decisions by preparing them to connect with firms that value technical expertise, project experience, and long-term career growth.
+              </p>
+              <p>
+                We recruit across the New York, New Jersey, Pennsylvania, Massachusetts, California, Colorado, and Florida markets. Our client relationships include ENR Top 100 and Top 500 Design Firms, nationally recognized multidisciplinary consulting firms, notable mid-size and regional consultants, and Best Places to Work award winners.
+              </p>
+              <p>
+                Our carefully chosen client relationships allow us to advise candidates on opportunities across a wide range of project types, firm cultures, and leadership environments.
+              </p>
+              <p>
+                Whether you&apos;re an emerging professional beginning your career or a seasoned engineer looking to leverage years of experience toward continued career advancement, understanding changes in the current job market is the first step toward making an informed career decision.
+              </p>
+              <p>
+                Professional discretion is maintained throughout the search process, allowing candidates to confidently explore opportunities across our exclusive portfolio of industry-leading clients before completing a formal job application.
+              </p>
+              <p>
+                <strong>AGILE</strong> provides candidates with professional representation, access to our trusted business relationships, and an exclusive portfolio of industry-leading clients. They also benefit from current market intelligence, access to direct hire opportunities, personalized interview preparation, coordination throughout the hiring process, compensation and start-date negotiation, and onboarding assistance—all through a dedicated point of contact.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -109,6 +123,11 @@ export default function HomeAccessMenu() {
                 </ul>
               </div>
             </div>
+            <div className={styles.accessSubRow}>
+              <a href="/careers/#contact" className={styles.accessSubRowHead} onClick={closeAll}>
+                Start a Career Conversation →
+              </a>
+            </div>
           </div>
         </div>
 
@@ -127,10 +146,12 @@ export default function HomeAccessMenu() {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
-                <a href="/#client-hiring-support" className={styles.accessInlineLink} onClick={closeAll}>
-                  Start a Client Conversation
-                </a>
               </div>
+            </div>
+            <div className={styles.accessSubRow}>
+              <a href="/#client-hiring-support" className={styles.accessSubRowHead} onClick={closeAll}>
+                Start a Client Conversation →
+              </a>
             </div>
           </div>
         </div>
@@ -141,7 +162,7 @@ export default function HomeAccessMenu() {
           </div>
           <div className={styles.accessRowBody}>
             <div className={styles.accessContact}>
-              <strong>Start a Career Conversation</strong>
+              <strong>We&apos;re Ready to Listen.</strong>
               <a href="mailto:careers@agileconsultingsolutions.com">careers@agileconsultingsolutions.com</a>
               <strong>AGILE | 407-868-7254</strong>
               <a href="https://www.agileconsultingsolutions.com">www.agileconsultingsolutions.com</a>
