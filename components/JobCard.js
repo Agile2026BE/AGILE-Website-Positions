@@ -36,6 +36,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
       <div className={styles.cardContent}>
         <p>{job.discipline}</p>
         <h3>{job.title}</h3>
+        {job.salaryDisplay ? <p className={styles.cardSalaryRow}><span className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</span></p> : null}
         {job.summary ? <p className={styles.summary}>{job.summary}</p> : null}
 
         <dl className={styles.meta}>
@@ -48,13 +49,13 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
             <dd>{formatWorkplaceDisplay(job.workplace)}</dd>
           </div>
           <div className={styles.metaRow}>
-            <dt>{labels.salary}</dt>
-            <dd className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</dd>
-          </div>
-          <div className={styles.metaRow}>
             <dt>{labels.experience}</dt>
             <dd>{formatExperienceDisplay(job.experience)}</dd>
           </div>
+          {job.id ? <div className={styles.metaRow}>
+            <dt>Position ID</dt>
+            <dd>{job.id}</dd>
+          </div> : null}
         </dl>
 
         <div className={styles.tags} aria-label="Position details">
@@ -63,8 +64,6 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
           {job.credential && job.credential.trim().toLowerCase() !== "not stated" ? <span>{job.credential}</span> : null}
           {job.bonus ? <span>Bonus</span> : null}
         </div>
-
-        {job.id ? <p className={styles.positionId}>Position ID {job.id}</p> : null}
       </div>
 
       <div className={`job-card-actions ${styles.actions}`}>

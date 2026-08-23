@@ -34,7 +34,7 @@
 .accessBtnOpen .accessChev{transform:rotate(-135deg);margin-top:3px}
 .accessPanel{position:absolute;top:calc(100% + 12px);right:0;width:300px;max-width:calc(100vw - 40px);background:linear-gradient(180deg,#fbf7ec 0%,#f5efdd 100%);border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.35),0 0 0 1px rgba(224,199,144,.4);overflow:hidden;max-height:0;opacity:0;transform:translateY(-6px);transition:max-height .45s ease,opacity .35s ease,transform .35s ease;z-index:20}
 .accessPanelOpen{max-height:min(980px,calc(100vh - 90px));overflow-y:auto;opacity:1;transform:translateY(0)}
-.accessPanelHead{padding:16px 20px 10px;font-family:Arial,Helvetica,sans-serif;font-size:.62rem;letter-spacing:.18em;font-weight:800;color:#9c8248;text-transform:uppercase}
+.accessPanelHead{padding:16px 20px 10px;font-family:Arial,Helvetica,sans-serif;font-size:.68rem;letter-spacing:.18em;font-weight:800;color:#9c8248;text-transform:uppercase}
 .accessPanel>.accessPanelHead{cursor:pointer;user-select:none}
 .accessPanel>.accessPanelHead:hover{color:#7a6535}
 .accessRowLink{display:block;padding:15px 20px;border-top:1px solid rgba(176,141,87,.28);font-family:Georgia,'Times New Roman',serif;font-size:1rem;color:#1c2b3a;text-decoration:none}
@@ -86,34 +86,34 @@ a.accessSubRowHead{color:#1c4d8f}
 .resourcesPanel .accessRowHead{padding:10px 20px;font-size:.9rem}
 .resourcesPanel .accessRowLink{padding:10px 20px;font-size:.9rem}
 .resourcesStatBox{margin:10px 20px 14px;padding:12px 14px;background:#fff;border:1px solid rgba(176,141,87,.3);border-radius:8px;display:flex;flex-direction:column;gap:3px}
-.resourcesStatLabel{font-family:Arial,Helvetica,sans-serif;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#8a7e5f}
+.resourcesStatLabel{font-family:Arial,Helvetica,sans-serif;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#8a7e5f}
 .resourcesStatBox strong{font-family:Georgia,'Times New Roman',serif;font-size:1.25rem;color:#1c2b3a}
-.resourcesStatSub{font-family:Arial,Helvetica,sans-serif;font-size:.68rem;color:#6d6248}
+.resourcesStatSub{font-family:Arial,Helvetica,sans-serif;font-size:.75rem;color:#6d6248}
 .resourcesPositionList{display:flex;flex-direction:column;padding:0 20px}
 .resourcesPositionItem{display:flex;flex-direction:column;gap:2px;padding:9px 0;border-top:1px solid rgba(176,141,87,.18);text-decoration:none}
 .resourcesPositionItem:first-child{border-top:none}
-.resourcesPositionItem strong{font-family:Arial,Helvetica,sans-serif;font-size:.8rem;color:#1c2b3a;font-weight:700}
-.resourcesPositionItem span{font-family:Arial,Helvetica,sans-serif;font-size:.72rem;color:#6d6248}
+.resourcesPositionItem strong{font-family:Arial,Helvetica,sans-serif;font-size:.9rem;color:#1c2b3a;font-weight:700}
+.resourcesPositionItem span{font-family:Arial,Helvetica,sans-serif;font-size:.8rem;color:#6d6248}
 .resourcesStatBox .resourcesStatValue{color:#00c853}
 .resourcesPositionItem .salaryValue{color:#00c853;font-weight:800}
 .resourcesPositionMeta{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
 .resourcesPositionMeta .salaryValue{flex-shrink:0;white-space:nowrap}
-.resourcesCta{display:block;margin:12px 20px 18px;text-align:center;background:#02294e;color:#fff;padding:9px 14px;border-radius:6px;font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:.76rem;text-decoration:none}
+.resourcesCta{display:block;margin:12px 20px 18px;text-align:center;background:#02294e;color:#fff;padding:9px 14px;border-radius:6px;font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:.84rem;text-decoration:none}
 .resourcesCtaSecondary{display:block;margin:0 20px 16px;text-align:center;background:transparent;color:#02294e;border:1px solid rgba(176,141,87,.4);padding:8px 14px;border-radius:6px;font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:.72rem;text-decoration:none}
 .resourcesFilterGrid{display:flex;flex-direction:column;gap:8px;margin:10px 20px 12px}
 .resourcesFilterField{display:flex;flex-direction:column;gap:3px}
-.resourcesFilterField label{font-family:Arial,Helvetica,sans-serif;font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:#8a7e5f}
-.resourcesFilterReset{align-self:flex-start;background:none;border:none;color:#1c4d8f;font-family:Arial,Helvetica,sans-serif;font-size:.7rem;font-weight:700;text-decoration:underline;cursor:pointer;padding:0;margin:0 20px 4px}
+.resourcesFilterField label{font-family:Arial,Helvetica,sans-serif;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#8a7e5f}
+.resourcesFilterReset{align-self:flex-start;background:none;border:none;color:#1c4d8f;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;font-weight:700;text-decoration:underline;cursor:pointer;padding:0;margin:0 20px 4px}
 .portfolioWrap{display:flex;align-items:center;gap:14px;padding:14px 20px 4px}
 .portfolioChart{position:relative;width:96px;height:96px;border-radius:50%;flex-shrink:0}
 .portfolioHole{position:absolute;inset:16px;background:#fbf7ec;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.portfolioHole strong{font-family:Georgia,'Times New Roman',serif;font-size:1.05rem;color:#1c2b3a;line-height:1}
-.portfolioHole span{font-family:Arial,Helvetica,sans-serif;font-size:.6rem;color:#6d6248}
+.portfolioHole strong{font-family:Georgia,'Times New Roman',serif;font-size:1.15rem;color:#1c2b3a;line-height:1}
+.portfolioHole span{font-family:Arial,Helvetica,sans-serif;font-size:.68rem;color:#6d6248}
 .portfolioLegend{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:5px}
-.portfolioLegend li{display:flex;align-items:center;gap:6px;font-family:Arial,Helvetica,sans-serif;font-size:.66rem;color:#3d4536}
+.portfolioLegend li{display:flex;align-items:center;gap:6px;font-family:Arial,Helvetica,sans-serif;font-size:.75rem;color:#3d4536}
 .portfolioDot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.portfolioNote{margin:6px 20px 4px;font-family:Arial,Helvetica,sans-serif;font-size:.68rem;color:#6d6248}
-.portfolioFooterMark{margin:2px 20px 16px;font-family:Georgia,'Times New Roman',serif;font-weight:900;letter-spacing:.08em;font-size:.95rem;color:#1c2b3a}
+.portfolioNote{margin:6px 20px 4px;font-family:Arial,Helvetica,sans-serif;font-size:.76rem;color:#6d6248}
+.portfolioFooterMark{margin:2px 20px 16px;font-family:Georgia,'Times New Roman',serif;font-weight:900;letter-spacing:.08em;font-size:1rem;color:#1c2b3a}
 .chessModalBackdrop{position:fixed;inset:0;z-index:60;background:rgba(6,20,32,.62);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;padding:24px}
 .chessModalCard{position:relative;width:min(480px,100%);max-height:min(92vh,780px);max-height:min(92dvh,780px);overflow-y:auto;background:linear-gradient(180deg,#fbf7ec 0%,#f5efdd 100%);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(224,199,144,.4)}
 @media(max-width:620px){.chessModalBackdrop{padding:8px 4px}.chessModalCard{width:100%;max-height:min(97vh,900px);max-height:min(97dvh,900px)}.chessCard{padding:12px 0 4px}.chessBoardWrap{padding:0 6px 8px}.chessResumeBanner,.chessSub,.chessStatus{margin-left:10px;margin-right:10px}}
@@ -121,10 +121,10 @@ a.accessSubRowHead{color:#1c4d8f}
 .chessModalClose:hover{background:rgba(19,126,174,.2)}
 .chessCard{padding:20px 0 4px}
 .chessResumeBanner{margin:10px 20px 4px;padding:12px 14px;background:rgba(19,126,174,.1);border:1px solid rgba(19,126,174,.3);border-radius:8px}
-.chessResumeBanner p{margin:0 0 9px;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;color:#1c2b3a;font-weight:700}
+.chessResumeBanner p{margin:0 0 9px;font-family:Arial,Helvetica,sans-serif;font-size:.85rem;color:#1c2b3a;font-weight:700}
 .chessResumeBtns{display:flex;gap:8px}
-.chessSub{margin:2px 46px 10px 20px;font-family:Arial,Helvetica,sans-serif;font-size:.76rem;color:#6d6248;line-height:1.5}
-.chessStatus{margin:0 20px 10px;padding:8px 12px;font-family:Arial,Helvetica,sans-serif;font-size:.8rem;font-weight:700;color:#1c2b3a;background:rgba(176,141,87,.12);border-radius:6px}
+.chessSub{margin:2px 46px 10px 20px;font-family:Arial,Helvetica,sans-serif;font-size:.85rem;color:#1c2b3a;line-height:1.5}
+.chessStatus{margin:0 20px 10px;padding:8px 12px;font-family:Arial,Helvetica,sans-serif;font-size:.88rem;font-weight:700;color:#1c2b3a;background:rgba(176,141,87,.12);border-radius:6px}
 .chessStatusThinking{color:#9c8248}
 .chessStatusCheck{color:#a13a3a}
 .chessStatusOver{color:#0d304a;background:rgba(19,126,174,.16)}
@@ -140,12 +140,12 @@ a.accessSubRowHead{color:#1c4d8f}
 .chessPieceWhite{color:#c7cfd6}
 .chessPieceBlack{color:#d9b45c}
 .chessFooter{padding:4px 20px 0;display:flex;gap:8px}
-.chessNewGame{flex:1;background:#02294e;color:#fff;border:none;padding:9px 12px;border-radius:6px;font-weight:700;font-size:.76rem;cursor:pointer;font-family:inherit}
+.chessNewGame{flex:1;background:#02294e;color:#fff;border:none;padding:9px 12px;border-radius:6px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit}
 .chessNewGame:hover{background:#137eae}
-.chessOutlineBtn{flex:1;background:transparent;color:#02294e;border:1px solid rgba(176,141,87,.5);padding:8px 12px;border-radius:6px;font-weight:700;font-size:.76rem;cursor:pointer;font-family:inherit}
+.chessOutlineBtn{flex:1;background:transparent;color:#02294e;border:1px solid rgba(176,141,87,.5);padding:8px 12px;border-radius:6px;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit}
 .chessOutlineBtn:hover{background:rgba(176,141,87,.1)}
-.chessMoveCount{margin:8px 20px 0;font-family:Arial,Helvetica,sans-serif;font-size:.7rem;color:#6d6248;font-weight:700}
-.chessSaveNote{margin:4px 20px 0;font-family:Arial,Helvetica,sans-serif;font-size:.7rem;color:#137eae;font-weight:700}
+.chessMoveCount{margin:8px 20px 0;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;color:#1c2b3a;font-weight:700}
+.chessSaveNote{margin:4px 20px 0;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;color:#137eae;font-weight:700}
 .aboutSection{background:#fff;padding:58px 0 62px;scroll-margin-top:88px}
 .aboutInner{width:min(860px,calc(100% - 48px));margin:0 auto}
 .aboutEyebrow{margin:0 0 10px;color:#1476a8;font-size:.85rem;font-weight:800;letter-spacing:.14em}
