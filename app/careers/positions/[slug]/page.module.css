@@ -159,17 +159,19 @@
 
 @media (max-width: 720px) {
   .detail { padding-top: 28px; padding-bottom: 32px; }
-  .detail :global(.section-copy) { line-height: 1.5; }
+  .detail :global(.section-copy) { font-size: 1.04rem; line-height: 1.52; }
   .titleRow { flex-direction: column; gap: 12px; }
   .titleRow :global(button) { margin-top: 0; }
   .title { max-width: none; }
   .grid { grid-template-columns: 1fr 1fr; gap: 9px; margin: 20px 0 24px; }
   .grid div { padding: 12px; }
-  .grid dt { font-size: .72rem; margin-bottom: 4px; }
-  .grid dd { font-size: .9rem; line-height: 1.3; }
+  .grid dt { font-size: .78rem; margin-bottom: 4px; }
+  .grid dd { font-size: .97rem; line-height: 1.32; }
   .contentSection { margin: 24px 0; }
-  .contentSection h2 { margin-bottom: 10px; font-size: 1.18rem; }
-  .contentSection li, .contentSection p { line-height: 1.55; }
+  .contentSection h2 { margin-bottom: 10px; font-size: 1.2rem; }
+  .contentSection li, .contentSection p { font-size: 1.04rem; line-height: 1.55; }
+  .similarCard strong { font-size: 1.05rem; }
+  .similarMeta { font-size: .92rem; }
   .cta { width: 100%; }
 }
 
