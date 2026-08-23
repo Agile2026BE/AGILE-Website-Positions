@@ -131,6 +131,21 @@ export default function SiteHeader() {
         });
       });
 
+      // iOS Safari resizes the visual viewport as its address bar/toolbar
+      // collapses or expands during the very moment a fresh page is
+      // landing — that can shift how much of the page is actually visible
+      // without firing a ResizeObserver entry on document.body (the
+      // document's layout size hasn't changed, only how much of it is
+      // shown). Re-checking on visualViewport resize catches that case too.
+      if (window.visualViewport) {
+        const onViewportResize = () => {
+          stableCount = 0;
+          recheck();
+        };
+        window.visualViewport.addEventListener("resize", onViewportResize);
+        settleCleanups.push(() => window.visualViewport.removeEventListener("resize", onViewportResize));
+      }
+
       pollTimer = window.setInterval(() => {
         attempts += 1;
         if (userInteracted || attempts > SETTLE_MAX_ATTEMPTS) {
