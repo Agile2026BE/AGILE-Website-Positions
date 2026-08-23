@@ -9,7 +9,7 @@
 }
 .card:hover { transform:translateY(-5px); border-color:#c7d7e2; box-shadow:0 16px 34px rgba(25,57,82,.12); }
 .cardSalaryRow { margin:0 0 14px; text-align:right; }
-.cardSalaryRow .salaryValue { color:#00c853; font-weight:800; font-size:1.05rem; white-space:nowrap; }
+.cardSalaryRow .salaryValue { color:#067647; font-weight:800; font-size:1.05rem; white-space:nowrap; }
 .shortlist { position:absolute; top:18px; right:18px; z-index:2; }
 .cardContent { display:block; color:inherit; }
 .cardContent > p:first-child { margin:0 105px 18px 0; color:#0874ae; font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
@@ -25,4 +25,4 @@
 .actions { display:flex; align-items:center; gap:12px; margin-top:auto; }
 .actions > :first-child { flex:1; }
 .shareStatus { align-self:flex-end; margin:7px 2px 0 0; font-size:.82rem; font-weight:700; color:var(--text-muted); text-align:right; }
-@media(max-width:520px){.card{min-height:auto;padding:18px 16px 16px}.shortlist{top:14px;right:14px}.cardContent>p:first-child{margin:0 96px 13px 0}.cardContent h3{font-size:1rem;line-height:1.2;text-wrap:pretty;margin-bottom:7px}.cardSalaryRow{margin-bottom:10px}.cardSalaryRow .salaryValue{font-size:1rem}.summary{font-size:.86rem;line-height:1.4;-webkit-line-clamp:6}.meta{grid-template-columns:1fr 1fr;gap:9px 12px;margin:13px 0;padding-top:13px}.metaRow dt{margin-bottom:3px}.metaRow dd{font-size:.88rem}.tags{gap:6px;margin-bottom:9px}.tags span{padding:4px 8px}.actions{gap:9px}}
+@media(max-width:520px){.card{min-height:auto;padding:18px 16px 16px}.shortlist{top:14px;right:14px}.cardContent>p:first-child{margin:0 96px 13px 0;font-size:.76rem}.cardContent h3{font-size:1.06rem;line-height:1.22;text-wrap:pretty;margin-bottom:7px}.cardSalaryRow{margin-bottom:10px}.cardSalaryRow .salaryValue{font-size:1.1rem}.summary{font-size:.91rem;line-height:1.42;-webkit-line-clamp:6}.meta{grid-template-columns:1fr 1fr;gap:9px 12px;margin:13px 0;padding-top:13px}.metaRow dt{margin-bottom:3px;font-size:.75rem}.metaRow dd{font-size:.93rem}.tags{gap:6px;margin-bottom:9px}.tags span{padding:4px 8px;font-size:.73rem}.actions{gap:9px}}
