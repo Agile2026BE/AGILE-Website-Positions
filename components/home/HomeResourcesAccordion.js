@@ -230,11 +230,14 @@ export default function HomeResourcesAccordion({ variant }) {
               <div className={styles.resourcesPositionList}>
                 {calcSample.map((job) => (
                   <a key={job.id} href={`/careers/positions/${job.slug}`} className={styles.resourcesPositionItem}>
-                    <strong>{job.title}</strong>
-                    <span className={styles.resourcesPositionMeta}>
-                      <span>{job.location}</span>
-                      <span className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</span>
+                    <span className={styles.resourcesPositionItemBody}>
+                      <strong>{job.title}</strong>
+                      <span className={styles.resourcesPositionMeta}>
+                        <span>{job.location}</span>
+                        <span className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</span>
+                      </span>
                     </span>
+                    <span className={styles.resourcesPositionChevron} aria-hidden="true"></span>
                   </a>
                 ))}
               </div>
@@ -256,11 +259,14 @@ export default function HomeResourcesAccordion({ variant }) {
               <div className={styles.resourcesPositionList}>
                 {featured.map((job) => (
                   <a key={job.id} href={`/careers/positions/${job.slug}?from=home-featured`} className={styles.resourcesPositionItem}>
-                    <strong>{job.title}</strong>
-                    <span className={styles.resourcesPositionMeta}>
-                      <span>{job.location}</span>
-                      <span className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</span>
+                    <span className={styles.resourcesPositionItemBody}>
+                      <strong>{job.title}</strong>
+                      <span className={styles.resourcesPositionMeta}>
+                        <span>{job.location}</span>
+                        <span className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</span>
+                      </span>
                     </span>
+                    <span className={styles.resourcesPositionChevron} aria-hidden="true"></span>
                   </a>
                 ))}
               </div>
