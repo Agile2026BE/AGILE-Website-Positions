@@ -9,7 +9,8 @@ export default function ShortlistButton({ isShortlisted = false, onClick }) {
       aria-pressed={isShortlisted}
       aria-label={isShortlisted ? "Remove position from shortlist" : "Add position to shortlist"}
     >
-      {isShortlisted ? "Shortlisted" : "+ Shortlist"}
+      <span className={styles.star} aria-hidden="true">{isShortlisted ? "★" : "☆"}</span>
+      {isShortlisted ? "Shortlisted" : "Shortlist"}
     </button>
   );
 }

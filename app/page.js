@@ -31,7 +31,7 @@ export default function CorporateHomePage() {
             <HomeActionBadges />
           </div>
           <div className={styles.heroAdvantage} id="professionals">
-            <p className={styles.heroAdvantageText}>We work directly with leadership teams across Architecture, Engineering, Construction, Commissioning, and Owner’s Representation, giving experienced professionals genuine insight into each client’s projects, culture, and expectations — so they can look past the job title to the real opportunity and decide with confidence before making their <em>next</em> move.</p>
+            <p className={styles.heroAdvantageText}>We work directly with hiring teams across Architecture, Engineering, Construction, Commissioning, and Owner’s Representation, giving experienced professionals genuine insight into each client’s leadership, culture, projects, and expectations - so they can look past the job title to the real opportunity presented and decide with confidence before making their <em>next</em> move.</p>
           </div>
         </div>
         <HomeResourcesAccordion variant="desktop" />

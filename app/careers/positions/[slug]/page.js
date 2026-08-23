@@ -7,7 +7,7 @@ import PositionBackLink from "../../../../components/PositionBackLink";
 import PositionContactCta from "../../../../components/PositionContactCta";
 import { jobs } from "../../../../data/jobs";
 import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../../lib/positionFreshness";
-import { formatExperienceDisplay } from "../../../../lib/jobFilters";
+import { formatExperienceDisplay, formatSalaryDisplay, formatWorkplaceDisplay } from "../../../../lib/jobFilters";
 import { SITE_URL, getReviewedDateISO, addDaysISO } from "../../../../lib/seo";
 
 const lines = (value) =>
@@ -105,8 +105,8 @@ export default async function PositionPage({ params }) {
           <dl className={`position-detail-grid ${styles.grid}`}>
             <div><dt>Location</dt><dd>{job.location}</dd></div>
             <div><dt>State</dt><dd>{job.state}</dd></div>
-            <div><dt>Workplace</dt><dd>{job.workplace}</dd></div>
-            <div><dt>Salary</dt><dd className={styles.salaryValue}>{job.salaryDisplay}</dd></div>
+            <div><dt>Workplace</dt><dd>{formatWorkplaceDisplay(job.workplace)}</dd></div>
+            <div><dt>Salary</dt><dd className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</dd></div>
             <div><dt>Experience</dt><dd>{formatExperienceDisplay(job.experience)}</dd></div>
             <div><dt>Discipline</dt><dd>{job.discipline}</dd></div>
             {job.specialty ? <div><dt>Specialty</dt><dd>{job.specialty}</dd></div> : null}

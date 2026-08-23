@@ -5,6 +5,7 @@ import styles from "../../app/page.module.css";
 import PlayAgileChess from "./PlayAgileChess";
 import FilterSelect from "../FilterSelect";
 import MultiSelectFilter from "../MultiSelectFilter";
+import { formatSalaryDisplay } from "../../lib/jobFilters";
 
 // The careers engine now lives at /careers within this same unified deployment,
 // so this fetches live numbers at runtime from its public endpoint
@@ -232,7 +233,7 @@ export default function HomeResourcesAccordion({ variant }) {
                     <strong>{job.title}</strong>
                     <span className={styles.resourcesPositionMeta}>
                       <span>{job.location}</span>
-                      <span className={styles.salaryValue}>{job.salaryDisplay}</span>
+                      <span className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</span>
                     </span>
                   </a>
                 ))}
@@ -258,7 +259,7 @@ export default function HomeResourcesAccordion({ variant }) {
                     <strong>{job.title}</strong>
                     <span className={styles.resourcesPositionMeta}>
                       <span>{job.location}</span>
-                      <span className={styles.salaryValue}>{job.salaryDisplay}</span>
+                      <span className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</span>
                     </span>
                   </a>
                 ))}
