@@ -39,7 +39,7 @@ export default function MarketInsightsSection() {
         </div>
         <form className={styles.form} onSubmit={handleSubmit}>
           {status?<p className={`${styles.status} ${success?styles.success:styles.error} ${celebrating?styles.statusPop:""}`} role="status" aria-live="polite">{status}</p>:null}
-          <label>First and Last Name *<input type="text" name="name" placeholder="First and last name" autoComplete="name" required /></label>
+          <label>First Name *<input type="text" name="name" placeholder="First name" autoComplete="given-name" required /></label>
           <label>Email *<input type="email" name="email" placeholder="name@example.com" autoComplete="email" required /></label>
           <label>Location<select name="location" defaultValue=""><option value="">Choose a market</option>{stateOptions.map((state)=><option key={state}>{state}</option>)}</select></label>
           <label>Discipline<select name="discipline" defaultValue=""><option value="">Choose a discipline</option>{disciplineOptions.map((discipline)=><option key={discipline}>{discipline}</option>)}</select></label>
