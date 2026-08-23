@@ -6,7 +6,9 @@ GREEN baseline established after the August 20–23 position-sharing, position-d
 
 Baseline code commit:
 
-`64aab93` — "Font on Phone Increase by 1," branch `main`. Confirmed August 23 via the Vercel Deployments list for `agile-website-positions` (this is the newest deployment on `main` as of that check, and it is the mobile-readability commit — the last code commit of this cycle). This is the short (7-character) SHA as shown by Vercel; if the full 40-character SHA is needed for git operations, open GitHub Desktop's History tab, click this commit, and copy the full hash shown at the top.
+`a7df363` — "Lint Fixes 2," branch `main`. This is the short (7-character) SHA as shown by GitHub and Vercel; if the full 40-character SHA is needed for git operations, open GitHub Desktop's History tab, click this commit, and copy the full hash shown at the top.
+
+**Why the baseline commit isn't the feature commit:** the actual August 20–23 feature work (position sharing/email formatting, standalone position page Shortlist/Similar Positions, mobile readability) landed at `64aab93` ("Font on Phone Increase by 1"). Two follow-up commits, `373949a` ("Lint Fixes and final log updating") and `a7df363` ("Lint Fixes 2"), made no visible or functional changes — they only fixed six instances of a newer, stricter React lint rule (`react-hooks/set-state-in-effect`, flagging synchronous `setState` calls inside `useEffect`) and one `@next/next/no-html-link-for-pages` violation (a raw `<a>` swapped for Next's `<Link>`) that were failing the repository's GitHub Actions "Project Check." `a7df363` is the first commit in this chain confirmed fully green on both checks.
 
 Repository:
 
@@ -32,13 +34,18 @@ PASS — run directly against the repository source, not through GitHub Actions:
 - Every stylesheet checked for brace balance — clean.
 - A full data-integrity sweep ran against all 182 active positions (post-retirement-filter) in `data/jobs.js`, checking: unique `id` and `slug` per position, every position resolvable through `/p/[id]` → `/careers/positions/[slug]`, no missing required fields, no garbled/leftover text in `workplace` or `salaryDisplay`, `formatWorkplaceDisplay`/`formatSalaryDisplay` produce output for every position with a value, `getSimilarJobs` runs without error and never suggests a position to itself for all 182 positions, and `positionUrl`/`positionShareText`/`positionShareHtml` generate correctly for all 182 positions. Zero real defects found.
 
-**Gap versus prior baselines:** this environment cannot run the repository's GitHub Actions "Project Check" workflow or query the Vercel API directly — no CI or Vercel API access from here. The code-level checks above are a substitute for the `npm run check` step, not a replacement for it. The Vercel deployment itself has now been confirmed directly by the site owner in the Vercel dashboard (see below). What's still open is confirming the GitHub Actions "Project Check" workflow reports success for this exact commit — open the commit on GitHub.com and confirm the green check mark, or check the Actions tab, and record the run ID here.
+**Gap versus prior baselines — now closed:** this working environment cannot run GitHub Actions or query the Vercel API directly, so the code-level checks above are a substitute for `npm run check`, not a replacement for it. The site owner confirmed both real checks directly on GitHub.com and in the Vercel dashboard on August 23.
 
-- GitHub Project Check: `PENDING — confirm the green check mark next to commit 64aab93 on GitHub.com, or check the Actions tab`
-- GitHub Actions run: `PENDING`
-- Vercel Production deployment: **SUCCESS** — confirmed August 23 in the Vercel dashboard (Deployments list for `agile-website-positions`): commit `64aab93` "Font on Phone Increase by 1," branch `main`, status Ready, tagged Production, build duration 19s.
-- Vercel deployment ID: `9oWT1E3dGWu6r9sEuVaGUupD2RRH`
-- Domains attached to this deployment: `www.agileconsultingsolutions.com` (confirmed in the Domains panel of the same deployment page), plus the project's own `agile-website-positions...vercel.app` addresses.
+- GitHub Project Check: **SUCCESS** — confirmed directly on the commit page for `a7df363` on GitHub.com, showing "✓ 2/2" (both the `Project Check / check` workflow and the Vercel deployment-status check passed).
+- GitHub Actions run: confirmed passing via the commit's check-mark UI; exact numeric run ID not separately recorded.
+- Vercel Production deployment: **SUCCESS** — status Ready, tagged Production and Current, build duration 21s.
+- Vercel deployment ID: `C4sJ9xXPBz7ZZA9K2JxRiyQfUMHS`
+- Domains attached to this deployment: `www.agileconsultingsolutions.com` plus 3 additional project domains (the `agile-website-positions...vercel.app` aliases).
+
+For context, the intermediate commits on the way to green were also deployed and independently checked:
+- `64aab93` ("Font on Phone Increase by 1") — the feature commit, Vercel deployment `9oWT1E3dGWu6r9sEuVaGUupD2RRH`, Ready/Production, but GitHub Project Check FAILED (1/2) — 5 `react-hooks/set-state-in-effect` errors.
+- `373949a` ("Lint Fixes and final log updating") — fixed those 5 errors; GitHub Project Check still FAILED (1/2) — 1 remaining `@next/next/no-html-link-for-pages` error.
+- `a7df363` ("Lint Fixes 2") — fixed the remaining error; GitHub Project Check PASSED (2/2). This is the baseline commit above.
 
 ### Live production verification (site owner, August 22–23)
 
@@ -69,7 +76,9 @@ PASS — confirmed directly on `www.agileconsultingsolutions.com` in production,
 - Standalone position page now also shows a Similar Positions section, matching the modal.
 - Small mobile-only font-size increase on the standalone position page (info grid, bullets, Similar Positions cards) — desktop/laptop untouched.
 - `FALLBACK_CAREERS_ORIGIN` in `lib/shareJob.js` corrected from a nonexistent `careers.` subdomain to match the real production domain, for the rare server-side fallback path.
+- Six `useEffect` hooks (`components/JobBoard.js`, `components/PositionBackLink.js`, `components/home/PlayAgileChess.js`, `components/PositionPageShortlist.js`, `components/home/HomeResourcesAccordion.js`, `components/ContactSection.js`) reworked to defer their client-only setState calls by one tick (`window.setTimeout(fn, 0)` + cleanup), matching a pattern already used elsewhere in the codebase, to satisfy the `react-hooks/set-state-in-effect` lint rule. No visible or functional change.
+- One raw internal `<a href="/#client-hiring-support">` in `components/home/HomeAccessMenu.js` swapped for Next's `<Link>` component to satisfy `@next/next/no-html-link-for-pages`. No visible change.
 
 ## Protected Recovery Rule
 
-Commit `64aab93` on `main` is the recovery target for this baseline — confirmed deployed and live on `www.agileconsultingsolutions.com`. The one remaining gap versus the repo's full Launch/Change Gate procedure is an explicit confirmation that GitHub Actions "Project Check" passed for this commit (Vercel's own build succeeding is a strong signal but is not the same check). Once that's confirmed, this baseline can be promoted into `PROJECT_CHECKPOINT.md`'s "GREEN BASELINE" section in place of the August 11 one.
+Commit `a7df363` on `main` is the recovery target for this baseline — confirmed deployed and live on `www.agileconsultingsolutions.com`, and confirmed GREEN on both GitHub Project Check and Vercel Production deployment. This satisfies the repo's full Launch/Change Gate procedure and is now promoted into `PROJECT_CHECKPOINT.md`'s "GREEN BASELINE" section in place of the August 11 one.

@@ -1,6 +1,6 @@
 # AGILE Careers Project Checkpoint
 
-Last updated: August 23, 2026 — GREEN baseline candidate recorded, pending CI/Vercel ID confirmation (see note below)
+Last updated: August 23, 2026 — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment
 
 ## Purpose
 
@@ -10,27 +10,30 @@ This is the operational handoff and recovery record for AGILE Careers developmen
 
 Current verified GREEN recovery baseline code commit:
 
-`3daf725af3eedf389524ac30f8ec762be9453d23`
+`a7df363`
+
+(Short SHA as confirmed on GitHub/Vercel; open GitHub Desktop's History tab and click this commit for the full 40-character hash if needed for git operations.)
 
 Commit message:
 
-`Improve mobile market selection and text contrast`
+`Lint Fixes 2`
 
 Detailed baseline record:
 
-`docs/CAREERS_GREEN_BASELINE_2026-08-11.md`
+`docs/CAREERS_GREEN_BASELINE_2026-08-23.md`
 
 Verification for this exact code SHA:
 
-- GitHub Project Check: SUCCESS
-- GitHub Actions run: `31491504397`
+- GitHub Project Check: SUCCESS — confirmed "✓ 2/2" directly on the commit page on GitHub.com
 - Job data validation / lint / production build: PASS through Project Check
-- Vercel Production deployment: SUCCESS
-- GitHub deployment ID: `5850441846`
+- Vercel Production deployment: SUCCESS — Ready, tagged Production and Current
+- Vercel deployment ID: `C4sJ9xXPBz7ZZA9K2JxRiyQfUMHS`
 
 Production domain:
 
-`https://careers.agileconsultingsolutions.com`
+`https://www.agileconsultingsolutions.com`
+
+(Changed from `https://careers.agileconsultingsolutions.com`, recorded in every baseline through August 11 — confirm intentionally whether that subdomain should still resolve, redirect, or be retired.)
 
 Repository:
 
@@ -46,15 +49,7 @@ Resend -> `careers@agileconsultingsolutions.com`
 
 IMPORTANT: Documentation commits created to record this baseline come after the baseline code SHA. The recovery target for site behavior is the code commit above unless a later production code change is independently verified and documented.
 
-## AUGUST 23 BASELINE CANDIDATE — READ BEFORE TREATING AS FROZEN
-
-A newer round of work (position sharing/email formatting, the standalone position page, mobile readability) is live in production and confirmed working by the site owner directly on `https://www.agileconsultingsolutions.com` — see `docs/CAREERS_GREEN_BASELINE_2026-08-23.md` for the full record.
-
-That domain is a change from the `https://careers.agileconsultingsolutions.com` recorded above — confirm intentionally which domain is authoritative going forward before relying on this field.
-
-Commit SHA and Vercel deployment are now confirmed: `64aab93` ("Font on Phone Increase by 1"), branch `main`, Vercel deployment `9oWT1E3dGWu6r9sEuVaGUupD2RRH`, status Ready/Production, live on `www.agileconsultingsolutions.com`. The one remaining gap versus every prior baseline in this file is an explicit GitHub Project Check confirmation for this commit — check the green check mark next to `64aab93` on GitHub.com (or the Actions tab) and report back.
-
-Do not promote this to the "GREEN BASELINE" section above until GitHub Project Check is confirmed SUCCESS for `64aab93` — everything else is now verified.
+Note: `a7df363` itself contains no visible/functional changes versus `64aab93` (the August 20–23 feature commit) — it's the second of two lint-only follow-up commits that got the repository's GitHub Actions "Project Check" back to green. See `docs/CAREERS_GREEN_BASELINE_2026-08-23.md` for the full chain and what each lint fix touched.
 
 ## AUGUST 11 LOCKED REFINEMENTS
 
@@ -62,9 +57,9 @@ The August 11 GREEN baseline includes the approved desktop Contact landing, site
 
 The latest mobile-only refinements should receive a final phone smoke test, but GitHub Project Check and the exact Vercel Production deployment are GREEN.
 
-## AUGUST 23 REFINEMENTS (see baseline candidate note above)
+## AUGUST 23 REFINEMENTS (now part of the GREEN BASELINE above)
 
-Position modal and job grid cards redesigned to match (salary promoted near Shortlist/top, compact Location/Workplace/Experience/Position ID layout, no separate Position ID badge). Shortlist star turns gold/bronze on selection. Salary normalizes to "Market Rate" in green when not a real number. Workplace display normalizes to Hybrid/On-Site/Remote everywhere. Position ID and several readability-pass font sizes increased (Explore Resources accordion, chess panel, Contact form, position card meta labels). Share/copy email formatting rebuilt compact and `pt`-sized for Outlook, with link text shortened to "View Position" and color made redundant (span + legacy `font` tag) after Outlook was found to strip block-level color. The standalone position detail page (`/careers/positions/[slug]`, what a shared `/p/[id]` link opens to) gained a working Shortlist button (sharing the same saved-positions storage as the grid) and a Similar Positions section, via new `lib/similarJobs.js` and `components/PositionPageShortlist.js`. That page also received a small mobile-only font-size increase; desktop/laptop are unchanged.
+Position modal and job grid cards redesigned to match (salary promoted near Shortlist/top, compact Location/Workplace/Experience/Position ID layout, no separate Position ID badge). Shortlist star turns gold/bronze on selection. Salary normalizes to "Market Rate" in green when not a real number. Workplace display normalizes to Hybrid/On-Site/Remote everywhere. Position ID and several readability-pass font sizes increased (Explore Resources accordion, chess panel, Contact form, position card meta labels). Share/copy email formatting rebuilt compact and `pt`-sized for Outlook, with link text shortened to "View Position" and color made redundant (span + legacy `font` tag) after Outlook was found to strip block-level color. The standalone position detail page (`/careers/positions/[slug]`, what a shared `/p/[id]` link opens to) gained a working Shortlist button (sharing the same saved-positions storage as the grid) and a Similar Positions section, via new `lib/similarJobs.js` and `components/PositionPageShortlist.js`. That page also received a small mobile-only font-size increase; desktop/laptop are unchanged. Two follow-up commits then fixed six lint violations flagged by the repository's own GitHub Actions "Project Check" (no visible/functional change) to get this cycle's work fully GREEN — see `docs/CAREERS_GREEN_BASELINE_2026-08-23.md`.
 
 ## LOCKED REBUILD DIRECTION
 
