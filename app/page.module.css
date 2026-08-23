@@ -116,7 +116,6 @@ a.accessSubRowHead{color:#1c4d8f}
 .portfolioFooterMark{margin:2px 20px 16px;font-family:Georgia,'Times New Roman',serif;font-weight:900;letter-spacing:.08em;font-size:1rem;color:#1c2b3a}
 .chessModalBackdrop{position:fixed;inset:0;z-index:60;background:rgba(6,20,32,.62);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;padding:24px}
 .chessModalCard{position:relative;width:min(480px,100%);max-height:min(92vh,780px);max-height:min(92dvh,780px);overflow-y:auto;background:linear-gradient(180deg,#fbf7ec 0%,#f5efdd 100%);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(224,199,144,.4)}
-@media(max-width:620px){.chessModalBackdrop{padding:8px 4px}.chessModalCard{width:100%;max-height:min(97vh,900px);max-height:min(97dvh,900px)}.chessCard{padding:12px 0 4px}.chessBoardWrap{padding:0 6px 8px}.chessResumeBanner,.chessSub,.chessStatus{margin-left:10px;margin-right:10px}}
 .chessModalClose{position:absolute;top:12px;right:14px;z-index:2;background:rgba(19,126,174,.1);border:none;color:#147eae;width:32px;height:32px;border-radius:50%;font-size:1.3rem;line-height:1;cursor:pointer}
 .chessModalClose:hover{background:rgba(19,126,174,.2)}
 .chessCard{padding:20px 0 4px}
@@ -146,6 +145,7 @@ a.accessSubRowHead{color:#1c4d8f}
 .chessOutlineBtn:hover{background:rgba(176,141,87,.1)}
 .chessMoveCount{margin:8px 20px 0;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;color:#1c2b3a;font-weight:700}
 .chessSaveNote{margin:4px 20px 0;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;color:#137eae;font-weight:700}
+@media(max-width:620px){.chessModalBackdrop{padding:8px 4px}.chessModalCard{width:100%;max-height:min(97vh,900px);max-height:min(97dvh,900px)}.chessCard{padding:12px 0 4px}.chessBoardWrap{padding:0 6px 8px}.chessResumeBanner,.chessSub,.chessStatus{margin-left:10px;margin-right:10px}.chessResumeBanner p{font-size:.92rem}.chessSub{font-size:.92rem;line-height:1.55}.chessStatus{padding:9px 12px;font-size:.96rem}.chessNewGame{padding:11px 12px;font-size:.92rem}.chessOutlineBtn{padding:10px 12px;font-size:.92rem}.chessMoveCount{font-size:.84rem}.chessSaveNote{font-size:.84rem}}
 .aboutSection{background:#fff;padding:58px 0 62px;scroll-margin-top:88px}
 .aboutInner{width:min(860px,calc(100% - 48px));margin:0 auto}
 .aboutEyebrow{margin:0 0 10px;color:#1476a8;font-size:.85rem;font-weight:800;letter-spacing:.14em}
