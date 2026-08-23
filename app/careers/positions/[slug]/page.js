@@ -8,6 +8,7 @@ import PositionContactCta from "../../../../components/PositionContactCta";
 import { jobs } from "../../../../data/jobs";
 import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../../lib/positionFreshness";
 import { formatExperienceDisplay } from "../../../../lib/jobFilters";
+import { SITE_URL, getReviewedDateISO, addDaysISO } from "../../../../lib/seo";
 
 const lines = (value) =>
   String(value ?? "")
@@ -28,6 +29,7 @@ export async function generateMetadata({ params }) {
   return {
     title: job.seoTitle || `${job.title} | AGILE Position ${job.id}`,
     description: job.metaDescription || job.summary,
+    alternates: { canonical: `/careers/positions/${job.slug}` },
   };
 }
 
@@ -41,8 +43,56 @@ export default async function PositionPage({ params }) {
   const qualifications = lines(job.qualifications);
   const whyConsider = freshWhyConsider(job);
 
+  const datePosted = getReviewedDateISO(POSITION_REVIEW_LABEL);
+  const jobPostingJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: job.title,
+    description: job.metaDescription || job.summary || job.title,
+    identifier: {
+      "@type": "PropertyValue",
+      name: "AGILE Business Consulting",
+      value: job.id,
+    },
+    datePosted,
+    validThrough: `${addDaysISO(datePosted, 60)}T23:59:59Z`,
+    employmentType: "FULL_TIME",
+    hiringOrganization: {
+      "@type": "Organization",
+      name: "AGILE Business Consulting",
+      sameAs: SITE_URL,
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: job.location,
+        addressRegion: job.state,
+        addressCountry: "US",
+      },
+    },
+    ...(job.salaryMin && job.salaryMax
+      ? {
+          baseSalary: {
+            "@type": "MonetaryAmount",
+            currency: "USD",
+            value: {
+              "@type": "QuantitativeValue",
+              minValue: job.salaryMin,
+              maxValue: job.salaryMax,
+              unitText: "YEAR",
+            },
+          },
+        }
+      : {}),
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jobPostingJsonLd) }}
+      />
       <SiteHeader />
 
       <section className={`section position-detail ${styles.detail}`}>

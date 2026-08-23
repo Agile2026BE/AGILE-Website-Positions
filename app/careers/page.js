@@ -9,6 +9,13 @@ import SiteHeader from "../../components/SiteHeader";
 import WhyAgileSection from "../../components/WhyAgileSection";
 import { jobs } from "../../data/jobs";
 
+export const metadata = {
+  title: "AEC Careers & Engineering Positions | AGILE Business Consulting",
+  description:
+    "Browse open Architecture, Engineering, and Construction positions with salary, location, and experience listed upfront — electrical, mechanical, commissioning, and more.",
+  alternates: { canonical: "/careers" },
+};
+
 export default function HomePage() {
   return (
     <>
