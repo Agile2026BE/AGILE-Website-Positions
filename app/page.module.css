@@ -114,6 +114,7 @@ a.accessSubRowHead{color:#1c4d8f}
 .portfolioDot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 .portfolioNote{margin:6px 20px 4px;font-family:Arial,Helvetica,sans-serif;font-size:.76rem;color:#6d6248}
 .portfolioFooterMark{margin:2px 20px 16px;font-family:Georgia,'Times New Roman',serif;font-weight:900;letter-spacing:.08em;font-size:1rem;color:#1c2b3a}
+@media(max-width:820px){.portfolioLegend{gap:7px}.portfolioLegend li{font-size:.82rem}.portfolioNote{font-size:.86rem;line-height:1.4}.portfolioFooterMark{font-size:1.08rem}}
 .chessModalBackdrop{position:fixed;inset:0;z-index:60;background:rgba(6,20,32,.62);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;padding:24px}
 .chessModalCard{position:relative;width:min(480px,100%);max-height:min(92vh,780px);max-height:min(92dvh,780px);overflow-y:auto;background:linear-gradient(180deg,#fbf7ec 0%,#f5efdd 100%);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.45),0 0 0 1px rgba(224,199,144,.4)}
 .chessModalClose{position:absolute;top:12px;right:14px;z-index:2;background:rgba(19,126,174,.1);border:none;color:#147eae;width:32px;height:32px;border-radius:50%;font-size:1.3rem;line-height:1;cursor:pointer}
