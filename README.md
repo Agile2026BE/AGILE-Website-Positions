@@ -152,3 +152,7 @@ See `PROJECT_CHECKPOINT.md` for the short operational handoff.
 For the verified August 9, 2026 source/design/behavior recovery baseline, see `docs/CAREERS_BASELINE_2026-08-09.md`.
 
 For the newest active live-testing status, current pass/fail observations, and repair/improvement queue, see `docs/CAREERS_TEST_CHECKPOINT_2026-08-10.md`.
+
+For the August 23, 2026 baseline candidate (position sharing/email formatting, the standalone position page's Shortlist/Similar Positions, mobile readability) — confirmed working in production by the site owner but not yet run through GitHub Project Check or a confirmed Vercel deployment ID from this working environment — see `docs/CAREERS_GREEN_BASELINE_2026-08-23.md` and the "AUGUST 23 BASELINE CANDIDATE" note in `PROJECT_CHECKPOINT.md`.
+
+Note: several sections of this README (domain references, `app/positions/[slug]/page.js`) predate later restructuring — e.g. the position detail page now lives at `app/careers/positions/[slug]/page.js`, and current production domain is confirmed as `https://www.agileconsultingsolutions.com` — and have not been fully audited/refreshed as part of this cycle. Treat `PROJECT_CHECKPOINT.md` and the dated `docs/CAREERS_GREEN_BASELINE_*.md` files as authoritative over the sections above until this file gets its own refresh pass.

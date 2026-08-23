@@ -19,8 +19,11 @@ export default function PositionBackLink({ className }) {
   const [source, setSource] = useState(DEFAULT_SOURCE);
 
   useEffect(() => {
-    const from = new URLSearchParams(window.location.search).get("from");
-    if (from && SOURCES[from]) setSource(SOURCES[from]);
+    const timer = window.setTimeout(() => {
+      const from = new URLSearchParams(window.location.search).get("from");
+      if (from && SOURCES[from]) setSource(SOURCES[from]);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   return (

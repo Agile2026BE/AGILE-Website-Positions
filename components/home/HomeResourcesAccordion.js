@@ -154,9 +154,9 @@ export default function HomeResourcesAccordion({ variant }) {
         setOpenTab("featured");
       }
     }
-    openFromHash();
+    const timer = window.setTimeout(openFromHash, 0);
     window.addEventListener("hashchange", openFromHash);
-    return () => window.removeEventListener("hashchange", openFromHash);
+    return () => { window.clearTimeout(timer); window.removeEventListener("hashchange", openFromHash); };
   }, []);
 
   function toggleTab(tab) {

@@ -1,6 +1,6 @@
 # AGILE Careers Project Checkpoint
 
-Last updated: August 11, 2026 — GREEN baseline freeze
+Last updated: August 23, 2026 — GREEN baseline candidate recorded, pending CI/Vercel ID confirmation (see note below)
 
 ## Purpose
 
@@ -46,11 +46,25 @@ Resend -> `careers@agileconsultingsolutions.com`
 
 IMPORTANT: Documentation commits created to record this baseline come after the baseline code SHA. The recovery target for site behavior is the code commit above unless a later production code change is independently verified and documented.
 
+## AUGUST 23 BASELINE CANDIDATE — READ BEFORE TREATING AS FROZEN
+
+A newer round of work (position sharing/email formatting, the standalone position page, mobile readability) is live in production and confirmed working by the site owner directly on `https://www.agileconsultingsolutions.com` — see `docs/CAREERS_GREEN_BASELINE_2026-08-23.md` for the full record.
+
+That domain is a change from the `https://careers.agileconsultingsolutions.com` recorded above — confirm intentionally which domain is authoritative going forward before relying on this field.
+
+Commit SHA and Vercel deployment are now confirmed: `64aab93` ("Font on Phone Increase by 1"), branch `main`, Vercel deployment `9oWT1E3dGWu6r9sEuVaGUupD2RRH`, status Ready/Production, live on `www.agileconsultingsolutions.com`. The one remaining gap versus every prior baseline in this file is an explicit GitHub Project Check confirmation for this commit — check the green check mark next to `64aab93` on GitHub.com (or the Actions tab) and report back.
+
+Do not promote this to the "GREEN BASELINE" section above until GitHub Project Check is confirmed SUCCESS for `64aab93` — everything else is now verified.
+
 ## AUGUST 11 LOCKED REFINEMENTS
 
 The August 11 GREEN baseline includes the approved desktop Contact landing, sitewide blue dropdown chevrons, blue Market Sectors chevron states, natural inquiry message wrapping, the three-position shortlist limit, inquiry success confirmation at the top of the modal, starburst celebration, a soft success chime, mobile-only stronger supporting-text contrast, and a mobile Market Sectors Done control.
 
 The latest mobile-only refinements should receive a final phone smoke test, but GitHub Project Check and the exact Vercel Production deployment are GREEN.
+
+## AUGUST 23 REFINEMENTS (see baseline candidate note above)
+
+Position modal and job grid cards redesigned to match (salary promoted near Shortlist/top, compact Location/Workplace/Experience/Position ID layout, no separate Position ID badge). Shortlist star turns gold/bronze on selection. Salary normalizes to "Market Rate" in green when not a real number. Workplace display normalizes to Hybrid/On-Site/Remote everywhere. Position ID and several readability-pass font sizes increased (Explore Resources accordion, chess panel, Contact form, position card meta labels). Share/copy email formatting rebuilt compact and `pt`-sized for Outlook, with link text shortened to "View Position" and color made redundant (span + legacy `font` tag) after Outlook was found to strip block-level color. The standalone position detail page (`/careers/positions/[slug]`, what a shared `/p/[id]` link opens to) gained a working Shortlist button (sharing the same saved-positions storage as the grid) and a Similar Positions section, via new `lib/similarJobs.js` and `components/PositionPageShortlist.js`. That page also received a small mobile-only font-size increase; desktop/laptop are unchanged.
 
 ## LOCKED REBUILD DIRECTION
 
@@ -98,10 +112,11 @@ Do not remove these during future visual work:
 - View Positions action
 - Position result cards
 - View Position
-- Similar Positions
-- +Shortlist / Saved Positions
+- Similar Positions (grid modal AND the standalone direct/shared position page — added August 23)
+- +Shortlist / Saved Positions (grid modal AND the standalone direct/shared position page — added August 23, same shared `agile-saved-positions` storage)
 - Maximum three shortlisted positions
 - Copy Link / Share
+- Compact, correctly colored Outlook/Gmail share formatting (August 23 — see baseline candidate note)
 - Direct Position ID URLs
 - Position ID display
 - Salary display

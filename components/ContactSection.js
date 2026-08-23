@@ -53,10 +53,10 @@ export default function ContactSection() {
         setPositionId(id); setPositionTitle(title); setDiscipline(selectedDiscipline); setQuickMessage("position"); setMessage(positionMessage(id, title));
       }
     };
-    syncPositionFromUrl();
+    const timer = window.setTimeout(syncPositionFromUrl, 0);
     window.addEventListener("hashchange", syncPositionFromUrl);
     window.addEventListener("popstate", syncPositionFromUrl);
-    return () => { window.removeEventListener("hashchange", syncPositionFromUrl); window.removeEventListener("popstate", syncPositionFromUrl); };
+    return () => { window.clearTimeout(timer); window.removeEventListener("hashchange", syncPositionFromUrl); window.removeEventListener("popstate", syncPositionFromUrl); };
   }, []);
 
   useEffect(() => {

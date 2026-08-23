@@ -16,15 +16,18 @@ export default function PositionPageShortlist({ job }) {
   const [isShortlisted, setIsShortlisted] = useState(false);
 
   useEffect(() => {
-    if (!key) return;
-    try {
-      const saved = JSON.parse(window.localStorage.getItem(SAVED_POSITIONS_KEY) || "[]");
-      setIsShortlisted(Array.isArray(saved) && saved.map(String).includes(key));
-    } catch {
-      setIsShortlisted(false);
-    } finally {
-      setReady(true);
-    }
+    if (!key) return undefined;
+    const timer = window.setTimeout(() => {
+      try {
+        const saved = JSON.parse(window.localStorage.getItem(SAVED_POSITIONS_KEY) || "[]");
+        setIsShortlisted(Array.isArray(saved) && saved.map(String).includes(key));
+      } catch {
+        setIsShortlisted(false);
+      } finally {
+        setReady(true);
+      }
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, [key]);
 
   function toggle() {

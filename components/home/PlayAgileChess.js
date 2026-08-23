@@ -69,7 +69,10 @@ export default function PlayAgileChess() {
   // Check for a saved game once we're on the client (localStorage isn't
   // available during server rendering).
   useEffect(() => {
-    if (readSave()) setSavedGameFound(true);
+    const timer = window.setTimeout(() => {
+      if (readSave()) setSavedGameFound(true);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   useEffect(() => () => clearTimeout(noteTimer.current), []);
