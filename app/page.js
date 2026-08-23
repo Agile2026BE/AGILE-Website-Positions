@@ -23,7 +23,7 @@ export default function CorporateHomePage() {
         </div>
         <div className={styles.heroContent}>
           <p className={styles.eyebrow}><em>AEC</em> RECRUITING AND CONSULTING</p>
-          <h1>What’s Your<br />Next <em>Move?</em></h1>
+          <h1>What’s Your<br className={styles.heroLineBreak} /> Next <em>Move?</em><sup className={styles.serviceMark}>SM</sup></h1>
           <p className={styles.lead}>Specialized recruiting and professional representation connecting architects, engineers, and construction professionals with firms shaping the built environment.</p>
           <div className={styles.actionGrid}>
             <a href="/careers" className={styles.primary}>Explore Opportunities</a>
