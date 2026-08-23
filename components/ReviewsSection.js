@@ -177,19 +177,19 @@ export default function ReviewsSection() {
         </div>
         <div
           aria-label="Browse professional reviews"
-          style={{ display: "flex", justifyContent: "flex-end", gap: "0.65rem", marginTop: "1rem", flexWrap: "wrap" }}
+          className={styles.reviewNav}
         >
           <button
             type="button"
             onClick={showPrevious}
-            style={{ border: "1px solid #9fc6dc", background: "#fff", color: "#123a5a", borderRadius: "999px", padding: "0.55rem 0.9rem", fontWeight: 700, cursor: "pointer" }}
+            className={`${styles.reviewNavBtn} ${styles.reviewNavBtnOutline}`}
           >
             ‹ Previous reviews
           </button>
           <button
             type="button"
             onClick={showNext}
-            style={{ border: "1px solid #147eae", background: "#147eae", color: "#fff", borderRadius: "999px", padding: "0.55rem 0.9rem", fontWeight: 700, cursor: "pointer" }}
+            className={`${styles.reviewNavBtn} ${styles.reviewNavBtnFilled}`}
           >
             More reviews ›
           </button>
