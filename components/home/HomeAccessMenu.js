@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import styles from "../../app/page.module.css";
 
 const CANDIDATE_EXPECTATIONS = [
@@ -134,9 +135,9 @@ export default function HomeAccessMenu() {
               </div>
             </div>
             <div className={styles.accessSubRow}>
-              <a href="/#client-hiring-support" className={styles.accessSubRowHead} onClick={closeAll}>
+              <Link href="/#client-hiring-support" className={styles.accessSubRowHead} onClick={closeAll}>
                 Start a Client Conversation →
-              </a>
+              </Link>
             </div>
           </div>
         </div>
