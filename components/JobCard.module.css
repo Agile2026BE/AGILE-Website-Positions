@@ -8,6 +8,7 @@
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 .card:hover { transform:translateY(-5px); border-color:#c7d7e2; box-shadow:0 16px 34px rgba(25,57,82,.12); }
+.card:active { transform:translateY(-1px) scale(.99); border-color:#8fb4cc; box-shadow:0 6px 16px rgba(25,57,82,.14); background:#f7fbfd; transition:transform .08s ease,box-shadow .08s ease,background .08s ease; }
 .cardSalaryRow { margin:0 0 14px; text-align:right; }
 .cardSalaryRow .salaryValue { color:#067647; font-weight:800; font-size:1.05rem; white-space:nowrap; }
 .shortlist { position:absolute; top:18px; right:18px; z-index:2; }

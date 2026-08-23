@@ -127,6 +127,7 @@
 }
 
 .similarCard:hover { background: #eef5f9; border-color: #a9cbdc; }
+.similarCard:active { background: #e3f0f6; border-color: #7fb0cc; transform: scale(.99); }
 
 .similarCard strong { font-size: 1rem; line-height: 1.3; }
 
