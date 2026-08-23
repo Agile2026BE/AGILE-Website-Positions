@@ -45,7 +45,7 @@
 }
 
 .selectMoney.selectActive {
-  color: #067647;
+  color: var(--salary-green);
   border-color: #2f8a5f;
   background-color: #e6f6ec;
 }

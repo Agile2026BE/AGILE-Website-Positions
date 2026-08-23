@@ -74,7 +74,7 @@
 }
 
 .grid .salaryValue {
-  color: #067647;
+  color: var(--salary-green);
   font-weight: 800;
 }
 
@@ -140,7 +140,7 @@
   font-size: 0.86rem;
 }
 
-.similarMeta .salaryValue { color: #067647; font-weight: 800; white-space: nowrap; }
+.similarMeta .salaryValue { color: var(--salary-green); font-weight: 800; white-space: nowrap; }
 
 .cta {
   display: inline-flex;
