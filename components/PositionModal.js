@@ -5,13 +5,13 @@ import styles from "./PositionModal.module.css";
 import ShortlistButton from "./ShortlistButton";
 import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../lib/positionFreshness";
 import { formatExperienceDisplay, formatSalaryDisplay, formatWorkplaceDisplay } from "../lib/jobFilters";
+import { getSimilarJobs } from "../lib/similarJobs";
 
 const lines = (value) => String(value ?? "").split(/\r?\n/).map((line) => line.replace(/^\s*[•*-]\s*/, "").trim()).filter(Boolean);
-function similarityScore(candidate, active) { let score=0; if(candidate.discipline&&candidate.discipline===active.discipline)score+=5; if(candidate.state&&candidate.state===active.state)score+=3; if(candidate.workplace&&candidate.workplace===active.workplace)score+=1; const markets=String(active.market||"").toLowerCase().split("|").map(v=>v.trim()).filter(Boolean); const candidateMarkets=String(candidate.market||"").toLowerCase(); if(markets.some(m=>candidateMarkets.includes(m)))score+=2; return score; }
 
 export default function PositionModal({ job, jobs=[], onClose, onSelectJob, isShortlisted=false, onShortlist, onInterested, onShare }) {
   const paneRef=useRef(null);
-  const similarJobs=useMemo(()=>{ if(!job)return[]; const key=job.id??job.slug; return jobs.filter(candidate=>(candidate.id??candidate.slug)!==key).map(candidate=>({candidate,score:similarityScore(candidate,job)})).sort((a,b)=>b.score-a.score).slice(0,3).map(item=>item.candidate); },[job,jobs]);
+  const similarJobs=useMemo(()=>getSimilarJobs(job,jobs,3),[job,jobs]);
   useEffect(()=>{ if(!job)return undefined; const originalOverflow=document.body.style.overflow; document.body.style.overflow="hidden"; const handleKeyDown=(event)=>{if(event.key==="Escape")onClose?.();}; window.addEventListener("keydown",handleKeyDown); return()=>{document.body.style.overflow=originalOverflow;window.removeEventListener("keydown",handleKeyDown);};},[job,onClose]);
   useEffect(()=>{const frame=requestAnimationFrame(()=>{if(paneRef.current)paneRef.current.scrollTop=0;});return()=>cancelAnimationFrame(frame);},[job]);
   if(!job)return null;

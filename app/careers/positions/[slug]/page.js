@@ -1,13 +1,16 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import styles from "./page.module.css";
 import ContactSection from "../../../../components/ContactSection";
 import SiteFooter from "../../../../components/SiteFooter";
 import SiteHeader from "../../../../components/SiteHeader";
 import PositionBackLink from "../../../../components/PositionBackLink";
 import PositionContactCta from "../../../../components/PositionContactCta";
+import PositionPageShortlist from "../../../../components/PositionPageShortlist";
 import { jobs } from "../../../../data/jobs";
 import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../../lib/positionFreshness";
 import { formatExperienceDisplay, formatSalaryDisplay, formatWorkplaceDisplay } from "../../../../lib/jobFilters";
+import { getSimilarJobs } from "../../../../lib/similarJobs";
 import { SITE_URL, getReviewedDateISO, addDaysISO } from "../../../../lib/seo";
 
 const lines = (value) =>
@@ -42,6 +45,7 @@ export default async function PositionPage({ params }) {
   const responsibilities = lines(job.responsibilities);
   const qualifications = lines(job.qualifications);
   const whyConsider = freshWhyConsider(job);
+  const similarJobs = getSimilarJobs(job, jobs, 3);
 
   const datePosted = getReviewedDateISO(POSITION_REVIEW_LABEL);
   const jobPostingJsonLd = {
@@ -99,7 +103,10 @@ export default async function PositionPage({ params }) {
         <div className="container">
           <PositionBackLink className={styles.backLink} />
           <p className={`contact-eyebrow ${styles.eyebrow}`}>AVAILABLE POSITION · {POSITION_REVIEW_LABEL.toUpperCase()}</p>
-          <h1 className={styles.title}>{job.title}</h1>
+          <div className={styles.titleRow}>
+            <h1 className={styles.title}>{job.title}</h1>
+            <PositionPageShortlist job={job} />
+          </div>
           {job.summary ? <p className="section-copy">{job.summary}</p> : null}
 
           <dl className={`position-detail-grid ${styles.grid}`}>
@@ -134,6 +141,23 @@ export default async function PositionPage({ params }) {
             <section className={styles.contentSection}>
               <h2>Why Consider?</h2>
               {whyConsider.map((paragraph, index) => <p key={`${paragraph}-${index}`}>{paragraph}</p>)}
+            </section>
+          ) : null}
+
+          {similarJobs.length ? (
+            <section className={`${styles.contentSection} ${styles.similarBlock}`}>
+              <h2>Similar Positions</h2>
+              <div className={styles.similarList}>
+                {similarJobs.map((similar) => (
+                  <Link key={similar.id ?? similar.slug} href={`/careers/positions/${similar.slug}`} className={styles.similarCard}>
+                    <strong>{similar.title}</strong>
+                    <span className={styles.similarMeta}>
+                      <span>{similar.location}</span>
+                      <span className={styles.salaryValue}>{formatSalaryDisplay(similar.salaryDisplay)}</span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
             </section>
           ) : null}
 
