@@ -104,9 +104,9 @@ export default function ContactSection() {
           <h2 className="section-title">Start with a conversation.</h2>
           <p className="section-copy">Not a formal application. No fee or obligation.<br />Tell us what matters most, or simply ask about a selected position.</p>
           <div ref={badgesRef} className={`contact-badges ${styles.badges} ${styles.badgesThree}`} aria-label="Inquiry details">
-            <span className={`${styles.contactBadge} ${badgesVisible ? styles.contactBadgeVisible : ""}`} style={{ "--badge-delay": "0ms" }}><b className={styles.contactCheck} aria-hidden="true">✓</b>Résumé optional</span>
-            <span className={`${styles.contactBadge} ${badgesVisible ? styles.contactBadgeVisible : ""}`} style={{ "--badge-delay": "900ms" }}><b className={styles.contactCheck} aria-hidden="true">✓</b>No account required</span>
-            <span className={`${styles.contactBadge} ${badgesVisible ? styles.contactBadgeVisible : ""}`} style={{ "--badge-delay": "1800ms" }}><b className={styles.contactCheck} aria-hidden="true">✓</b>No application</span>
+            <span className={`${styles.contactBadge} ${badgesVisible ? styles.contactBadgeVisible : ""}`} style={{ "--badge-delay": "0ms" }}><b className={styles.contactCheck} aria-hidden="true">✓</b>No application</span>
+            <span className={`${styles.contactBadge} ${badgesVisible ? styles.contactBadgeVisible : ""}`} style={{ "--badge-delay": "900ms" }}><b className={styles.contactCheck} aria-hidden="true">✓</b>Résumé optional</span>
+            <span className={`${styles.contactBadge} ${badgesVisible ? styles.contactBadgeVisible : ""}`} style={{ "--badge-delay": "1800ms" }}><b className={styles.contactCheck} aria-hidden="true">✓</b>No account required</span>
           </div>
           <aside className={styles.peopleCard} aria-label="AGILE communications and professional engagement">
             <p className={styles.peopleLabel}>AGILE COMMUNICATIONS</p><strong>Lilly Genao</strong><span>Communications &amp; Professional Engagement</span><span>Architecture, MEP Engineering &amp; Construction</span>
