@@ -4,6 +4,14 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "../../app/page.module.css";
 
+const PROFESSIONAL_REPRESENTATION = [
+  "Confidential representation to firms that match your specific background, licensure, and career goals — never a mass resume blast.",
+  "Positioning of your experience and project portfolio in the context each hiring firm actually values most.",
+  "A single point of contact who understands your priorities and represents them directly to decision makers.",
+  "Insight into a firm's leadership, culture, and project pipeline before you ever step into an interview.",
+  "Ongoing representation through offer, negotiation, and transition — not just to the interview.",
+];
+
 const CANDIDATE_EXPECTATIONS = [
   "Careful review of experience and project portfolios to align your expertise with the right opportunities.",
   "Priority consideration for relevant client openings through focused, strategic representation.",
@@ -16,6 +24,14 @@ const RESUME_REVIEW_PARAGRAPHS = [
   "Interested in having your resume professionally evaluated by an experienced recruiting executive?",
   "Our advisors will give your resume the in depth review necessary to effectively highlight your experience, educational achievements, skill sets, and professional accomplishments needed to gain interview interest.",
   "Contact our office and request a confidential review and career consultation to discover your true value in your competitive career markets.",
+];
+
+const HIRING_REPRESENTATION = [
+  "A dedicated recruiting partner who represents your firm's opportunity, culture, and standards accurately to every candidate approached.",
+  "Confidential, targeted outreach to qualified passive candidates who aren't visible through job postings alone.",
+  "Pre-qualification of technical background, licensure, and cultural fit before any introduction is made.",
+  "Consistent, professional representation of your firm throughout the process, protecting your reputation in the market.",
+  "A long term recruiting partner built on trust, not a one time transaction.",
 ];
 
 const CLIENT_EXPECTATIONS = [
@@ -85,6 +101,18 @@ export default function HomeAccessMenu() {
             Candidate Support <span className={styles.accessRowChev}></span>
           </div>
           <div className={styles.accessRowBody}>
+            <div className={`${styles.accessSubRow} ${openSub === "professional-representation" ? styles.accessSubRowExpanded : ""}`}>
+              <div className={styles.accessSubRowHead} onClick={() => toggleSub("professional-representation")}>
+                Professional Representation
+              </div>
+              <div className={styles.accessSubRowBody}>
+                <ul className={styles.accessList}>
+                  {PROFESSIONAL_REPRESENTATION.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
             <div className={`${styles.accessSubRow} ${openSub === "candidate-expectations" ? styles.accessSubRowExpanded : ""}`}>
               <div className={styles.accessSubRowHead} onClick={() => toggleSub("candidate-expectations")}>
                 Candidate Expectations
@@ -111,7 +139,7 @@ export default function HomeAccessMenu() {
             </div>
             <div className={styles.accessSubRow}>
               <a href="/careers/#contact" className={styles.accessSubRowHead} onClick={closeAll}>
-                Start a Career Conversation →
+                Start a Candidate Conversation →
               </a>
             </div>
           </div>
@@ -122,6 +150,18 @@ export default function HomeAccessMenu() {
             Client Support <span className={styles.accessRowChev}></span>
           </div>
           <div className={styles.accessRowBody}>
+            <div className={`${styles.accessSubRow} ${openSub === "hiring-representation" ? styles.accessSubRowExpanded : ""}`}>
+              <div className={styles.accessSubRowHead} onClick={() => toggleSub("hiring-representation")}>
+                Hiring Representation
+              </div>
+              <div className={styles.accessSubRowBody}>
+                <ul className={styles.accessList}>
+                  {HIRING_REPRESENTATION.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
             <div className={`${styles.accessSubRow} ${openSub === "client-expectations" ? styles.accessSubRowExpanded : ""}`}>
               <div className={styles.accessSubRowHead} onClick={() => toggleSub("client-expectations")}>
                 Client Expectations
