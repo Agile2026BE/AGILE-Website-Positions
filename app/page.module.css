@@ -94,7 +94,7 @@ a.accessSubRowHead{color:#1c4d8f}
 .resourcesPositionItem:hover{background:rgba(20,126,174,.09);border-color:rgba(20,126,174,.5)}
 .resourcesPositionItem:hover .resourcesPositionChevron{transform:rotate(-45deg) translateX(2px)}
 .resourcesPositionItem:active{background:rgba(20,126,174,.16);transform:scale(.98)}
-.resourcesPositionItemBody{display:flex;flex-direction:column;gap:2px;min-width:0}
+.resourcesPositionItemBody{display:flex;flex:1 1 auto;flex-direction:column;gap:2px;min-width:0}
 .resourcesPositionChevron{width:7px;height:7px;flex-shrink:0;border-right:1.6px solid #147eae;border-bottom:1.6px solid #147eae;transform:rotate(-45deg);transition:transform .15s ease}
 .resourcesPositionItem strong{font-family:Arial,Helvetica,sans-serif;font-size:.9rem;color:#1c2b3a;font-weight:700}
 .resourcesPositionItem span{font-family:Arial,Helvetica,sans-serif;font-size:.8rem;color:#6d6248}
