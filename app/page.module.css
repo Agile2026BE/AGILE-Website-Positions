@@ -151,7 +151,7 @@ a.accessSubRowHead{color:#1c4d8f}
 .chessMoveCount{margin:8px 20px 0;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;color:#1c2b3a;font-weight:700}
 .chessSaveNote{margin:4px 20px 0;font-family:Arial,Helvetica,sans-serif;font-size:.78rem;color:#137eae;font-weight:700}
 @media(max-width:620px){.chessModalBackdrop{padding:8px 4px}.chessModalCard{width:100%;max-height:min(97vh,900px);max-height:min(97dvh,900px)}.chessCard{padding:12px 0 4px}.chessBoardWrap{padding:0 6px 8px}.chessResumeBanner,.chessSub,.chessStatus{margin-left:10px;margin-right:10px}.chessResumeBanner p{font-size:.92rem}.chessSub{font-size:.92rem;line-height:1.55}.chessStatus{padding:9px 12px;font-size:.96rem}.chessNewGame{padding:11px 12px;font-size:.92rem}.chessOutlineBtn{padding:10px 12px;font-size:.92rem}.chessMoveCount{font-size:.84rem}.chessSaveNote{font-size:.84rem}}
-.aboutSection{background:#fff;padding:58px 0 62px;scroll-margin-top:88px}
+.aboutSection{background:#eef5f8;padding:58px 0 62px;scroll-margin-top:88px}
 .aboutInner{width:min(860px,calc(100% - 48px));margin:0 auto}
 .aboutEyebrow{margin:0 0 10px;color:#1476a8;font-size:.85rem;font-weight:800;letter-spacing:.14em}
 .aboutTitle{margin:0 0 20px;color:#173958;font-family:Georgia,"Times New Roman",serif;font-size:clamp(1.85rem,2.6vw,2.5rem);font-weight:500;line-height:1.1}
