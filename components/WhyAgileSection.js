@@ -14,7 +14,7 @@ export default function WhyAgileSection() {
         <div className={styles.centerGlow} aria-hidden="true" />
         <div className={styles.motionCopy}>
           <p className={styles.eyebrow}>MARKET INSIGHTS</p>
-          <h2>We only work with the best. <span className={styles.question}>Shouldn&apos;t you?</span></h2>
+          <h2>We work with the best.<br /> <span className={styles.question}>Shouldn&apos;t you?</span></h2>
         </div>
       </div>
 
