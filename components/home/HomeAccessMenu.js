@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "../../app/page.module.css";
 
 const PROFESSIONAL_REPRESENTATION = [
+  "We help experienced AEC professionals present their experience, capabilities, and career goals to carefully selected employers with the attention and consideration they deserve.",
   "Confidential representation to firms that match your specific background, licensure, and career goals — never a mass resume blast.",
   "Positioning of your experience and project portfolio in the context each hiring firm actually values most.",
   "A single point of contact who understands your priorities and represents them directly to decision makers.",
@@ -27,6 +28,7 @@ const RESUME_REVIEW_PARAGRAPHS = [
 ];
 
 const HIRING_REPRESENTATION = [
+  "We represent carefully selected AEC firms and introduce professionals whose experience, technical capabilities, career objectives, and expectations have been personally evaluated before the conversation begins.",
   "A dedicated recruiting partner who represents your firm's opportunity, culture, and standards accurately to every candidate approached.",
   "Confidential, targeted outreach to qualified passive candidates who aren't visible through job postings alone.",
   "Pre-qualification of technical background, licensure, and cultural fit before any introduction is made.",
