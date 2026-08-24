@@ -74,7 +74,7 @@ export default function HomeAccessMenu() {
           <div className={styles.accessRowBody}>
             <div className={styles.accessText}>
               <p>
-                <strong>AGILE</strong> is a specialized AEC recruiting and professional advisory firm connecting professionals with respected architecture, engineering, construction, commissioning, and owner&apos;s representation organizations. Through trusted client relationships, market insight, confidential guidance, scheduling, interview preparation, and offer negotiations, we help candidates understand opportunities fully and make informed decisions about the possibilities ahead.
+                <strong>AGILE</strong>&nbsp;is a specialized AEC recruiting and professional advisory firm connecting professionals with respected architecture, engineering, construction, commissioning, and owner&apos;s representation organizations. Through trusted client relationships, market insight, confidential guidance, scheduling, interview preparation, and offer negotiations, we help candidates understand opportunities fully and make informed decisions about the possibilities ahead.
               </p>
             </div>
           </div>
