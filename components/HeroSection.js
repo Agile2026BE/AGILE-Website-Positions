@@ -137,7 +137,7 @@ export default function HeroSection() {
         <figure className={`${styles.storyBand} ${styles.mobileStoryBand}`}>
           <Image
             className={styles.mobileStoryPoster}
-            src="/agile-executive-window.webp"
+            src="/agile-story-right.jpg"
             alt="An executive looking through a contemporary office window while considering his next career move."
             fill
             sizes="calc(100vw - 24px)"
