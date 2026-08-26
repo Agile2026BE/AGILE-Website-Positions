@@ -67,7 +67,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
       </div>
 
       <div className={`job-card-actions ${styles.actions}`}>
-        <ViewPositionLink onClick={() => onViewPosition?.(job)} label={labels.viewPosition} />
+        <ViewPositionLink href={`/careers/positions/${job.slug}`} onClick={() => onViewPosition?.(job)} label={labels.viewPosition} />
         <ShareButton label={labels.share} onClick={handleShare} />
       </div>
 
