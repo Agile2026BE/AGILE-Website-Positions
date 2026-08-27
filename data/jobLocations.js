@@ -67,8 +67,8 @@ export const jobLocations = {
   "1045": [{ city: "Philadelphia", state: "PA", zip: "19103" }],
   "1046": [{ city: "Philadelphia", state: "PA", zip: "19103" }],
   "1047": [{ city: "Monroe Township", state: "NJ", zip: "08831" }],
-  "1048": [{ city: "New York", state: "NY", zip: "10018" }],
-  "1049": [{ city: "New York", state: "NY", zip: "10041" }],
+  "1048": [{ city: "New York", state: "NY", zip: "10016" }],
+  "1049": [{ city: "New York", state: "NY", zip: "10018" }],
   "1050": [{ city: "New York", state: "NY", zip: "10001-2508" }],
   "1051": [{ city: "Braintree", state: "MA", zip: "02184-8741" }],
   "1052": [{ city: "Chadds Ford", state: "PA", zip: "19317-9024" }],
@@ -165,5 +165,6 @@ export const jobLocations = {
   "1176": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
   "1177": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
   "1179": [{ city: "Raleigh", state: "NC", zip: "27607-3073" }],
+  "1180": [{ city: "Raleigh", state: "NC" }],
   "1181": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
 };

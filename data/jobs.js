@@ -31,6 +31,7 @@ import details1153To1158 from "./jobDetails/details-1153-1158.js";
 import details1159To1162 from "./jobDetails/details-1159-1162.js";
 import details1163To1167 from "./jobDetails/details-1163-1167.js";
 import details1168To1172 from "./jobDetails/details-1168-1172.js";
+import details1173To1180 from "./jobDetails/details-1173-1180.js";
 import details1181To1185 from "./jobDetails/details-1181-1185.js";
 
 import { retiredPositionIds } from "./retiredPositionIds.js";
@@ -71,6 +72,7 @@ const detailOverlays = [
   ...details1159To1162,
   ...details1163To1167,
   ...details1168To1172,
+  ...details1173To1180,
   ...details1181To1185,
 ];
 
