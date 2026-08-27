@@ -8,6 +8,7 @@ import PositionBackLink from "../../../../components/PositionBackLink";
 import PositionContactCta from "../../../../components/PositionContactCta";
 import PositionPageShortlist from "../../../../components/PositionPageShortlist";
 import { jobs } from "../../../../data/jobs";
+import { jobLocations } from "../../../../data/jobLocations";
 import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../../lib/positionFreshness";
 import { formatExperienceDisplay, formatSalaryDisplay, formatWorkplaceDisplay } from "../../../../lib/jobFilters";
 import { getSimilarJobs } from "../../../../lib/similarJobs";
@@ -18,6 +19,46 @@ const lines = (value) =>
     .split(/\r?\n/)
     .map((line) => line.replace(/^\s*[•*-]\s*/, "").trim())
     .filter(Boolean);
+
+// Builds the schema.org jobLocation value for a job's JobPosting JSON-LD.
+//
+// When we have clean, confirmed location data for this Position ID in
+// data/jobLocations.js, emit it as an array of Place/PostalAddress objects
+// — one per office the posting covers, each with a real postal code when
+// we have one. This is what lets Google Jobs geocode the posting precisely
+// and match it against a candidate's "jobs near me" radius search, and it
+// correctly represents multi-office postings instead of jamming two cities
+// into a single addressLocality string.
+//
+// For any Position ID not yet in jobLocations.js, fall back to the original
+// single-Place behavior built from the free-text job.location/job.state
+// fields, so nothing regresses for postings we haven't cleaned up yet.
+function buildJobLocation(job) {
+  const locations = jobLocations[String(job.id)];
+
+  if (locations && locations.length) {
+    return locations.map((loc) => ({
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: loc.city,
+        addressRegion: loc.state,
+        ...(loc.zip ? { postalCode: loc.zip } : {}),
+        addressCountry: "US",
+      },
+    }));
+  }
+
+  return {
+    "@type": "Place",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: job.location,
+      addressRegion: job.state,
+      addressCountry: "US",
+    },
+  };
+}
 
 export function generateStaticParams() {
   return jobs.filter((job) => job.slug).map((job) => ({ slug: job.slug }));
@@ -66,15 +107,7 @@ export default async function PositionPage({ params }) {
       name: "AGILE Business Consulting",
       sameAs: SITE_URL,
     },
-    jobLocation: {
-      "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        addressLocality: job.location,
-        addressRegion: job.state,
-        addressCountry: "US",
-      },
-    },
+    jobLocation: buildJobLocation(job),
     ...(job.salaryMin && job.salaryMax
       ? {
           baseSalary: {

@@ -21,4 +21,22 @@ export const retiredPositionIds = [
     reason:
       "Duplicate of 1099 — same Mechanical Engineer (HVAC) opening in Wall Township, NJ (identical salary, experience range, credential, and market tags; the summary/specialty/responsibilities text was just reworded). 1099 is the listing that stays live.",
   },
+  {
+    id: "1012",
+    retiredOn: "2026-08-27",
+    reason:
+      "Client went unresponsive and is no longer engaged. No active company for a placed candidate to join, so this is coming down rather than continuing to source against it.",
+  },
+  {
+    id: "1149",
+    retiredOn: "2026-08-27",
+    reason:
+      "This specific opening's client engagement did not continue and is no longer active. No active company for a placed candidate to join. Does not affect this client's other current listings.",
+  },
+  {
+    id: "1150",
+    retiredOn: "2026-08-27",
+    reason:
+      "This specific opening's client engagement did not continue and is no longer active. No active company for a placed candidate to join. Does not affect this client's other current listings.",
+  },
 ];
