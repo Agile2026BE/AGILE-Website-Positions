@@ -36,7 +36,12 @@ import details1181To1185 from "./jobDetails/details-1181-1185.js";
 
 import { retiredPositionIds } from "./retiredPositionIds.js";
 
-const coreJobs = [
+// Exported (not just used internally) so scripts like
+// scripts/submit-indexnow.mjs can look up the slug for a retired ID —
+// retired records are kept in these files on purpose (see
+// retiredPositionIds.js) but are filtered out of the public `jobs` export
+// below.
+export const coreJobs = [
   ...jobs1001To1020,
   ...jobs1021To1040,
   ...jobs1041To1060,

@@ -1,0 +1,37 @@
+name: IndexNow Submit
+
+# Notifies Bing (and Yahoo, which serves Bing's index) whenever the job
+# data changes, so new and retired positions get recrawled quickly instead
+# of waiting on normal crawl pacing. See scripts/submit-indexnow.mjs for
+# what actually gets submitted and why.
+#
+# This does not touch Google — Google isn't part of the IndexNow network.
+# Reindexing on Google is still a manual "Request Indexing" click in
+# Search Console for now.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/jobs/**"
+      - "data/jobDetails/**"
+      - "data/retiredPositionIds.js"
+      - "data/jobLocations.js"
+  workflow_dispatch: {}
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.0
+
+      - name: Submit changed position URLs to IndexNow
+        run: node scripts/submit-indexnow.mjs
