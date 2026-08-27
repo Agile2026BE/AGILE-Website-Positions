@@ -7,6 +7,7 @@ import styles from "./page.module.css";
 export const metadata = {
   title: "AGILE Business Consulting | AEC Recruiting & Career Representation",
   description: "Specialized recruiting and career representation for Architects, Engineers, and Construction Professionals across key U.S. markets.",
+  alternates: { canonical: "/" },
 };
 
 export default function CorporateHomePage() {
