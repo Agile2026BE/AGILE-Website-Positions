@@ -167,4 +167,5 @@ export const jobLocations = {
   "1179": [{ city: "Raleigh", state: "NC", zip: "27607-3073" }],
   "1180": [{ city: "Raleigh", state: "NC" }],
   "1181": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
+  "1186": [{ city: "New York", state: "NY", zip: "10001" }],
 };

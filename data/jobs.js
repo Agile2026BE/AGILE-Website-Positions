@@ -11,6 +11,7 @@ import { jobs1153To1162 } from "./jobs/positions-1153-1162.js";
 import { jobs1163To1172 } from "./jobs/positions-1163-1172.js";
 import { jobs1173To1180 } from "./jobs/positions-1173-1180.js";
 import { jobs1181To1185 } from "./jobs/positions-1181-1185.js";
+import { jobs1186To1186 } from "./jobs/positions-1186-1186.js";
 
 import details1001To1010 from "./jobDetails/details-1001-1010.js";
 import details1011To1020 from "./jobDetails/details-1011-1020.js";
@@ -33,6 +34,7 @@ import details1163To1167 from "./jobDetails/details-1163-1167.js";
 import details1168To1172 from "./jobDetails/details-1168-1172.js";
 import details1173To1180 from "./jobDetails/details-1173-1180.js";
 import details1181To1185 from "./jobDetails/details-1181-1185.js";
+import details1186To1186 from "./jobDetails/details-1186-1186.js";
 
 import { retiredPositionIds } from "./retiredPositionIds.js";
 
@@ -55,7 +57,8 @@ export const coreJobs = [
   ...jobs1163To1172,
   ...jobs1173To1180,
   ...jobs1181To1185,
-];
+  ...jobs1186To1186,
+  ];
 
 const detailOverlays = [
   ...details1001To1010,
@@ -79,11 +82,12 @@ const detailOverlays = [
   ...details1168To1172,
   ...details1173To1180,
   ...details1181To1185,
-];
+  ...details1186To1186,
+  ];
 
 const detailsById = new Map(
   detailOverlays.map((details) => [String(details.id), details]),
-);
+  );
 
 // See retiredPositionIds.js: retired IDs stay in the underlying data files
 // (nothing above this point is touched) but are filtered out here so they
@@ -91,8 +95,8 @@ const detailsById = new Map(
 const retiredIds = new Set(retiredPositionIds.map((entry) => String(entry.id)));
 
 export const jobs = coreJobs
-  .filter((job) => !retiredIds.has(String(job.id)))
-  .map((job) => ({
-    ...job,
-    ...(detailsById.get(String(job.id)) ?? {}),
-  }));
+.filter((job) => !retiredIds.has(String(job.id)))
+.map((job) => ({
+  ...job,
+  ...(detailsById.get(String(job.id)) ?? {}),
+}));
