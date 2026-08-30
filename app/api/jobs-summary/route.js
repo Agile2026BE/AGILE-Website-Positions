@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { jobs } from "../../../data/jobs";
 import { stateOptions, disciplineOptions, workplaceOptions, experienceOptions } from "../../../data/filterOptions";
+import { featuredPositionIds } from "../../../data/featuredPositionIds";
 import { buildFilterOptions, parseExperienceRange } from "../../../lib/jobFilters";
 
 export const runtime = "nodejs";
@@ -11,7 +12,6 @@ export const runtime = "nodejs";
 // lib/jobFilters.js and data/filterOptions.js), reshaped so the corporate site
 // (a separate deployment) can build a real, filterable Salary Calculator
 // against live data instead of duplicating or guessing at it.
-const FEATURED_IDS = ["1010", "1040", "1075", "1129", "1181"];
 
 function pick(job) {
   const exp = parseExperienceRange(job.experience);
@@ -46,23 +46,23 @@ export async function GET() {
   const maxs = jobs.map((job) => job.salaryMax).filter(Boolean);
   const dynamicOptions = buildFilterOptions(jobs);
 
-  const payload = {
-    count: jobs.length,
-    min: mins.length ? Math.min(...mins) : null,
-    max: maxs.length ? Math.max(...maxs) : null,
-    jobs: jobs.map(pick),
-    sample: jobs.slice(0, 5).map(pick),
-    featured: FEATURED_IDS.map((id) => jobs.find((job) => job.id === id)).filter(Boolean).map(pick),
-    filterOptions: {
-      state: stateOptions,
-      discipline: disciplineOptions,
-      workplace: workplaceOptions,
-      market: dynamicOptions.market,
-      experience: experienceOptions,
-    },
-  };
+const payload = {
+  count: jobs.length,
+  min: mins.length ? Math.min(...mins) : null,
+  max: maxs.length ? Math.max(...maxs) : null,
+  jobs: jobs.map(pick),
+  sample: jobs.slice(0, 5).map(pick),
+  featured: featuredPositionIds.map((id) => jobs.find((job) => job.id === id)).filter(Boolean).map(pick),
+  filterOptions: {
+    state: stateOptions,
+    discipline: disciplineOptions,
+    workplace: workplaceOptions,
+    market: dynamicOptions.market,
+    experience: experienceOptions,
+  },
+};
 
-  return NextResponse.json(payload, { headers: corsHeaders() });
+return NextResponse.json(payload, { headers: corsHeaders() });
 }
 
 export async function OPTIONS() {
