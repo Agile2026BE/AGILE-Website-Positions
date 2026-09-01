@@ -22,6 +22,7 @@ export const stateOptions = [
 
 export const disciplineOptions = [
   "Civil Engineering",
+  "Commissioning",
   "Construction Management",
   "Electrical Engineering",
   "ICT/AV Technology",
