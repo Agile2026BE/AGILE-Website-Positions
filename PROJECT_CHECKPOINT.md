@@ -1,6 +1,6 @@
 # AGILE Careers Project Checkpoint
 
- Last updated: September 2, 2026 — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment
+ Last updated: September 2, 2026 (evening) — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment
 
  ## Purpose
 
@@ -10,17 +10,17 @@
 
  Current verified GREEN recovery baseline code commit:
 
- `de0324e`
+ `5405fe0726928023315edb5e6786c4619d7aa059`
 
- (Supersedes `0097528`, the September 2 "openings field" baseline recorded earlier the same day. Full 40-character hash not independently captured for `de0324e`; confirmed instead via the commit page and a live production fetch.)
+ (Supersedes `de0324e`, the September 2 market-sector-cleanup baseline recorded earlier the same day.)
 
  Commit message:
 
- `Consolidate standalone Education into Higher Education (1187)`
+ `Update retiredPositionIds.js`
 
  Detailed baseline record:
 
- `docs/CAREERS_GREEN_BASELINE_2026-09-02.md` for this session (position-modal MARKET field, position 1188 specialty trim, sitewide standalone-"Education"-to-"Higher Education" cleanup); `docs/CAREERS_GREEN_BASELINE_2026-09-01.md` for August/September 1 history; see the SEPTEMBER 2 REFINEMENTS section below for the openings-field work
+ `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_RETIREMENTS.md` for this session (position 1104 retired dormant, position 1012 relabeled, all 12 Arora Engineers positions taken dormant, Dormant-vs-Retired terminology rule); `docs/CAREERS_GREEN_BASELINE_2026-09-02.md` for the earlier Sept 2 session (position-modal MARKET field, position 1188 specialty trim, sitewide standalone-"Education"-to-"Higher Education" cleanup); `docs/CAREERS_GREEN_BASELINE_2026-09-01.md` for August/September 1 history; see the SEPTEMBER 2 REFINEMENTS section below for the openings-field work
 
  Verification for this exact code SHA:
 
@@ -78,7 +78,13 @@
     
      - Byron then requested a sitewide cleanup: every position's `market` field containing a standalone `"Education"` value should be consolidated into `"Higher Education"` (no separate lower-education category exists on the site). Found 56 positions across 10 of the 16 `data/jobs/positions-*.js` files — 39 simple renames, 17 dedupes (positions that already had both `"Higher Education"` and a redundant standalone `"Education"`, where the standalone entry was removed instead of renamed to avoid a duplicate tag). Full per-file/per-commit position list is in `docs/CAREERS_GREEN_BASELINE_2026-09-02.md`. No filter-options file needed updating — the Market Sectors dropdown derives its option list live from actual job data (`lib/jobFilters.js`'s `buildFilterOptions()`), so `"Education"` stopped appearing as a selectable option automatically once no position used it anymore. Two mistakes were made and caught mid-session before any bad data was committed: a missed position (1078) found via a full file re-read before that file's commit, and a corrupted market string on position 1146 (a find/replace field wasn't fully cleared before typing new text) caught by re-reading the file immediately after the edit and fixed with a corrective replace before committing — full detail of both in the dated doc.
     
-     - ## LOCKED REBUILD DIRECTION
+     - ## SEPTEMBER 2 EVENING — POSITION RETIREMENTS (now part of the GREEN BASELINE above)
+
+ Position 1104 retired dormant (client JBB, matching the other 16 JBB positions taken dormant earlier the same day). Position 1012's existing dormant entry (retired Aug 27) relabeled from generic "client went unresponsive" wording to the standard Dormant phrasing. All 12 Arora Engineers positions (1012, 1019, 1020, 1021, 1022, 1023, 1050, 1051, 1052, 1076, 1077, 1111) taken dormant per Byron's direction — Arora not currently engaged. `retiredPositionIds` array grew from 21 to 32 entries across two commits (`02749c9`, `5405fe0`). Live position count: 154 (186 total records minus 32 held back: 1 Retired + 31 Dormant). Full detail in `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_RETIREMENTS.md`.
+
+ Standing terminology rule confirmed by Byron this session: **Dormant** (off the live site, reactivatable if the client re-engages) and **Retired** (permanent, ID never used again) are not interchangeable. Only position 1100 is Retired; every other held-back position (all JBB and all Arora) is Dormant. No Position ID is ever recycled regardless of status. The `data/retiredPositionIds.js` filename is a pre-existing technical label for the takedown mechanism, not a business status.
+
+ ## LOCKED REBUILD DIRECTION
     
      - Careers establishes the design system for the broader AGILE website rebuild.
     
