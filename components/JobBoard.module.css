@@ -5,7 +5,7 @@
 .slogan sup { margin-top:-.03em; font-size:.72em; font-weight:800; line-height:1; }
 .headingRow h2 { max-width:none; white-space:nowrap; font-family:Georgia,"Times New Roman",serif; font-size:clamp(2.55rem,3.55vw,3.55rem); font-weight:400; letter-spacing:-.03em; }
 .jobHeading em { font-weight:400; }
-.lifeWord { color:#1684a6; font-style:italic; }
+.lifeWord { color:#1684a6; font-style:italic; font-weight:700; }
 .intro { max-width:430px; padding-bottom:4px; }
 .filterPanel { margin-top:26px; padding:20px; border:1px solid #d3dbe6; border-radius:14px; background:#fff; box-shadow:0 12px 28px rgba(30,45,75,.07); }
 .controls { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:12px; margin:0; }
