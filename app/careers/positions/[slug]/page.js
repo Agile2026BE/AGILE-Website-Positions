@@ -153,7 +153,7 @@ export default async function PositionPage({ params }) {
             {job.market ? <div><dt>Market</dt><dd>{job.market}</dd></div> : null}
             {job.credential ? <div><dt>Credential</dt><dd>{job.credential}</dd></div> : null}
             {job.bonus ? <div><dt>Bonus</dt><dd>{job.bonus}</dd></div> : null}
-            <div><dt>Position ID</dt><dd>{job.id}</dd></div>
+            {job.openings > 1 ? <div><dt>Openings</dt><dd>{job.openings}</dd></div> : null}<div><dt>Position ID</dt><dd>{job.id}</dd></div>
           </dl>
 
           {responsibilities.length ? (
