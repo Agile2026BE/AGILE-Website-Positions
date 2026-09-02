@@ -48,7 +48,7 @@ export const jobFieldKeys = [
   "specialty",
   "market",
   "credential",
-  "bonus",
+  "bonus", "openings",
   "slug",
   "responsibilities",
   "qualifications",
