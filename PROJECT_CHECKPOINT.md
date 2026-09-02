@@ -10,24 +10,24 @@ This is the operational handoff and recovery record for AGILE Careers developmen
 
 Current verified GREEN recovery baseline code commit:
 
-`513451e`
+`38e6e52`
 
-(Short SHA as confirmed on GitHub/Vercel; full 40-character hash: `513451e2e7506cb429046880631841fdbd3530eb`.)
+(Short SHA as confirmed on GitHub/Vercel; full 40-character hash: `38e6e5267794d1558f2fb60173c941600788dbb9`.)
 
 Commit message:
 
-`Update .lifeWord class styling in JobBoard.module.css`
+`Right-align Featured Positions salary on mobile`
 
 Detailed baseline record:
 
-`docs/CAREERS_GREEN_BASELINE_2026-09-01.md`
+`docs/CAREERS_GREEN_BASELINE_2026-09-01.md` (see section 7 for this specific fix, added as a same-day addendum)
 
 Verification for this exact code SHA:
 
 - GitHub Project Check: SUCCESS — confirmed "✓ 2/2" directly on the commit page on GitHub.com
 - Job data validation / lint / production build: PASS through Project Check
 - Vercel Production deployment: SUCCESS — Ready, tagged Production and Current, confirmed via the Vercel API
-- Vercel deployment ID: `dpl_BmdhTk7QkmeynB2H1cUCec4cReBg`
+- Vercel deployment ID: `dpl_9Q3q8v8gLgyPLLi8qx3tusTwyjGy`
 
 Production domain:
 
@@ -63,7 +63,7 @@ Position modal and job grid cards redesigned to match (salary promoted near Shor
 
 ## SEPTEMBER 1 REFINEMENTS (now part of the GREEN BASELINE above)
 
-Discipline taxonomy overhaul: found that 77 live positions (~40% of the site) used a `"discipline":"Mechanical Engineering"` value that had no matching option in the `disciplineOptions` dropdown and printed as a non-standard label on every job card. Added a new `MEP Project Manager` discipline option, tightened the `"mechanical hvac"` fuzzy-match alias in `lib/jobFilters.js` so it no longer over-matches on the bare word "mechanical," and retagged all 77 positions into `Mechanical HVAC` (58), `Mechanical Plumbing and Fire Protection` (14), or `MEP Project Manager` (5) based on their actual title/specialty content. Zero positions remain tagged `Mechanical Engineering` — verified live against the GitHub API. Two Commissioning-discipline retags (positions 1010, 1074) carried over from a prior session were also completed. New position 1187 (Senior Mechanical Engineer, Pine Brook NJ) added and tagged `Mechanical HVAC`. `Featured Positions` (`data/featuredPositionIds.js`) curated per Byron's direction: 1010 → 1074, 1040 → 1162, 1129 → 1095 (added for Florida geographic representation), settling at `["1074", "1075", "1095", "1162", "1181"]`. Position 1074 salary updated to $175,000–$210,000 and market expanded to `Healthcare | Higher Education | Commercial`. The homepage/careers hero `.lifeWord` ("life." in "Find work that fits your life.") was tried at bold, then semibold, then reverted to the original italic-only styling after Byron felt the added weight looked "cartoonish" — net no visible change from session start, documented so this isn't re-attempted blind in a future session. Full detail, exact position-ID lists, SEO/indexing audit findings, and operational notes (GitHub API vs. raw.githubusercontent.com CDN lag, intermittent commit-dialog failures) are in `docs/CAREERS_GREEN_BASELINE_2026-09-01.md`.
+Discipline taxonomy overhaul: found that 77 live positions (~40% of the site) used a `"discipline":"Mechanical Engineering"` value that had no matching option in the `disciplineOptions` dropdown and printed as a non-standard label on every job card. Added a new `MEP Project Manager` discipline option, tightened the `"mechanical hvac"` fuzzy-match alias in `lib/jobFilters.js` so it no longer over-matches on the bare word "mechanical," and retagged all 77 positions into `Mechanical HVAC` (58), `Mechanical Plumbing and Fire Protection` (14), or `MEP Project Manager` (5) based on their actual title/specialty content. Zero positions remain tagged `Mechanical Engineering` — verified live against the GitHub API. Two Commissioning-discipline retags (positions 1010, 1074) carried over from a prior session were also completed. New position 1187 (Senior Mechanical Engineer, Pine Brook NJ) added and tagged `Mechanical HVAC`. `Featured Positions` (`data/featuredPositionIds.js`) curated per Byron's direction: 1010 → 1074, 1040 → 1162, 1129 → 1095 (added for Florida geographic representation), settling at `["1074", "1075", "1095", "1162", "1181"]`. Position 1074 salary updated to $175,000–$210,000 and market expanded to `Healthcare | Higher Education | Commercial`. The homepage/careers hero `.lifeWord` ("life." in "Find work that fits your life.") was tried at bold, then semibold, then reverted to the original italic-only styling after Byron felt the added weight looked "cartoonish" — net no visible change from session start, documented so this isn't re-attempted blind in a future session. Same-day follow-up: Byron caught via a phone screenshot that Featured Positions salaries didn't align cleanly on mobile (location text length varies card to card, pushing salary to different horizontal positions). Fixed in two iterations — first stacked salary under location (commit `fda3d75`), then corrected per Byron's preference to keep salary right-aligned on the same row instead, matching the rest of the site's convention (commit `38e6e52`, the current baseline). Full detail, exact position-ID lists, SEO/indexing audit findings, and operational notes (GitHub API vs. raw.githubusercontent.com CDN lag, intermittent commit-dialog failures) are in `docs/CAREERS_GREEN_BASELINE_2026-09-01.md`.
 
 ## LOCKED REBUILD DIRECTION
 
