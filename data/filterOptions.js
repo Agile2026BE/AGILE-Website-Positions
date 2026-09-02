@@ -29,6 +29,7 @@ export const disciplineOptions = [
   "Mechanical HVAC",
   "Mechanical Plumbing and Fire Protection",
   "MEP Executive Leadership",
+  "MEP Project Manager",
   "Resident Engineering",
   "Structural Engineering",
 ];
