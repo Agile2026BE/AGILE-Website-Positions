@@ -135,4 +135,10 @@ export const retiredPositionIds = [
     reason:
       "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
   },
+  {
+    id: "1104",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
 ];
