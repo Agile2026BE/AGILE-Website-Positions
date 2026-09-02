@@ -63,7 +63,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
           {job.market ? <span>{job.market.split("|")[0].trim()}</span> : null}
           {job.credential && job.credential.trim().toLowerCase() !== "not stated" ? <span>{job.credential}</span> : null}
           {job.bonus ? <span>Bonus</span> : null}
-           {job.openings > 1 ? <span>{job.openings} Openings</span> : null}
+           {job.openings > 1 ? <span className={styles.openingsBadge}>{job.openings} Openings</span> : null}
         </div>
       </div>
 
