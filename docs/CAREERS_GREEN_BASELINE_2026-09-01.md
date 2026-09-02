@@ -6,7 +6,7 @@ GREEN baseline established after the September 1 discipline-taxonomy overhaul, n
 
 Baseline code commit:
 
-`513451e` (full: `513451e2e7506cb429046880631841fdbd3530eb`) — "Update .lifeWord class styling in JobBoard.module.css," branch `main`. Confirmed "2/2" (GitHub Project Check + Vercel deployment-status check) on the commit page.
+`38e6e52` (full: `38e6e5267794d1558f2fb60173c941600788dbb9`) — "Right-align Featured Positions salary on mobile," branch `main`. Confirmed "2/2" (GitHub Project Check + Vercel deployment-status check) on the commit page. (Supersedes this same document's original baseline commit `513451e`, which covered everything below except section 7.)
 
 Repository:
 
@@ -98,6 +98,16 @@ export const featuredPositionIds = ["1074", "1075", "1095", "1162", "1181"];
 
 Net effect versus the start of the session: **no visible change** — `.lifeWord` is back to exactly `color:#1684a6; font-style:italic;`. Documented here so a future session doesn't re-attempt the same bold/semibold exploration without knowing it was already tried and explicitly rejected by Byron.
 
+### 7. Featured Positions mobile salary alignment (post-baseline fix, same day)
+
+Byron flagged via a phone screenshot that on mobile, the Featured Positions panel's salary figures did not line up into a clean column — because salary shares a line with location text (`components/FeaturedPositionsButton.js`: `.itemMeta` wraps a location `<span>` and a `.salaryValue` `<span>` together), and location length varies a lot card to card ("NYC, NY" vs. "Voorhees, NJ and NYC, NY"), each salary started at a different horizontal position.
+
+First attempt, commit `fda3d75`: added an `.itemMeta` mobile rule (`flex-direction:column`) stacking location above salary, both left-aligned — technically aligned, but Byron wanted salary right-aligned instead, to match the convention used elsewhere on the site (e.g. `JobCard.js`, where salary sits at the right edge).
+
+Corrected in commit `38e6e52`: `.itemMeta` mobile rule changed to keep location and salary on the same row (`justify-content:space-between`), with the location `<span>` (`flex:1 1 auto; min-width:0`) free to wrap onto multiple lines while `.salaryValue` (`flex-shrink:0; white-space:nowrap; text-align:right`) stays pinned to the right edge — so every salary in the panel lines up on the right, regardless of location text length, matching the rest of the site.
+
+**Verified live:** since this environment cannot force a true mobile viewport (`resize_window` reported success but did not change `window.innerWidth`, confirmed via direct check), verification was done by applying the exact mobile media-query rules to the live DOM via script and screenshotting the result — confirmed all 5 featured positions' salaries align flush right, including the long "Voorhees, NJ and NYC, NY" location case that originally exposed the issue.
+
 ## SEO / Indexing Audit (informational, no code changes)
 
 Run mid-session as a "candidate test drive" at Byron's request. Findings, all confirmed live:
@@ -132,4 +142,4 @@ All of the following were checked directly against `careers.agileconsultingsolut
 
 ## Protected Recovery Rule
 
-Commit `513451e` on `main` is the recovery target for this baseline — confirmed "2/2" GREEN on GitHub Project Check + Vercel deployment status, and confirmed live on `careers.agileconsultingsolutions.com`. This supersedes the August 23 baseline (`a7df363`) in `PROJECT_CHECKPOINT.md`'s "GREEN BASELINE" section. All August 23 protected behaviors remain intact and unmodified by tonight's work — nothing in this session touched the position modal, sharing, Similar Positions, or Shortlist functionality documented in that baseline.
+Commit `38e6e52` on `main` is the recovery target for this baseline — confirmed "2/2" GREEN on GitHub Project Check + Vercel deployment status, and confirmed live on `careers.agileconsultingsolutions.com`. This supersedes the August 23 baseline (`a7df363`) in `PROJECT_CHECKPOINT.md`'s "GREEN BASELINE" section. All August 23 protected behaviors remain intact and unmodified by tonight's work — nothing in this session touched the position modal, sharing, Similar Positions, or Shortlist functionality documented in that baseline.
