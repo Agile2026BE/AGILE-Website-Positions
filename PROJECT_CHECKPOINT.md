@@ -1,6 +1,6 @@
 # AGILE Careers Project Checkpoint
 
-Last updated: August 23, 2026 — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment
+Last updated: September 1, 2026 — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment
 
 ## Purpose
 
@@ -10,24 +10,24 @@ This is the operational handoff and recovery record for AGILE Careers developmen
 
 Current verified GREEN recovery baseline code commit:
 
-`a7df363`
+`513451e`
 
-(Short SHA as confirmed on GitHub/Vercel; open GitHub Desktop's History tab and click this commit for the full 40-character hash if needed for git operations.)
+(Short SHA as confirmed on GitHub/Vercel; full 40-character hash: `513451e2e7506cb429046880631841fdbd3530eb`.)
 
 Commit message:
 
-`Lint Fixes 2`
+`Update .lifeWord class styling in JobBoard.module.css`
 
 Detailed baseline record:
 
-`docs/CAREERS_GREEN_BASELINE_2026-08-23.md`
+`docs/CAREERS_GREEN_BASELINE_2026-09-01.md`
 
 Verification for this exact code SHA:
 
 - GitHub Project Check: SUCCESS — confirmed "✓ 2/2" directly on the commit page on GitHub.com
 - Job data validation / lint / production build: PASS through Project Check
-- Vercel Production deployment: SUCCESS — Ready, tagged Production and Current
-- Vercel deployment ID: `C4sJ9xXPBz7ZZA9K2JxRiyQfUMHS`
+- Vercel Production deployment: SUCCESS — Ready, tagged Production and Current, confirmed via the Vercel API
+- Vercel deployment ID: `dpl_BmdhTk7QkmeynB2H1cUCec4cReBg`
 
 Production domain:
 
@@ -60,6 +60,10 @@ The latest mobile-only refinements should receive a final phone smoke test, but 
 ## AUGUST 23 REFINEMENTS (now part of the GREEN BASELINE above)
 
 Position modal and job grid cards redesigned to match (salary promoted near Shortlist/top, compact Location/Workplace/Experience/Position ID layout, no separate Position ID badge). Shortlist star turns gold/bronze on selection. Salary normalizes to "Market Rate" in green when not a real number. Workplace display normalizes to Hybrid/On-Site/Remote everywhere. Position ID and several readability-pass font sizes increased (Explore Resources accordion, chess panel, Contact form, position card meta labels). Share/copy email formatting rebuilt compact and `pt`-sized for Outlook, with link text shortened to "View Position" and color made redundant (span + legacy `font` tag) after Outlook was found to strip block-level color. The standalone position detail page (`/careers/positions/[slug]`, what a shared `/p/[id]` link opens to) gained a working Shortlist button (sharing the same saved-positions storage as the grid) and a Similar Positions section, via new `lib/similarJobs.js` and `components/PositionPageShortlist.js`. That page also received a small mobile-only font-size increase; desktop/laptop are unchanged. Two follow-up commits then fixed six lint violations flagged by the repository's own GitHub Actions "Project Check" (no visible/functional change) to get this cycle's work fully GREEN — see `docs/CAREERS_GREEN_BASELINE_2026-08-23.md`.
+
+## SEPTEMBER 1 REFINEMENTS (now part of the GREEN BASELINE above)
+
+Discipline taxonomy overhaul: found that 77 live positions (~40% of the site) used a `"discipline":"Mechanical Engineering"` value that had no matching option in the `disciplineOptions` dropdown and printed as a non-standard label on every job card. Added a new `MEP Project Manager` discipline option, tightened the `"mechanical hvac"` fuzzy-match alias in `lib/jobFilters.js` so it no longer over-matches on the bare word "mechanical," and retagged all 77 positions into `Mechanical HVAC` (58), `Mechanical Plumbing and Fire Protection` (14), or `MEP Project Manager` (5) based on their actual title/specialty content. Zero positions remain tagged `Mechanical Engineering` — verified live against the GitHub API. Two Commissioning-discipline retags (positions 1010, 1074) carried over from a prior session were also completed. New position 1187 (Senior Mechanical Engineer, Pine Brook NJ) added and tagged `Mechanical HVAC`. `Featured Positions` (`data/featuredPositionIds.js`) curated per Byron's direction: 1010 → 1074, 1040 → 1162, 1129 → 1095 (added for Florida geographic representation), settling at `["1074", "1075", "1095", "1162", "1181"]`. Position 1074 salary updated to $175,000–$210,000 and market expanded to `Healthcare | Higher Education | Commercial`. The homepage/careers hero `.lifeWord` ("life." in "Find work that fits your life.") was tried at bold, then semibold, then reverted to the original italic-only styling after Byron felt the added weight looked "cartoonish" — net no visible change from session start, documented so this isn't re-attempted blind in a future session. Full detail, exact position-ID lists, SEO/indexing audit findings, and operational notes (GitHub API vs. raw.githubusercontent.com CDN lag, intermittent commit-dialog failures) are in `docs/CAREERS_GREEN_BASELINE_2026-09-01.md`.
 
 ## LOCKED REBUILD DIRECTION
 
