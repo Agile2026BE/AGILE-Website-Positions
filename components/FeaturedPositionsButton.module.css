@@ -10,5 +10,5 @@
 .itemMeta { display:flex; align-items:center; gap:10px; color:#53697a; font-size:.82rem; white-space:nowrap; }
 .salaryValue { color:var(--salary-green); font-weight:800; }
 @keyframes shine { 0% { left:-60%; } 45% { left:120%; } 100% { left:120%; } }
-@media (max-width:640px) { .item { flex-direction:column; align-items:flex-start; gap:4px; } .itemMeta { flex-direction:column; align-items:flex-start; gap:2px; white-space:normal; } }
+@media (max-width:640px) { .item { flex-direction:column; align-items:flex-start; gap:4px; } .itemMeta { width:100%; justify-content:space-between; align-items:baseline; gap:8px; white-space:normal; } .itemMeta > span:first-child { flex:1 1 auto; min-width:0; } .salaryValue { flex-shrink:0; white-space:nowrap; text-align:right; } }
 @media (prefers-reduced-motion: reduce) { .trigger::after { animation:none; } }
