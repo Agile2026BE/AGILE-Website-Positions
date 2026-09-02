@@ -39,4 +39,100 @@ export const retiredPositionIds = [
     reason:
       "This specific opening's client engagement did not continue and is no longer active. No active company for a placed candidate to join. Does not affect this client's other current listings.",
   },
+  {
+    id: "1002",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1003",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1004",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1005",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1009",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1016",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1017",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1038",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1040",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1041",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1042",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1043",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1044",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1045",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1046",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1071",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
 ];
