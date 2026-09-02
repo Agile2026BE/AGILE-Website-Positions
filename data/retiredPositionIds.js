@@ -25,7 +25,7 @@ export const retiredPositionIds = [
     id: "1012",
     retiredOn: "2026-08-27",
     reason:
-      "Client went unresponsive and is no longer engaged. No active company for a placed candidate to join, so this is coming down rather than continuing to source against it.",
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
   },
   {
     id: "1149",
@@ -140,5 +140,71 @@ export const retiredPositionIds = [
     retiredOn: "2026-09-02",
     reason:
       "Dormant — client (JBB) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if JBB re-engages AGILE.",
+  },
+  {
+    id: "1019",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
+  },
+  {
+    id: "1020",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
+  },
+  {
+    id: "1021",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
+  },
+  {
+    id: "1022",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
+  },
+  {
+    id: "1023",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
+  },
+  {
+    id: "1050",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
+  },
+  {
+    id: "1051",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
+  },
+  {
+    id: "1052",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
+  },
+  {
+    id: "1076",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
+  },
+  {
+    id: "1077",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
+  },
+  {
+    id: "1111",
+    retiredOn: "2026-09-02",
+    reason:
+      "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
   },
 ];
