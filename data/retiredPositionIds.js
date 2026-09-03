@@ -28,18 +28,6 @@ export const retiredPositionIds = [
       "Dormant — client (Arora Engineers) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Arora re-engages AGILE.",
   },
   {
-    id: "1149",
-    retiredOn: "2026-08-27",
-    reason:
-      "This specific opening's client engagement did not continue and is no longer active. No active company for a placed candidate to join. Does not affect this client's other current listings.",
-  },
-  {
-    id: "1150",
-    retiredOn: "2026-08-27",
-    reason:
-      "This specific opening's client engagement did not continue and is no longer active. No active company for a placed candidate to join. Does not affect this client's other current listings.",
-  },
-  {
     id: "1002",
     retiredOn: "2026-09-02",
     reason:
