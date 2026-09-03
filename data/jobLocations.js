@@ -99,8 +99,6 @@ export const jobLocations = {
   "1103": [{ city: "New York", state: "NY", zip: "10001" }],
   "1104": [{ city: "New York", state: "NY", zip: "10041" }],
   "1105": [{ city: "Schenectady", state: "NY", zip: null }],
-  "1108": [{ city: "New York", state: "NY", zip: "10041" }],
-  "1109": [{ city: "New York", state: "NY", zip: "10041" }],
   "1110": [{ city: "Parsippany", state: "NJ", zip: "07054" }, { city: "Sparta", state: "NJ", zip: "07871" }],
   "1111": [{ city: "New York", state: "NY", zip: "10001-2508" }],
   "1112": [{ city: "New York", state: "NY", zip: "10018" }],
