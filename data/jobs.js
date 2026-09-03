@@ -17,6 +17,13 @@ import { jobs1188To1188 } from "./jobs/positions-1188-1188.js";
 import { jobs1189To1189 } from "./jobs/positions-1189-1189.js";
 import { jobs1190To1190 } from "./jobs/positions-1190-1190.js";
 import { jobs1191To1191 } from "./jobs/positions-1191-1191.js";
+import { jobs1192To1192 } from "./jobs/positions-1192-1192.js";
+import { jobs1193To1193 } from "./jobs/positions-1193-1193.js";
+import { jobs1194To1194 } from "./jobs/positions-1194-1194.js";
+import { jobs1195To1195 } from "./jobs/positions-1195-1195.js";
+import { jobs1196To1196 } from "./jobs/positions-1196-1196.js";
+import { jobs1197To1197 } from "./jobs/positions-1197-1197.js";
+import { jobs1198To1198 } from "./jobs/positions-1198-1198.js";
 
 import details1001To1010 from "./jobDetails/details-1001-1010.js";
 import details1011To1020 from "./jobDetails/details-1011-1020.js";
@@ -45,6 +52,13 @@ import details1188To1188 from "./jobDetails/details-1188-1188.js";
 import details1189To1189 from "./jobDetails/details-1189-1189.js";
 import details1190To1190 from "./jobDetails/details-1190-1190.js";
 import details1191To1191 from "./jobDetails/details-1191-1191.js";
+import details1192To1192 from "./jobDetails/details-1192-1192.js";
+import details1193To1193 from "./jobDetails/details-1193-1193.js";
+import details1194To1194 from "./jobDetails/details-1194-1194.js";
+import details1195To1195 from "./jobDetails/details-1195-1195.js";
+import details1196To1196 from "./jobDetails/details-1196-1196.js";
+import details1197To1197 from "./jobDetails/details-1197-1197.js";
+import details1198To1198 from "./jobDetails/details-1198-1198.js";
 
 import { retiredPositionIds } from "./retiredPositionIds.js";
 
@@ -73,6 +87,13 @@ export const coreJobs = [
   ...jobs1189To1189,
   ...jobs1190To1190,
   ...jobs1191To1191,
+  ...jobs1192To1192,
+  ...jobs1193To1193,
+  ...jobs1194To1194,
+  ...jobs1195To1195,
+  ...jobs1196To1196,
+  ...jobs1197To1197,
+  ...jobs1198To1198,
   ];
 
 const detailOverlays = [
@@ -103,6 +124,13 @@ const detailOverlays = [
   ...details1189To1189,
   ...details1190To1190,
   ...details1191To1191,
+  ...details1192To1192,
+  ...details1193To1193,
+  ...details1194To1194,
+  ...details1195To1195,
+  ...details1196To1196,
+  ...details1197To1197,
+  ...details1198To1198,
   ];
 
 const detailsById = new Map(
