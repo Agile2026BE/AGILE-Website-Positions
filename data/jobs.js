@@ -24,6 +24,7 @@ import { jobs1195To1195 } from "./jobs/positions-1195-1195.js";
 import { jobs1196To1196 } from "./jobs/positions-1196-1196.js";
 import { jobs1197To1197 } from "./jobs/positions-1197-1197.js";
 import { jobs1198To1198 } from "./jobs/positions-1198-1198.js";
+import { jobs1199To1199 } from "./jobs/positions-1199-1199.js";
 
 import details1001To1010 from "./jobDetails/details-1001-1010.js";
 import details1011To1020 from "./jobDetails/details-1011-1020.js";
@@ -59,6 +60,7 @@ import details1195To1195 from "./jobDetails/details-1195-1195.js";
 import details1196To1196 from "./jobDetails/details-1196-1196.js";
 import details1197To1197 from "./jobDetails/details-1197-1197.js";
 import details1198To1198 from "./jobDetails/details-1198-1198.js";
+import details1199To1199 from "./jobDetails/details-1199-1199.js";
 
 import { retiredPositionIds } from "./retiredPositionIds.js";
 
@@ -94,6 +96,7 @@ export const coreJobs = [
   ...jobs1196To1196,
   ...jobs1197To1197,
   ...jobs1198To1198,
+  ...jobs1199To1199,
   ];
 
 const detailOverlays = [
@@ -131,6 +134,7 @@ const detailOverlays = [
   ...details1196To1196,
   ...details1197To1197,
   ...details1198To1198,
+  ...details1199To1199,
   ];
 
 const detailsById = new Map(
