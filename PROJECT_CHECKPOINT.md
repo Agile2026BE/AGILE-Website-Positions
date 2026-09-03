@@ -1,6 +1,6 @@
 # AGILE Careers Project Checkpoint
 
- Last updated: September 2, 2026 (evening) — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment
+ Last updated: September 2, 2026 (night) — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment (position 1189 added)
 
  ## Purpose
 
@@ -10,17 +10,17 @@
 
  Current verified GREEN recovery baseline code commit:
 
- `5405fe0726928023315edb5e6786c4619d7aa059`
+ `07dc87d335ea45a04af1a919fc3052bf555770ab`
 
- (Supersedes `de0324e`, the September 2 market-sector-cleanup baseline recorded earlier the same day.)
+ (Supersedes `5405fe0`, the September 2 evening position-retirements baseline.)
 
  Commit message:
 
- `Update retiredPositionIds.js`
+ `Add position 1189 — Senior Electrical Designer (MGE)`
 
  Detailed baseline record:
 
- `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_RETIREMENTS.md` for this session (position 1104 retired dormant, position 1012 relabeled, all 12 Arora Engineers positions taken dormant, Dormant-vs-Retired terminology rule); `docs/CAREERS_GREEN_BASELINE_2026-09-02.md` for the earlier Sept 2 session (position-modal MARKET field, position 1188 specialty trim, sitewide standalone-"Education"-to-"Higher Education" cleanup); `docs/CAREERS_GREEN_BASELINE_2026-09-01.md` for August/September 1 history; see the SEPTEMBER 2 REFINEMENTS section below for the openings-field work
+ `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1189.md` for this session (new position 1189 added, MG Engineering/MGE naming corrected workbook-wide); `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_RETIREMENTS.md` for the earlier same-day session (position 1104 retired dormant, position 1012 relabeled, all 12 Arora Engineers positions taken dormant, Dormant-vs-Retired terminology rule); `docs/CAREERS_GREEN_BASELINE_2026-09-02.md` for the earlier Sept 2 session (position-modal MARKET field, position 1188 specialty trim, sitewide standalone-"Education"-to-"Higher Education" cleanup); `docs/CAREERS_GREEN_BASELINE_2026-09-01.md` for August/September 1 history; see the SEPTEMBER 2 REFINEMENTS section below for the openings-field work
 
  Verification for this exact code SHA:
 
@@ -83,6 +83,14 @@
  Position 1104 retired dormant (client JBB, matching the other 16 JBB positions taken dormant earlier the same day). Position 1012's existing dormant entry (retired Aug 27) relabeled from generic "client went unresponsive" wording to the standard Dormant phrasing. All 12 Arora Engineers positions (1012, 1019, 1020, 1021, 1022, 1023, 1050, 1051, 1052, 1076, 1077, 1111) taken dormant per Byron's direction — Arora not currently engaged. `retiredPositionIds` array grew from 21 to 32 entries across two commits (`02749c9`, `5405fe0`). Live position count: 154 (186 total records minus 32 held back: 1 Retired + 31 Dormant). Full detail in `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_RETIREMENTS.md`.
 
  Standing terminology rule confirmed by Byron this session: **Dormant** (off the live site, reactivatable if the client re-engages) and **Retired** (permanent, ID never used again) are not interchangeable. Only position 1100 is Retired; every other held-back position (all JBB and all Arora) is Dormant. No Position ID is ever recycled regardless of status. The `data/retiredPositionIds.js` filename is a pre-existing technical label for the takedown mechanism, not a business status.
+
+ ## SEPTEMBER 2 NIGHT — NEW POSITION 1189 (now part of the GREEN BASELINE above)
+
+Byron pasted a raw internal MGE (MG Engineering) HR job description for a Senior Electrical Designer and confirmed the new-position workflow: assign the next Position ID, anonymize the real client on the public site as "AGILE's Client," record the real client internally by Position ID in the Master Position List workbook, add the position to the live site data, get it live, and update this baseline. Byron supplied salary ($120,000–$150,000), experience (10+ years), workplace (Hybrid), and opening count (3) for fields the raw doc didn't specify.
+
+Position 1189 (Senior Electrical Designer, NYC NY, Hybrid, $120,000–$150,000, 10+ years, 3 openings, PE preferred) added via `data/jobs/positions-1189-1189.js` and `data/jobDetails/details-1189-1189.js`, wired into `data/jobs.js`. Commit `07dc87d`. Live-verified: `/careers/positions/1189-senior-electrical-designer` loads correctly with all fields matching and the client name properly withheld; live count moved from 154 to 155.
+
+Byron also corrected the client's internal-records name: it is "MG Engineering" or "MGE," not "MG Engineers." The Master Position List workbook was updated workbook-wide (v12) to rename Internal Client on positions 1006, 1007, 1008, 1103, 1113, 1152, and 1189 from "MG Engineers" to "MG Engineering (MGE)." This is a workbook-only change — it does not affect any live site data, since real client names never appear there. Full detail in `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1189.md`.
 
  ## LOCKED REBUILD DIRECTION
     
