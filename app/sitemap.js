@@ -1,6 +1,6 @@
 import { jobs } from "../data/jobs";
 import { POSITION_REVIEW_LABEL } from "../lib/positionFreshness";
-import { SITE_URL, getReviewedDateISO } from "../lib/seo";
+import { SITE_URL, getReviewedDateISO, getJobDatePosted } from "../lib/seo";
 
 export default function sitemap() {
   const lastModified = getReviewedDateISO(POSITION_REVIEW_LABEL);
@@ -17,7 +17,7 @@ export default function sitemap() {
     .filter((job) => job.slug)
     .map((job) => ({
       url: `${SITE_URL}/careers/positions/${job.slug}`,
-      lastModified,
+      lastModified: getJobDatePosted(job),
       changeFrequency: "daily",
       priority: 0.8,
     }));

@@ -12,7 +12,7 @@ import { jobLocations } from "../../../../data/jobLocations";
 import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../../lib/positionFreshness";
 import { formatExperienceDisplay, formatSalaryDisplay, formatWorkplaceDisplay } from "../../../../lib/jobFilters";
 import { getSimilarJobs } from "../../../../lib/similarJobs";
-import { SITE_URL, getReviewedDateISO, addDaysISO } from "../../../../lib/seo";
+import { SITE_URL, addDaysISO, getJobDatePosted, parseExperienceMonths } from "../../../../lib/seo";
 
 const lines = (value) =>
   String(value ?? "")
@@ -88,7 +88,14 @@ export default async function PositionPage({ params }) {
   const whyConsider = freshWhyConsider(job);
   const similarJobs = getSimilarJobs(job, jobs, 3);
 
-  const datePosted = getReviewedDateISO(POSITION_REVIEW_LABEL);
+  const datePosted = getJobDatePosted(job);
+  const isRemote = String(job.workplace ?? "").trim().toLowerCase() === "remote";
+  const industries = String(job.market ?? "")
+    .split("|")
+    .map((value) => value.trim())
+    .filter(Boolean);
+  const minMonthsExperience = parseExperienceMonths(job.experience);
+
   const jobPostingJsonLd = {
     "@context": "https://schema.org",
     "@type": "JobPosting",
@@ -108,6 +115,21 @@ export default async function PositionPage({ params }) {
       sameAs: SITE_URL,
     },
     jobLocation: buildJobLocation(job),
+    ...(isRemote
+      ? {
+          jobLocationType: "TELECOMMUTE",
+          applicantLocationRequirements: { "@type": "Country", name: "USA" },
+        }
+      : {}),
+    ...(industries.length ? { industry: industries } : {}),
+    ...(minMonthsExperience !== null
+      ? {
+          experienceRequirements: {
+            "@type": "OccupationalExperienceRequirements",
+            monthsOfExperience: minMonthsExperience,
+          },
+        }
+      : {}),
     ...(job.salaryMin && job.salaryMax
       ? {
           baseSalary: {

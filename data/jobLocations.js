@@ -30,7 +30,6 @@ export const jobLocations = {
   "1007": [{ city: "New York", state: "NY", zip: "10001" }],
   "1008": [{ city: "New York", state: "NY", zip: "10001" }],
   "1009": [{ city: "New York", state: "NY", zip: "10041" }],
-  "1010": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
   "1011": [{ city: "Midland Park", state: "NJ", zip: "07432" }],
   "1013": [{ city: "New York", state: "NY", zip: "10018" }],
   "1014": [{ city: "Monroe Township", state: "NJ", zip: "08831" }],
