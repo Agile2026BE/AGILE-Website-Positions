@@ -225,4 +225,10 @@ export const retiredPositionIds = [
     reason:
       "Dormant — client engagement not currently active. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if the client re-engages AGILE.",
   },
+  {
+    id: "1154",
+    retiredOn: "2026-09-03",
+    reason:
+      "Duplicate of 1148 — same Highland Associates MEP Engineering CAD/BIM Specialist opening in Clarks Summit, PA (near-identical Dynamo/BIM/Revit responsibilities and qualifications, just reworded). 1148 has the correct title and discipline already mapped; 1154 was wrapped in an unrelated 'Mechanical Engineer' title and discipline that didn't match its own content.",
+  },
 ];
