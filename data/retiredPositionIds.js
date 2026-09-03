@@ -213,4 +213,16 @@ export const retiredPositionIds = [
     reason:
       "Duplicate of 1198 — same Assistant Chief Engineer, Structural (Bridge) opening for French and Parrello in Wall Township, NJ (identical salary $150,000-$200,000, 15+ years experience, PE required; the title/summary/responsibilities text was just reworded). 1198 is the newer, fully-mapped listing that stays live.",
   },
+  {
+    id: "1047",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (Rock Brook Group) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Rock Brook Group re-engages AGILE.",
+  },
+  {
+    id: "1065",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client engagement not currently active. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if the client re-engages AGILE.",
+  },
 ];
