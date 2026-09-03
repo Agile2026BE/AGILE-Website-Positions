@@ -1,6 +1,6 @@
 # AGILE Careers Project Checkpoint
 
- Last updated: September 2, 2026 (late night) — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment (position 1190 added, position 1103 updated)
+ Last updated: September 3, 2026 — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment (positions 1191-1198 added and pushed live for the first time, position 1097 salary corrected, client-name leak on 1197/1198 caught and fixed)
 
  ## Purpose
 
@@ -10,17 +10,17 @@
 
  Current verified GREEN recovery baseline code commit:
 
- `37422e6eb1e3ae6d7a011241412734d1248a6a49`
+ `a912779122ab486da21a912f66d50630ba2cd70f`
 
- (Supersedes `efed524`, the September 2 night position-1189 baseline.)
+ (Supersedes `37422e6`, the September 2 late-night position-1190 baseline.)
 
  Commit message:
 
- `Add position 1190 — Plumbing & Fire Protection Engineer (MGE)`
+ `Fix: anonymize client names on live positions 1197 and 1198`
 
  Detailed baseline record:
 
- `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1190.md` for this session (position 1190 added, position 1103 salary/openings corrected); `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1189.md` for the earlier same-night session (new position 1189 added, MG Engineering/MGE naming corrected workbook-wide); `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_RETIREMENTS.md` for the earlier same-day session (position 1104 retired dormant, position 1012 relabeled, all 12 Arora Engineers positions taken dormant, Dormant-vs-Retired terminology rule); `docs/CAREERS_GREEN_BASELINE_2026-09-02.md` for the earlier Sept 2 session (position-modal MARKET field, position 1188 specialty trim, sitewide standalone-"Education"-to-"Higher Education" cleanup); `docs/CAREERS_GREEN_BASELINE_2026-09-01.md` for August/September 1 history; see the SEPTEMBER 2 REFINEMENTS section below for the openings-field work
+ `docs/CAREERS_GREEN_BASELINE_2026-09-03.md` for this session (positions 1191-1198 added and pushed live for the first time, position 1097 salary corrected, client-name leak on 1197/1198 caught and fixed); `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1190.md` for the prior session (position 1190 added, position 1103 salary/openings corrected); `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1189.md` for the earlier same-night session (new position 1189 added, MG Engineering/MGE naming corrected workbook-wide); `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_RETIREMENTS.md` for the earlier same-day session (position 1104 retired dormant, position 1012 relabeled, all 12 Arora Engineers positions taken dormant, Dormant-vs-Retired terminology rule); `docs/CAREERS_GREEN_BASELINE_2026-09-02.md` for the earlier Sept 2 session (position-modal MARKET field, position 1188 specialty trim, sitewide standalone-"Education"-to-"Higher Education" cleanup); `docs/CAREERS_GREEN_BASELINE_2026-09-01.md` for August/September 1 history; see the SEPTEMBER 2 REFINEMENTS section below for the openings-field work
 
  Verification for this exact code SHA:
 
