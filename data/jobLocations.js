@@ -161,7 +161,10 @@ export const jobLocations = {
   "1171": [{ city: "Charlotte", state: "NC", zip: "28269-3797" }],
   "1173": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
   "1175": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
-  "1176": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
+  "1176": [
+    { city: "Fresno", state: "CA", zip: null },
+    { city: "Rancho Cordova", state: "CA", zip: null },
+  ],
   "1177": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
   "1179": [{ city: "Raleigh", state: "NC", zip: "27607-3073" }],
   "1180": [{ city: "Raleigh", state: "NC" }],
