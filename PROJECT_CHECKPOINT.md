@@ -1,6 +1,6 @@
 # AGILE Careers Project Checkpoint
 
- Last updated: September 2, 2026 (night) — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment (position 1189 added)
+ Last updated: September 2, 2026 (late night) — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment (position 1190 added, position 1103 updated)
 
  ## Purpose
 
@@ -10,17 +10,17 @@
 
  Current verified GREEN recovery baseline code commit:
 
- `07dc87d335ea45a04af1a919fc3052bf555770ab`
+ `37422e6eb1e3ae6d7a011241412734d1248a6a49`
 
- (Supersedes `5405fe0`, the September 2 evening position-retirements baseline.)
+ (Supersedes `efed524`, the September 2 night position-1189 baseline.)
 
  Commit message:
 
- `Add position 1189 — Senior Electrical Designer (MGE)`
+ `Add position 1190 — Plumbing & Fire Protection Engineer (MGE)`
 
  Detailed baseline record:
 
- `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1189.md` for this session (new position 1189 added, MG Engineering/MGE naming corrected workbook-wide); `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_RETIREMENTS.md` for the earlier same-day session (position 1104 retired dormant, position 1012 relabeled, all 12 Arora Engineers positions taken dormant, Dormant-vs-Retired terminology rule); `docs/CAREERS_GREEN_BASELINE_2026-09-02.md` for the earlier Sept 2 session (position-modal MARKET field, position 1188 specialty trim, sitewide standalone-"Education"-to-"Higher Education" cleanup); `docs/CAREERS_GREEN_BASELINE_2026-09-01.md` for August/September 1 history; see the SEPTEMBER 2 REFINEMENTS section below for the openings-field work
+ `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1190.md` for this session (position 1190 added, position 1103 salary/openings corrected); `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1189.md` for the earlier same-night session (new position 1189 added, MG Engineering/MGE naming corrected workbook-wide); `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_RETIREMENTS.md` for the earlier same-day session (position 1104 retired dormant, position 1012 relabeled, all 12 Arora Engineers positions taken dormant, Dormant-vs-Retired terminology rule); `docs/CAREERS_GREEN_BASELINE_2026-09-02.md` for the earlier Sept 2 session (position-modal MARKET field, position 1188 specialty trim, sitewide standalone-"Education"-to-"Higher Education" cleanup); `docs/CAREERS_GREEN_BASELINE_2026-09-01.md` for August/September 1 history; see the SEPTEMBER 2 REFINEMENTS section below for the openings-field work
 
  Verification for this exact code SHA:
 
@@ -91,6 +91,14 @@ Byron pasted a raw internal MGE (MG Engineering) HR job description for a Senior
 Position 1189 (Senior Electrical Designer, NYC NY, Hybrid, $120,000–$150,000, 10+ years, 3 openings, PE preferred) added via `data/jobs/positions-1189-1189.js` and `data/jobDetails/details-1189-1189.js`, wired into `data/jobs.js`. Commit `07dc87d`. Live-verified: `/careers/positions/1189-senior-electrical-designer` loads correctly with all fields matching and the client name properly withheld; live count moved from 154 to 155.
 
 Byron also corrected the client's internal-records name: it is "MG Engineering" or "MGE," not "MG Engineers." The Master Position List workbook was updated workbook-wide (v12) to rename Internal Client on positions 1006, 1007, 1008, 1103, 1113, 1152, and 1189 from "MG Engineers" to "MG Engineering (MGE)." This is a workbook-only change — it does not affect any live site data, since real client names never appear there. Full detail in `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1189.md`.
+
+ ## SEPTEMBER 2 LATE NIGHT — POSITION 1190 ADDED, POSITION 1103 CORRECTED (now part of the GREEN BASELINE above)
+
+Byron pasted a raw internal MGE HR job description for a "Lead Plumbing & Fire Protection Designer" and asked to create it as position 1190. Before going live, Byron caught that this was a duplicate of existing position 1103 (identical title, same client). The drafted 1190 files were deleted before being wired into `data/jobs.js` — no live impact. Instead, 1103 was updated in place: salary lowered from $135,000–$170,000 to $120,000–$150,000, and `openings: 2` added (commit `17378ec`), matching Byron's direction that this round of MGE listings would carry that salary band, with 2 openings. The `metaDescription` in `data/jobDetails/details-1101-1112.js` was also corrected to match the new salary.
+
+Byron then pasted a second raw MGE job description — this one genuinely distinct: "Plumbing & Fire Protection Engineer," explicitly requiring a licensed PE, with a higher salary band ($135,000–$170,000) reflecting the PE requirement, and 2 openings. Confirmed not a duplicate of 1103 (different title, PE required vs. preferred, different salary band) and added as **position 1190** via `data/jobs/positions-1190-1190.js` and `data/jobDetails/details-1190-1190.js`, wired into `data/jobs.js` (commit `37422e6`). Live-verified: `/careers/positions/1190-plumbing-fire-protection-engineer` loads correctly (title, location, workplace, salary, PE-required credential, 2 openings, client withheld); `/careers/positions/1103-lead-plumbing-fire-protection-designer` shows the corrected $120,000–$150,000 / 2 openings. Live count moved from 155 to 156.
+
+Full detail in `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1190.md`.
 
  ## LOCKED REBUILD DIRECTION
     
