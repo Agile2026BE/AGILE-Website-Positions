@@ -211,6 +211,78 @@ export const retiredPositionIds = [
     id: "1065",
     retiredOn: "2026-09-03",
     reason:
-      "Dormant — client engagement not currently active. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if the client re-engages AGILE.",
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1030",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1031",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1032",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1033",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1054",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1055",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1058",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1059",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1064",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1068",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1069",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
+  },
+  {
+    id: "1105",
+    retiredOn: "2026-09-03",
+    reason:
+      "Dormant — client (M/E Engineering) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if M/E Engineering re-engages AGILE.",
   },
 ];
