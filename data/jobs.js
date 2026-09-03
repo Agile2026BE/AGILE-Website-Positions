@@ -29,6 +29,7 @@ import { jobs1200To1200 } from "./jobs/positions-1200-1200.js";
 import { jobs1201To1201 } from "./jobs/positions-1201-1201.js";
 import { jobs1202To1202 } from "./jobs/positions-1202-1202.js";
 import { jobs1203To1203 } from "./jobs/positions-1203-1203.js";
+import { jobs1204To1204 } from "./jobs/positions-1204-1204.js";
 
 import details1001To1010 from "./jobDetails/details-1001-1010.js";
 import details1011To1020 from "./jobDetails/details-1011-1020.js";
@@ -69,6 +70,7 @@ import details1200To1200 from "./jobDetails/details-1200-1200.js";
 import details1201To1201 from "./jobDetails/details-1201-1201.js";
 import details1202To1202 from "./jobDetails/details-1202-1202.js";
 import details1203To1203 from "./jobDetails/details-1203-1203.js";
+import details1204To1204 from "./jobDetails/details-1204-1204.js";
 
 import { retiredPositionIds } from "./retiredPositionIds.js";
 
@@ -109,6 +111,7 @@ export const coreJobs = [
   ...jobs1201To1201,
   ...jobs1202To1202,
   ...jobs1203To1203,
+  ...jobs1204To1204,
   ];
 
 const detailOverlays = [
@@ -151,6 +154,7 @@ const detailOverlays = [
   ...details1201To1201,
   ...details1202To1202,
   ...details1203To1203,
+  ...details1204To1204,
   ];
 
 const detailsById = new Map(
