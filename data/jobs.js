@@ -72,13 +72,14 @@ import details1202To1202 from "./jobDetails/details-1202-1202.js";
 import details1203To1203 from "./jobDetails/details-1203-1203.js";
 import details1204To1204 from "./jobDetails/details-1204-1204.js";
 
-import { retiredPositionIds } from "./retiredPositionIds.js";
+import { terminatedPositionIds } from "./terminatedPositionIds.js";
+import { dormantPositionIds } from "./dormantPositionIds.js";
 
 // Exported (not just used internally) so scripts like
-// scripts/submit-indexnow.mjs can look up the slug for a retired ID —
-// retired records are kept in these files on purpose (see
-// retiredPositionIds.js) but are filtered out of the public `jobs` export
-// below.
+// scripts/submit-indexnow.mjs can look up the slug for a terminated or
+// dormant ID — those records are kept in these files on purpose (see
+// terminatedPositionIds.js and dormantPositionIds.js) but are filtered out
+// of the public `jobs` export below.
 export const coreJobs = [
   ...jobs1001To1020,
   ...jobs1021To1040,
@@ -161,13 +162,16 @@ const detailsById = new Map(
   detailOverlays.map((details) => [String(details.id), details]),
   );
 
-// See retiredPositionIds.js: retired IDs stay in the underlying data files
-// (nothing above this point is touched) but are filtered out here so they
-// never reach the live site.
-const retiredIds = new Set(retiredPositionIds.map((entry) => String(entry.id)));
+// See terminatedPositionIds.js and dormantPositionIds.js: both kinds of IDs
+// stay in the underlying data files (nothing above this point is touched)
+// but are filtered out here so they never reach the live site.
+const hiddenIds = new Set([
+  ...terminatedPositionIds.map((entry) => String(entry.id)),
+  ...dormantPositionIds.map((entry) => String(entry.id)),
+]);
 
 export const jobs = coreJobs
-.filter((job) => !retiredIds.has(String(job.id)))
+.filter((job) => !hiddenIds.has(String(job.id)))
 .map((job) => ({
   ...job,
   ...(detailsById.get(String(job.id)) ?? {}),

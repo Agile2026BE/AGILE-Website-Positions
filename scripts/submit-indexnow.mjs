@@ -20,7 +20,8 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 import { jobs, coreJobs } from "../data/jobs.js";
-import { retiredPositionIds } from "../data/retiredPositionIds.js";
+import { terminatedPositionIds } from "../data/terminatedPositionIds.js";
+import { dormantPositionIds } from "../data/dormantPositionIds.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = path.join(__dirname, "..", "public");
@@ -48,12 +49,12 @@ function buildUrlList() {
   const liveUrls = jobs.map((job) => `${BASE_URL}/careers/positions/${job.slug}`);
 
   const coreById = new Map(coreJobs.map((job) => [String(job.id), job]));
-  const retiredUrls = retiredPositionIds
+  const hiddenUrls = [...terminatedPositionIds, ...dormantPositionIds]
     .map((entry) => coreById.get(String(entry.id)))
     .filter(Boolean)
     .map((job) => `${BASE_URL}/careers/positions/${job.slug}`);
 
-  return Array.from(new Set([...liveUrls, ...retiredUrls]));
+  return Array.from(new Set([...liveUrls, ...hiddenUrls]));
 }
 
 async function submit(urlList, key) {
