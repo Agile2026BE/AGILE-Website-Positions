@@ -30,6 +30,7 @@ import { jobs1201To1201 } from "./jobs/positions-1201-1201.js";
 import { jobs1202To1202 } from "./jobs/positions-1202-1202.js";
 import { jobs1203To1203 } from "./jobs/positions-1203-1203.js";
 import { jobs1204To1204 } from "./jobs/positions-1204-1204.js";
+import { jobs1205To1205 } from "./jobs/positions-1205-1205.js";
 
 import details1001To1010 from "./jobDetails/details-1001-1010.js";
 import details1011To1020 from "./jobDetails/details-1011-1020.js";
@@ -71,6 +72,7 @@ import details1201To1201 from "./jobDetails/details-1201-1201.js";
 import details1202To1202 from "./jobDetails/details-1202-1202.js";
 import details1203To1203 from "./jobDetails/details-1203-1203.js";
 import details1204To1204 from "./jobDetails/details-1204-1204.js";
+import details1205To1205 from "./jobDetails/details-1205-1205.js";
 
 import { terminatedPositionIds } from "./terminatedPositionIds.js";
 import { dormantPositionIds } from "./dormantPositionIds.js";
@@ -81,98 +83,100 @@ import { dormantPositionIds } from "./dormantPositionIds.js";
 // terminatedPositionIds.js and dormantPositionIds.js) but are filtered out
 // of the public `jobs` export below.
 export const coreJobs = [
-  ...jobs1001To1020,
-  ...jobs1021To1040,
-  ...jobs1041To1060,
-  ...jobs1061To1080,
-  ...jobs1081To1100,
-  ...jobs1101To1112,
-  ...jobs1113To1132,
-  ...jobs1133To1142,
-  ...jobs1143To1152,
-  ...jobs1153To1162,
-  ...jobs1163To1172,
-  ...jobs1173To1180,
-  ...jobs1181To1185,
-  ...jobs1186To1186,
-  ...jobs1187To1187,
-  ...jobs1188To1188,
-  ...jobs1189To1189,
-  ...jobs1190To1190,
-  ...jobs1191To1191,
-  ...jobs1192To1192,
-  ...jobs1193To1193,
-  ...jobs1194To1194,
-  ...jobs1195To1195,
-  ...jobs1196To1196,
-  ...jobs1197To1197,
-  ...jobs1198To1198,
-  ...jobs1199To1199,
-  ...jobs1200To1200,
-  ...jobs1201To1201,
-  ...jobs1202To1202,
-  ...jobs1203To1203,
-  ...jobs1204To1204,
-  ];
+...jobs1001To1020,
+...jobs1021To1040,
+...jobs1041To1060,
+...jobs1061To1080,
+...jobs1081To1100,
+...jobs1101To1112,
+...jobs1113To1132,
+...jobs1133To1142,
+...jobs1143To1152,
+...jobs1153To1162,
+...jobs1163To1172,
+...jobs1173To1180,
+...jobs1181To1185,
+...jobs1186To1186,
+...jobs1187To1187,
+...jobs1188To1188,
+...jobs1189To1189,
+...jobs1190To1190,
+...jobs1191To1191,
+...jobs1192To1192,
+...jobs1193To1193,
+...jobs1194To1194,
+...jobs1195To1195,
+...jobs1196To1196,
+...jobs1197To1197,
+...jobs1198To1198,
+...jobs1199To1199,
+...jobs1200To1200,
+...jobs1201To1201,
+...jobs1202To1202,
+...jobs1203To1203,
+...jobs1204To1204,
+...jobs1205To1205,
+];
 
 const detailOverlays = [
-  ...details1001To1010,
-  ...details1011To1020,
-  ...details1021To1030,
-  ...details1031To1040,
-  ...details1041To1050,
-  ...details1051To1060,
-  ...details1061To1070,
-  ...details1071To1080,
-  ...details1081To1090,
-  ...details1091To1100,
-  ...details1101To1112,
-  ...details1113To1122,
-  ...details1123To1132,
-  ...details1133To1142,
-  ...details1143To1152,
-  ...details1153To1158,
-  ...details1159To1162,
-  ...details1163To1167,
-  ...details1168To1172,
-  ...details1173To1180,
-  ...details1181To1185,
-  ...details1186To1186,
-  ...details1187To1187,
-  ...details1188To1188,
-  ...details1189To1189,
-  ...details1190To1190,
-  ...details1191To1191,
-  ...details1192To1192,
-  ...details1193To1193,
-  ...details1194To1194,
-  ...details1195To1195,
-  ...details1196To1196,
-  ...details1197To1197,
-  ...details1198To1198,
-  ...details1199To1199,
-  ...details1200To1200,
-  ...details1201To1201,
-  ...details1202To1202,
-  ...details1203To1203,
-  ...details1204To1204,
-  ];
+...details1001To1010,
+...details1011To1020,
+...details1021To1030,
+...details1031To1040,
+...details1041To1050,
+...details1051To1060,
+...details1061To1070,
+...details1071To1080,
+...details1081To1090,
+...details1091To1100,
+...details1101To1112,
+...details1113To1122,
+...details1123To1132,
+...details1133To1142,
+...details1143To1152,
+...details1153To1158,
+...details1159To1162,
+...details1163To1167,
+...details1168To1172,
+...details1173To1180,
+...details1181To1185,
+...details1186To1186,
+...details1187To1187,
+...details1188To1188,
+...details1189To1189,
+...details1190To1190,
+...details1191To1191,
+...details1192To1192,
+...details1193To1193,
+...details1194To1194,
+...details1195To1195,
+...details1196To1196,
+...details1197To1197,
+...details1198To1198,
+...details1199To1199,
+...details1200To1200,
+...details1201To1201,
+...details1202To1202,
+...details1203To1203,
+...details1204To1204,
+...details1205To1205,
+];
 
 const detailsById = new Map(
-  detailOverlays.map((details) => [String(details.id), details]),
-  );
+detailOverlays.map((details) => [String(details.id), details]),
+);
 
 // See terminatedPositionIds.js and dormantPositionIds.js: both kinds of IDs
 // stay in the underlying data files (nothing above this point is touched)
 // but are filtered out here so they never reach the live site.
 const hiddenIds = new Set([
-  ...terminatedPositionIds.map((entry) => String(entry.id)),
-  ...dormantPositionIds.map((entry) => String(entry.id)),
+...terminatedPositionIds.map((entry) => String(entry.id)),
+...dormantPositionIds.map((entry) => String(entry.id)),
 ]);
 
 export const jobs = coreJobs
 .filter((job) => !hiddenIds.has(String(job.id)))
 .map((job) => ({
-  ...job,
-  ...(detailsById.get(String(job.id)) ?? {}),
+...job,
+...(detailsById.get(String(job.id)) ?? {}),
 }));
