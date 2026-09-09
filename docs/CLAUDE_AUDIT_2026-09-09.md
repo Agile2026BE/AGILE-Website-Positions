@@ -55,6 +55,43 @@ confirmed live via commit history:
 | 1160 | data/jobs/positions-1153-1162.js | Yes (commit 869623c) |
 | 1204 | data/jobDetails/details-1204-1204.js | Yes (commit c99db08) — whyConsider had "60+ locations and 2,500+ professionals nationwide" |
 
+## Second-pass full-site sizzle/copy audit — COMPLETE (2026-09-09, later session)
+User asked "does each position have enough sizzle" — this prompted a full read of every
+live position's summary text (all 164 live positions across 33 data/jobs/*.js files),
+not just a leak-pattern regex search. Found and fixed, all confirmed live via commit history:
+
+**Critical — real client name in plain text (not caught by prior scans):**
+- 1145 — summary read "...Burns Engineering emphasizes collaboration..." — the actual
+  real client name, unobscured. Fixed (commit 57352c0): replaced with "The firm...".
+
+**High — same identifying pattern as 1204, but different wording ("locations" not
+"offices"), so it slipped past the original regex-style scan. Found on 8 live positions,
+all identical verbatim text "a leading professional services firm with 60+ locations and
+2,500+ professionals nationwide":**
+- 1173, 1174, 1176, 1177, 1178, 1179, 1180 — fixed together, commit caaf3f1
+- 1199 — fixed separately (own file), commit a5fa674
+- Anonymized to: "a leading, ENR Top 500-ranked professional services firm with a
+  well-established, multi-decade reputation and a broad national footprint"
+
+**Data-quality bugs (not leaks, but broken-looking copy):**
+- 1143, 1144, 1145 — summary field had "Key Responsibilities" heading + bullet content
+  bleeding directly into it with no space (e.g. "...career growth.Key Responsibilities
+  Represent the firm..."). Fixed by truncating summary to the clean sentence before that
+  point. Commit 57352c0.
+- 1050, 1076 — summary cut off mid-sentence ending in a stray "...Primary" (leftover
+  heading fragment). Fixed by removing the fragment. Commits 58ff0de (1050) and
+  5129510 (1076).
+
+**Thin/generic copy on senior, high-salary roles with no differentiation:**
+- 1073 ($190K-220K), 1074 ($175K-210K), 1075 ($200K-250K) — each was one or two flat,
+  generic sentences. Rewritten with real sizzle in the established house style. Commit
+  5129510.
+
+**Lesson for future scans:** a single fixed search phrase (like "offices" + "professionals")
+will miss paraphrased identifying combos. When re-auditing, do a full read of summaries
+rather than relying only on keyword search — this second pass caught 8 positions the
+first regex-style pass completely missed, plus one literal client name.
+
 ## jobDetails scan — COMPLETE (2026-09-09)
 All 41 data/jobDetails/*.js files have now been scanned for the same identifying
 pattern. Result: only 1204 (above) was flagged and fixed. Everything else — including
