@@ -200,7 +200,7 @@ export default async function PositionPage({ params }) {
           ) : null}
 
           {similarJobs.length ? (
-            <section className={`${styles.contentSection} ${styles.similarBlock}`}>
+            <section id="similar-positions" className={`${styles.contentSection} ${styles.similarBlock}`}>
               <h2>Similar Positions</h2>
               <div className={styles.similarList}>
                 {similarJobs.map((similar) => (
