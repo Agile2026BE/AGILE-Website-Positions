@@ -16,7 +16,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
   async function handleShare() {
     try {
       const result = await shareJob(job);
-      setShareStatus(result.method === "clipboard" ? "Link copied" : "Shared");
+      setShareStatus(result.method === "rich-clipboard" ? "Copied" : "Link copied");
     } catch (error) {
       if (error?.name !== "AbortError") {
         setShareStatus("Unable to share");
@@ -63,7 +63,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
           {job.market ? <span>{job.market.split("|")[0].trim()}{job.market.split("|").length > 1 ? ` +${job.market.split("|").length - 1}` : ""}</span> : null}
           {job.credential && job.credential.trim().toLowerCase() !== "not stated" ? <span>{job.credential}</span> : null}
           {job.bonus ? <span>Bonus</span> : null}
-           {job.openings > 1 ? <span className={styles.openingsBadge}>{job.openings} Openings</span> : null}
+          {job.openings > 1 ? <span className={styles.openingsBadge}>{job.openings} Openings</span> : null}
         </div>
       </div>
 
