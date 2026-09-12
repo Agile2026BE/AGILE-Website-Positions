@@ -6,7 +6,7 @@ import ShareButton from "./ShareButton";
 import ShortlistButton from "./ShortlistButton";
 import ViewPositionLink from "./ViewPositionLink";
 import { jobBoardConfig } from "../data/jobBoardConfig";
-import { shareJob } from "../lib/shareJob";
+import { shareJob, copyPositionForText } from "../lib/shareJob";
 import { formatExperienceDisplay, formatSalaryDisplay, formatWorkplaceDisplay } from "../lib/jobFilters";
 
 export default function JobCard({ job, isShortlisted = false, onShortlist, onViewPosition }) {
@@ -20,6 +20,17 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
     } catch (error) {
       if (error?.name !== "AbortError") {
         setShareStatus("Unable to share");
+      }
+    }
+  }
+
+  async function handleCopyText() {
+    try {
+      await copyPositionForText(job);
+      setShareStatus("Copied for texting");
+    } catch (error) {
+      if (error?.name !== "AbortError") {
+        setShareStatus("Unable to copy");
       }
     }
   }
@@ -70,6 +81,7 @@ export default function JobCard({ job, isShortlisted = false, onShortlist, onVie
       <div className={`job-card-actions ${styles.actions}`}>
         <ViewPositionLink href={`/careers/positions/${job.slug}`} onClick={() => onViewPosition?.(job)} label={labels.viewPosition} />
         <ShareButton label={labels.share} onClick={handleShare} />
+        <ShareButton label="Copy for Text" onClick={handleCopyText} />
       </div>
 
       {shareStatus ? (
