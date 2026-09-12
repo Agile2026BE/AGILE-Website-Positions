@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import styles from "./SharePositionsModal.module.css";
-import { positionShareHtml, positionShareText } from "../lib/shareJob";
+import { copyPositionsForEmail, copyPositionsForText } from "../lib/shareJob";
 import { formatSalaryDisplay, formatWorkplaceDisplay } from "../lib/jobFilters";
 
 export default function SharePositionsModal({ jobs = [], onClose, onRemove, onInquire }) {
@@ -17,24 +17,25 @@ export default function SharePositionsModal({ jobs = [], onClose, onRemove, onIn
   }, [jobs.length, onClose]);
   if (!jobs.length) return null;
 
-  async function copySelected() {
-    const text = jobs.map(positionShareText).join("\n\n");
-    const html = jobs.map(positionShareHtml).join("<br>");
+  const countLabel = `${jobs.length} position${jobs.length === 1 ? "" : "s"}`;
+
+  async function copyForEmail() {
     try {
-      if (navigator.clipboard?.write && typeof ClipboardItem !== "undefined") {
-        await navigator.clipboard.write([new ClipboardItem({
-          "text/plain": new Blob([text], { type: "text/plain" }),
-          "text/html": new Blob([html], { type: "text/html" }),
-        })]);
-      } else {
-        await navigator.clipboard.writeText(text);
-      }
-      setStatus(`${jobs.length} position${jobs.length===1?"":"s"} copied`);
+      await copyPositionsForEmail(jobs);
+      setStatus(`${countLabel} copied — paste into Gmail, Yahoo, or Outlook`);
     } catch {
-      try { await navigator.clipboard.writeText(text); setStatus(`${jobs.length} position${jobs.length===1?"":"s"} copied`); }
-      catch { setStatus("Unable to copy"); }
+      setStatus("Unable to copy");
     }
   }
 
-  return <div className={styles.overlay} role="presentation" onMouseDown={(event)=>{if(event.target===event.currentTarget)onClose?.();}}><section className={styles.modal} role="dialog" aria-modal="true"><button className={styles.close} type="button" onClick={onClose}>×</button><p className={styles.eyebrow}>CLEAN LINKS. NO ACCOUNT REQUIRED.</p><h2>Share selected positions</h2><p className={styles.intro}>Copy a clean, ready-to-send summary of your selected opportunities. Rich-text apps show a simple View Position link; plain-text apps use the direct AGILE Careers position address.</p><div className={styles.list}>{jobs.map(job=><div className={styles.job} key={job.id??job.slug}><div><strong>{job.title}</strong><span>{job.location} · {formatWorkplaceDisplay(job.workplace)} · <span className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</span> · Position ID {job.id}</span></div><button type="button" onClick={()=>onRemove?.(job)}>Remove</button></div>)}</div><div className={styles.actions}><button type="button" className={styles.primary} onClick={copySelected}>Copy Selected Positions</button><button type="button" onClick={()=>onInquire?.(jobs[0])}>Inquire About These</button></div>{status?<p className={styles.status}>{status}</p>:null}</section></div>;
+  async function copyForText() {
+    try {
+      await copyPositionsForText(jobs);
+      setStatus(`${countLabel} copied — paste into a text message, LinkedIn message, or Juicebox`);
+    } catch {
+      setStatus("Unable to copy");
+    }
+  }
+
+  return <div className={styles.overlay} role="presentation" onMouseDown={(event)=>{if(event.target===event.currentTarget)onClose?.();}}><section className={styles.modal} role="dialog" aria-modal="true"><button className={styles.close} type="button" onClick={onClose}>×</button><p className={styles.eyebrow}>CLEAN LINKS. NO ACCOUNT REQUIRED.</p><h2>Share selected positions</h2><p className={styles.intro}>Choose the format that matches where you&apos;re sending this: a polished visual card for email, or a short, link-based summary for texting, LinkedIn, and Juicebox.</p><div className={styles.list}>{jobs.map(job=><div className={styles.job} key={job.id??job.slug}><div><strong>{job.title}</strong><span>{job.location} · {formatWorkplaceDisplay(job.workplace)} · <span className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</span> · Position ID {job.id}</span></div><button type="button" onClick={()=>onRemove?.(job)}>Remove</button></div>)}</div><div className={styles.actions}><button type="button" className={styles.primary} onClick={copyForEmail}>Copy for Email</button><button type="button" className={styles.primary} onClick={copyForText}>Copy for Text / LinkedIn / Juicebox</button><button type="button" onClick={()=>onInquire?.(jobs[0])}>Inquire About These</button></div>{status?<p className={styles.status}>{status}</p>:null}</section></div>;
 }
