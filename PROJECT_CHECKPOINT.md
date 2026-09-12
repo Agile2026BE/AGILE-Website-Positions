@@ -6,6 +6,16 @@
 
  This is the operational handoff and recovery record for AGILE Careers development. Read this file before making future production changes.
 
+ ## SHARE / COPY FEATURE BASELINE (separate from position-data GREEN BASELINE below)
+
+ Current verified baseline commit for the share/copy feature (`lib/shareJob.js`, `next.config.mjs`):
+
+ `1977b55270a19f96324eddaeb4e1af9d7ee6c40e`
+
+ Vercel production deployment: `dpl_FwVKibbZWAkCeycexyJELmkesnZW` — READY, verified live.
+
+ Detailed baseline record: `docs/CAREERS_GREEN_BASELINE_2026-09-12_SHARE_COPY_LINKS.md` (email card font sizes, plain-text SMS format, short `/s/:id` link for Similar Positions, two-button Copy Link vs Copy for Text split, known iOS auto-hyphenation limitation).
+
  ## GREEN BASELINE
 
  Current verified GREEN recovery baseline code commit:
