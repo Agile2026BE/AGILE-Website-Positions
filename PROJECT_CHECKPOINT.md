@@ -1,6 +1,6 @@
 # AGILE Careers Project Checkpoint
 
- Last updated: September 3, 2026 (late session) — GREEN baseline confirmed on both GitHub Project Check and Vercel Production deployment (French and Parrello client-mapping audit: duplicate position 1181 retired in favor of 1198, phantom workbook-only duplicate 1199 deleted, workbook Internal Client mapping completed for 1182-1185, workplace/market fields normalized to match 1198)
+ Last updated: September 13, 2026 — GREEN baseline confirmed: /careers job-card title font-size fixed (JobCard.module.css), email/text share card rebuilt to "Option B: confident hierarchy" per Byron's full design review, and positions 1115/1116's double-dash title text fixed across job.title, seoTitle, AND metaDescription (see docs/CAREERS_GREEN_BASELINE_2026-09-13.md — supersedes the 09-12 share/copy baseline below for the email card specifically; position-data baseline further down is unaffected except for 1115/1116).
 
  ## Purpose
 
@@ -8,15 +8,17 @@
 
  ## SHARE / COPY FEATURE BASELINE (separate from position-data GREEN BASELINE below)
 
- Current verified baseline commit for the share/copy feature (`lib/shareJob.js`, `next.config.mjs`):
+Current verified baseline commit for the share/copy feature (`lib/shareJob.js`):
 
- `1977b55270a19f96324eddaeb4e1af9d7ee6c40e`
+`d6d8ffcf7b71f38e534b238b388254df178217b7`
 
- Vercel production deployment: `dpl_FwVKibbZWAkCeycexyJELmkesnZW` — READY, verified live.
+Vercel production deployment: `dpl_AJUh5rjrAF9E4J8V7DBHkXsBFCsq` — READY, verified live (confirmed via actual clipboard read after clicking "Copy Link" on a live card, not just source inspection).
 
- Detailed baseline record: `docs/CAREERS_GREEN_BASELINE_2026-09-12_SHARE_COPY_LINKS.md` (email card font sizes, plain-text SMS format, short `/s/:id` link for Similar Positions, two-button Copy Link vs Copy for Text split, known iOS auto-hyphenation limitation).
+Detailed baseline record: `docs/CAREERS_GREEN_BASELINE_2026-09-13.md` — email card rebuilt as "Option B: confident hierarchy" (title 14px/700, salary 14px/700 as the single largest/boldest element, unified brand blue #0c6ca3 across eyebrow and links, Position ID quietened to 11px light gray, "View Position →" vs. quieter "See similar positions", detail line now includes years of experience). This doc also covers the same-session /careers JobCard grid title font-size fix and the positions 1115/1116 title-text fix (job.title + seoTitle + metaDescription, all three layers).
 
- ## GREEN BASELINE
+Prior share/copy baseline (`1977b55`, `docs/CAREERS_GREEN_BASELINE_2026-09-12_SHARE_COPY_LINKS.md`) is superseded for the email card specifically; still useful for the share/copy feature's earlier history (short /s/:id link, Copy Link vs Copy for Text split, iOS limitations).
+
+## GREEN BASELINE
 
  Current verified GREEN recovery baseline code commit:
 
