@@ -6,23 +6,29 @@ re-breaking) the same things.
 
 ## Current state
 
-- **Live baseline:** commit `f146c37`, locked 2026-09-03 21:34 EDT. Full
-  roster and what changed to reach it: [docs/CAREERS_FINAL_TRUTH_BASELINE_2026-09-03_2134.md](docs/CAREERS_FINAL_TRUTH_BASELINE_2026-09-03_2134.md).
+- **Live baseline (position data):** commit `f146c37`, locked 2026-09-03
+21:34 EDT, EXCEPT positions 1115/1116 whose title/seoTitle/metaDescription
+were corrected 2026-09-13 (commit `d6d8ffc`) — see below.
+- **Live baseline (visual/share-card polish):** commit `d6d8ffc`, locked
+2026-09-13. Covers: /careers JobCard grid title font-size, the email/text
+"Copy Link" share card (rebuilt as "Option B: confident hierarchy"), and the
+1115/1116 title-text fix. Full detail:
+[docs/CAREERS_GREEN_BASELINE_2026-09-13.md](docs/CAREERS_GREEN_BASELINE_2026-09-13.md).
 - **Counts:** 202 total position records — 164 Active (live), 30 Dormant,
-  8 Terminated.
+8 Terminated.
 - **Production:** `https://www.agileconsultingsolutions.com/careers`
-  (also aliased at `careers.agileconsultingsolutions.com`). Vercel project
-  `prj_IBpz6UjdpSOtOtd87V3A4aGlP3SI`, team `team_lTUAnuGUaUTLSqB2D2LbSlcD`.
-  Always confirm a deployment actually reached `READY` and is aliased to
-  the production domain before telling Byron something is live — don't
-  assert it from the git push alone.
+(also aliased at `careers.agileconsultingsolutions.com`). Vercel project
+`prj_IBpz6UjdpSOtOtd87V3A4aGlP3SI`, team `team_lTUAnuGUaUTLSqB2D2LbSlcD`.
+Always confirm a deployment actually reached `READY` and is aliased to
+the production domain before telling Byron something is live — don't
+assert it from the git push alone.
 - **Master workbook** (real client names — see Confidentiality below):
-  `AGILE_Master_Position_List_20260903_2134_FINAL_TRUTH_BASELINE.xlsx`,
-  kept in sync in two places:
-  `/Users/byronevens/Documents/Claude outputs/` and
-  `/Users/byronevens/Desktop/Claude Downloads!!/`. Check both for the
-  highest version number before trusting either — they have drifted
-  before.
+`AGILE_Master_Position_List_20260903_2134_FINAL_TRUTH_BASELINE.xlsx`,
+kept in sync in two places:
+`/Users/byronevens/Documents/Claude outputs/` and
+`/Users/byronevens/Desktop/Claude Downloads!!/`. Check both for the
+highest version number before trusting either — they have drifted
+before.
 
 ## Non-negotiable terminology
 
@@ -67,6 +73,21 @@ column, which is never committed to this git repo.
   number after the highest ID ever used — check the `data/jobs/*.js`
   filenames for the ceiling. Never reuse or skip a number, and never
   renumber an existing position.
+- **A title-text fix on `job.title` is not the whole fix.** `seoTitle` and
+`metaDescription` (both in the `data/jobDetails/` overlay) are
+independently-authored strings that can silently keep stale wording even
+after the base record is corrected — this happened for real on positions
+1115/1116 on 2026-09-13 (the H1 and grid card were right, but the browser
+tab `<title>` and search snippet still had the old text). Any text fix to a
+position's title must check all three fields, not just `job.title`.
+- **Without a device bridge (plain chat session, no local repo access),**
+commits go through GitHub's web "Upload files" flow: inject a
+`File`/`DataTransfer` into the page's `<input type="file">` via
+`javascript_tool`. To move edited file content from a page where you read
+it (e.g. `raw.githubusercontent.com`) to the upload page on a different
+origin, `fetch()` between them fails and `sessionStorage`/`localStorage`
+don't survive the origin change — `window.name` does survive a same-tab
+cross-origin navigation and works reliably as the transfer mechanism.
 - **`coreJobs` vs `jobs`:** `coreJobs` (from `data/jobs.js`) is the raw
   base records, with no `jobDetails` overlay merged in, and includes
   Dormant/Terminated records. `jobs` is the public export — overlay
