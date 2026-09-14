@@ -19,6 +19,12 @@ function positionMessage(id, title) {
   return `Hello,\nI'd like to learn more about Position ID ${id}${title ? `, ${title}` : ""} and discuss my qualifications. Thank you.`;
 }
 
+function shortlistMessage(ids) {
+  if (!ids || !ids.length) return baseMessages.other;
+  const list = ids.map((id) => `Position ID ${id}`).join(", ");
+  return `Hello,\nI'd like to discuss the following shortlisted positions: ${list}. Thank you.`;
+}
+
 function formatPhone(value) {
   const digits = value.replace(/\D/g, "").slice(0, 10);
   if (digits.length < 4) return digits;
@@ -40,6 +46,25 @@ export default function ContactSection() {
   const badgesRef = useRef(null);
   const formRef = useRef(null);
   const [badgesVisible, setBadgesVisible] = useState(false);
+  const [shortlistedIds, setShortlistedIds] = useState([]);
+
+  useEffect(() => {
+    const syncShortlisted = () => {
+      try {
+        const saved = JSON.parse(window.localStorage.getItem("agile-saved-positions") || "[]");
+        setShortlistedIds(Array.isArray(saved) ? saved.map(String) : []);
+      } catch {
+        setShortlistedIds([]);
+      }
+    };
+    syncShortlisted();
+    window.addEventListener("storage", syncShortlisted);
+    window.addEventListener("focus", syncShortlisted);
+    return () => {
+      window.removeEventListener("storage", syncShortlisted);
+      window.removeEventListener("focus", syncShortlisted);
+    };
+  }, []);
 
   useEffect(() => {
     const syncPositionFromUrl = () => {
@@ -71,7 +96,7 @@ export default function ContactSection() {
     const value = event.target.value;
     setStatus(""); setCelebrating(false);
     setQuickMessage(value);
-    setMessage(value === "position" ? positionMessage(positionId, positionTitle) : baseMessages[value] ?? "");
+    setMessage(value === "position" ? positionMessage(positionId, positionTitle) : value === "shortlist" ? shortlistMessage(shortlistedIds) : baseMessages[value] ?? "");
   }
 
   async function handleSubmit(event) {
@@ -79,7 +104,7 @@ export default function ContactSection() {
     const form = event.currentTarget;
     setSending(true); setStatus(""); setCelebrating(false);
     const formData = new FormData(form);
-    formData.set("positionId", positionId); formData.set("positionTitle", positionTitle);
+    formData.set("positionId", positionId); formData.set("positionTitle", positionTitle); formData.set("shortlistedPositions", shortlistedIds.map((id) => `Position ID ${id}`).join(", "));
     formData.set("textingConsent", formData.get("textingConsent") === "yes" ? "Yes" : "No");
     try {
       const response = await fetch("/api/inquiry", { method: "POST", body: formData });
@@ -125,7 +150,7 @@ export default function ContactSection() {
           <label>Best Time to Reach Me<select name="bestTime" defaultValue=""><option value="">Choose a time</option><option>Morning · 8 AM–11 AM</option><option>Midday · 11 AM–2 PM</option><option>Afternoon · 2 PM–5 PM</option><option>Evening · 5 PM–8 PM</option><option>Flexible</option></select></label>
           <label>Preferred Contact Method<select name="contactMethod" defaultValue=""><option value="">No preference</option><option>Phone</option><option>Text</option><option>Email</option></select></label>
           {phone ? <label className={`${styles.full} ${styles.consent}`}><input type="checkbox" name="textingConsent" value="yes" /><span>OK to text me about this inquiry and future opportunities. Optional — msg &amp; data rates may apply, reply STOP to opt out.</span></label> : null}
-          <label className={styles.full}>Reason for Reaching Out<select name="quickMessage" value={quickMessage} onChange={handleQuickMessage}><option value="position">I’m interested in a specific position</option><option value="confidential">I’d like to discuss career options</option><option value="resume">I have a question before sharing my résumé</option><option value="guidance">I’d like confidential career guidance</option><option value="lilly">I’d like to connect with Lilly</option><option value="other">Other career inquiry</option></select></label>
+          <label className={styles.full}>Reason for Reaching Out<select name="quickMessage" value={quickMessage} onChange={handleQuickMessage}><option value="position">I’m interested in a specific position</option><option value="confidential">I’d like to discuss career options</option><option value="resume">I have a question before sharing my résumé</option><option value="guidance">I’d like confidential career guidance</option><option value="lilly">I’d like to connect with Lilly</option><option value="other">Other career inquiry</option>{shortlistedIds.length > 0 ? <option value="shortlist">I'd like to discuss my shortlisted positions</option> : null}</select></label>
           <label className={styles.full}>Your Message — Optional<textarea name="message" rows="4" value={message} onChange={(event) => setMessage(event.target.value)} /></label>
           <label className={styles.resume}><span className={styles.resumePrompt}><strong>Attach Résumé</strong> <em>Optional</em></span><input type="file" name="resume" accept=".pdf,.doc,.docx" /></label>
           <div className={styles.submitCell}><button type="submit" disabled={sending}>{sending ? "Sending..." : "Send My Inquiry"}</button></div>
