@@ -21,6 +21,7 @@ export const stateOptions = [
 ];
 
 export const disciplineOptions = [
+  "BIM/VDC",
   "Civil Engineering",
   "Commissioning",
   "Construction Management",
