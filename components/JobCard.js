@@ -7,11 +7,19 @@ import ShortlistButton from "./ShortlistButton";
 import ViewPositionLink from "./ViewPositionLink";
 import { jobBoardConfig } from "../data/jobBoardConfig";
 import { shareJob, copyPositionForText } from "../lib/shareJob";
-import { formatExperienceDisplay, formatSalaryDisplay, formatWorkplaceDisplay } from "../lib/jobFilters";
+import { formatExperienceDisplay, formatSalaryDisplay, formatWorkplaceDisplay, experienceMatchInfo } from "../lib/jobFilters";
 
-export default function JobCard({ job, isShortlisted = false, onShortlist, onViewPosition }) {
+export default function JobCard({ job, isShortlisted = false, onShortlist, onViewPosition, selectedExperience = "" }) {
 const labels = jobBoardConfig.cardLabels;
 const [shareStatus, setShareStatus] = useState("");
+
+// Only shown when this card matched the selected experience band because
+// its own requirement is open-ended and sits below the band (a "stretch"
+// match) -- e.g. a "10+ years" posting surfacing under a "26-35 years"
+// search. Direct/close matches never show this note.
+const experienceNote = selectedExperience && experienceMatchInfo(job, selectedExperience).isStretch
+? "No experience ceiling stated"
+: null;
 
 async function handleShare() {
 try {
@@ -68,7 +76,7 @@ onClick={() => onShortlist?.(job)}
 </div>
 <div className={styles.metaRow}>
 <dt>{labels.experience}</dt>
-<dd>{formatExperienceDisplay(job.experience)}</dd>
+<dd>{formatExperienceDisplay(job.experience)}{experienceNote ? <span className={styles.experienceNote}>{experienceNote}</span> : null}</dd>
 </div>
 {job.id ? <div className={styles.metaRow}>
 <dt>Position ID</dt>
