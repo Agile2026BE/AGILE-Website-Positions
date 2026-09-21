@@ -1,7 +1,7 @@
 // Location data for JobPosting structured data (schema.org jobLocation).
 //
 // Keyed by Position ID. Each entry is an array of {city, state, zip}
-// objects â one per physical office location a posting covers. Most
+// objects Ã¢ÂÂ one per physical office location a posting covers. Most
 // positions have exactly one location; a few (client offices covering
 // more than one metro, e.g. Concord Engineering's NYC + Voorhees, NJ
 // coverage) have two.
@@ -12,7 +12,7 @@
 // case app/careers/positions/[slug]/page.js omits postalCode rather than
 // guessing one.
 //
-// IMPORTANT â confidentiality: this file intentionally contains ONLY
+// IMPORTANT Ã¢ÂÂ confidentiality: this file intentionally contains ONLY
 // public-safe geographic data (city/state/zip). It must never have a
 // client/company name field added to it. Client and business-development
 // prospect names are tracked internally outside this codebase, never on
@@ -163,4 +163,30 @@ export const jobLocations = {
   "1183": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
   "1184": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
   "1185": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
+  "1091": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
+  "1092": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
+  "1153": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
+  "1154": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
+  "1155": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
+  "1156": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
+  "1158": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
+  "1200": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
+  "1201": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
+  "1202": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
+  "1203": [{ city: "Voorhees", state: "NJ", zip: "08043" }],
+  "1010": [{ city: "New York", state: "NY", zip: "10001" }],
+  "1074": [{ city: "New York", state: "NY", zip: "10001" }],
+  "1157": [{ city: "New York", state: "NY", zip: "10001" }],
+  "1197": [{ city: "New York", state: "NY", zip: "10001" }],
+  "1204": [{ city: "New York", state: "NY", zip: "10001" }],
+  "1169": [{ city: "Denver", state: "CO", zip: "80209" }],
+  "1173": [{ city: "Denver", state: "CO", zip: "80209" }],
+  "1175": [{ city: "Denver", state: "CO", zip: "80209" }],
+  "1178": [{ city: "Denver", state: "CO", zip: "80209" }],
+  "1170": [{ city: "Charlotte", state: "NC", zip: "28269" }],
+  "1171": [{ city: "Charlotte", state: "NC", zip: "28269" }],
+  "1174": [{ city: "Rancho Cordova", state: "CA", zip: "95670" }],
+  "1177": [{ city: "Louisville", state: "CO", zip: "80027" }],
+  "1179": [{ city: "Louisville", state: "CO", zip: "80027" }],
+  "1199": [{ city: "Raleigh", state: "NC", zip: "27607" }],
 };
