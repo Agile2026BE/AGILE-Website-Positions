@@ -1,7 +1,7 @@
 // Location data for JobPosting structured data (schema.org jobLocation).
 //
 // Keyed by Position ID. Each entry is an array of {city, state, zip}
-// objects — one per physical office location a posting covers. Most
+// objects â one per physical office location a posting covers. Most
 // positions have exactly one location; a few (client offices covering
 // more than one metro, e.g. Concord Engineering's NYC + Voorhees, NJ
 // coverage) have two.
@@ -12,7 +12,7 @@
 // case app/careers/positions/[slug]/page.js omits postalCode rather than
 // guessing one.
 //
-// IMPORTANT — confidentiality: this file intentionally contains ONLY
+// IMPORTANT â confidentiality: this file intentionally contains ONLY
 // public-safe geographic data (city/state/zip). It must never have a
 // client/company name field added to it. Client and business-development
 // prospect names are tracked internally outside this codebase, never on
@@ -150,4 +150,17 @@ export const jobLocations = {
   "1209": [{ city: "Hollywood", state: "FL", zip: "33021" }],
   "1210": [{ city: "Philadelphia", state: "PA", zip: "19107" }],
   "1211": [{ city: "Hollywood", state: "FL", zip: "33021" }],
+  "1095": [{ city: "Hollywood", state: "FL", zip: "33021" }],
+  "1097": [{ city: "Hollywood", state: "FL", zip: "33021" }],
+  "1189": [{ city: "New York", state: "NY", zip: "10001" }],
+  "1190": [{ city: "New York", state: "NY", zip: "10001" }],
+  "1191": [{ city: "New York", state: "NY", zip: "10001" }],
+  "1193": [{ city: "Hollywood", state: "FL", zip: "33021" }],
+  "1194": [{ city: "Hollywood", state: "FL", zip: "33021" }],
+  "1195": [{ city: "Hollywood", state: "FL", zip: "33021" }],
+  "1196": [{ city: "Hollywood", state: "FL", zip: "33021" }],
+  "1182": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
+  "1183": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
+  "1184": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
+  "1185": [{ city: "Wall Township", state: "NJ", zip: "07719" }],
 };
