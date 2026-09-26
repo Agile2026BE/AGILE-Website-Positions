@@ -1,0 +1,52 @@
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 24px 32px;
+}
+
+.details {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 16px;
+}
+
+.summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #0c6ca3;
+}
+
+.list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  columns: 2 320px;
+  column-gap: 32px;
+}
+
+.item {
+  break-inside: avoid;
+  padding: 4px 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.link {
+  color: #0c6ca3;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link:hover,
+.link:focus-visible {
+  text-decoration: underline;
+}
+
+.meta {
+  color: #5b6573;
+}
+
+.positionId {
+  color: #8a929c;
+  font-size: 0.8rem;
+}
