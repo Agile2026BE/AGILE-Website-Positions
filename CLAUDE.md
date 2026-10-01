@@ -131,3 +131,8 @@ cross-origin navigation and works reliably as the transfer mechanism.
   Engineers" (NYC, distinct from "M/E Engineering" in Buffalo); the 13
   M/E Engineering IDs (1030,1031,1032,1033,1054,1055,1058,1059,1064,1065,
   1068,1069,1105) → tagged Business Development, must stay Active.
+
+## Next.js config (2026-10-01)
+
+- This project's Next.js config is `next.config.mjs` ONLY. Never create `next.config.js` — when both exist Next.js loads the `.mjs` and silently ignores the `.js` (this broke the 19 GSC slug redirects until commit `198850d`). Add redirects to the `redirects()` array in `next.config.mjs` and verify on the live site after deploy.
+- Filled/dormant/retired positions intentionally 404 with the "This Opportunity Has Been Filled" page (`app/careers/positions/[slug]/not-found.js`, re-exported by `app/p/[id]/not-found.js` for short links). Do not redirect them to /careers.

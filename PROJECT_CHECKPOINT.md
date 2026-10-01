@@ -1,12 +1,35 @@
 # AGILE Careers Project Checkpoint
 
- Last updated: September 13, 2026 — GREEN baseline confirmed: /careers job-card title font-size fixed (JobCard.module.css), email/text share card rebuilt to "Option B: confident hierarchy" per Byron's full design review, and positions 1115/1116's double-dash title text fixed across job.title, seoTitle, AND metaDescription (see docs/CAREERS_GREEN_BASELINE_2026-09-13.md — supersedes the 09-12 share/copy baseline below for the email card specifically; position-data baseline further down is unaffected except for 1115/1116).
+Last updated: October 1, 2026 — Search Console 404 cleanup: 19 slug redirects live in next.config.mjs, duplicate next.config.js removed, and the "This Opportunity Has Been Filled" page now covers full position URLs and /p, /s short links (see SEARCH CONSOLE 404 CLEANUP section below). Previous: September 13, 2026 — GREEN baseline confirmed: /careers job-card title font-size fixed (JobCard.module.css), email/text share card rebuilt to "Option B: confident hierarchy" per Byron's full design review, and positions 1115/1116's double-dash title text fixed across job.title, seoTitle, AND metaDescription (see docs/CAREERS_GREEN_BASELINE_2026-09-13.md — supersedes the 09-12 share/copy baseline below for the email card specifically; position-data baseline further down is unaffected except for 1115/1116).
 
  ## Purpose
 
  This is the operational handoff and recovery record for AGILE Careers development. Read this file before making future production changes.
 
- ## SHARE / COPY FEATURE BASELINE (separate from position-data GREEN BASELINE below)
+## SEARCH CONSOLE 404 CLEANUP + FILLED-POSITION PAGE (2026-10-01)
+
+Current verified production commit: `2f19b760d1c4da87cb0f90e5199ce65a33d14c19` (Vercel deployment `dpl_83faQNnnd4NtEhG6P8tM61DMW8cH`, READY, live-verified).
+
+What landed (in order):
+
+- `9c1171b` — `app/careers/positions/[slug]/not-found.js` + `not-found.module.css`: filled/dormant/retired position URLs show "This Opportunity Has Been Filled" with Byron's exact copy ("This particular opportunity has been filled, however we would like to speak with you regarding other positions that are currently available with our clients."), plus "View Current Positions" and "Start a Conversation" buttons. Still returns HTTP 404 (correct for Google).
+- `b0134b6` — added 19 old-slug -> current-slug 301 redirects for live positions flagged in GSC "Not found (404)" (IDs 1153-1160, 1169, 1171-1180). **This commit put them in a NEW `next.config.js`, which Next.js silently ignores when `next.config.mjs` exists — the redirects never took effect.**
+- `198850d` — merged all 19 rules into `next.config.mjs` (the real config). 22 redirects total (3 original: `/positions`, `/home`, `/s/:id` + 19 new).
+- `14e9260` — deleted the duplicate `next.config.js`.
+- `2f19b76` — `app/p/[id]/not-found.js` re-exports the careers not-found page, so `/p/:id` and `/s/:id` short share links for filled positions show the same "Opportunity Has Been Filled" page instead of the bare Next.js 404.
+
+Live verification (2026-10-01): all 19 old slugs land on the correct current position page (200); `/positions`, `/home`, `/s/1178` still redirect correctly; `/p/1038`, `/s/1038`, `/p/1166` and full filled-position URLs show the filled page (404 status); active short links (`/s/1178`) open the real position. Also confirmed: 1181 is off the site (1198 live), and MGE positions 1207-1211 are all live.
+
+**Standing rule: this project's Next.js config is `next.config.mjs` ONLY. Never create `next.config.js` — it will be silently ignored.**
+
+Decisions:
+
+- Legacy GoDaddy-era URLs `/hiring`, `/trends`, `/expectations`, `/salary-calculator`: **retired, intentionally left as 404** (content now lives in homepage Client Support / Candidate Support / Resources sections and the /careers Insights signup). No redirects.
+- Filled/dormant/retired position URLs in GSC: **intentionally left as 404** (friendly page, not redirected to /careers — avoids soft-404 and keeps Dormant IDs cleanly reactivatable).
+
+Google Search Console: "Validate Fix" started 10/1/26 on the Not found (404) report (62 URLs). Expected outcome: ~19 pass (redirected), ~43 "fail" because they are filled positions that correctly 404 — the failures are expected and can be ignored.
+
+## SHARE / COPY FEATURE BASELINE (separate from position-data GREEN BASELINE below)
 
 Current verified baseline commit for the share/copy feature (`lib/shareJob.js`):
 
