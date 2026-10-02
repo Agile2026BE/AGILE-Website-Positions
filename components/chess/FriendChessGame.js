@@ -14,7 +14,7 @@ function sameSq(a, r, c) {
 }
 
 function colorName(color) {
-  return color === WHITE ? "White" : "Black";
+  return color === WHITE ? "Silver" : "Gold";
 }
 
 function statusLine(game, seat, myTurn) {

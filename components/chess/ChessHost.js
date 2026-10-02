@@ -125,7 +125,7 @@ export default function ChessHost() {
     return (
       <div key={g.id} style={{ borderTop: "1px solid rgba(0,0,0,0.12)", padding: "12px 0" }}>
         <strong>
-          {g.names[g.hostColor]} ({g.hostColor === "w" ? "White" : "Black"}) vs {g.names[friendSeat]}
+          {g.names[g.hostColor]} ({g.hostColor === "w" ? "Silver" : "Gold"}) vs {g.names[friendSeat]}
         </strong>
         <div className={styles.chessSub}>{summaryStatus(g)}</div>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
@@ -189,14 +189,14 @@ export default function ChessHost() {
           className={hostColor === "w" ? styles.chessNewGame : styles.chessOutlineBtn}
           onClick={() => setHostColor("w")}
         >
-          I play White
+          I play Silver
         </button>
         <button
           type="button"
           className={hostColor === "b" ? styles.chessNewGame : styles.chessOutlineBtn}
           onClick={() => setHostColor("b")}
         >
-          I play Black
+          I play Gold
         </button>
       </div>
 
