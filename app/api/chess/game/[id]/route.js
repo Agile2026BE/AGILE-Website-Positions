@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { BLACK, WHITE, applyMove, gameStatus, legalMovesForColor, newGameState } from "../../../../../lib/chessEngine";
-import { getGame, playerView, saveGame, seatFor } from "../../../../../lib/chessStore";
+import { MATCH_GAMES, emptyMatch, getGame, playerView, saveGame, seatFor } from "../../../../../lib/chessStore";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +22,17 @@ function sqName(s) {
 
 function other(color) {
   return color === WHITE ? BLACK : WHITE;
+}
+
+// Server-side match tally (players cannot edit it). Counted once, when a game ends.
+function recordResult(game) {
+  const m = game.match || emptyMatch();
+  const w = game.result.winner;
+  const who = !w ? null : w === game.hostColor ? "host" : "friend";
+  if (who) m[who] += 1;
+  else m.draws += 1;
+  m.history.push({ winner: who, reason: game.result.reason });
+  game.match = m;
 }
 
 async function loadForPlayer(id, token) {
@@ -75,6 +86,7 @@ export async function POST(request, { params }) {
         tokens: { w: game.tokens.b, b: game.tokens.w },
         updatedAt: Date.now(),
       };
+      if (game.match && game.match.history.length >= MATCH_GAMES) fresh.match = emptyMatch(); // start a new match
       await saveGame(fresh);
       return json(playerView(fresh, other(seat)));
     }
@@ -84,6 +96,7 @@ export async function POST(request, { params }) {
     if (action === "resign") {
       game.result = { winner: other(seat), reason: "resignation" };
       game.status = "over";
+      recordResult(game);
       game.version += 1;
       game.updatedAt = Date.now();
       await saveGame(game);
@@ -110,6 +123,7 @@ export async function POST(request, { params }) {
     game.lastMove = { from: legal.from, to: legal.to };
     if (status === "checkmate") game.result = { winner: seat, reason: "checkmate" };
     else if (status === "stalemate") game.result = { winner: null, reason: "stalemate" };
+    if (game.result) recordResult(game);
     game.version += 1;
     game.updatedAt = Date.now();
     await saveGame(game);
