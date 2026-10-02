@@ -217,8 +217,9 @@ export default function FriendChessGame({ id, token }) {
   return (
     <section className={styles.chessCard} style={{ paddingTop: 12, paddingBottom: 12 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
-        <h2 style={{ margin: 0, fontSize: "1.3rem", lineHeight: 1.2 }}>
-          “What’s Your <em>Next</em> Move?”<sup style={{ fontSize: "0.5em", marginLeft: 2, fontWeight: 600 }}>SM</sup>
+        <h2 style={{ margin: 0, fontSize: "1.7rem", lineHeight: 1.2, fontWeight: 400, fontFamily: "Georgia, 'Times New Roman', serif" }}>
+          What’s Your Next <em style={{ color: "#66c7e9" }}>Move?</em>
+          <sup style={{ fontSize: "0.4em", marginLeft: 2 }}>SM</sup>
         </h2>
         <span style={{ fontSize: "0.85rem", opacity: 0.8 }}>
           AGILE Chess · You ({game.names[seat]}) play {colorName(seat)} vs {game.names[opp]} ({colorName(opp)})
