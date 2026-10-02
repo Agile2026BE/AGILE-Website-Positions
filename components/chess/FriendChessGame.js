@@ -302,7 +302,7 @@ export default function FriendChessGame({ id, token }) {
         <span style={{ fontWeight: 600, color: error ? "#b42318" : undefined }}>
           {error ? error : "Moves: " + game.moveCount}
         </span>
-        <span style={{ opacity: 0.7 }}>Private game · updates automatically</span>
+        <span style={{ opacity: 0.7 }}>Private game — by invitation link only. No peeking!</span>
       </div>
     </section>
   );
