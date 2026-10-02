@@ -1,6 +1,19 @@
 import { NextResponse } from "next/server";
 import { BLACK, WHITE, applyMove, gameStatus, legalMovesForColor, newGameState } from "../../../../../lib/chessEngine";
-import { MATCH_GAMES, emptyMatch, getGame, playerView, saveGame, seatFor } from "../../../../../lib/chessStore";
+import {
+  MATCH_GAMES,
+  emptyMatch,
+  getGame,
+  hostAway,
+  notifyHost,
+  playerView,
+  presenceView,
+  readPresence,
+  roleOf,
+  saveGame,
+  seatFor,
+  touchPresence,
+} from "../../../../../lib/chessStore";
 
 export const dynamic = "force-dynamic";
 
@@ -35,6 +48,33 @@ function recordResult(game) {
   game.match = m;
 }
 
+async function respond(game, seat) {
+  let map = {};
+  try {
+    map = await readPresence(game);
+  } catch {
+    map = {};
+  }
+  return json({ ...playerView(game, seat), presence: presenceView(map, game, seat) });
+}
+
+// Email Byron when his friend moves (or the game ends) while Byron is not watching the board.
+async function maybeNotifyHost(game, seat) {
+  if (roleOf(game, seat) !== "friend") return;
+  try {
+    const map = await readPresence(game);
+    if (!hostAway(map)) return;
+    const who = game.names[seat];
+    if (game.result) {
+      await notifyHost(game, "♟ Game over vs " + who, "Your game with " + who + " has ended. See the result on the board.");
+    } else {
+      await notifyHost(game, "♟ " + who + " moved — your turn", who + " made a move. It is your turn.");
+    }
+  } catch {
+    // notifications are best-effort
+  }
+}
+
 async function loadForPlayer(id, token) {
   const game = await getGame(id);
   if (!game) return { error: json({ error: "This game was not found or has expired." }, 404) };
@@ -50,7 +90,18 @@ export async function GET(request, { params }) {
   try {
     const { game, seat, error } = await loadForPlayer(id, token);
     if (error) return error;
-    return json(playerView(game, seat));
+    let map = {};
+    try {
+      const p = await touchPresence(game, seat);
+      map = p.map;
+      if (p.firstVisit && p.role === "friend") {
+        const who = game.names[seat];
+        await notifyHost(game, "♟ " + who + " joined your chess game", who + " just opened your AGILE Chess invite. Game on!");
+      }
+    } catch {
+      map = {};
+    }
+    return json({ ...playerView(game, seat), presence: presenceView(map, game, seat) });
   } catch (err) {
     return json({ error: err.message || "Could not load game." }, 500);
   }
@@ -72,7 +123,7 @@ export async function POST(request, { params }) {
 
     if (action === "rematch") {
       if (!game.result) return json({ error: "This game is still in progress." }, 409);
-      if (body.version !== game.version) return json(playerView(game, seat)); // already rematched
+      if (body.version !== game.version) return respond(game, seat); // already rematched
       const fresh = {
         ...game,
         state: newGameState(),
@@ -88,7 +139,7 @@ export async function POST(request, { params }) {
       };
       if (game.match && game.match.history.length >= MATCH_GAMES) fresh.match = emptyMatch(); // start a new match
       await saveGame(fresh);
-      return json(playerView(fresh, other(seat)));
+      return respond(fresh, other(seat));
     }
 
     if (game.result) return json({ error: "This game is over." }, 409);
@@ -100,7 +151,8 @@ export async function POST(request, { params }) {
       game.version += 1;
       game.updatedAt = Date.now();
       await saveGame(game);
-      return json(playerView(game, seat));
+      await maybeNotifyHost(game, seat);
+      return respond(game, seat);
     }
 
     if (action !== "move") return json({ error: "Unknown action." }, 400);
@@ -127,7 +179,8 @@ export async function POST(request, { params }) {
     game.version += 1;
     game.updatedAt = Date.now();
     await saveGame(game);
-    return json(playerView(game, seat));
+    await maybeNotifyHost(game, seat);
+    return respond(game, seat);
   } catch (err) {
     return json({ error: err.message || "Could not save move." }, 500);
   }
