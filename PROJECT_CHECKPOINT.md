@@ -375,4 +375,11 @@ Status: GREEN. Last chess code commit: 5d6747f ("Chess: match homepage slogan st
 
 **Gotcha (learned 2026-10-01):** raw.githubusercontent.com/<repo>/main/... can serve stale content for several minutes after a commit. When editing via the browser upload flow, always fetch raw files at the exact latest commit SHA, never at /main/. A stale /main/ read once silently reverted the Silver/Gold labels.
 
-**Possible next steps (not started):** presence indicator / notification when the friend joins or moves; optional Confirm-move toggle; public mode as a visitor engagement hook.
+**Added later 2026-10-01 (latest code commit a9e6b84, Project Check green):**
+- Presence next to the opponent's name: "● <name> is here" / "○ <name> is away" / "○ Invite not opened yet"; status shows "Waiting for <name> to open the invite…" until first open. "Here" = that player's board was visible within the last 3 minutes (Byron's choice, so either player can check other windows). Stored in Redis hash chess:seen:<id> (host/friend → last-seen ms), writes throttled to every 10s.
+- One-time email to Byron (bevans@agileconsultingsolutions.com; override with env CHESS_NOTIFY_EMAIL) the first time the friend opens the invite, sent through the site's existing Resend setup (RESEND_API_KEY, INQUIRY_FROM_EMAIL). Byron explicitly does NOT want emails for moves or game endings. Failed sends are logged with console.error. Note: INQUIRY_TO_EMAIL is not where the contact form sends (it hardcodes careers@), so don't use it for alerts.
+- Red outline on the king in check (and the losing king at checkmate); gold outlines = opponent's last move (from + to squares); thick gold border = selected piece.
+- Lint rule learned: never assign window.location.href inside a component (React compiler "value cannot be modified" error fails Project Check) — use window.location.assign().
+- Usage note: if Byron taps the friend's invite link himself (e.g. in his sent text), he is seen as the friend and uses up that game's one "joined" email — create a fresh game instead. Host console is linked from Byron's MyLaunchPage ("AGILE Chess Game Invite").
+
+**Possible next steps (not started):** optional Confirm-move toggle; public mode as a visitor engagement hook.
