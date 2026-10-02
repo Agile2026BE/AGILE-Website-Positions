@@ -77,6 +77,7 @@ export default function FriendChessGame({ id, token }) {
   const [selected, setSelected] = useState(null);
   const [pendingPromo, setPendingPromo] = useState(null);
   const [busy, setBusy] = useState(false);
+  const [presence, setPresence] = useState(null);
   const versionRef = useRef(-1);
 
   const load = useCallback(async () => {
@@ -87,6 +88,7 @@ export default function FriendChessGame({ id, token }) {
         setError(data.error || "Game not found.");
         return;
       }
+      setPresence(data.presence || null);
       if (data.version !== versionRef.current) {
         versionRef.current = data.version;
         setGame(data);
@@ -135,6 +137,7 @@ export default function FriendChessGame({ id, token }) {
       } else {
         versionRef.current = data.version;
         setGame(data);
+        setPresence(data.presence || null);
         setError("");
       }
     } catch {
@@ -223,6 +226,17 @@ export default function FriendChessGame({ id, token }) {
         </h2>
         <span style={{ fontSize: "0.85rem", opacity: 0.8 }}>
           AGILE Chess · You ({game.names[seat]}) play {colorName(seat)} vs {game.names[opp]} ({colorName(opp)})
+          {presence ? (
+            <span
+              style={{ marginLeft: 8, fontWeight: 600, whiteSpace: "nowrap", color: presence.opponentOnline ? "#1a7f37" : "#6b7280" }}
+            >
+              {presence.opponentOnline
+                ? "● " + game.names[opp] + " is here"
+                : presence.opponentJoined
+                  ? "○ " + game.names[opp] + " is away"
+                  : "○ Invite not opened yet"}
+            </span>
+          ) : null}
         </span>
       </div>
 
@@ -245,7 +259,9 @@ export default function FriendChessGame({ id, token }) {
           {m ? m.host.name + " " + m.host.wins + " – " + m.friend.wins + " " + m.friend.name + (m.draws ? " · Draws " + m.draws : "") : ""}
         </span>
         <span aria-live="polite" style={{ color: check ? "#b42318" : undefined }}>
-          {statusLine(game, seat, myTurn)}
+          {!myTurn && !over && presence && !presence.opponentJoined
+            ? "Waiting for " + game.names[opp] + " to open the invite…"
+            : statusLine(game, seat, myTurn)}
         </span>
         <span>{gameLabel}</span>
       </div>
