@@ -72,6 +72,160 @@ function matchResultText(m) {
   return "Match tied " + h + "–" + f;
 }
 
+const CHAT_CSS = `
+@keyframes agileTypingDot { 0%, 60%, 100% { transform: translateY(0); opacity: 0.45; } 30% { transform: translateY(-4px); opacity: 1; } }
+.agileChatDock { margin: 10px 0 0; border: 1px solid rgba(176, 141, 87, 0.45); border-radius: 12px; background: #fbf9f4; box-shadow: 0 6px 18px rgba(11, 37, 69, 0.08); display: flex; flex-direction: column; overflow: hidden; font-size: 0.9rem; }
+.agileChatMsgs { max-height: 120px; overflow-y: auto; padding: 8px 10px; display: flex; flex-direction: column; gap: 5px; }
+@media (min-width: 1200px) {
+  .agileChatDock { position: fixed; right: 16px; bottom: 24px; width: clamp(220px, calc((100vw - 700px) / 2 - 32px), 320px); margin: 0; z-index: 20; }
+  .agileChatMsgs { max-height: 46vh; min-height: 140px; }
+}
+`;
+
+// "Table Talk": a small text-message style window for friendly trash talk.
+function ChatPanel({ chat, oppName, onSend, onTyping }) {
+  const [text, setText] = useState("");
+  const listRef = useRef(null);
+  const typingSentRef = useRef(0);
+  const messages = chat ? chat.messages : [];
+  const count = messages.length;
+  const typing = !!(chat && chat.opponentTyping);
+
+  useEffect(() => {
+    const el = listRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [count, typing]);
+
+  function stopTyping() {
+    if (typingSentRef.current) {
+      typingSentRef.current = 0;
+      onTyping(false);
+    }
+  }
+
+  function change(e) {
+    const v = e.target.value.slice(0, 140);
+    setText(v);
+    const now = Date.now();
+    if (v && now - typingSentRef.current > 3000) {
+      typingSentRef.current = now;
+      onTyping(true);
+    }
+    if (!v) stopTyping();
+  }
+
+  function submit() {
+    const v = text.trim();
+    if (!v) return;
+    setText("");
+    typingSentRef.current = 0;
+    onSend(v);
+  }
+
+  return (
+    <div className="agileChatDock">
+      <style>{CHAT_CSS}</style>
+      <div
+        style={{
+          padding: "7px 12px",
+          borderBottom: "1px solid rgba(176, 141, 87, 0.3)",
+          fontFamily: "Georgia, 'Times New Roman', serif",
+          color: "#0b2545",
+          fontWeight: 600,
+          letterSpacing: "0.02em",
+        }}
+      >
+        Table Talk <span style={{ color: "#8a6d3b", fontWeight: 400, fontSize: "0.8rem" }}>· with {oppName}</span>
+      </div>
+      <div ref={listRef} className="agileChatMsgs">
+        {count === 0 && !typing ? (
+          <span style={{ opacity: 0.55, fontStyle: "italic", fontSize: "0.82rem" }}>
+            No messages yet. A little friendly trash talk is encouraged.
+          </span>
+        ) : null}
+        {messages.map((m, i) => (
+          <div
+            key={m.at + "-" + i}
+            style={{
+              alignSelf: m.mine ? "flex-end" : "flex-start",
+              maxWidth: "85%",
+              padding: "5px 10px",
+              borderRadius: 14,
+              background: m.mine ? "#0b2545" : "#efe9dc",
+              color: m.mine ? "#f7f4ee" : "#0b2545",
+              lineHeight: 1.3,
+              wordBreak: "break-word",
+            }}
+          >
+            {m.text}
+          </div>
+        ))}
+        {typing ? (
+          <div
+            aria-label={oppName + " is typing"}
+            style={{ alignSelf: "flex-start", padding: "8px 12px", borderRadius: 14, background: "#efe9dc", display: "flex", gap: 4 }}
+          >
+            {[0, 1, 2].map((d) => (
+              <span
+                key={d}
+                style={{
+                  width: 6,
+                  height: 6,
+                  borderRadius: "50%",
+                  background: "#8a6d3b",
+                  animation: "agileTypingDot 1.2s infinite ease-in-out",
+                  animationDelay: d * 0.15 + "s",
+                }}
+              />
+            ))}
+          </div>
+        ) : null}
+      </div>
+      <div style={{ display: "flex", gap: 6, padding: 8, borderTop: "1px solid rgba(176, 141, 87, 0.3)" }}>
+        <input
+          value={text}
+          onChange={change}
+          onBlur={stopTyping}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              submit();
+            }
+          }}
+          maxLength={140}
+          placeholder="Say something…"
+          aria-label="Message"
+          style={{
+            flex: 1,
+            minWidth: 0,
+            padding: "6px 10px",
+            borderRadius: 999,
+            border: "1px solid rgba(11, 37, 69, 0.2)",
+            background: "#fff",
+            fontSize: 16,
+          }}
+        />
+        <button
+          type="button"
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={submit}
+          style={{
+            padding: "6px 14px",
+            borderRadius: 999,
+            border: "none",
+            background: "#0b2545",
+            color: "#f7f4ee",
+            fontWeight: 600,
+            cursor: "pointer",
+          }}
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function FriendChessGame({ id, token }) {
   const [game, setGame] = useState(null);
   const [error, setError] = useState("");
@@ -79,6 +233,7 @@ export default function FriendChessGame({ id, token }) {
   const [pendingPromo, setPendingPromo] = useState(null);
   const [busy, setBusy] = useState(false);
   const [presence, setPresence] = useState(null);
+  const [chat, setChat] = useState(null);
   const versionRef = useRef(-1);
 
   const load = useCallback(async () => {
@@ -90,6 +245,7 @@ export default function FriendChessGame({ id, token }) {
         return;
       }
       setPresence(data.presence || null);
+        if (data.chat) setChat(data.chat);
       if (data.version !== versionRef.current) {
         versionRef.current = data.version;
         setGame(data);
@@ -140,6 +296,61 @@ export default function FriendChessGame({ id, token }) {
 
   // Tab alert: when the opponent moves while this window isn't focused,
   // flash the tab title and swap the tab icon until you click back in.
+  // Table Talk: send messages / typing status, and flash the tab on a new message.
+  async function sendChat(text) {
+    try {
+      const res = await fetch("/api/chess/game/" + id, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ t: token, action: "chat", text }),
+      });
+      const data = await res.json();
+      if (res.ok && data.chat) setChat(data.chat);
+    } catch {
+      // message will simply not appear; the player can resend
+    }
+  }
+  function sendTyping(on) {
+    fetch("/api/chess/game/" + id, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ t: token, action: "typing", on }),
+    }).catch(() => {});
+  }
+  const incomingMsgs = chat ? chat.messages.filter((m) => !m.mine) : null;
+  const latestIncomingAt = incomingMsgs ? (incomingMsgs.length ? incomingMsgs[incomingMsgs.length - 1].at : 0) : null;
+  const lastIncomingRef = useRef(null);
+  useEffect(() => {
+    if (latestIncomingAt === null) return undefined;
+    const prev = lastIncomingRef.current;
+    lastIncomingRef.current = latestIncomingAt;
+    if (prev === null || latestIncomingAt <= prev) return undefined;
+    if (document.hasFocus() && document.visibilityState === "visible") return undefined;
+    const baseTitle = document.title;
+    const alertText = "\u{1F4AC} New message";
+    let on = true;
+    document.title = alertText;
+    const flash = setInterval(() => {
+      on = !on;
+      document.title = on ? alertText : baseTitle;
+    }, 1000);
+    let done = false;
+    const restore = () => {
+      if (done) return;
+      done = true;
+      clearInterval(flash);
+      document.title = baseTitle;
+      window.removeEventListener("focus", onBack);
+      document.removeEventListener("visibilitychange", onBack);
+    };
+    function onBack() {
+      if (document.hasFocus() && document.visibilityState === "visible") restore();
+    }
+    window.addEventListener("focus", onBack);
+    document.addEventListener("visibilitychange", onBack);
+    return restore;
+  }, [latestIncomingAt]);
+
   const prevMyTurnRef = useRef(null);
   useEffect(() => {
     const prev = prevMyTurnRef.current;
@@ -203,6 +414,7 @@ export default function FriendChessGame({ id, token }) {
         versionRef.current = data.version;
         setGame(data);
         setPresence(data.presence || null);
+        if (data.chat) setChat(data.chat);
         setError("");
       }
     } catch {
@@ -454,6 +666,7 @@ export default function FriendChessGame({ id, token }) {
         </span>
         <span style={{ opacity: 0.7 }}>Private game — by invitation link only. No peeking!</span>
       </div>
-    </section>
+      <ChatPanel chat={chat} oppName={game.names[opp]} onSend={sendChat} onTyping={sendTyping} />
+      </section>
   );
 }
