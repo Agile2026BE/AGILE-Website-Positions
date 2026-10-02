@@ -35,6 +35,34 @@ function statusLine(game, seat, myTurn) {
     : "Waiting for " + game.names[opp] + " to move…";
 }
 
+const START = { P: 8, N: 2, B: 2, R: 2, Q: 1 };
+const VALUE = { P: 1, N: 3, B: 3, R: 5, Q: 9 };
+const TRAY_ORDER = ["Q", "R", "B", "N", "P"];
+
+// Pieces of one color that have been captured, worked out from the board (promotions accounted for).
+function capturedOf(board, color) {
+  const have = { P: 0, N: 0, B: 0, R: 0, Q: 0 };
+  for (const row of board) {
+    for (const p of row) {
+      if (p && p.color === color && have[p.type] !== undefined) have[p.type] += 1;
+    }
+  }
+  let promoted = 0;
+  const lost = {};
+  for (const t of ["N", "B", "R", "Q"]) {
+    promoted += Math.max(0, have[t] - START[t]);
+    lost[t] = Math.max(0, START[t] - have[t]);
+  }
+  lost.P = Math.max(0, 8 - have.P - promoted);
+  const list = [];
+  for (const t of TRAY_ORDER) for (let i = 0; i < lost[t]; i++) list.push(t);
+  return list;
+}
+
+function materialOf(list) {
+  return list.reduce((sum, t) => sum + VALUE[t], 0);
+}
+
 function matchResultText(m) {
   const h = m.host.wins;
   const f = m.friend.wins;
@@ -163,6 +191,28 @@ export default function FriendChessGame({ id, token }) {
     : "";
   const pieceClass = (color) =>
     [styles.chessPiece, color === WHITE ? styles.chessPieceWhite : styles.chessPieceBlack].join(" ");
+  const boardWidth = "max(280px, min(100%, calc(100vh - 320px)))";
+  const lostMine = capturedOf(game.state.board, seat);
+  const lostTheirs = capturedOf(game.state.board, opp);
+  const lead = materialOf(lostTheirs) - materialOf(lostMine);
+  const tray = (list, color, extra, label) => (
+    <div
+      aria-label={label}
+      style={{ display: "flex", alignItems: "center", gap: 2, minHeight: 28, margin: "6px auto", width: boardWidth, flexWrap: "wrap" }}
+    >
+      {list.map((t, i) => (
+        <span
+          key={t + "-" + i}
+          style={{ position: "relative", width: 24, height: 24, display: "inline-flex", alignItems: "center", justifyContent: "center" }}
+        >
+          <span className={pieceClass(color)} style={{ width: "100%", height: "100%" }}>
+            <ChessPieceIcon type={t} />
+          </span>
+        </span>
+      ))}
+      {extra > 0 ? <span style={{ marginLeft: 6, fontWeight: 700, fontSize: "0.85rem" }}>+{extra}</span> : null}
+    </div>
+  );
 
   return (
     <section className={styles.chessCard} style={{ paddingTop: 12, paddingBottom: 12 }}>
@@ -182,7 +232,7 @@ export default function FriendChessGame({ id, token }) {
           alignItems: "center",
           gap: 8,
           flexWrap: "wrap",
-          margin: "6px 0 8px",
+          margin: "10px 0 8px",
           padding: "6px 12px",
           borderRadius: 8,
           background: "rgba(201, 162, 39, 0.14)",
@@ -199,9 +249,11 @@ export default function FriendChessGame({ id, token }) {
         <span>{gameLabel}</span>
       </div>
 
+      {tray(lostMine, seat, -lead, "Your pieces captured by " + game.names[opp])}
+
       <div
         className={styles.chessBoardWrap}
-        style={{ width: "max(280px, min(100%, calc(100vh - 230px)))", margin: "0 auto" }}
+        style={{ width: boardWidth, margin: "0 auto" }}
       >
         <div className={styles.chessBoard}>
           {rows.map((r) =>
@@ -243,6 +295,8 @@ export default function FriendChessGame({ id, token }) {
         </div>
       </div>
 
+      {tray(lostTheirs, opp, lead, "Pieces you captured")}
+
       {pendingPromo ? (
         <div style={{ display: "flex", gap: 8, justifyContent: "center", alignItems: "center", margin: "8px 0 0", flexWrap: "wrap" }}>
           <span style={{ fontWeight: 600 }}>Promote to:</span>
@@ -274,7 +328,7 @@ export default function FriendChessGame({ id, token }) {
           alignItems: "center",
           gap: 8,
           flexWrap: "wrap",
-          marginTop: 8,
+          marginTop: 14,
           fontSize: "0.85rem",
         }}
       >
