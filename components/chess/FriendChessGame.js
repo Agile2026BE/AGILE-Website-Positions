@@ -6,6 +6,7 @@ import ChessPieceIcon from "../home/ChessPieceIcon";
 import { BLACK, WHITE, legalMovesForColor } from "../../lib/chessEngine";
 
 const POLL_MS = 2500;
+const HIDDEN_POLL_MS = 8000; // keep checking (more slowly) while this tab is in the background
 const PROMOS = ["Q", "R", "B", "N"];
 const ORDER = [0, 1, 2, 3, 4, 5, 6, 7];
 
@@ -105,8 +106,8 @@ export default function FriendChessGame({ id, token }) {
     let alive = true;
     let timer = null;
     const tick = async () => {
-      if (document.visibilityState === "visible") await load();
-      if (alive) timer = setTimeout(tick, POLL_MS);
+      await load();
+      if (alive) timer = setTimeout(tick, document.visibilityState === "visible" ? POLL_MS : HIDDEN_POLL_MS);
     };
     tick();
     return () => {
@@ -121,6 +122,70 @@ export default function FriendChessGame({ id, token }) {
 
   const legal = useMemo(() => (myTurn ? legalMovesForColor(game.state, seat) : []), [game, myTurn, seat]);
   const legalForSelected = selected ? legal.filter((m) => sameSq(m.from, selected[0], selected[1])) : [];
+
+
+  // Softer, off-white page background while a game is open.
+  useEffect(() => {
+    const body = document.body;
+    const html = document.documentElement;
+    const prevBody = body.style.background;
+    const prevHtml = html.style.background;
+    body.style.background = "#ece7dc";
+    html.style.background = "#ece7dc";
+    return () => {
+      body.style.background = prevBody;
+      html.style.background = prevHtml;
+    };
+  }, []);
+
+  // Tab alert: when the opponent moves while this window isn't focused,
+  // flash the tab title and swap the tab icon until you click back in.
+  const prevMyTurnRef = useRef(null);
+  useEffect(() => {
+    const prev = prevMyTurnRef.current;
+    prevMyTurnRef.current = myTurn;
+    if (prev !== false || !myTurn) return undefined;
+    if (document.hasFocus() && document.visibilityState === "visible") return undefined;
+    const baseTitle = document.title;
+    let icon = document.querySelector("link[rel~='icon']");
+    let addedIcon = false;
+    if (!icon) {
+      icon = document.createElement("link");
+      icon.setAttribute("rel", "icon");
+      document.head.appendChild(icon);
+      addedIcon = true;
+    }
+    const baseIcon = icon.getAttribute("href");
+    const alertIcon =
+      "data:image/svg+xml," +
+      encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#c9a227"/><circle cx="32" cy="32" r="13" fill="#0b2545"/></svg>'
+      );
+    icon.setAttribute("href", alertIcon);
+    let on = true;
+    document.title = "\u265F YOUR MOVE!";
+    const flash = setInterval(() => {
+      on = !on;
+      document.title = on ? "\u265F YOUR MOVE!" : baseTitle;
+    }, 1000);
+    let done = false;
+    const restore = () => {
+      if (done) return;
+      done = true;
+      clearInterval(flash);
+      document.title = baseTitle;
+      if (addedIcon) icon.remove();
+      else if (baseIcon !== null) icon.setAttribute("href", baseIcon);
+      window.removeEventListener("focus", onBack);
+      document.removeEventListener("visibilitychange", onBack);
+    };
+    function onBack() {
+      if (document.hasFocus() && document.visibilityState === "visible") restore();
+    }
+    window.addEventListener("focus", onBack);
+    document.addEventListener("visibilitychange", onBack);
+    return restore;
+  }, [myTurn]);
 
   async function post(body) {
     setBusy(true);
@@ -194,7 +259,7 @@ export default function FriendChessGame({ id, token }) {
     : "";
   const pieceClass = (color) =>
     [styles.chessPiece, color === WHITE ? styles.chessPieceWhite : styles.chessPieceBlack].join(" ");
-  const boardWidth = "max(280px, min(100%, calc(100vh - 320px)))";
+  const boardWidth = "max(280px, min(100%, calc(100dvh - 260px)))";
   const lostMine = capturedOf(game.state.board, seat);
   const lostTheirs = capturedOf(game.state.board, opp);
   const lead = materialOf(lostTheirs) - materialOf(lostMine);
@@ -218,7 +283,7 @@ export default function FriendChessGame({ id, token }) {
   );
 
   return (
-    <section className={styles.chessCard} style={{ paddingTop: 12, paddingBottom: 12 }}>
+    <section className={styles.chessCard} style={{ paddingTop: 12, paddingBottom: 12, background: "#f7f4ee" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
         <h2 style={{ margin: 0, fontSize: "1.7rem", lineHeight: 1.2, fontWeight: 400, fontFamily: "Georgia, 'Times New Roman', serif" }}>
           What’s Your Next <em style={{ color: "#66c7e9" }}>Move?</em>
@@ -270,7 +335,7 @@ export default function FriendChessGame({ id, token }) {
 
       <div
         className={styles.chessBoardWrap}
-        style={{ width: boardWidth, margin: "0 auto" }}
+        style={{ width: boardWidth, margin: "0 auto", padding: "0 0 8px" }}
       >
         <div className={styles.chessBoard}>
           {rows.map((r) =>
@@ -283,7 +348,8 @@ export default function FriendChessGame({ id, token }) {
                 piece.type === "K" &&
                 piece.color === game.state.turn &&
                 (game.status === "check" || game.status === "checkmate");
-              const isLast = game.lastMove && (sameSq(game.lastMove.from, r, c) || sameSq(game.lastMove.to, r, c));
+              const isLastFrom = !!game.lastMove && sameSq(game.lastMove.from, r, c);
+              const isLastTo = !!game.lastMove && sameSq(game.lastMove.to, r, c);
               const sqClasses = [styles.chessSq, (r + c) % 2 === 0 ? styles.chessSqLight : styles.chessSqDark];
               if (isSel) sqClasses.push(styles.chessSqSelected);
               return (
@@ -295,8 +361,10 @@ export default function FriendChessGame({ id, token }) {
                       ? { boxShadow: "inset 0 0 0 5px #c9a227" }
                       : isCheckedKing
                         ? { boxShadow: "inset 0 0 0 5px #b42318" }
-                        : isLast
-                        ? { boxShadow: "inset 0 0 0 4px rgba(201, 162, 39, 0.85)" }
+                        : isLastTo
+                      ? { boxShadow: "inset 0 0 0 4px #0c6ca3", backgroundImage: "linear-gradient(rgba(102, 199, 233, 0.55), rgba(102, 199, 233, 0.55))" }
+                      : isLastFrom
+                      ? { boxShadow: "inset 0 0 0 3px rgba(12, 108, 163, 0.6)", backgroundImage: "linear-gradient(rgba(102, 199, 233, 0.3), rgba(102, 199, 233, 0.3))" }
                         : undefined
                   }
                   onClick={() => onSquareClick(r, c)}
@@ -309,7 +377,11 @@ export default function FriendChessGame({ id, token }) {
                   {destMove ? (
                     <span
                       className={destMove.capture ? styles.chessCapMark : styles.chessDot}
-                      style={destMove.capture ? undefined : { width: "34%", height: "34%" }}
+                      style={
+                      destMove.capture
+                        ? { inset: "4%", border: "4px solid rgba(180, 35, 24, 0.85)", zIndex: 2, pointerEvents: "none" }
+                        : { width: "36%", height: "36%", background: "rgba(12, 108, 163, 0.85)", boxShadow: "0 0 0 3px rgba(255, 255, 255, 0.9)", zIndex: 2, pointerEvents: "none" }
+                    }
                     />
                   ) : null}
                 </div>
