@@ -362,9 +362,9 @@ export default function FriendChessGame({ id, token }) {
                       : isCheckedKing
                         ? { boxShadow: "inset 0 0 0 5px #b42318" }
                         : isLastTo
-                      ? { boxShadow: "inset 0 0 0 4px #0c6ca3", backgroundImage: "linear-gradient(rgba(102, 199, 233, 0.65), rgba(102, 199, 233, 0.65))" }
+                      ? { boxShadow: "inset 0 0 0 4px #66c7e9" }
                       : isLastFrom
-                      ? { boxShadow: "inset 0 0 0 3px rgba(12, 108, 163, 0.9)", backgroundImage: "linear-gradient(rgba(102, 199, 233, 0.45), rgba(102, 199, 233, 0.45))" }
+                      ? { boxShadow: "inset 0 0 0 3px rgba(102, 199, 233, 0.6)" }
                         : undefined
                   }
                   onClick={() => onSquareClick(r, c)}
