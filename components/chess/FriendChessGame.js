@@ -14,7 +14,7 @@ function sameSq(a, r, c) {
 }
 
 function colorName(color) {
-  return color === WHITE ? "White" : "Black";
+  return color === WHITE ? "Silver" : "Gold";
 }
 
 function statusLine(game, seat, myTurn) {
@@ -154,67 +154,79 @@ export default function FriendChessGame({ id, token }) {
   const opp = seat === WHITE ? BLACK : WHITE;
   const rows = seat === BLACK ? [...ORDER].reverse() : ORDER;
   const cols = seat === BLACK ? [...ORDER].reverse() : ORDER;
-  const statusClasses = [styles.chessStatus];
-  if (game.status === "check" && !over) statusClasses.push(styles.chessStatusCheck);
-  if (over) statusClasses.push(styles.chessStatusOver);
+  const check = game.status === "check" && !over;
+  const m = game.match;
+  const gameLabel = m
+    ? m.complete
+      ? "Final: " + matchResultText(m)
+      : "Game " + Math.min(m.played + (over ? 0 : 1), m.target) + " of " + m.target
+    : "";
+  const pieceClass = (color) =>
+    [styles.chessPiece, color === WHITE ? styles.chessPieceWhite : styles.chessPieceBlack].join(" ");
 
   return (
-    <section className={styles.chessCard}>
-      <h2>AGILE Chess — Play a Friend</h2>
-      <p className={styles.chessSub}>
-        You ({game.names[seat]}) play {colorName(seat)} vs {game.names[opp]} ({colorName(opp)})
-      </p>
-
-      {game.match ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 8,
-            flexWrap: "wrap",
-            margin: "8px 0",
-            padding: "8px 12px",
-            borderRadius: 8,
-            background: "rgba(201, 162, 39, 0.14)",
-            fontWeight: 700,
-          }}
-          aria-label="Match score"
-        >
-          <span>
-            {game.match.host.name} {game.match.host.wins} – {game.match.friend.wins} {game.match.friend.name}
-            {game.match.draws ? " · Draws " + game.match.draws : ""}
-          </span>
-          <span>
-            {game.match.complete
-              ? "Final: " + matchResultText(game.match)
-              : "Game " + Math.min(game.match.played + (over ? 0 : 1), game.match.target) + " of " + game.match.target}
-          </span>
-        </div>
-      ) : null}
-
-      <div className={statusClasses.join(" ")} aria-live="polite">
-        {statusLine(game, seat, myTurn)}
+    <section className={styles.chessCard} style={{ paddingTop: 12, paddingBottom: 12 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
+        <h2 style={{ margin: 0, fontSize: "1.3rem", lineHeight: 1.2 }}>
+          What’s Your <em>Next</em> Move?
+        </h2>
+        <span style={{ fontSize: "0.85rem", opacity: 0.8 }}>
+          AGILE Chess · You ({game.names[seat]}) play {colorName(seat)} vs {game.names[opp]} ({colorName(opp)})
+        </span>
       </div>
 
-      <div className={styles.chessBoardWrap} style={{ width: "min(100%, 76vh)", margin: "0 auto" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 8,
+          flexWrap: "wrap",
+          margin: "6px 0 8px",
+          padding: "6px 12px",
+          borderRadius: 8,
+          background: "rgba(201, 162, 39, 0.14)",
+          fontWeight: 700,
+          fontSize: "0.95rem",
+        }}
+      >
+        <span aria-label="Match score">
+          {m ? m.host.name + " " + m.host.wins + " – " + m.friend.wins + " " + m.friend.name + (m.draws ? " · Draws " + m.draws : "") : ""}
+        </span>
+        <span aria-live="polite" style={{ color: check ? "#b42318" : undefined }}>
+          {statusLine(game, seat, myTurn)}
+        </span>
+        <span>{gameLabel}</span>
+      </div>
+
+      <div
+        className={styles.chessBoardWrap}
+        style={{ width: "max(280px, min(100%, calc(100vh - 230px)))", margin: "0 auto" }}
+      >
         <div className={styles.chessBoard}>
           {rows.map((r) =>
             cols.map((c) => {
               const piece = game.state.board[r][c];
-              const destMove = legalForSelected.find((m) => sameSq(m.to, r, c));
+              const destMove = legalForSelected.find((mv) => sameSq(mv.to, r, c));
+              const isSel = sameSq(selected, r, c);
               const isLast = game.lastMove && (sameSq(game.lastMove.from, r, c) || sameSq(game.lastMove.to, r, c));
               const sqClasses = [styles.chessSq, (r + c) % 2 === 0 ? styles.chessSqLight : styles.chessSqDark];
-              if (sameSq(selected, r, c)) sqClasses.push(styles.chessSqSelected);
+              if (isSel) sqClasses.push(styles.chessSqSelected);
               return (
                 <div
                   key={r + "-" + c}
                   className={sqClasses.join(" ")}
-                  style={sameSq(selected, r, c) ? { boxShadow: "inset 0 0 0 5px #c9a227" } : isLast ? { boxShadow: "inset 0 0 0 4px rgba(201, 162, 39, 0.85)" } : undefined}
+                  style={
+                    isSel
+                      ? { boxShadow: "inset 0 0 0 5px #c9a227" }
+                      : isLast
+                        ? { boxShadow: "inset 0 0 0 4px rgba(201, 162, 39, 0.85)" }
+                        : undefined
+                  }
                   onClick={() => onSquareClick(r, c)}
                 >
                   {piece ? (
-                    <span className={[styles.chessPiece, piece.color === WHITE ? styles.chessPieceWhite : styles.chessPieceBlack].join(" ")}>
+                    <span className={pieceClass(piece.color)}>
                       <ChessPieceIcon type={piece.type} />
                     </span>
                   ) : null}
@@ -232,43 +244,66 @@ export default function FriendChessGame({ id, token }) {
       </div>
 
       {pendingPromo ? (
-        <div style={{ display: "flex", gap: 8, justifyContent: "center", alignItems: "center", margin: "12px 0", flexWrap: "wrap" }}>
-          <span className={styles.chessSub}>Promote to:</span>
+        <div style={{ display: "flex", gap: 8, justifyContent: "center", alignItems: "center", margin: "8px 0 0", flexWrap: "wrap" }}>
+          <span style={{ fontWeight: 600 }}>Promote to:</span>
           {PROMOS.map((p) => (
             <button
               key={p}
               type="button"
               className={styles.chessOutlineBtn}
+              style={{ width: "auto" }}
               disabled={busy}
               onClick={() => post({ action: "move", from: pendingPromo.from, to: pendingPromo.to, promoteTo: p })}
               aria-label={"Promote to " + p}
             >
-              <span className={[styles.chessPiece, seat === WHITE ? styles.chessPieceWhite : styles.chessPieceBlack].join(" ")}>
+              <span className={pieceClass(seat)}>
                 <ChessPieceIcon type={p} />
               </span>
             </button>
           ))}
-          <button type="button" className={styles.chessOutlineBtn} onClick={() => setPendingPromo(null)}>
+          <button type="button" className={styles.chessOutlineBtn} style={{ width: "auto" }} onClick={() => setPendingPromo(null)}>
             Cancel
           </button>
         </div>
       ) : null}
 
-      {error ? <p className={styles.chessSaveNote}>{error}</p> : null}
-
-      <div className={styles.chessFooter}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 8,
+          flexWrap: "wrap",
+          marginTop: 8,
+          fontSize: "0.85rem",
+        }}
+      >
         {over ? (
-          <button type="button" className={styles.chessNewGame} disabled={busy} onClick={() => post({ action: "rematch" })}>
-            {game.match && game.match.complete ? "New 5-game match" : "Next game (swap colors)"}
+          <button
+            type="button"
+            className={styles.chessNewGame}
+            style={{ width: "auto", padding: "6px 16px" }}
+            disabled={busy}
+            onClick={() => post({ action: "rematch" })}
+          >
+            {m && m.complete ? "New 5-game match" : "Next game (swap colors)"}
           </button>
         ) : (
-          <button type="button" className={styles.chessOutlineBtn} disabled={busy} onClick={resign}>
+          <button
+            type="button"
+            className={styles.chessOutlineBtn}
+            style={{ width: "auto", padding: "6px 16px" }}
+            disabled={busy}
+            onClick={resign}
+          >
             Resign
           </button>
         )}
-        <span className={styles.chessMoveCount}>Moves: {game.moveCount}</span>
+        <span style={{ fontWeight: 600, color: error ? "#b42318" : undefined }}>
+          {error ? error : "Moves: " + game.moveCount}
+        </span>
+        <span style={{ opacity: 0.7 }}>Private game · updates automatically</span>
       </div>
-      <p className={styles.chessSaveNote}>Private game — only people with a link to this game can see it. The board updates automatically.</p>
     </section>
   );
 }
