@@ -125,9 +125,16 @@ export default function ChessHost() {
     return (
       <div key={g.id} style={{ borderTop: "1px solid rgba(0,0,0,0.12)", padding: "12px 0" }}>
         <strong>
-          {g.names[g.hostColor]} ({g.hostColor === "w" ? "Silver" : "Gold"}) vs {g.names[friendSeat]}
+          {g.names[g.hostColor]} ({g.hostColor === "w" ? "White" : "Black"}) vs {g.names[friendSeat]}
         </strong>
         <div className={styles.chessSub}>{summaryStatus(g)}</div>
+        {g.match ? (
+          <div className={styles.chessSub}>
+            Match: {g.match.host.name} {g.match.host.wins} – {g.match.friend.wins} {g.match.friend.name}
+            {g.match.draws ? " · Draws " + g.match.draws : ""}
+            {g.match.complete ? " (final)" : " · " + g.match.played + " of " + g.match.target + " played"}
+          </div>
+        ) : null}
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
           <a className={styles.chessNewGame} href={g.hostLink}>
             Open my board
@@ -189,14 +196,14 @@ export default function ChessHost() {
           className={hostColor === "w" ? styles.chessNewGame : styles.chessOutlineBtn}
           onClick={() => setHostColor("w")}
         >
-          I play Silver
+          I play White
         </button>
         <button
           type="button"
           className={hostColor === "b" ? styles.chessNewGame : styles.chessOutlineBtn}
           onClick={() => setHostColor("b")}
         >
-          I play Gold
+          I play Black
         </button>
       </div>
 

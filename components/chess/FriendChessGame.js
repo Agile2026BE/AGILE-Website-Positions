@@ -14,7 +14,7 @@ function sameSq(a, r, c) {
 }
 
 function colorName(color) {
-  return color === WHITE ? "Silver" : "Gold";
+  return color === WHITE ? "White" : "Black";
 }
 
 function statusLine(game, seat, myTurn) {
@@ -33,6 +33,14 @@ function statusLine(game, seat, myTurn) {
   return game.status === "check"
     ? game.names[opp] + " is in check — their move"
     : "Waiting for " + game.names[opp] + " to move…";
+}
+
+function matchResultText(m) {
+  const h = m.host.wins;
+  const f = m.friend.wins;
+  if (h > f) return m.host.name + " wins the match " + h + "–" + f;
+  if (f > h) return m.friend.name + " wins the match " + f + "–" + h;
+  return "Match tied " + h + "–" + f;
 }
 
 export default function FriendChessGame({ id, token }) {
@@ -157,6 +165,34 @@ export default function FriendChessGame({ id, token }) {
         You ({game.names[seat]}) play {colorName(seat)} vs {game.names[opp]} ({colorName(opp)})
       </p>
 
+      {game.match ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 8,
+            flexWrap: "wrap",
+            margin: "8px 0",
+            padding: "8px 12px",
+            borderRadius: 8,
+            background: "rgba(201, 162, 39, 0.14)",
+            fontWeight: 700,
+          }}
+          aria-label="Match score"
+        >
+          <span>
+            {game.match.host.name} {game.match.host.wins} – {game.match.friend.wins} {game.match.friend.name}
+            {game.match.draws ? " · Draws " + game.match.draws : ""}
+          </span>
+          <span>
+            {game.match.complete
+              ? "Final: " + matchResultText(game.match)
+              : "Game " + Math.min(game.match.played + (over ? 0 : 1), game.match.target) + " of " + game.match.target}
+          </span>
+        </div>
+      ) : null}
+
       <div className={statusClasses.join(" ")} aria-live="polite">
         {statusLine(game, seat, myTurn)}
       </div>
@@ -218,7 +254,7 @@ export default function FriendChessGame({ id, token }) {
       <div className={styles.chessFooter}>
         {over ? (
           <button type="button" className={styles.chessNewGame} disabled={busy} onClick={() => post({ action: "rematch" })}>
-            Rematch (swap colors)
+            {game.match && game.match.complete ? "New 5-game match" : "Next game (swap colors)"}
           </button>
         ) : (
           <button type="button" className={styles.chessOutlineBtn} disabled={busy} onClick={resign}>
