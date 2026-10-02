@@ -343,4 +343,36 @@ Full detail in `docs/CAREERS_GREEN_BASELINE_2026-09-02_POSITION_1190.md`.
                                                                                                                                                                                                                                         14. Next planned development phase after Careers is locked:
                                                                                                                                                                                                                                        
                                                                                                                                                                                                                                         15. Begin the main AGILE website rebuild using the established Careers design system and rebuild direction.
-                                                                                                                                                                                                                                        16. 
+                                                                                                                                                                                                                                        16.
+
+## AGILE CHESS — "PLAY A FRIEND" (private mode) — added 2026-10-01, live
+Status: GREEN. Last chess code commit: 5d6747f ("Chess: match homepage slogan styling (Georgia serif, blue italic Move?, SM)"), Vercel production READY, verified live.
+
+**What it is:** two-player online chess between Byron and invited friends (first opponent: his brother Bo). Private: only Byron can create games; friends join through a per-player invite link, no account.
+
+**Routes (both noindex):**
+- /chess/friend — host console (enter host key once per device; create game, Text/Copy invite, My games with running match score).
+- /chess/play/[id]?t=<player token> — game page. Each game has two secret player tokens (one per side).
+
+**API:**
+- /api/chess/host — GET list games, POST create game. Requires header x-chess-host-key equal to env CHESS_HOST_KEY (503 if unset, 401 if wrong).
+- /api/chess/game/[id] — GET state (?t=token); POST {t, version, action: move | resign | rematch}. Server validates legality with lib/chessEngine.js and rejects stale versions.
+
+**Storage:** Upstash Redis store "AGILE_Chess_Games" connected via Vercel Storage (env KV_REST_API_URL / KV_REST_API_TOKEN). lib/chessStore.js calls the Upstash REST API with plain fetch (no npm dependency). Keys: chess:game:<id> (expires 30 days after last move), sorted-set index chess:games.
+
+**Env:** CHESS_HOST_KEY (Production, Secret) — set by Byron 2026-10-01. Only Byron ever enters it; friends never need it.
+
+**Files:** lib/chessStore.js; components/chess/FriendChessGame.js; components/chess/ChessHost.js; app/api/chess/host/route.js; app/api/chess/game/[id]/route.js; app/chess/play/[id]/page.js; app/chess/friend/page.js. Reuses lib/chessEngine.js, components/home/ChessPieceIcon.js and the chess* classes in app/page.module.css (homepage PlayAgileChess board is untouched).
+
+**Features / business rules:**
+- Sides are labeled Silver (engine "w", moves first) and Gold (engine "b"); host picks a side, friend gets the other.
+- 5-game match tally kept server-side, keyed by host/friend (not color) so swaps do not break it; players cannot edit it. After a game: "Next game (swap colors)"; after game 5: final result + "New 5-game match" (resets to 0–0).
+- Captured-piece trays above/below the board with material lead (+N), computed from the board (promotion-safe).
+- Status bar shows "Your move" / "<name> is thinking…"; board auto-refreshes every 2.5s.
+- Accessibility (Bo plays with a mouse): large board sized to viewport height, two-click moves (no dragging), bold gold selection border, enlarged move dots. A "Confirm move" step was offered and deliberately deferred by Byron.
+- Header matches homepage slogan styling: Georgia serif, "What’s Your Next Move?" with "Move?" italic in #66c7e9 and superscript SM; footer "Private game — by invitation link only. No peeking!"
+- One-screen layout on desktop (no scrolling).
+
+**Gotcha (learned 2026-10-01):** raw.githubusercontent.com/<repo>/main/... can serve stale content for several minutes after a commit. When editing via the browser upload flow, always fetch raw files at the exact latest commit SHA, never at /main/. A stale /main/ read once silently reverted the Silver/Gold labels.
+
+**Possible next steps (not started):** presence indicator / notification when the friend joins or moves; optional Confirm-move toggle; public mode as a visitor engagement hook.

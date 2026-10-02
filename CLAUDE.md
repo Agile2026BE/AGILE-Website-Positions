@@ -136,3 +136,6 @@ cross-origin navigation and works reliably as the transfer mechanism.
 
 - This project's Next.js config is `next.config.mjs` ONLY. Never create `next.config.js` — when both exist Next.js loads the `.mjs` and silently ignores the `.js` (this broke the 19 GSC slug redirects until commit `198850d`). Add redirects to the `redirects()` array in `next.config.mjs` and verify on the live site after deploy.
 - Filled/dormant/retired positions intentionally 404 with the "This Opportunity Has Been Filled" page (`app/careers/positions/[slug]/not-found.js`, re-exported by `app/p/[id]/not-found.js` for short links). Do not redirect them to /careers.
+
+## AGILE Chess "Play a Friend" (added 2026-10-01)
+Private two-player chess at /chess/friend (host console) and /chess/play/[id]. Full details, files, env (CHESS_HOST_KEY, Upstash KV_*), and rules are in PROJECT_CHECKPOINT.md under "AGILE CHESS". When editing files through the GitHub web upload flow, read raw files at the exact latest commit SHA, not /main/ (stale CDN cache).
