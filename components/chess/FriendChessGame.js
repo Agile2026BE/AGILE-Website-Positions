@@ -259,14 +259,14 @@ export default function FriendChessGame({ id, token }) {
     : "";
   const pieceClass = (color) =>
     [styles.chessPiece, color === WHITE ? styles.chessPieceWhite : styles.chessPieceBlack].join(" ");
-  const boardWidth = "max(280px, min(100%, calc(100dvh - 260px)))";
+  const boardWidth = "max(280px, min(100%, calc(100dvh - 215px)))";
   const lostMine = capturedOf(game.state.board, seat);
   const lostTheirs = capturedOf(game.state.board, opp);
   const lead = materialOf(lostTheirs) - materialOf(lostMine);
   const tray = (list, color, extra, label) => (
     <div
       aria-label={label}
-      style={{ display: "flex", alignItems: "center", gap: 2, minHeight: 28, margin: "6px auto", width: boardWidth, flexWrap: "wrap" }}
+      style={{ display: "flex", alignItems: "center", gap: 2, minHeight: 24, margin: "2px auto", width: boardWidth, flexWrap: "wrap" }}
     >
       {list.map((t, i) => (
         <span
@@ -362,9 +362,9 @@ export default function FriendChessGame({ id, token }) {
                       : isCheckedKing
                         ? { boxShadow: "inset 0 0 0 5px #b42318" }
                         : isLastTo
-                      ? { boxShadow: "inset 0 0 0 4px #0c6ca3", backgroundImage: "linear-gradient(rgba(102, 199, 233, 0.55), rgba(102, 199, 233, 0.55))" }
+                      ? { boxShadow: "inset 0 0 0 4px #0c6ca3", backgroundImage: "linear-gradient(rgba(102, 199, 233, 0.65), rgba(102, 199, 233, 0.65))" }
                       : isLastFrom
-                      ? { boxShadow: "inset 0 0 0 3px rgba(12, 108, 163, 0.6)", backgroundImage: "linear-gradient(rgba(102, 199, 233, 0.3), rgba(102, 199, 233, 0.3))" }
+                      ? { boxShadow: "inset 0 0 0 3px rgba(12, 108, 163, 0.9)", backgroundImage: "linear-gradient(rgba(102, 199, 233, 0.45), rgba(102, 199, 233, 0.45))" }
                         : undefined
                   }
                   onClick={() => onSquareClick(r, c)}
@@ -442,7 +442,7 @@ export default function FriendChessGame({ id, token }) {
           <button
             type="button"
             className={styles.chessOutlineBtn}
-            style={{ width: "auto", padding: "6px 16px" }}
+            style={{ width: "auto", flex: "0 0 auto", padding: "6px 22px" }}
             disabled={busy}
             onClick={resign}
           >
