@@ -108,7 +108,7 @@ export default function ChessHost() {
   }
 
   function textInvite(g) {
-    window.location.href = "sms:?&body=" + encodeURIComponent(inviteText(g));
+    window.location.assign("sms:?&body=" + encodeURIComponent(inviteText(g)));
   }
 
   function forgetKey() {
