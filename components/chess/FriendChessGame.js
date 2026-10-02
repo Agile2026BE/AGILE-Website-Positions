@@ -278,6 +278,11 @@ export default function FriendChessGame({ id, token }) {
               const piece = game.state.board[r][c];
               const destMove = legalForSelected.find((mv) => sameSq(mv.to, r, c));
               const isSel = sameSq(selected, r, c);
+              const isCheckedKing =
+                !!piece &&
+                piece.type === "K" &&
+                piece.color === game.state.turn &&
+                (game.status === "check" || game.status === "checkmate");
               const isLast = game.lastMove && (sameSq(game.lastMove.from, r, c) || sameSq(game.lastMove.to, r, c));
               const sqClasses = [styles.chessSq, (r + c) % 2 === 0 ? styles.chessSqLight : styles.chessSqDark];
               if (isSel) sqClasses.push(styles.chessSqSelected);
@@ -288,7 +293,9 @@ export default function FriendChessGame({ id, token }) {
                   style={
                     isSel
                       ? { boxShadow: "inset 0 0 0 5px #c9a227" }
-                      : isLast
+                      : isCheckedKing
+                        ? { boxShadow: "inset 0 0 0 5px #b42318" }
+                        : isLast
                         ? { boxShadow: "inset 0 0 0 4px rgba(201, 162, 39, 0.85)" }
                         : undefined
                   }
