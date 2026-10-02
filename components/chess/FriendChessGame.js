@@ -32,7 +32,7 @@ function statusLine(game, seat, myTurn) {
   if (myTurn) return game.status === "check" ? "Check! Your move" : "Your move";
   return game.status === "check"
     ? game.names[opp] + " is in check — their move"
-    : "Waiting for " + game.names[opp] + " to move…";
+    : game.names[opp] + " is thinking…";
 }
 
 const START = { P: 8, N: 2, B: 2, R: 2, Q: 1 };
@@ -218,7 +218,7 @@ export default function FriendChessGame({ id, token }) {
     <section className={styles.chessCard} style={{ paddingTop: 12, paddingBottom: 12 }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8, flexWrap: "wrap" }}>
         <h2 style={{ margin: 0, fontSize: "1.3rem", lineHeight: 1.2 }}>
-          What’s Your <em>Next</em> Move?
+          “What’s Your <em>Next</em> Move?”<sup style={{ fontSize: "0.5em", marginLeft: 2, fontWeight: 600 }}>SM</sup>
         </h2>
         <span style={{ fontSize: "0.85rem", opacity: 0.8 }}>
           AGILE Chess · You ({game.names[seat]}) play {colorName(seat)} vs {game.names[opp]} ({colorName(opp)})
