@@ -12,6 +12,10 @@ import {
   saveGame,
   seatFor,
   touchPresence,
+  addChat,
+  setTyping,
+  chatFor,
+  CHAT_MAX_LEN,
 } from "../../../../../lib/chessStore";
 
 export const dynamic = "force-dynamic";
@@ -54,7 +58,7 @@ async function respond(game, seat) {
   } catch {
     map = {};
   }
-  return json({ ...playerView(game, seat), presence: presenceView(map, game, seat) });
+  return json({ ...playerView(game, seat), presence: presenceView(map, game, seat), chat: await chatFor(game, seat) });
 }
 
 async function loadForPlayer(id, token) {
@@ -83,7 +87,7 @@ export async function GET(request, { params }) {
     } catch {
       map = {};
     }
-    return json({ ...playerView(game, seat), presence: presenceView(map, game, seat) });
+    return json({ ...playerView(game, seat), presence: presenceView(map, game, seat), chat: await chatFor(game, seat) });
   } catch (err) {
     return json({ error: err.message || "Could not load game." }, 500);
   }
@@ -102,6 +106,16 @@ export async function POST(request, { params }) {
     const { game, seat, error } = await loadForPlayer(id, String(body.t || ""));
     if (error) return error;
     const action = body.action || "move";
+    if (action === "chat") {
+      const text = String(body.text || "").replace(/\s+/g, " ").trim().slice(0, CHAT_MAX_LEN);
+      if (!text) return json({ error: "Empty message." }, 400);
+      await addChat(game, seat, text);
+      return json({ ok: true, chat: await chatFor(game, seat) });
+    }
+    if (action === "typing") {
+      await setTyping(game, seat, !!body.on);
+      return json({ ok: true });
+    }
 
     if (action === "rematch") {
       if (!game.result) return json({ error: "This game is still in progress." }, 409);
