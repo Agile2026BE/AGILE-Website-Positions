@@ -197,7 +197,7 @@ export default function FriendChessGame({ id, token }) {
         {statusLine(game, seat, myTurn)}
       </div>
 
-      <div className={styles.chessBoardWrap}>
+      <div className={styles.chessBoardWrap} style={{ width: "min(100%, 76vh)", margin: "0 auto" }}>
         <div className={styles.chessBoard}>
           {rows.map((r) =>
             cols.map((c) => {
@@ -210,7 +210,7 @@ export default function FriendChessGame({ id, token }) {
                 <div
                   key={r + "-" + c}
                   className={sqClasses.join(" ")}
-                  style={isLast ? { boxShadow: "inset 0 0 0 3px rgba(201, 162, 39, 0.85)" } : undefined}
+                  style={sameSq(selected, r, c) ? { boxShadow: "inset 0 0 0 5px #c9a227" } : isLast ? { boxShadow: "inset 0 0 0 4px rgba(201, 162, 39, 0.85)" } : undefined}
                   onClick={() => onSquareClick(r, c)}
                 >
                   {piece ? (
@@ -218,7 +218,12 @@ export default function FriendChessGame({ id, token }) {
                       <ChessPieceIcon type={piece.type} />
                     </span>
                   ) : null}
-                  {destMove ? <span className={destMove.capture ? styles.chessCapMark : styles.chessDot} /> : null}
+                  {destMove ? (
+                    <span
+                      className={destMove.capture ? styles.chessCapMark : styles.chessDot}
+                      style={destMove.capture ? undefined : { width: "34%", height: "34%" }}
+                    />
+                  ) : null}
                 </div>
               );
             })
