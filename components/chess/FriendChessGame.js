@@ -362,9 +362,9 @@ export default function FriendChessGame({ id, token }) {
                       : isCheckedKing
                         ? { boxShadow: "inset 0 0 0 5px #b42318" }
                         : isLastTo
-                      ? { boxShadow: "inset 0 0 0 4px #66c7e9" }
+                      ? { boxShadow: "inset 0 0 0 3px rgba(176, 141, 87, 0.95)" }
                       : isLastFrom
-                      ? { boxShadow: "inset 0 0 0 3px rgba(102, 199, 233, 0.6)" }
+                      ? { boxShadow: "inset 0 0 0 2px rgba(176, 141, 87, 0.55)" }
                         : undefined
                   }
                   onClick={() => onSquareClick(r, c)}
@@ -379,8 +379,8 @@ export default function FriendChessGame({ id, token }) {
                       className={destMove.capture ? styles.chessCapMark : styles.chessDot}
                       style={
                       destMove.capture
-                        ? { inset: "4%", border: "4px solid rgba(180, 35, 24, 0.85)", zIndex: 2, pointerEvents: "none" }
-                        : { width: "36%", height: "36%", background: "rgba(12, 108, 163, 0.85)", boxShadow: "0 0 0 3px rgba(255, 255, 255, 0.9)", zIndex: 2, pointerEvents: "none" }
+                        ? { inset: "5%", border: "3px solid rgba(122, 31, 43, 0.8)", zIndex: 2, pointerEvents: "none" }
+                        : { width: "30%", height: "30%", background: "rgba(176, 141, 87, 0.9)", boxShadow: "0 0 0 2px rgba(247, 244, 238, 0.85), 0 1px 3px rgba(0, 0, 0, 0.25)", zIndex: 2, pointerEvents: "none" }
                     }
                     />
                   ) : null}
