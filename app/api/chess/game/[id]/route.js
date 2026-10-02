@@ -4,7 +4,6 @@ import {
   MATCH_GAMES,
   emptyMatch,
   getGame,
-  hostAway,
   notifyHost,
   playerView,
   presenceView,
@@ -56,23 +55,6 @@ async function respond(game, seat) {
     map = {};
   }
   return json({ ...playerView(game, seat), presence: presenceView(map, game, seat) });
-}
-
-// Email Byron when his friend moves (or the game ends) while Byron is not watching the board.
-async function maybeNotifyHost(game, seat) {
-  if (roleOf(game, seat) !== "friend") return;
-  try {
-    const map = await readPresence(game);
-    if (!hostAway(map)) return;
-    const who = game.names[seat];
-    if (game.result) {
-      await notifyHost(game, "♟ Game over vs " + who, "Your game with " + who + " has ended. See the result on the board.");
-    } else {
-      await notifyHost(game, "♟ " + who + " moved — your turn", who + " made a move. It is your turn.");
-    }
-  } catch {
-    // notifications are best-effort
-  }
 }
 
 async function loadForPlayer(id, token) {
@@ -151,7 +133,6 @@ export async function POST(request, { params }) {
       game.version += 1;
       game.updatedAt = Date.now();
       await saveGame(game);
-      await maybeNotifyHost(game, seat);
       return respond(game, seat);
     }
 
@@ -179,7 +160,6 @@ export async function POST(request, { params }) {
     game.version += 1;
     game.updatedAt = Date.now();
     await saveGame(game);
-    await maybeNotifyHost(game, seat);
     return respond(game, seat);
   } catch (err) {
     return json({ error: err.message || "Could not save move." }, 500);
