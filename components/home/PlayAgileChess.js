@@ -245,15 +245,15 @@ export default function PlayAgileChess() {
         <button type="button" className={styles.chessPickBtn} onClick={() => startGame(WHITE)}>
           <span className={`${styles.chessPickIcon} ${pieceClass(WHITE)}`}><ChessPieceIcon type="K" /></span>
           <b>Silver (White)</b>
-          <small>Offense — you move first</small>
+          <small>Offense</small>
         </button>
         <button type="button" className={styles.chessPickBtn} onClick={() => startGame(BLACK)}>
           <span className={`${styles.chessPickIcon} ${pieceClass(BLACK)}`}><ChessPieceIcon type="K" /></span>
           <b>Gold (Dark)</b>
-          <small>Defense — AGILE moves first</small>
+          <small>Defense</small>
         </button>
       </div>
-      <p className={styles.chessPickNote}>AGILE plays the other side. Tap a piece, then tap where it moves.</p>
+      <p className={styles.chessPickNote}>Silver is Offense and Gold is Defense. AGILE plays the opposite of your choice.</p>
     </div>
   );
 
