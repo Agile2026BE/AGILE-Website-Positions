@@ -190,3 +190,21 @@ a.accessSubRowHead{color:#1c4d8f}
      CONSULTING" underneath and sits better aligned overall. */
   .miniLogo{margin-left:30px;transform:translateY(-6px)}
 }
+.chessStatusSide{float:right;font-weight:400;opacity:.75}
+.chessTray{display:flex;align-items:center;gap:2px;min-height:24px;margin:2px auto;padding:0 2px;flex-wrap:wrap;box-sizing:border-box}
+.chessTrayPiece{position:relative;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center}
+.chessTrayLead{margin-left:6px;font-family:Arial,Helvetica,sans-serif;font-weight:700;font-size:.85rem;color:#1c2b3a}
+.chessPick{padding:8px 20px 14px}
+.chessPickTitle{margin:6px 40px 12px 0;font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;color:#173958}
+.chessPickBtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chessPickBtn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 10px 14px;background:#fbf7ec;border:1px solid rgba(176,141,87,.55);border-radius:10px;cursor:pointer;font-family:Arial,Helvetica,sans-serif;color:#02294e}
+.chessPickBtn:hover{border-color:#b08d57;background:#f5efdd}
+.chessPickBtn b{font-size:.98rem}
+.chessPickBtn small{font-size:.8rem;color:#3c5164}
+.chessPickIcon{width:56px;height:56px;padding:6px;border-radius:8px;background:#173d5e}
+.chessPickNote{margin:12px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:.84rem;color:#3c5164;line-height:1.5}
+/* Board as large as the screen allows: full width, never taller than the screen minus status, trays and buttons */
+.chessCard .chessBoardWrap,.chessTray{width:min(calc(100% - 32px),max(260px,calc(100dvh - 210px)))}
+.chessCard .chessBoardWrap{margin:0 auto;box-sizing:border-box;padding:0}
+.chessCard .chessStatus{margin-right:50px}
+@media(max-width:620px){.chessCard .chessBoardWrap,.chessTray{width:min(100%,max(260px,calc(100dvh - 196px)))}.chessCard .chessStatus{margin-right:48px}.chessModalBackdrop{padding:4px 0}.chessModalCard{border-radius:12px}.chessCard .chessBoardWrap{padding:0}.chessTray{min-height:22px}.chessPick{padding:8px 12px 12px}.chessFooter{padding:6px 10px 0}.chessMoveCount{margin:6px 10px 0}}
