@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styles from "../../app/page.module.css";
 
 const KEY_STORAGE = "agile-chess-host-key";
@@ -48,6 +48,8 @@ export default function ChessHost() {
   const [games, setGames] = useState(null);
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
+  const [flashed, setFlashed] = useState(null);
+  const flashTimer = useRef(null);
 
   async function request(method, body) {
     const key = keyInput.trim() || readKey();
@@ -98,17 +100,53 @@ export default function ChessHost() {
     return host + " invited you to a game of chess on AGILE. Tap to play (no account needed): " + window.location.origin + g.friendLink;
   }
 
-  async function copyInvite(g) {
-    try {
-      await navigator.clipboard.writeText(inviteText(g));
-      setMessage("Invite copied — paste it into a text or email.");
-    } catch {
-      setMessage("Copy failed — use Text invite instead.");
-    }
+  // Shows the result right on the button that was tapped (e.g. "Copied ✓") for a few seconds.
+  function flash(id, kind) {
+    setFlashed({ id, kind });
+    window.clearTimeout(flashTimer.current);
+    flashTimer.current = window.setTimeout(() => setFlashed(null), 3000);
   }
 
-  function textInvite(g) {
-    window.location.assign("sms:?&body=" + encodeURIComponent(inviteText(g)));
+  // Older iPhones and some desktop setups block navigator.clipboard; this hidden-box copy works there.
+  function legacyCopy(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.fontSize = "16px";
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    let ok = false;
+    try {
+      ok = document.execCommand("copy");
+    } catch {
+      ok = false;
+    }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  async function copyInvite(g) {
+    const text = inviteText(g);
+    let ok = false;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        ok = true;
+      }
+    } catch {
+      ok = false;
+    }
+    if (!ok) ok = legacyCopy(text);
+    flash(g.id, ok ? "copied" : "failed");
+  }
+
+  // Opens Messages with the invite already typed in. Apple devices use "sms:&body=", others "sms:?body=".
+  function smsHref(g) {
+    const apple = typeof navigator !== "undefined" && /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
+    return (apple ? "sms:&body=" : "sms:?body=") + encodeURIComponent(inviteText(g));
   }
 
   function forgetKey() {
@@ -139,13 +177,27 @@ export default function ChessHost() {
           <a className={styles.chessNewGame} href={g.hostLink}>
             Open my board
           </a>
-          <button type="button" className={styles.chessOutlineBtn} onClick={() => textInvite(g)}>
+          <a className={styles.chessOutlineBtn} style={{ textAlign: "center", textDecoration: "none" }} href={smsHref(g)}>
             Text invite
-          </button>
+          </a>
           <button type="button" className={styles.chessOutlineBtn} onClick={() => copyInvite(g)}>
-            Copy invite
+            {flashed && flashed.id === g.id ? (flashed.kind === "copied" ? "Copied ✓" : "Copy blocked") : "Copy invite"}
           </button>
         </div>
+        {flashed && flashed.id === g.id ? (
+          <p className={styles.chessSaveNote} style={{ margin: "6px 0 0" }}>
+            {flashed.kind === "copied"
+              ? "Invite copied — paste it into a text or email."
+              : "This browser blocked copying. Press and hold the link below to copy it."}
+          </p>
+        ) : null}
+        <input
+          readOnly
+          aria-label="Invite link"
+          value={inviteText(g)}
+          onFocus={(e) => e.target.select()}
+          style={{ ...inputStyle, marginTop: 8, fontSize: 13, color: "#3c5164", background: "#fbf7ec" }}
+        />
       </div>
     );
   }
