@@ -296,4 +296,10 @@ export const dormantPositionIds = [
     reason:
       "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
   },
+  {
+    id: "1159",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client believed to be JBB (not fully confirmed); JBB ended its contract with AGILE after being bought out (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly.",
+  },
 ];
