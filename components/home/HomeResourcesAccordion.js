@@ -26,11 +26,10 @@ const FALLBACK_SAMPLE_JOBS = [
 ];
 
 const FALLBACK_FEATURED_JOBS = [
-  { id: "1010", title: "Senior Electrical Commissioning Engineer", location: "NYC, NY", salaryDisplay: "$150,000 – $200,000", slug: "1010-senior-electrical-commissioning-engineer" },
-  { id: "1040", title: "Associate Mechanical Engineer –Data Centers (HVAC)", location: "NYC, NY", salaryDisplay: "$125,000 – $150,000+", slug: "1040-associate-mechanical-engineer-data-centers-hvac" },
-  { id: "1075", title: "Director, Healthcare/Sciences Department: Health/Sciences", location: "Voorhees, NJ and NYC, NY", salaryDisplay: "$200,000 – $250,000", slug: "1075-director-healthcare-sciences-department-health-sciences" },
-  { id: "1129", title: "Senior Electrical Engineer – Water/Wastewater", location: "NYC, NY", salaryDisplay: "$135,000 – $190,000", slug: "1129-senior-electrical-engineer-water-wastewater" },
-  { id: "1181", title: "Assistant Chief Engineer, Structural (Bridge)", location: "Wall Township, NJ", salaryDisplay: "$150,000 – $200,000", slug: "1181-assistant-chief-engineer-structural-bridge" },
+  { id: "1028", title: "Senior Electrical Engineer – Buildings", location: "Buffalo, NY", salaryDisplay: "$120,000 – $165,000", slug: "1028-senior-electrical-engineer-buildings" },
+  { id: "1085", title: "Electrical Department Group Manager", location: "Wall Township, NJ", salaryDisplay: "$150,000 – $200,000", slug: "1085-electrical-department-group-manager" },
+  { id: "1095", title: "Senior Mechanical Designer", location: "Hollywood, FL", salaryDisplay: "$110,000 – $145,000", slug: "1095-senior-mechanical-designer" },
+  { id: "1162", title: "Senior Highway/Civil Engineer", location: "New York, NY", salaryDisplay: "$142,000 – $185,000", slug: "1162-senior-highway-civil-engineer" },
 ];
 
 const PORTFOLIO_SLICES = [

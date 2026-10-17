@@ -200,4 +200,100 @@ export const dormantPositionIds = [
     reason:
       "Dormant — client (Rock Brook Group) not currently engaged with the firm. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Rock Brook Group re-engages AGILE.",
   },
+  {
+    id: "1010",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1074",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1075",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1087",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1091",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1092",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1153",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1154",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1155",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1156",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1157",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1158",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1200",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1201",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1202",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
+  {
+    id: "1203",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client (Concord Engineering Group) terminated its contract with AGILE on 2026-10-17 (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly if Concord re-engages AGILE.",
+  },
 ];
