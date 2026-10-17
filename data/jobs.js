@@ -102,6 +102,7 @@ import details1222To1222 from "./jobDetails/details-1222-1222.js";
 
 import { terminatedPositionIds } from "./terminatedPositionIds.js";
 import { dormantPositionIds } from "./dormantPositionIds.js";
+import { jobPostedDates } from "./jobPostedDates.js";
 
 // Exported (not just used internally) so scripts like
 // scripts/submit-indexnow.mjs can look up the slug for a terminated or
@@ -226,9 +227,14 @@ const hiddenIds = new Set([
 ...dormantPositionIds.map((entry) => String(entry.id)),
 ]);
 
+// Newest first: most recently posted positions lead the careers page, so returning
+// candidates see fresh openings at the top. Ties fall back to the higher Position ID.
+const postedTime = (job) => Date.parse(jobPostedDates[String(job.id)] || "") || 0;
+
 export const jobs = coreJobs
 .filter((job) => !hiddenIds.has(String(job.id)))
 .map((job) => ({
 ...job,
 ...(detailsById.get(String(job.id)) ?? {}),
-}));
+}))
+.sort((a, b) => postedTime(b) - postedTime(a) || Number(b.id) - Number(a.id));
