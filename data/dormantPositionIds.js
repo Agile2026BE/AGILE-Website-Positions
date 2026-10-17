@@ -302,4 +302,34 @@ export const dormantPositionIds = [
     reason:
       "Dormant — client believed to be JBB (not fully confirmed); JBB ended its contract with AGILE after being bought out (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly.",
   },
+  {
+    id: "1093",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client believed to be JBB or Arora Engineers (per Byron); AGILE is not actively recruiting for either. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly.",
+  },
+  {
+    id: "1078",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client believed to be JBB or Arora Engineers (per Byron); AGILE is not actively recruiting for either. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly.",
+  },
+  {
+    id: "1070",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client believed to be JBB or Arora Engineers (per Byron); AGILE is not actively recruiting for either. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly.",
+  },
+  {
+    id: "1080",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client believed to be JBB or Arora Engineers (per Byron); AGILE is not actively recruiting for either. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly.",
+  },
+  {
+    id: "1081",
+    dormantOn: "2026-10-17",
+    reason:
+      "Dormant — client believed to be JBB or Arora Engineers (per Byron); AGILE is not actively recruiting for either. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly.",
+  },
 ];
