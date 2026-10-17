@@ -37,6 +37,13 @@ import { jobs1212To1212 } from "./jobs/positions-1212-1212.js";
 import { jobs1213To1213 } from "./jobs/positions-1213-1213.js";
 import { jobs1214To1214 } from "./jobs/positions-1214-1214.js";
 import { jobs1215To1215 } from "./jobs/positions-1215-1215.js";
+import { jobs1216To1216 } from "./jobs/positions-1216-1216.js";
+import { jobs1217To1217 } from "./jobs/positions-1217-1217.js";
+import { jobs1218To1218 } from "./jobs/positions-1218-1218.js";
+import { jobs1219To1219 } from "./jobs/positions-1219-1219.js";
+import { jobs1220To1220 } from "./jobs/positions-1220-1220.js";
+import { jobs1221To1221 } from "./jobs/positions-1221-1221.js";
+import { jobs1222To1222 } from "./jobs/positions-1222-1222.js";
 
 import details1001To1010 from "./jobDetails/details-1001-1010.js";
 import details1011To1020 from "./jobDetails/details-1011-1020.js";
@@ -85,6 +92,13 @@ import details1212To1212 from "./jobDetails/details-1212-1212.js";
 import details1213To1213 from "./jobDetails/details-1213-1213.js";
 import details1214To1214 from "./jobDetails/details-1214-1214.js";
 import details1215To1215 from "./jobDetails/details-1215-1215.js";
+import details1216To1216 from "./jobDetails/details-1216-1216.js";
+import details1217To1217 from "./jobDetails/details-1217-1217.js";
+import details1218To1218 from "./jobDetails/details-1218-1218.js";
+import details1219To1219 from "./jobDetails/details-1219-1219.js";
+import details1220To1220 from "./jobDetails/details-1220-1220.js";
+import details1221To1221 from "./jobDetails/details-1221-1221.js";
+import details1222To1222 from "./jobDetails/details-1222-1222.js";
 
 import { terminatedPositionIds } from "./terminatedPositionIds.js";
 import { dormantPositionIds } from "./dormantPositionIds.js";
@@ -134,6 +148,13 @@ export const coreJobs = [
   ...jobs1213To1213,
   ...jobs1214To1214,
   ...jobs1215To1215,
+  ...jobs1216To1216,
+  ...jobs1217To1217,
+  ...jobs1218To1218,
+  ...jobs1219To1219,
+  ...jobs1220To1220,
+  ...jobs1221To1221,
+  ...jobs1222To1222,
 ];
 
 const detailOverlays = [
@@ -184,6 +205,13 @@ const detailOverlays = [
   ...details1213To1213,
   ...details1214To1214,
   ...details1215To1215,
+  ...details1216To1216,
+  ...details1217To1217,
+  ...details1218To1218,
+  ...details1219To1219,
+  ...details1220To1220,
+  ...details1221To1221,
+  ...details1222To1222,
 ];
 
 const detailsById = new Map(
