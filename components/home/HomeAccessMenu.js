@@ -177,7 +177,7 @@ export default function HomeAccessMenu() {
               </div>
             </div>
             <div className={styles.accessSubRow}>
-              <Link href="/#client-hiring-support" className={styles.accessSubRowHead} onClick={closeAll}>
+              <Link href="/#client-hiring-support" className={styles.accessSubRowHead} onClick={(event) => { closeAll(); /* Open the Client Hiring Support form directly when it is on this page (a same-page hash link alone does not reopen it). */ const handled = !window.dispatchEvent(new Event("agile:open-client-support", { cancelable: true })); if (handled) event.preventDefault(); }}>
                 Start a Client Conversation →
               </Link>
             </div>
