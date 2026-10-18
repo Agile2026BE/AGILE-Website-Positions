@@ -12,7 +12,26 @@ import { jobLocations } from "../../../../data/jobLocations";
 import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../../lib/positionFreshness";
 import { formatExperienceDisplay, formatSalaryDisplay, formatWorkplaceDisplay } from "../../../../lib/jobFilters";
 import { getSimilarJobs } from "../../../../lib/similarJobs";
-import { SITE_URL, addDaysISO, getJobDatePosted, parseExperienceMonths } from "../../../../lib/seo";
+import { SITE_URL, getJobDatePosted, getValidThrough, parseExperienceMonths } from "../../../../lib/seo";
+
+const escapeHtml = (value) =>
+  String(value ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+// Google Jobs requires the FULL job description (HTML allowed) in the
+// JobPosting "description" field; a one-line meta description makes the
+// posting look thin and ranks it below job-board listings.
+function buildSchemaDescription(job, responsibilities, qualifications, whyConsider) {
+  const list = (items) => `<ul>${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>`;
+  const parts = [];
+  if (job.summary) parts.push(`<p>${escapeHtml(job.summary)}</p>`);
+  parts.push(`<p><strong>Location:</strong> ${escapeHtml(job.location)} · <strong>Workplace:</strong> ${escapeHtml(job.workplace)} · <strong>Salary:</strong> ${escapeHtml(job.salaryDisplay)} · <strong>Experience:</strong> ${escapeHtml(job.experience)}</p>`);
+  if (responsibilities.length) parts.push(`<p><strong>Responsibilities</strong></p>${list(responsibilities)}`);
+  if (qualifications.length) parts.push(`<p><strong>Qualifications</strong></p>${list(qualifications)}`);
+  const why = Array.isArray(whyConsider) ? whyConsider : lines(whyConsider);
+  if (why.length) parts.push(`<p><strong>Why Consider This Role</strong></p>${list(why)}`);
+  parts.push(`<p>Position ID ${escapeHtml(job.id)}. Presented by AGILE Business Consulting, an MEP and civil engineering recruiting firm.</p>`);
+  return parts.join("");
+}
 
 const lines = (value) =>
   String(value ?? "")
@@ -100,19 +119,21 @@ export default async function PositionPage({ params }) {
     "@context": "https://schema.org",
     "@type": "JobPosting",
     title: job.title,
-    description: job.metaDescription || job.summary || job.title,
+    description: buildSchemaDescription(job, responsibilities, qualifications, whyConsider),
     identifier: {
       "@type": "PropertyValue",
       name: "AGILE Business Consulting",
       value: job.id,
     },
     datePosted,
-    validThrough: `${addDaysISO(datePosted, 60)}T23:59:59Z`,
+    validThrough: getValidThrough(datePosted),
+    directApply: false,
     employmentType: "FULL_TIME",
     hiringOrganization: {
       "@type": "Organization",
       name: "AGILE Business Consulting",
       sameAs: SITE_URL,
+      logo: `${SITE_URL}/agile-company-logo.png`,
     },
     jobLocation: buildJobLocation(job),
     ...(isRemote
@@ -177,6 +198,9 @@ export default async function PositionPage({ params }) {
             {job.bonus ? <div><dt>Bonus</dt><dd>{job.bonus}</dd></div> : null}
             {job.openings > 1 ? <div><dt>Openings</dt><dd>{job.openings}</dd></div> : null}<div><dt>Position ID</dt><dd>{job.id}</dd></div>
           </dl>
+
+          {/* Second contact button near the top so phone visitors don't have to scroll past the whole posting to reach out. */}
+          <PositionContactCta className={`hero-primary ${styles.cta}`} />
 
           {responsibilities.length ? (
             <section className={styles.contentSection}>
