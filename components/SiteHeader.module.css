@@ -77,6 +77,9 @@
     border-radius: 999px;
     background: #eef7fb;
     color: #0b6f9f;
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
     font-size: .76rem;
     font-weight: 800;
     line-height: 1.15;

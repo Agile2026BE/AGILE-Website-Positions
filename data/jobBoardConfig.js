@@ -12,7 +12,7 @@ filters: [
 ],
 search: {
 label: "Title, specialty, skill, city or commute area",
-placeholder: "Try traction power, data centers, Tampa…",
+placeholder: "Try data centers, HVAC, Tampa…",
 resetLabel: "Reset",
 },
 results: {
