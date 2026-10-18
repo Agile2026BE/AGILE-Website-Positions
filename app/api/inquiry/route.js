@@ -55,7 +55,7 @@ export async function POST(request) {
     };
 
     if (resume && typeof resume.arrayBuffer === "function" && resume.size > 0) {
-      if (resume.size > 8 * 1024 * 1024) return NextResponse.json({ error: "Please attach a résumé smaller than 8 MB." }, { status: 400 });
+      if (resume.size > 4 * 1024 * 1024) return NextResponse.json({ error: "This file is over 4 MB, too large to send through the website. Please send the form without it and email your résumé or project list to careers@agileconsultingsolutions.com." }, { status: 400 });
       const bytes = Buffer.from(await resume.arrayBuffer());
       payload.attachments = [{ filename: resume.name || "resume", content: bytes.toString("base64") }];
     }

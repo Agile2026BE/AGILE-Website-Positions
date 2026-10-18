@@ -101,6 +101,8 @@ export default function ContactSection() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    const attached = event.currentTarget.querySelector('input[name="resume"]')?.files?.[0];
+    if (attached && attached.size > 4 * 1024 * 1024) { setStatus("This file is over 4 MB, too large to send through the website. Please send the form without it and email your résumé or project list to careers@agileconsultingsolutions.com."); return; }
     const form = event.currentTarget;
     setSending(true); setStatus(""); setCelebrating(false);
     const formData = new FormData(form);
