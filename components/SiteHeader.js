@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./SiteHeader.module.css";
 import { getTargetId, getTargetScrollTop, scrollToTarget, handleSamePageNav } from "../lib/scrollToSection";
@@ -184,6 +184,21 @@ export default function SiteHeader() {
     handleSamePageNav(event, href, CAREERS_PATH);
   }
 
+  // Phone-only floating "back to top" button. "Top" is hidden from the
+  // phone menu (it crowded the button row), so this takes its place once
+  // the visitor has scrolled down the page.
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setShowBackToTop(window.scrollY > 600);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  function handleBackToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   const links = [
     ["agile-insights", "Insights"],
     ["positions", "Positions"],
@@ -203,13 +218,27 @@ export default function SiteHeader() {
           {links.map(([targetId, label]) => {
             const href = `${CAREERS_PATH}/#${targetId}`;
             return (
-              <a key={targetId} href={href} onClick={(event) => handleNavigation(event, href)}>
+              <a
+                key={targetId}
+                href={href}
+                className={targetId === "top" ? styles.desktopOnly : undefined}
+                onClick={(event) => handleNavigation(event, href)}
+              >
                 {label}
               </a>
             );
           })}
         </nav>
       </div>
+      <button
+        type="button"
+        className={`${styles.backToTop} ${showBackToTop ? styles.backToTopVisible : ""}`}
+        onClick={handleBackToTop}
+        aria-label="Back to top"
+        tabIndex={showBackToTop ? 0 : -1}
+      >
+        <span aria-hidden="true">↑</span>
+      </button>
     </header>
   );
 }

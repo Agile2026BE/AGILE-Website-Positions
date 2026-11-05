@@ -97,3 +97,44 @@
   .nav { gap: 4px; }
   .nav a { padding: 5px 5px; font-size: .71rem; }
 }
+
+/* Floating back-to-top button: phone only (desktop keeps "Top" in the menu). */
+.backToTop { display: none; }
+
+@media (max-width: 760px) {
+  .desktopOnly { display: none !important; }
+  .backToTop {
+    position: fixed;
+    right: 16px;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    z-index: 30;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #173957;
+    color: #ffffff;
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow: 0 6px 18px rgba(15, 37, 48, 0.28);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .backToTopVisible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  .backToTop:focus-visible {
+    outline: 3px solid rgba(20, 118, 168, 0.35);
+    outline-offset: 3px;
+  }
+}
