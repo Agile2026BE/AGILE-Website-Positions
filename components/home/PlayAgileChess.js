@@ -253,7 +253,7 @@ export default function PlayAgileChess() {
           <small>Defense</small>
         </button>
       </div>
-      <p className={styles.chessPickNote}>Silver is Offense and Gold is Defense. AGILE plays the opposite of your choice.</p>
+      <p className={styles.chessPickNote}>Silver’s Offense and Gold’s Defense.</p>
     </div>
   );
 
