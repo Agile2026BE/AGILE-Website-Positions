@@ -152,6 +152,11 @@ export default function HomeResourcesAccordion({ variant }) {
         setOpen(true);
         setOpenTab("featured");
       }
+      // Direct link to the chess board (used in candidate emails): /#play-agile
+      if (window.location.hash === "#play-agile") {
+        setChessOpen(true);
+        setOpen(false);
+      }
     }
     const timer = window.setTimeout(openFromHash, 0);
     window.addEventListener("hashchange", openFromHash);
