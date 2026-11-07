@@ -182,6 +182,7 @@ export default function HomeResourcesAccordion({ variant }) {
           <div className={styles.chessModalCard} onClick={(e) => e.stopPropagation()}>
             <button type="button" className={styles.chessModalClose} aria-label="Close" onClick={() => setChessOpen(false)}>×</button>
             <PlayAgileChess />
+            <a href="/careers/#positions" className={styles.chessPositionsLink}>View Open Positions</a>
           </div>
         </div>
       ) : null}
