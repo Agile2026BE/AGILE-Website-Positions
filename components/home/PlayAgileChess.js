@@ -253,7 +253,6 @@ export default function PlayAgileChess() {
           <small>Defense</small>
         </button>
       </div>
-      <p className={styles.chessPickNote}>Silver’s Offense and Gold’s Defense.</p>
     </div>
   );
 
