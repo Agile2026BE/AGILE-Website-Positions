@@ -9,21 +9,14 @@ import { formatSalaryDisplay } from "../../lib/jobFilters";
 
 // The careers engine now lives at /careers within this same unified deployment,
 // so this fetches live numbers at runtime from its public endpoint
-// (/api/jobs-summary). The constants below are only a fallback, used if that fetch
-// ever fails — a real, verified snapshot of live AGILE postings captured August 2026,
-// not invented data. The "View All" and "Explore Additional Opportunities" links always
-// go straight to the live, up-to-the-minute search either way.
+// (/api/jobs-summary). Until that loads (or if it ever fails), the panel shows no
+// counts and no sample positions, so the first page load never links to filled
+// positions or shows an outdated total. Featured Positions keeps its curated fallback.
 const JOBS_SUMMARY_URL = "/api/jobs-summary";
 
-const FALLBACK_STATS = { count: 183, min: 65000, max: 250000 };
+const FALLBACK_STATS = { count: null, min: null, max: null };
 
-const FALLBACK_SAMPLE_JOBS = [
-  { id: "1001", title: "Associate Electrical Engineer- Technical", location: "NYC, NY", salaryDisplay: "$110,000 – $145,000+", slug: "1001-associate-electrical-engineer-technical" },
-  { id: "1002", title: "Associate Electrical Engineer – Power Systems and Modeling", location: "NYC, NY", salaryDisplay: "$122,000 – $140,000+", slug: "1002-associate-electrical-engineer-power-systems-and-modeling" },
-  { id: "1003", title: "Associate, Electrical", location: "NYC, NY", salaryDisplay: "$130,000 – $155,000", slug: "1003-associate-electrical" },
-  { id: "1004", title: "Associate, Building Management Systems (BMS)", location: "NYC, NY", salaryDisplay: "$122,000 – $140,000", slug: "1004-associate-building-management-systems-bms" },
-  { id: "1005", title: "Electrical Engineer", location: "NYC, NY", salaryDisplay: "$80,000 – $85,000", slug: "1005-electrical-engineer" },
-];
+const FALLBACK_SAMPLE_JOBS = [];
 
 const FALLBACK_FEATURED_JOBS = [
   { id: "1028", title: "Senior Electrical Engineer – Buildings", location: "Buffalo, NY", salaryDisplay: "$120,000 – $165,000", slug: "1028-senior-electrical-engineer-buildings" },
@@ -226,9 +219,9 @@ export default function HomeResourcesAccordion({ variant }) {
 
               <div className={styles.resourcesStatBox}>
                 <span className={styles.resourcesStatLabel}>{hasCalcFilters ? "Salary range for this search" : "Current posted salary range"}</span>
-                <strong className={styles.resourcesStatValue}>{calcStats.min != null && calcStats.max != null ? `${money(calcStats.min)} – ${money(calcStats.max)}` : "No matches yet"}</strong>
+                <strong className={styles.resourcesStatValue}>{calcStats.min != null && calcStats.max != null ? `${money(calcStats.min)} – ${money(calcStats.max)}` : live ? "No matches yet" : "Loading current range…"}</strong>
                 <span className={styles.resourcesStatSub}>
-                  {calcStats.count} {hasCalcFilters ? "matching postings" : "current postings"} · all current AGILE opportunities
+                  {calcStats.count != null ? `${calcStats.count} ` : ""}{hasCalcFilters ? "matching postings" : "current postings"} · all current AGILE opportunities
                 </span>
               </div>
 
@@ -248,7 +241,7 @@ export default function HomeResourcesAccordion({ variant }) {
               </div>
 
               <a href={buildCareersSearchUrl(calcFilters)} className={styles.resourcesCta}>
-                {hasCalcFilters ? `View ${calcStats.count} Matching Position${calcStats.count === 1 ? "" : "s"}` : `View All ${stats.count} Positions`}
+                {hasCalcFilters ? `View ${calcStats.count} Matching Position${calcStats.count === 1 ? "" : "s"}` : stats.count != null ? `View All ${stats.count} Positions` : "View All Positions"}
               </a>
               {hasCalcFilters ? (
                 <a href="/careers/#positions" className={styles.resourcesCtaSecondary}>See All {stats.count} Positions</a>
