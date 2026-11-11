@@ -166,6 +166,10 @@ export const jobLocations = {
   "1225": [{ city: "Danbury", state: "CT", zip: "06810" }],
   "1226": [{ city: "New York", state: "NY", zip: "10001" }],
   "1227": [{ city: "Danbury", state: "CT", zip: "06810" }],
+  "1228": [
+    { city: "Philadelphia", state: "PA", zip: "19107" },
+    { city: "Hollywood", state: "FL", zip: "33021" },
+  ],
   "1095": [{ city: "Hollywood", state: "FL", zip: "33021" }],
   "1097": [{ city: "Hollywood", state: "FL", zip: "33021" }],
   "1189": [{ city: "New York", state: "NY", zip: "10001" }],
