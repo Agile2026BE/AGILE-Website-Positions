@@ -332,4 +332,10 @@ export const dormantPositionIds = [
     reason:
       "Dormant — client believed to be JBB or Arora Engineers (per Byron); AGILE is not actively recruiting for either. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly.",
   },
+  {
+    id: "1139",
+    dormantOn: "2026-11-10",
+    reason:
+      "Dormant — business development listing (target firm Interface Engineering) put on hold by Byron because it was not producing candidates. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly.",
+  },
 ];
