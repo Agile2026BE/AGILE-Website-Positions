@@ -50,6 +50,7 @@ import { jobs1225To1225 } from "./jobs/positions-1225-1225.js";
 import { jobs1226To1226 } from "./jobs/positions-1226-1226.js";
 import { jobs1227To1227 } from "./jobs/positions-1227-1227.js";
 import { jobs1228To1228 } from "./jobs/positions-1228-1228.js";
+import { jobs1229To1229 } from "./jobs/positions-1229-1229.js";
 
 import details1001To1010 from "./jobDetails/details-1001-1010.js";
 import details1011To1020 from "./jobDetails/details-1011-1020.js";
@@ -111,6 +112,7 @@ import details1225To1225 from "./jobDetails/details-1225-1225.js";
 import details1226To1226 from "./jobDetails/details-1226-1226.js";
 import details1227To1227 from "./jobDetails/details-1227-1227.js";
 import details1228To1228 from "./jobDetails/details-1228-1228.js";
+import details1229To1229 from "./jobDetails/details-1229-1229.js";
 
 import { terminatedPositionIds } from "./terminatedPositionIds.js";
 import { dormantPositionIds } from "./dormantPositionIds.js";
@@ -174,6 +176,7 @@ export const coreJobs = [
   ...jobs1226To1226,
   ...jobs1227To1227,
   ...jobs1228To1228,
+  ...jobs1229To1229,
 ];
 
 const detailOverlays = [
@@ -237,6 +240,7 @@ const detailOverlays = [
   ...details1226To1226,
   ...details1227To1227,
   ...details1228To1228,
+  ...details1229To1229,
 ];
 
 const detailsById = new Map(
