@@ -68,4 +68,10 @@ export const terminatedPositionIds = [
     reason:
       "Duplicate of 1178 — same Water/Wastewater Project Manager opening for AGILE's Client (Dewberry) in Denver, CO (salary $125,000-$145,000 vs $125,000-$142,000, same 8+ years experience). 1178 was built directly from the client's real posting and is the listing that stays live.",
   },
+  {
+    id: "1073",
+    terminatedOn: "2026-11-13",
+    reason:
+      "Filled — Electrical Engineering Department Manager, NYC (Dewberry). Byron confirmed the position has been filled; take down permanently.",
+  },
 ];
