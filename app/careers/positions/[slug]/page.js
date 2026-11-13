@@ -11,7 +11,7 @@ import { jobs } from "../../../../data/jobs";
 import { jobLocations } from "../../../../data/jobLocations";
 import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../../lib/positionFreshness";
 import { formatExperienceDisplay, formatSalaryDisplay, formatWorkplaceDisplay } from "../../../../lib/jobFilters";
-import { getSimilarJobs } from "../../../../lib/similarJobs";
+import { getSimilarJobsWithLevels, LEVEL_LABELS } from "../../../../lib/similarJobs";
 import { SITE_URL, getJobDatePosted, getValidThrough, parseExperienceMonths } from "../../../../lib/seo";
 
 const escapeHtml = (value) =>
@@ -105,7 +105,7 @@ export default async function PositionPage({ params }) {
   const responsibilities = lines(job.responsibilities);
   const qualifications = lines(job.qualifications);
   const whyConsider = freshWhyConsider(job);
-  const similarJobs = getSimilarJobs(job, jobs, 3);
+  const similarJobs = getSimilarJobsWithLevels(job, jobs, { min: 4, max: 6 });
 
   const datePosted = getJobDatePosted(job);
   const isRemote = String(job.workplace ?? "").trim().toLowerCase() === "remote";
@@ -227,8 +227,9 @@ export default async function PositionPage({ params }) {
             <section id="similar-positions" className={`${styles.contentSection} ${styles.similarBlock}`}>
               <h2>Similar Positions</h2>
               <div className={styles.similarList}>
-                {similarJobs.map((similar) => (
+                {similarJobs.map(({ job: similar, level }) => (
                   <Link key={similar.id ?? similar.slug} href={`/careers/positions/${similar.slug}`} className={styles.similarCard}>
+                    {level ? <span className={`${styles.levelTag} ${styles[`level_${level}`]}`}>{LEVEL_LABELS[level]}</span> : null}
                     <strong>{similar.title}</strong>
                     <span className={styles.similarMeta}>
                       <span>{similar.location}</span>
