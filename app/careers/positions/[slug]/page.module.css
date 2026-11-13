@@ -189,3 +189,4 @@
 .level_up { background:#e6f2ec; color:#1f5c3d; border-color:#c4dfd0; }
 .level_down { background:#f6f1e6; color:#6b5221; border-color:#e6d9bc; }
 @media (max-width:640px){ .levelTag{font-size:.74rem} }
+.level_similar { background:#f3f4f6; color:#4b5563; border-color:#dde1e6; }
