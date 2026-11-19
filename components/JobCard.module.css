@@ -24,6 +24,7 @@ transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease
 .tags { display:flex; flex-wrap:wrap; gap:7px; margin:0 0 10px; }
 .tags span { padding:5px 9px; border:0; border-radius:5px; background:#eef3f6; color:#5d6b78; font-size:.69rem; font-weight:700; }
 .tags span:first-child { width:100%; background:#dff1f8; color:#26445a; text-transform:uppercase; letter-spacing:.04em; }
+.tags span.marketTag { width:100%; background:#e3f0ea; color:#1f4a3a; border-left:3px solid #4a9a78; border-radius:0 5px 5px 0; }
 .tags span.openingsBadge { background:#FBF1DE; border:1px solid #D9B16F; color:#173958; font-weight:800; }
 .actions { display:flex; align-items:center; gap:12px; margin-top:auto; }
 .actions > :first-child { flex:1; }
