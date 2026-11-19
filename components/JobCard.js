@@ -86,7 +86,7 @@ onClick={() => onShortlist?.(job)}
 
 <div className={styles.tags} aria-label="Position details">
 {job.specialty ? <span>{job.specialty}</span> : null}
-{job.market ? <span>{job.market.split("|")[0].trim()}{job.market.split("|").length > 1 ? ` +${job.market.split("|").length - 1}` : ""}</span> : null}
+{job.market ? (() => { const types = job.market.split("|").map((t) => t.trim()).filter(Boolean); return <span>{types.slice(0, 3).join(" · ")}{types.length > 3 ? ` +${types.length - 3}` : ""}</span>; })() : null}
 {job.credential && job.credential.trim().toLowerCase() !== "not stated" ? <span>{job.credential}</span> : null}
 {job.bonus ? <span>Bonus</span> : null}
 {job.openings > 1 ? <span className={styles.openingsBadge}>{job.openings} Openings</span> : null}
