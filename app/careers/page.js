@@ -3,6 +3,7 @@ import ContactSection from "../../components/ContactSection";
 import HeroSection from "../../components/HeroSection";
 import JobBoard from "../../components/JobBoard";
 import AllPositionsIndex from "../../components/AllPositionsIndex";
+import JobHubLinks from "../../components/JobHubLinks";
 import MarketInsightsSection from "../../components/MarketInsightsSection";
 import ReviewsSection from "../../components/ReviewsSection";
 import SiteFooter from "../../components/SiteFooter";
@@ -26,6 +27,9 @@ export default function HomePage() {
         <HeroSection />
         <JobBoard jobs={jobs} />
 <AllPositionsIndex jobs={jobs} />
+        <div className="container">
+          <JobHubLinks />
+        </div>
         <WhyAgileSection />
         <MarketInsightsSection />
         <ReviewsSection />

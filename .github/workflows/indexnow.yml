@@ -18,6 +18,8 @@ on:
       - "data/jobDetails/**"
       - "data/retiredPositionIds.js"
       - "data/jobLocations.js"
+      - "data/dormantPositionIds.js"
+      - "data/terminatedPositionIds.js"
   workflow_dispatch: {}
 
 jobs:
@@ -27,6 +29,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -34,4 +38,6 @@ jobs:
           node-version: 20.19.0
 
       - name: Submit changed position URLs to IndexNow
+        env:
+          INDEXNOW_BEFORE_SHA: ${{ github.event.before }}
         run: node scripts/submit-indexnow.mjs

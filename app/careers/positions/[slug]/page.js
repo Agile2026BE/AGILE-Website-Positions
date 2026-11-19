@@ -7,6 +7,8 @@ import SiteHeader from "../../../../components/SiteHeader";
 import PositionBackLink from "../../../../components/PositionBackLink";
 import PositionContactCta from "../../../../components/PositionContactCta";
 import PositionPageShortlist from "../../../../components/PositionPageShortlist";
+import JobHubLinks from "../../../../components/JobHubLinks";
+import { hubsForJob } from "../../../../lib/jobHubs";
 import { jobs } from "../../../../data/jobs";
 import { jobLocations } from "../../../../data/jobLocations";
 import { freshWhyConsider, POSITION_REVIEW_LABEL } from "../../../../lib/positionFreshness";
@@ -240,6 +242,8 @@ export default async function PositionPage({ params }) {
               </div>
             </section>
           ) : null}
+
+          <JobHubLinks only={hubsForJob(job).map((hub) => hub.slug)} heading="More jobs like this" />
 
           <PositionContactCta className={`hero-primary ${styles.cta}`} />
         </div>

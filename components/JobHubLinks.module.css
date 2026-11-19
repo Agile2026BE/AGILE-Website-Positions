@@ -1,0 +1,9 @@
+.wrap { max-width: 1100px; margin: 30px 0; padding-top: 24px; border-top: 1px solid var(--border); }
+.heading { margin: 0 0 14px; color: var(--navy-dark); font-size: 1.3rem; }
+.columns { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px 28px; }
+.sub { margin: 0 0 8px; color: var(--text-muted); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.list { margin: 0 0 14px; padding: 0; list-style: none; }
+.list li { margin: 0 0 6px; }
+.list a { display: inline-block; padding: 4px 0; color: #1476a8; font-weight: 700; line-height: 1.35; }
+.list a:hover { text-decoration: underline; }
+.count { color: var(--text-muted); font-weight: 400; }

@@ -1,6 +1,7 @@
 import { jobs } from "../data/jobs";
 import { POSITION_REVIEW_LABEL } from "../lib/positionFreshness";
 import { SITE_URL, getReviewedDateISO, getJobDatePosted } from "../lib/seo";
+import { HUBS, hubJobs } from "../lib/jobHubs";
 
 export default function sitemap() {
   const lastModified = getReviewedDateISO(POSITION_REVIEW_LABEL);
@@ -22,5 +23,13 @@ export default function sitemap() {
       priority: 0.8,
     }));
 
-  return [...staticRoutes, ...positionRoutes];
+  // City / state / discipline job pages (lib/jobHubs.js).
+  const hubRoutes = HUBS.filter((hub) => hubJobs(hub, jobs).length > 0).map((hub) => ({
+    url: `${SITE_URL}/careers/jobs/${hub.slug}`,
+    lastModified,
+    changeFrequency: "daily",
+    priority: 0.85,
+  }));
+
+  return [...staticRoutes, ...hubRoutes, ...positionRoutes];
 }
