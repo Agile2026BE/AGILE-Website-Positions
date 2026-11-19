@@ -192,8 +192,8 @@ export default async function PositionPage({ params }) {
             <div><dt>Salary</dt><dd className={styles.salaryValue}>{formatSalaryDisplay(job.salaryDisplay)}</dd></div>
             <div><dt>Experience</dt><dd>{formatExperienceDisplay(job.experience)}</dd></div>
             <div><dt>Discipline</dt><dd>{job.discipline}</dd></div>
-            {job.specialty ? <div><dt>Specialty</dt><dd>{job.specialty}</dd></div> : null}
-            {job.market ? <div><dt>Market</dt><dd>{job.market}</dd></div> : null}
+            {job.specialty ? <div className={styles.specialtyBox}><dt>Specialty</dt><dd>{job.specialty}</dd></div> : null}
+            {job.market ? <div className={styles.marketBox}><dt>Market</dt><dd>{job.market}</dd></div> : null}
             {job.credential ? <div><dt>Credential</dt><dd>{job.credential}</dd></div> : null}
             {job.bonus ? <div><dt>Bonus</dt><dd>{job.bonus}</dd></div> : null}
             {job.openings > 1 ? <div><dt>Openings</dt><dd>{job.openings}</dd></div> : null}<div><dt>Position ID</dt><dd>{job.id}</dd></div>

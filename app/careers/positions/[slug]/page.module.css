@@ -59,6 +59,22 @@
   background: var(--surface);
 }
 
+.grid div.specialtyBox {
+  background: #dff1f8;
+  border-color: #b9dcea;
+  border-left: 3px solid #1386bd;
+}
+
+.grid div.specialtyBox dd { color: #25445a; }
+
+.grid div.marketBox {
+  background: #fff4d1;
+  border-color: #f0dc9c;
+  border-left: 3px solid #e0b84c;
+}
+
+.grid div.marketBox dd { color: #4a3b12; }
+
 .grid dt {
   margin-bottom: 6px;
   color: var(--text-muted);
