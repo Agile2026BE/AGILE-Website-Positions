@@ -189,6 +189,10 @@ export const jobLocations = {
     { city: "Pittsfield", state: "MA", zip: "01201" },
     { city: "Troy", state: "NY", zip: "12180" },
   ],
+  "1233": [{ city: "Ronkonkoma", state: "NY", zip: "11779" }],
+  "1234": [{ city: "Ronkonkoma", state: "NY", zip: "11779" }],
+  "1235": [{ city: "Newark", state: "NJ", zip: "07102" }],
+  "1236": [{ city: "Newark", state: "NJ", zip: "07102" }],
   "1229": [
     { city: "New York", state: "NY", zip: "10001" },
     { city: "Philadelphia", state: "PA", zip: "19107" },
