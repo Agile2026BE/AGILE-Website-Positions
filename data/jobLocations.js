@@ -161,7 +161,11 @@ export const jobLocations = {
   "1220": [{ city: "New York", state: "NY", zip: "10001" }],
   "1221": [{ city: "New York", state: "NY", zip: "10001" }],
   "1222": [{ city: "New York", state: "NY", zip: "10001" }],
-  "1223": [{ city: "Shelton", state: "CT", zip: "06484" }],
+  "1223": [
+    { city: "Shelton", state: "CT", zip: "06484" },
+    { city: "Pittsfield", state: "MA", zip: "01201" },
+    { city: "Troy", state: "NY", zip: "12180" },
+  ],
   "1224": [{ city: "New York", state: "NY", zip: "10001" }],
   "1225": [{ city: "Danbury", state: "CT", zip: "06810" }],
   "1226": [{ city: "New York", state: "NY", zip: "10001" }],
@@ -169,6 +173,21 @@ export const jobLocations = {
   "1228": [
     { city: "Philadelphia", state: "PA", zip: "19107" },
     { city: "Hollywood", state: "FL", zip: "33021" },
+  ],
+  "1230": [
+    { city: "Shelton", state: "CT", zip: "06484" },
+    { city: "Pittsfield", state: "MA", zip: "01201" },
+    { city: "Troy", state: "NY", zip: "12180" },
+  ],
+  "1231": [
+    { city: "Shelton", state: "CT", zip: "06484" },
+    { city: "Pittsfield", state: "MA", zip: "01201" },
+    { city: "Troy", state: "NY", zip: "12180" },
+  ],
+  "1232": [
+    { city: "Shelton", state: "CT", zip: "06484" },
+    { city: "Pittsfield", state: "MA", zip: "01201" },
+    { city: "Troy", state: "NY", zip: "12180" },
   ],
   "1229": [
     { city: "New York", state: "NY", zip: "10001" },
