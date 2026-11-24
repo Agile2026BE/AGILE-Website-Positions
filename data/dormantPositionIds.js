@@ -338,4 +338,10 @@ export const dormantPositionIds = [
     reason:
       "Dormant — business development listing (target firm Interface Engineering) put on hold by Byron because it was not producing candidates. Not deleted or reassigned; full record retained as-is so this can be reactivated quickly.",
   },
+  {
+    id: "1223",
+    dormantOn: "2026-11-24",
+    reason:
+      "Dormant — EDM does not need this Plumbing & Fire Protection Designer / Project Manager role at this time (per Byron). Not deleted or reassigned; full record retained as-is so this can be reactivated quickly.",
+  },
 ];
