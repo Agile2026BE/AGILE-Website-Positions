@@ -195,6 +195,7 @@ export const jobLocations = {
   "1236": [{ city: "Newark", state: "NJ", zip: "07102" }],
   "1187": [{ city: "Pine Brook", state: "NJ", zip: "07058" }],
   "1237": [{ city: "Pine Brook", state: "NJ", zip: "07058" }],
+  "1238": [{ city: "New York", state: "NY", zip: "10001" }],
   "1229": [
     { city: "New York", state: "NY", zip: "10001" },
     { city: "Philadelphia", state: "PA", zip: "19107" },
